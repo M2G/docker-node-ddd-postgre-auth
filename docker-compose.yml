@@ -1,0 +1,22 @@
+#
+# Docker NodeJS Typescript Starter
+# Example Docker Compose file
+#
+
+# For more information about the directives defined here:
+# https://docs.docker.com/compose/compose-file/
+
+# Docker compose file version
+version: "3.7"
+
+services:
+  app:
+    build: .
+    working_dir: /app
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/app
+    command: npm run watch
