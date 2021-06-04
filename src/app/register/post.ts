@@ -13,7 +13,7 @@ export default ({ usersRepository }: any) => {
     Promise.resolve()
       .then(() => {
         const user = new Users(body);
-        return usersRepository.create(user);
+        return usersRepository.register(user);
       })
       .catch((error) => {
         throw new Error(error);
