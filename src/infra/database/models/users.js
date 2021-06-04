@@ -11,47 +11,14 @@ const User = sequelize.define(table, {
     primaryKey: true,
     allowNull: false
   },
-  firstName: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  lastName: {
+  password_hash: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  roleId: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  verificationCode: {
-    type: DataTypes.STRING,
-    defaultValue: ''
-  },
-  isVerified: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0
-  },
-  isDeleted: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0
-  },
-  createdBy: {
-    type: DataTypes.UUID,
-    allowNull: false
-  },
-  updatedBy: {
-    type: DataTypes.UUID,
-    allowNull: true
-  }
 }, {
   hooks: {
     beforeCreate: (/** @type {{ password: string; }} */ user) => {
