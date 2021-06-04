@@ -3,7 +3,7 @@ import Status from 'http-status';
 import { Router } from 'express';
 
 export default ({
-  getUseCase,
+                  postUseCase,
   logger,
   response: { Success, Fail },
 }: any) => {

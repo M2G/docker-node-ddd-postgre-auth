@@ -9,7 +9,7 @@ import Users from '../../domain/users';
   */
 export default ({ usersRepository }: any) => {
   // code for getting all the items
-  const create = ({ body }: any) =>
+  const register = ({ body }: any) =>
     Promise.resolve()
       .then(() => {
         const user = new Users(body);
@@ -20,6 +20,6 @@ export default ({ usersRepository }: any) => {
       });
 
   return {
-    create
+    register
   }
 }

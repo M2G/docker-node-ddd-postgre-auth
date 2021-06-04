@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00d4b788-a7c6-48bd-9d0e-4d81b87b0b52" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.sequelizerc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/authenticate/get.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infra/repositories/authenticate/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infra/repositories/authenticate/transform.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/authenticate/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/register/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/authenticate/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/authenticate/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/register/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/register/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +33,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaces/http/modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/register" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -49,10 +49,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/register" />
+      <recent name="$PROJECT_DIR$/src/app/authenticate" />
       <recent name="$PROJECT_DIR$/src/interfaces/http/modules" />
       <recent name="$PROJECT_DIR$/src/infra/repositories" />
       <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -75,7 +76,7 @@
       <workItem from="1617996794130" duration="2720000" />
       <workItem from="1619235497626" duration="1350000" />
       <workItem from="1619752023405" duration="42000" />
-      <workItem from="1619752072143" duration="9340000" />
+      <workItem from="1619752072143" duration="11629000" />
     </task>
     <servers />
   </component>

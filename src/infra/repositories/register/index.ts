@@ -2,15 +2,11 @@
 import toEntity from './transform';
 
 export default ({ model }: any) => {
-  const getAll = (...args: any[]) =>
-    model.findAll(...args).then((entity: { dataValues: any }[]) =>
-      entity?.map((data: { dataValues: any }) => {
-        const { dataValues } = data || {};
-        return new toEntity(dataValues);
-      })
-    )
+  const register = (...args: any[]) =>
+    model.create(...args).then(({ dataValues }: any) =>
+      new toEntity(dataValues));
 
   return {
-    getAll,
+    register,
   }
 }

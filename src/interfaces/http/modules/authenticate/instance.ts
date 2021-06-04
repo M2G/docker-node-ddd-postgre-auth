@@ -1,17 +1,17 @@
 import container from '../../../../container';
-import { get } from '../../../../app/users';
+import post from '../../../../app/authenticate';
 
 export default () => {
-  const { cradle } = container;
+  const {cradle} = container;
   const {
  repository: {
    usersRepository
     }
   } = cradle;
 
-  const getUseCase = get({usersRepository});
+  const postUseCase = post({usersRepository});
 
   return {
-    getUseCase,
+    postUseCase
   };
 };
