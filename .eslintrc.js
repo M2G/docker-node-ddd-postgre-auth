@@ -54,6 +54,7 @@ module.exports = {
     "sort-imports": 0,
     "implicit-arrow-linebreak": 0,
 
+    "import/no-cycle": 1,
     "import/extensions": "off",
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
@@ -74,6 +75,10 @@ module.exports = {
     "@typescript-eslint/quotes": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
     "@typescript-eslint/unbound-method": 1,
+    "@typescript-eslint/no-unsafe-assignment": 1,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-unsafe-member-access": 1,
+    "@typescript-eslint/no-unsafe-call": 1
   },
   settings: {
     "html/html-extensions": [".html"],

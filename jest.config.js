@@ -1,32 +1,37 @@
 module.exports = {
-  "globals": {
+  coverageDirectory: './test/coverage/',
+  collectCoverage: true,
+  collectCoverageFrom: [
+    '<rootDir>/src/**/*.ts',
+    '!**/node_modules/**',
+    "!<rootDir>/src/core/**",
+    "!<rootDir>/src/models/**",
+    "!<rootDir>/src/repository/**",
+    "!<rootDir>/src/utils/**",
+    "!<rootDir>/src/index.ts"
+  ],
+  globals: {
     "ts-jest": {
       "tsConfig": "<rootDir>/tsconfig.json"
     }
   },
-  "preset": "ts-jest",
-  "roots": [
-    "<rootDir>/src"
+  preset: "ts-jest",
+  roots: [
+    "<rootDir>/test"
   ],
-  "transform": {
-    "^.+\\.(js|jsx)$": "babel-jest",
-    "^.+\\.(tsx|ts)?$": "ts-jest"
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
   },
-  "transformIgnorePatterns": [
-    "[/\\\\]node_modules[/\\\\].+\\.(js|ts)$"
-  ],
-  "testMatch": [
-    '**/test/**/*.test.(ts|js)'
-  ],
-  "modulePaths": [],
-  "moduleFileExtensions": [
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
+  modulePaths: [],
+  moduleFileExtensions: [
     "ts",
     "js",
     "json",
     "node"
   ],
-  "testPathIgnorePatterns": [
+  testPathIgnorePatterns: [
     "<rootDir>/(build|node_modules)/"
   ],
-  "testEnvironment": 'node'
+  testEnvironment: 'node'
 };
