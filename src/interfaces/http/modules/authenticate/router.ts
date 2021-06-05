@@ -15,8 +15,11 @@ export default ({
     const { body = {} } = req || {};
 
     postUseCase
-      .create({ body: body })
+      .authenticate({ body: body })
       .then((data: any) => {
+
+
+
         res.status(Status.OK).json(Success(data));
       })
       .catch((error: { message: any }) => {

@@ -2,7 +2,7 @@ import container from '../../../../container';
 import post from '../../../../app/authenticate';
 
 export default () => {
-  const { cradle } = container;
+  const {cradle} = container;
   const {
  repository: {
    usersRepository
@@ -12,6 +12,6 @@ export default () => {
   const postUseCase = post({usersRepository});
 
   return {
-    postUseCase,
+    postUseCase
   };
 };

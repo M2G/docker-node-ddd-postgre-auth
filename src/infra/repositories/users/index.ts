@@ -1,5 +1,5 @@
 /* eslint-disable */
-const { QueryTypes } = require('sequelize');
+// const { QueryTypes } = require('sequelize');
 import toEntity from './transform';
 
 export default ({ model }: any) => {
@@ -11,8 +11,11 @@ export default ({ model }: any) => {
       })
     )
 
-  const authenticate = async (...args: any[]) =>
-    await model.query('SELECT 1', {
+  const authenticate = async (...args: any[]) => {
+
+    console.log('args', args)
+
+    /*await model.query('SELECT 1', {
       // A function (or false) for logging your queries
       // Will get called for every SQL query that gets sent
       // to the server.
@@ -28,7 +31,8 @@ export default ({ model }: any) => {
       // The type of query you are executing. The query type affects how results are formatted before they are passed back.
       type: QueryTypes.SELECT
     }).then(({ dataValues }: any) =>
-      new toEntity(dataValues));
+      new toEntity(dataValues));*/
+  }
 
   const register = async (...args: any[]) => {
 

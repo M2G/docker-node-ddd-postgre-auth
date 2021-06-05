@@ -12,8 +12,8 @@ export default ({ usersRepository }: any) => {
   const authenticate = ({ body }: any) =>
     Promise.resolve()
       .then(() => {
-        const user = new Users(body);
-        return usersRepository.authenticate(user);
+        const { username, password } = new Users(body);
+        return usersRepository.authenticate({username, password });
       })
       .catch((error) => {
         throw new Error(error);
