@@ -1,5 +1,4 @@
 -- Set params
-SET SESSION my.number_of_users = '1';
 
 -- load the pgcrypto extension to gen_random_uuid ()
 CREATE EXTENSION pgcrypto;
@@ -18,9 +17,5 @@ AS $$
 $$;
 
 -- Filling of users
-INSERT INTO users
-SELECT id
-	, concat('User ', id)
-  , random_text(10)
-  , crypt('password', gen_salt('bf'))
-FROM GENERATE_SERIES(1, current_setting('my.number_of_users')::INT) AS id;
+INSERT INTO users(id, username, password_hash)
+VALUES(DEFAULT, random_text(10), crypt('password', gen_salt('bf')));

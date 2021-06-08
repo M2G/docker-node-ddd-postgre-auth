@@ -13,7 +13,7 @@ export default ({ usersRepository }: any) => {
     Promise.resolve()
       .then(() => {
         const { username, password } = new Users(body);
-        return usersRepository.authenticate({username, password });
+        return usersRepository.authenticate({ username, password });
       })
       .catch((error) => {
         throw new Error(error);
