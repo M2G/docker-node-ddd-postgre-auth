@@ -13,8 +13,6 @@ export default ({ model }: any) => {
 
   const authenticate = async (...args: any[]) => {
 
-    console.log('args', args)
-
     const { username } = args?.[0];
 
     return await model.sequelize.query(`SELECT * FROM users WHERE username=:username`, { replacements: { username: username },
@@ -33,9 +31,9 @@ export default ({ model }: any) => {
         // The type of query you are executing. The query type affects how results are formatted before they are passed back.
         type: QueryTypes.SELECT
     }).then((dataValues: any) => {
-      return new toEntity(dataValues?.[0]);
+      const { username, password_hash } = dataValues?.[0];
+      return new toEntity({ username, password: password_hash });
     });
-
   }
 
   const register = async (...args: any[]) => {
