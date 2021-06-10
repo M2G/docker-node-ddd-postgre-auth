@@ -18,7 +18,7 @@ export default ({
       .authenticate({ body: body })
       .then((data: any) => {
 
-
+        console.log('::::::::', data)
 
         res.status(Status.OK).json(Success(data));
       })
