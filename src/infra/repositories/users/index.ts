@@ -15,10 +15,9 @@ export default ({ model }: any) => {
 
     console.log('args', args)
 
-    // @ts-ignore
-    const { username } = args[0];
+    const { username } = args?.[0];
 
-    await model.sequelize.query(`SELECT * FROM users WHERE username=:username`, { replacements: { username: username },
+    return await model.sequelize.query(`SELECT * FROM users WHERE username=:username`, { replacements: { username: username },
         // A function (or false) for logging your queries
         // Will get called for every SQL query that gets sent
         // to the server.
@@ -34,8 +33,7 @@ export default ({ model }: any) => {
         // The type of query you are executing. The query type affects how results are formatted before they are passed back.
         type: QueryTypes.SELECT
     }).then((dataValues: any) => {
-      console.log('dataValues', dataValues)
-      return new toEntity(dataValues);
+      return new toEntity(dataValues?.[0]);
     });
 
   }
