@@ -23,30 +23,27 @@ export default ({
         const { username, password } = data;
 
         if (!username) {
-          // 401
+          res.status(401).json(Fail('Wrong username and password combination.'));
           return;
         }
 
         bcrypt.compare(body.password, password, function(err, match) {
+
           if (match) {
             // if user is found and password is right, create a token
-            const token = jwt.sign({ username, password }, process.env.SECRET as string, {
-              expiresIn: 60*60*10  // expires in 10 hours
-            });
+            const token = jwt.sign({ username, password }, process.env.SECRET as string,
+              // expires in 10 hours
+              { expiresIn: 60 * 60 * 10 });
+
+            console.log('::::::::', token)
 
             return res.status(Status.OK).json(Success({
               success: true,
               token: token
             }));
-          } else {
-            res.status(401).send('Wrong username and password combination.');
           }
+          return res.status(401).json(Fail('Wrong username and password combination.'));
         });
-
-        console.log(':::::::: 1 ', username)
-
-
-        res.status(Status.OK).json(Success(data));
       })
       .catch((error: { message: any }) => {
         logger.error(error);
