@@ -46,11 +46,9 @@ export default ({
         });
       })
       .catch((error: { message: any }) => {
-
         console.log('ERROR', error)
-
         logger.error(error);
-        res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(Status[Status.INTERNAL_SERVER_ERROR]));
       });
   });
 
