@@ -16,7 +16,7 @@ export default ({
 
     postUseCase
       .authenticate({ body: body })
-      .then((data: any) => {
+      .then(async (data: any) => {
 
         const { username, password } = data;
 
@@ -25,18 +25,13 @@ export default ({
           return;
         }
 
-        bcrypt.compare(body.password, password, function(err, match) {
+       const match = await bcrypt.compare(body.password, password);
 
           if (match) {
             // if user is found and password is right, create a token
-            const token = jwt.sign(
-              { username, password },
-              process.env.SECRET as string,
+            const token = jwt.sign({ username, password }, process.env.SECRET as string,
               // expires in 10 hours
-              { expiresIn: 60 * 60 * 10 }
-              );
-
-            console.log('::::::::', token)
+              { expiresIn: 60 * 60 * 10 });
 
             return res.status(Status.OK).json(Success({
               success: true,
@@ -44,7 +39,6 @@ export default ({
             }));
           }
           return res.status(401).json(Fail('Wrong username and password combination.'));
-        });
       })
       .catch((error: { message: any }) => {
         console.log('ERROR', error)
