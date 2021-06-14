@@ -8,8 +8,9 @@ export default ({ model }: any) => {
       entity?.map((data: { dataValues: any }) => {
         const { dataValues } = data || {};
         return new toEntity(dataValues);
-      })
-    )
+      })).catch((error: any) => {
+        return error;
+    });
 
   const register = (...args: any[]) =>
     model.create(...args).then(({ dataValues }: any) =>
@@ -19,7 +20,7 @@ export default ({ model }: any) => {
   const authenticate = async (...args: any[]) => {
     const { username } = args?.[0];
 
-    return await model.sequelize.query(`SELECT * FROM users WHERE username=:username`, { replacements: { username: username },
+    return await model.sequelize.query(`SELECT * FROM users WHERE username=:username`, { replacements: { username },
         // A function (or false) for logging your queries
         // Will get called for every SQL query that gets sent
         // to the server.
