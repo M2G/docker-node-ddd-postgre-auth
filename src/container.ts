@@ -1,4 +1,4 @@
-import {createContainer, asValue, asFunction} from 'awilix';
+import { createContainer, asValue, asFunction } from 'awilix';
 
 import app from './app';
 import server from './interfaces/http/server';
@@ -14,18 +14,17 @@ import database from './infra/database';
 const container = createContainer();
 
 // SYSTEM
-container
-  .register({
-    app: asFunction(app).singleton(),
-    auth: asFunction(auth).singleton(),
-    config: asValue(config),
-    database: asFunction(database).singleton(),
-    jwt: asFunction(jwt).singleton(),
-    logger: asFunction(logger).singleton(),
-    repository: asFunction(repository).singleton(),
-    response: asFunction(response).singleton(),
-    router: asFunction(router).singleton(),
-    server: asFunction(server).singleton()
-  });
+container.register({
+  app: asFunction(app).singleton(),
+  auth: asFunction(auth).singleton(),
+  config: asValue(config),
+  database: asFunction(database).singleton(),
+  jwt: asFunction(jwt).singleton(),
+  logger: asFunction(logger).singleton(),
+  repository: asFunction(repository).singleton(),
+  response: asFunction(response).singleton(),
+  router: asFunction(router).singleton(),
+  server: asFunction(server).singleton(),
+});
 
 export default container;

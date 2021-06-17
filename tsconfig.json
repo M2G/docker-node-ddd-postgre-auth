@@ -46,9 +46,7 @@
     "dist",
     "build",
     "node_modules",
-    "config",
-    "webpack",
-    "jest"
+    "config"
   ],
   "compileOnSave": false,
   "buildOnSave": false

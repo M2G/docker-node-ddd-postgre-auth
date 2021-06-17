@@ -33,6 +33,7 @@ export default ({
               // expires in 10 hours
               { expiresIn: 60 * 60 * 10 });
 
+            logger.info({ token: token });
             return res.status(Status.OK).json(Success({
               success: true,
               token: token
@@ -41,7 +42,6 @@ export default ({
           return res.status(401).json(Fail('Wrong username and password combination.'));
       })
       .catch((error: { message: any }) => {
-        console.log('ERROR', error)
         logger.error(error);
         res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(Status[Status.INTERNAL_SERVER_ERROR]));
       });

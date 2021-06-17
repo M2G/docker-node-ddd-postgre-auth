@@ -17,12 +17,12 @@ module.exports = {
   },
   preset: "ts-jest",
   roots: [
-    "<rootDir>/test"
+    "<rootDir>/src"
   ],
   transform: {
     '^.+\\.ts?$': 'ts-jest',
   },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
+  testRegex: '(/test/.*|(\\.|/)(test|spec))\\.ts?$',
   modulePaths: [],
   moduleFileExtensions: [
     "ts",
@@ -33,5 +33,5 @@ module.exports = {
   testPathIgnorePatterns: [
     "<rootDir>/(build|node_modules)/"
   ],
-  testEnvironment: 'node'
+  testEnvironment: 'node',
 };

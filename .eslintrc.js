@@ -94,7 +94,6 @@ module.exports = {
   env: {
     browser: true,
     jasmine: true,
-    jest: true,
     node: true
   }
 };
