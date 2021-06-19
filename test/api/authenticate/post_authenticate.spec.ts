@@ -1,6 +1,5 @@
 /* eslint-disable */
 import request from 'supertest';
-// import chai from 'chai';
 import container from '../../../src/container';
 
 const server: any = container.resolve('server');

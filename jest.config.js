@@ -17,12 +17,12 @@ module.exports = {
   },
   preset: "ts-jest",
   roots: [
-    "<rootDir>/src"
+    "<rootDir>/test"
   ],
   transform: {
     '^.+\\.ts?$': 'ts-jest',
   },
-  testRegex: '(/test/.*|(\\.|/)(test|spec))\\.ts?$',
+  "testRegex": "((\\.|/*.)(spec))\\.ts?$",
   modulePaths: [],
   moduleFileExtensions: [
     "ts",
