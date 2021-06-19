@@ -44,7 +44,7 @@ export default ({ config, basePath }: any) => {
   sequelize.sync(sequelizeOptions)
     .catch((err) => {
       console.log(err);
-      process.exit();
+      // process.exit();
     });
 
   return db;

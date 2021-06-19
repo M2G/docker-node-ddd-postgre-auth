@@ -1,6 +1,7 @@
 /* eslint-disable */
 const { QueryTypes } = require('sequelize');
 import toEntity from './transform';
+const { comparePassword } = require('../../encryption');
 
 export default ({ model }: any) => {
   const getAll = (...args: any[]) =>
@@ -45,9 +46,17 @@ export default ({ model }: any) => {
     });
   }
 
+  const validatePassword = (endcodedPassword: any) => (password: any) =>
+    comparePassword(password, endcodedPassword)
+
+  const destroy = (...args: any[]) =>
+    model.destroy(...args)
+
   return {
     authenticate,
     getAll,
-    register
+    register,
+    validatePassword,
+    destroy
   }
 }

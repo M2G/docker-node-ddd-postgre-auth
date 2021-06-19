@@ -7,12 +7,19 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
  */
 
 export default ({ config, repository: { userRepository } }: any) => {
+
+  console.log('config', config)
+
   const params = {
-    secretOrKey: config.authSecret,
+   //  secretOrKey: config.authSecret,
+    secretOrKey: 'SECRET',
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt')
   }
 
   const strategy = new Strategy(params, (payload: { id: any; }, done: (arg0: null, arg1: null) => void) => {
+
+    console.log('payload', payload)
+
     userRepository.findById(payload?.id)
       .then((user: any) => done(null, user))
       .catch((error: null) => done(error, null))

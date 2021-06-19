@@ -13,7 +13,6 @@ export default ({ database }: any) => {
   const usersModel: any = users;
 
   return {
-
     usersRepository: Users({ model: usersModel }),
   };
 };

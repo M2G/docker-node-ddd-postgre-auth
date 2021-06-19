@@ -20,11 +20,11 @@ const User = sequelize.define(table, {
     allowNull: false
   },
 }, {
-  hooks: {
+     hooks: {
     beforeCreate: (/** @type {{ password: string; }} */ user) => {
       user.password = encryptPassword(user.password)
-    }
-  },
+      }
+    },
   freezeTableName: true,
   timestamps: false,
   classMethods: {
