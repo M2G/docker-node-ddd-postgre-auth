@@ -7,12 +7,12 @@ const server: any = container.resolve('server');
 const rqt: any = request(server.app);
 
 const {
-  // usersRepository
+  usersRepository
 } = container.resolve('repository');
 
 describe('Routes: POST Users', () => {
   // const BASE_URI = `/api/`
-  /*beforeEach((done) => {
+  beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -26,7 +26,7 @@ describe('Routes: POST Users', () => {
         console.log('user', user)
       done()
     })
-  })*/
+  })
 
  /* describe('Should post users', () => {
     it('should return create user', (done) => {

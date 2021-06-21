@@ -1,4 +1,4 @@
-import { createContainer, asValue, asFunction } from 'awilix';
+import {createContainer, asValue, asFunction} from 'awilix';
 
 import app from './app';
 import server from './interfaces/http/server';
@@ -24,7 +24,7 @@ container.register({
   repository: asFunction(repository).singleton(),
   response: asFunction(response).singleton(),
   router: asFunction(router).singleton(),
-  server: asFunction(server).singleton(),
+  server: asFunction(server).singleton()
 });
 
 export default container;

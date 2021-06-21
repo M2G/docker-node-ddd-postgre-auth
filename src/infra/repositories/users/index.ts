@@ -13,9 +13,28 @@ export default ({ model }: any) => {
         return error;
     });
 
-  const register = (...args: any[]) =>
-    model.create(...args).then(({ dataValues }: any) =>
-      new toEntity(dataValues))
+  const register = (...args: any[]) => {
+    console.log('::::::', ...args)
+   return model.create(...args)
+     .then((dataValues: any) => {
+
+       console.log('dataValues', dataValues)
+
+       if (dataValues?.length){
+         const { username, password_hash } = dataValues?.[0];
+         return new toEntity({ username, password: password_hash });
+       }
+     }).catch((error: any) => {
+
+       console.log('error', error)
+
+       return error;
+     });
+  }
+
+  const findById = (...args: any[]) =>
+    model.findByPk(...args)
+      .then(({ dataValues }: any) => toEntity(dataValues))
       .catch((error: string | undefined) => { throw new Error(error) })
 
   const authenticate = async (...args: any[]) => {
@@ -53,6 +72,7 @@ export default ({ model }: any) => {
     model.destroy(...args)
 
   return {
+    findById,
     authenticate,
     getAll,
     register,

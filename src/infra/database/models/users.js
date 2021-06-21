@@ -22,6 +22,9 @@ const User = sequelize.define(table, {
 }, {
      hooks: {
     beforeCreate: (/** @type {{ password: string; }} */ user) => {
+
+      console.log('beforeCreate user', user)
+
       user.password = encryptPassword(user.password)
       }
     },

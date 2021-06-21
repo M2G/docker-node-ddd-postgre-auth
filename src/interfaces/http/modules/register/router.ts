@@ -17,7 +17,7 @@ export default ({
       const { body = {} } = req || {};
 
       postUseCase
-        .create({ body: body })
+        .register({ body: body })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
         })

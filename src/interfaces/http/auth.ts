@@ -18,12 +18,13 @@ export default ({ config, repository: { userRepository } }: any) => {
 
   const strategy = new Strategy(params, (payload: { id: any; }, done: (arg0: null, arg1: null) => void) => {
 
-    console.log('payload', payload)
+    console.log('payload payload payload', payload)
 
-    userRepository.findById(payload?.id)
+    /*userRepository.findById(payload?.id)
       .then((user: any) => done(null, user))
-      .catch((error: null) => done(error, null))
+      .catch((error: null) => done(error, null))*/
   });
+
 
   console.log('strategy', strategy)
 
