@@ -1,5 +1,5 @@
 /*eslint-disable*/
-const { encryptPassword } = require('../../encryption');
+// const { encryptPassword } = require('../../encryption');
 
 const table = "users";
 //@ts-ignore
@@ -21,11 +21,11 @@ const User = sequelize.define(table, {
   },
 }, {
      hooks: {
-    beforeCreate: (/** @type {{ password: string; }} */ user) => {
+    beforeCreate: (/** @type {{ password_hash: string; }} */ user) => {
 
       console.log('beforeCreate user', user)
 
-      user.password = encryptPassword(user.password)
+      // user.password_hash = encryptPassword(user.password_hash)
       }
     },
   freezeTableName: true,

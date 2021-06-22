@@ -14,16 +14,19 @@ export default ({ model }: any) => {
     });
 
   const register = (...args: any[]) => {
-    console.log('::::::', ...args)
+
+    console.log('dataValues', ...args)
+
+
    return model.create(...args)
      .then((dataValues: any) => {
 
        console.log('dataValues', dataValues)
 
-       if (dataValues?.length){
+       /*if (dataValues?.length){
          const { username, password_hash } = dataValues?.[0];
          return new toEntity({ username, password: password_hash });
-       }
+       }*/
      }).catch((error: any) => {
 
        console.log('error', error)
