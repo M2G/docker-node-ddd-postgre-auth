@@ -14,19 +14,11 @@ export default ({ model }: any) => {
     });
 
   const register = (...args: any[]) => {
-
-    console.log('dataValues', ...args)
-
-
-   return model.create(...args)
+    const { username, password } = args?.[0];
+   return model.create({ username, password_hash: password })
      .then((dataValues: any) => {
-
-       console.log('dataValues', dataValues)
-
-       /*if (dataValues?.length){
-         const { username, password_hash } = dataValues?.[0];
-         return new toEntity({ username, password: password_hash });
-       }*/
+         const { id, username, password_hash } = dataValues;
+         return new toEntity({ id, username, password: password_hash });
      }).catch((error: any) => {
 
        console.log('error', error)
