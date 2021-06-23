@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/sql/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create_tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1624122269090</updated>
-      <workItem from="1624122271738" duration="11437000" />
+      <workItem from="1624122271738" duration="11602000" />
     </task>
     <servers />
   </component>

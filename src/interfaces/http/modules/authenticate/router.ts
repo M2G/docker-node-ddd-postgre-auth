@@ -21,11 +21,11 @@ export default ({
         const { username, password } = data;
 
         if (!username) {
-          res.status(401).json(Fail('Wrong username and password combination.'));
+          res.status(Status.UNAUTHORIZED).json(Fail('Wrong username and password combination.'));
           return;
         }
 
-       const match = await bcrypt.compare(body.password, password);
+       const match: boolean = await bcrypt.compare(body.password, password);
 
           if (match) {
             // if user is found and password is right, create a token
@@ -39,7 +39,9 @@ export default ({
               token: token
             }));
           }
-          return res.status(401).json(Fail('Wrong username and password combination.'));
+
+          return res.status(Status.UNAUTHORIZED).json(Fail('Wrong username and password combination.'));
+
       })
       .catch((error: { message: any }) => {
         logger.error(error);

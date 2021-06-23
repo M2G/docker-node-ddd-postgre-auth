@@ -20,9 +20,6 @@ export default ({ model }: any) => {
          const { id, username, password_hash } = dataValues;
          return new toEntity({ id, username, password: password_hash });
      }).catch((error: any) => {
-
-       console.log('error', error)
-
        return error;
      });
   }
