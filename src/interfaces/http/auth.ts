@@ -20,9 +20,9 @@ export default ({ config, repository: { userRepository } }: any) => {
 
     console.log('payload payload payload', payload)
 
-    /*userRepository.findById(payload?.id)
+    userRepository.findById(payload?.id)
       .then((user: any) => done(null, user))
-      .catch((error: null) => done(error, null))*/
+      .catch((error: null) => done(error, null))
   });
 
 
