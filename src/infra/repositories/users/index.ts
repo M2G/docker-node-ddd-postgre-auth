@@ -26,7 +26,10 @@ export default ({ model }: any) => {
 
   const findById = (...args: any[]) =>
     model.findByPk(...args)
-      .then(({ dataValues }: any) => toEntity(dataValues))
+      .then((dataValues: any) => {
+        const { id, username, password_hash } = dataValues;
+        return new toEntity({ id, username, password: password_hash });
+      })
       .catch((error: string | undefined) => { throw new Error(error) })
 
   const authenticate = async (...args: any[]) => {

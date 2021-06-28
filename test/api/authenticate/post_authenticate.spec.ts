@@ -19,11 +19,14 @@ describe('Routes: POST Users', () => {
       .then(() =>
           usersRepository.register({
           username: 'test',
-          password: 'password',
+          password: 'test',
         })
         //@ts-ignore
       ).then((user) => {
-        console.log('user', user)
+
+      const { id } = user;
+
+        console.log('::::::::::', id)
       done()
     })
   })
