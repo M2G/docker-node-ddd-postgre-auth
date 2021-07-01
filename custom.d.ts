@@ -1,1 +1,1 @@
-declare module 'structure' {}
+declare module 'structure';

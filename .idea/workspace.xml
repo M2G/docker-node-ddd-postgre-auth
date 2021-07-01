@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.test.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/redis-data/temp-1.rdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/unit/app/authenticate/post.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/custom.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624122269090</updated>
       <workItem from="1624122271738" duration="11602000" />
-      <workItem from="1624484637521" duration="24166000" />
+      <workItem from="1624484637521" duration="26334000" />
     </task>
     <servers />
   </component>
