@@ -13,6 +13,9 @@ export default ({
 
   router
     .get('/', (req: any, res: any) => {
+
+      // CHECK EMPTY VALUE -> 422
+
       getUseCase
         .all(req, res)
         .then((data: any) => {

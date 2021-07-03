@@ -11,7 +11,7 @@ const {
 } = container.resolve('repository');
 
 describe('Routes: POST Users', () => {
-  // const BASE_URI = `/api/`
+ // const BASE_URI = '/api';
   beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
@@ -20,62 +20,57 @@ describe('Routes: POST Users', () => {
           usersRepository.register({
           username: 'test',
           password: 'test',
-        })
-        //@ts-ignore
-      ).then((user) => {
-
-      const { id } = user;
-
-        console.log('::::::::::', id)
-      done()
-    })
+        })).then((_: any) => done())
   })
 
- /* describe('Should post users', () => {
-    it('should return create user', (done) => {
-      // @ts-ignore
-      rqt.post(`${BASE_URI}/authenticate`)
-        .send({
-          username: 'test',
-          password: 'password',
-        })
-        .expect(200)
-        //@ts-ignore
-        .end((err, res) => {
-          console.log('res', res)
-          // expect(res.body.data.firstName).to.eql('John')
-          // expect(res.body.data.lastName).to.eql('Doe')
-          // expect(res.body.data.email).to.eql('johndoe@mgail.com.com')
-          done(err)
-        })
-    })*/
+  describe('Should post users', () => {
+     it('should return create user', (done) => {
+       // @ts-ignore
+       rqt.post(`/api/authenticate`)
+         .send({
+           username: 'gesdf',
+           password: 'gesdf',
+         })
+         .expect(200)
+         .end((err: any, res: any) => {
+           console.log(':::::::::::::::::::::', { err,
+             res })
 
-    describe('Should post users', () => {
-      it('should return create user', (done) => {
-        // @ts-ignore
-        rqt.get(`/`)
-          .expect(200)
-          //@ts-ignore
-          .end((err, res) => {
-            console.log('res', res)
-            // expect(res.body.data.firstName).to.eql('John')
-            // expect(res.body.data.lastName).to.eql('Doe')
-            // expect(res.body.data.email).to.eql('johndoe@mgail.com.com')
-            done(err)
-          })
-      })
 
-    /*
-    it('should validate user object is not complete', (done) => {
-      // @ts-ignore
-      request.post(`${BASE_URI}/authenticate`)
-        .send({
-          firstName: 'John',
-          lastName: 'Doe',
-          middleName: 'JohnDoe'
-        })
-        .expect(400)
-        .end((/** @type {any} *//* err, /** @type {{ body: any; }} */ /*res) => {
+           // expect(err).toBeFalsy();
+           //  expect(res.body.data.token).toBeTruthy();
+           // expect(res.body.data.success).toBeTruthy();
+           done();
+         })
+     })
+
+
+    /* describe('Should post users', () => {
+       it('should return create user', (done) => {
+         // @ts-ignore
+         rqt.get(`/`)
+           .expect(200)
+           //@ts-ignore
+           .end((err, res) => {
+             console.log('res', res)
+             // expect(res.body.data.firstName).to.eql('John')
+             // expect(res.body.data.lastName).to.eql('Doe')
+             // expect(res.body.data.email).to.eql('johndoe@mgail.com.com')
+             done(err)
+           })
+       })*/
+
+     /*
+     it('should validate user object is not complete', (done) => {
+       // @ts-ignore
+       request.post(`${BASE_URI}/authenticate`)
+         .send({
+           firstName: 'John',
+           lastName: 'Doe',
+           middleName: 'JohnDoe'
+         })
+         .expect(400)
+         .end((/** @type {any} *//* err, /** @type {{ body: any; }} */ /*res) => {
           expect(res.body).to.include.keys('error')
           done(err)
         })

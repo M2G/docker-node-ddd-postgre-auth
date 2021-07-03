@@ -51,11 +51,19 @@ export default ({ model }: any) => {
         // The type of query you are executing. The query type affects how results are formatted before they are passed back.
         type: QueryTypes.SELECT
     }).then((dataValues: any) => {
+
+      console.log('dataValues dataValues dataValues', dataValues);
+
       if (dataValues?.length){
         const { username, password_hash } = dataValues?.[0];
         return new toEntity({ username, password: password_hash });
       }
+
+      return dataValues;
+
     }).catch((error: any) => {
+      console.log('catch catch catch', error);
+
       return error;
     });
   }

@@ -18,20 +18,30 @@ export default ({
       .authenticate({ body: body })
       .then(async (data: any) => {
 
-        const { username, password } = data;
+        console.log('then data data :::: ', data)
+
+        const { username, password } = data || {};
+
+
 
         if (!username) {
+          // 404
           res.status(Status.UNAUTHORIZED).json(Fail('Wrong username and password combination.'));
           return;
         }
 
        const match: boolean = await bcrypt.compare(body.password, password);
 
+
+        console.log('match :::: ', match)
+
           if (match) {
             // if user is found and password is right, create a token
-            const token = jwt.sign({ username, password }, process.env.SECRET as string,
+            const token = jwt.sign({ username, password }, process.env.SECRET as string || 'secret',
               // expires in 10 hours
               { expiresIn: 60 * 60 * 10 });
+
+            console.log('token :::: ', token)
 
             logger.info({ token: token });
             return res.status(Status.OK).json(Success({
@@ -44,6 +54,8 @@ export default ({
 
       })
       .catch((error: { message: any }) => {
+        console.log('catch :::: ', error)
+
         logger.error(error);
         res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(Status[Status.INTERNAL_SERVER_ERROR]));
       });
