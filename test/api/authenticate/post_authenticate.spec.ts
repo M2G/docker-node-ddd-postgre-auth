@@ -54,9 +54,6 @@ describe('Routes: POST Users', () => {
           })
           .expect(404)
           .end((err: any, res: any) => {
-
-            console.log('res.body.error', res.body)
-
             expect(err).toBeFalsy();
             expect(res.body.success).toBeFalsy();
             expect(res.body.error).toEqual('Cannot find any user.');
@@ -65,6 +62,36 @@ describe('Routes: POST Users', () => {
       })
     });
 
+
+    describe('Should post users', () => {
+      it('should return create user', (done) => {
+        // @ts-ignore
+        rqt.post(`/api/authenticate`)
+          .send({
+            username: '',
+            password: 'gesdf',
+          })
+          .expect(422)
+          .end((err: any, res: any) => {
+
+            console.log('err err err', err)
+/*
+res.body
+{
+      success: false,
+      date: '2021-07-05T01:13:45.817Z',
+      error: 'Cannot find any user.'
+    }
+
+
+ */
+            // expect(err).toBeFalsy();
+            // expect(res.body.success).toBeFalsy();
+            //expect(res.body.error).toEqual('Empty username.');
+            done();
+          })
+      })
+    });
     /* describe('Should post users', () => {
        it('should return create user', (done) => {
          // @ts-ignore
