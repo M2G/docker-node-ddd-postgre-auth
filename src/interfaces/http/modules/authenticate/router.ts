@@ -18,8 +18,15 @@ export default ({
       .authenticate({ body: body })
       .then(async (data: any) => {
 
+        if (!data.length) {
+          // 404
+          res.status(Status.NOT_FOUND).json(Fail('Cannot find any user.'));
+          return;
+        }
+
         console.log('then data data :::: ', data)
 
+        // data = [] = 404
         const { username, password } = data || {};
 
 

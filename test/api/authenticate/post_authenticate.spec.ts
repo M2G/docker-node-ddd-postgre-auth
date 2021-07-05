@@ -44,6 +44,26 @@ describe('Routes: POST Users', () => {
          })
      })
 
+    describe('Should post users', () => {
+      it('should return create user', (done) => {
+        // @ts-ignore
+        rqt.post(`/api/authenticate`)
+          .send({
+            username: 'gesdf',
+            password: 'gesdf',
+          })
+          .expect(404)
+          .end((err: any, res: any) => {
+
+            console.log('res.body.error', res.body)
+
+            expect(err).toBeFalsy();
+            expect(res.body.success).toBeFalsy();
+            expect(res.body.error).toEqual('Cannot find any user.');
+            done();
+          })
+      })
+    });
 
     /* describe('Should post users', () => {
        it('should return create user', (done) => {

@@ -14,7 +14,18 @@ export default ({
   router
     .post('/', (req: any, res: any) => {
 
+      // CHECK EMPTY VALUE -> 422
+
       const { body = {} } = req || {};
+      const { username, password } = body;
+
+     if (!username) {
+       res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty username.'));
+     }
+
+      if (!password) {
+        res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty password.'));
+      }
 
       postUseCase
         .register({ body: body })
