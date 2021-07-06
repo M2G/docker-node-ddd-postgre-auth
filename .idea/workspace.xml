@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,20 +41,7 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.Routes: POST Users.Should post users">
-    <configuration name="Routes: POST Users" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Users" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Jest.Routes: POST Users.shouldnt authenticate user return error empty body was sent">
     <configuration name="Routes: POST Users.Should post users" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -67,7 +56,7 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Routes: POST Users.Should post users.Should post users.should return create user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Routes: POST Users.Should post users.should return authenticate user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -78,12 +67,11 @@
       <test-names>
         <test-name value="Routes: POST Users" />
         <test-name value="Should post users" />
-        <test-name value="Should post users" />
-        <test-name value="should return create user" />
+        <test-name value="should return authenticate user" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Routes: POST Users.Should post users.should return create user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Routes: POST Users.should return authenticate user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -93,17 +81,45 @@
       <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
       <test-names>
         <test-name value="Routes: POST Users" />
-        <test-name value="Should post users" />
-        <test-name value="should return create user" />
+        <test-name value="should return authenticate user" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Routes: POST Users.shouldnt authenticate user return error cannot find any user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
+      <test-names>
+        <test-name value="Routes: POST Users" />
+        <test-name value="shouldnt authenticate user return error cannot find any user" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Routes: POST Users.shouldnt authenticate user return error empty body was sent" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
+      <test-names>
+        <test-name value="Routes: POST Users" />
+        <test-name value="shouldnt authenticate user return error empty body was sent" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Routes: POST Users.shouldnt authenticate user return error empty body was sent" />
+        <item itemvalue="Jest.Routes: POST Users.shouldnt authenticate user return error cannot find any user" />
+        <item itemvalue="Jest.Routes: POST Users.should return authenticate user" />
+        <item itemvalue="Jest.Routes: POST Users.Should post users.should return authenticate user" />
         <item itemvalue="Jest.Routes: POST Users.Should post users" />
-        <item itemvalue="Jest.Routes: POST Users.Should post users.Should post users.should return create user" />
-        <item itemvalue="Jest.Routes: POST Users.Should post users.should return create user" />
-        <item itemvalue="Jest.Routes: POST Users" />
       </list>
     </recent_temporary>
   </component>
@@ -116,7 +132,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624122269090</updated>
       <workItem from="1624122271738" duration="11602000" />
-      <workItem from="1624484637521" duration="40298000" />
+      <workItem from="1624484637521" duration="45437000" />
     </task>
     <servers />
   </component>

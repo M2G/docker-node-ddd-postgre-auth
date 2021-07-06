@@ -9,13 +9,8 @@ export default ({
 }: any) => {
   const router = Router();
 
- // router.use(auth.authenticate())
-
   router
     .post('/', (req: any, res: any) => {
-
-      // CHECK EMPTY VALUE -> 422
-
       const { body = {} } = req || {};
       const { username, password } = body;
 

@@ -14,32 +14,30 @@ export default ({
   router.post('/', (req: any, res: any) => {
     const { body = {} } = req || {};
 
+    const { username, password } = body;
+
+    if (!username) {
+      res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty username.'));
+    }
+
+    if (!password) {
+      res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty password.'));
+    }
+
     postUseCase
-      .authenticate({ body: body })
+      .authenticate({ body: { username, password } })
       .then(async (data: any) => {
 
-        if (!data.length) {
-          // 404
-          res.status(Status.NOT_FOUND).json(Fail('Cannot find any user.'));
-          return;
-        }
-
-        console.log('then data data :::: ', data)
-
-        // data = [] = 404
         const { username, password } = data || {};
-
-
 
         if (!username) {
           // 404
-          res.status(Status.UNAUTHORIZED).json(Fail('Wrong username and password combination.'));
+          res.status(Status.NOT_FOUND).json(Fail('Wrong username and password combination.'));
           return;
         }
 
        const match: boolean = await bcrypt.compare(body.password, password);
-
-
+        
         console.log('match :::: ', match)
 
           if (match) {
