@@ -32,12 +32,10 @@ describe('Routes: POST Register', () => {
       })
       .expect(200)
       .end((err: any, res: any) => {
-        expect(err).toBeFalsy();
-        console.log(':::::::::::::::', { err, res })
-
-       /* expect(err).toBeFalsy();
-        expect(res.body.data.token).toBeTruthy();
-        expect(res.body.data.success).toBeTruthy();*/
+        expect(err).toBeNull();
+        expect(res.body.data).toHaveProperty('id');
+        expect(res.body.data).toHaveProperty('username', 'test');
+        expect(res.body.data).toHaveProperty('password');
         done();
       });
   });
