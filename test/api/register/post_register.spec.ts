@@ -8,7 +8,7 @@ const rqt: any = request(server.app);
 
 const { usersRepository } = container.resolve('repository');
 
-describe('Routes: POST Auth', () => {
+describe('Routes: POST Register', () => {
   // const BASE_URI = '/api';
   beforeEach((done) => {
     // we need to add user before we can request our token
@@ -25,7 +25,7 @@ describe('Routes: POST Auth', () => {
 
   it('should return authenticate user', (done) => {
     rqt
-      .post(`/api/authenticate`)
+      .post(`/api/register`)
       .send({
         username: 'test',
         password: 'test',
@@ -33,31 +33,18 @@ describe('Routes: POST Auth', () => {
       .expect(200)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
+        console.log(':::::::::::::::', { err, res })
+
+       /* expect(err).toBeFalsy();
         expect(res.body.data.token).toBeTruthy();
-        expect(res.body.data.success).toBeTruthy();
+        expect(res.body.data.success).toBeTruthy();*/
         done();
       });
   });
 
-  it('shouldnt authenticate user return error cannot find any user', (done) => {
+  it('shouldnt register user return error empty username was sent', (done) => {
     rqt
-      .post(`/api/authenticate`)
-      .send({
-        username: 'gesdf',
-        password: 'gesdf',
-      })
-      .expect(404)
-      .end((err: any, res: any) => {
-        expect(err).toBeFalsy();
-        expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('Wrong username and password combination.');
-        done();
-      });
-  });
-
-  it('shouldnt authenticate user return error empty username was sent', (done) => {
-    rqt
-      .post(`/api/authenticate`)
+      .post(`/api/register`)
       .send({
         username: '',
         password: 'gesdf',
@@ -71,9 +58,9 @@ describe('Routes: POST Auth', () => {
       });
   });
 
-  it('shouldnt authenticate user return error empty password was sent', (done) => {
+  it('shouldnt register user return error empty password was sent', (done) => {
     rqt
-      .post(`/api/authenticate`)
+      .post(`/api/register`)
       .send({
         username: 'gesdf',
         password: '',
@@ -87,9 +74,9 @@ describe('Routes: POST Auth', () => {
       });
   });
 
-  it('shouldnt authenticate user return error empty body was sent', (done) => {
+  it('shouldnt register user return error empty body was sent', (done) => {
     rqt
-      .post(`/api/authenticate`)
+      .post(`/api/register`)
       .send({})
       .expect(422)
       .end((err: any, res: any) => {

@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,18 +40,18 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.Routes: POST Users.shouldnt authenticate user return error empty body was sent">
-    <configuration name="Routes: POST Users.Should post users" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.Routes: POST Register.should return authenticate user">
+    <configuration name="Routes: POST Register.should return authenticate user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/api/register/post_register.spec.ts" />
       <test-names>
-        <test-name value="Routes: POST Users" />
-        <test-name value="Should post users" />
+        <test-name value="Routes: POST Register" />
+        <test-name value="should return authenticate user" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -115,11 +114,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Routes: POST Register.should return authenticate user" />
         <item itemvalue="Jest.Routes: POST Users.shouldnt authenticate user return error empty body was sent" />
         <item itemvalue="Jest.Routes: POST Users.shouldnt authenticate user return error cannot find any user" />
         <item itemvalue="Jest.Routes: POST Users.should return authenticate user" />
         <item itemvalue="Jest.Routes: POST Users.Should post users.should return authenticate user" />
-        <item itemvalue="Jest.Routes: POST Users.Should post users" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +131,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624122269090</updated>
       <workItem from="1624122271738" duration="11602000" />
-      <workItem from="1624484637521" duration="45437000" />
+      <workItem from="1624484637521" duration="48440000" />
     </task>
     <servers />
   </component>
