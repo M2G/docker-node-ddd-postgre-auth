@@ -13,7 +13,6 @@ export default ({
 
   router.post('/', (req: any, res: any) => {
     const { body = {} } = req || {};
-
     const { username, password } = body;
 
     if (!username) {
@@ -37,7 +36,7 @@ export default ({
         }
 
        const match: boolean = await bcrypt.compare(body.password, password);
-        
+
         console.log('match :::: ', match)
 
           if (match) {

@@ -49,7 +49,7 @@ describe('Routes: POST Register', () => {
       })
       .expect(422)
       .end((err: any, res: any) => {
-        expect(err).toBeFalsy();
+        expect(err).toBeNull();
         expect(res.body.success).toBeFalsy();
         expect(res.body.error).toEqual('Empty username.');
         done();
@@ -65,7 +65,7 @@ describe('Routes: POST Register', () => {
       })
       .expect(422)
       .end((err: any, res: any) => {
-        expect(err).toBeFalsy();
+        expect(err).toBeNull();
         expect(res.body.success).toBeFalsy();
         expect(res.body.error).toEqual('Empty password.');
         done();
@@ -78,7 +78,7 @@ describe('Routes: POST Register', () => {
       .send({})
       .expect(422)
       .end((err: any, res: any) => {
-        expect(err).toBeFalsy();
+        expect(err).toBeNull();
         expect(res.body.success).toBeFalsy();
         done();
       });
