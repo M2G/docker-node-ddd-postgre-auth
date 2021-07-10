@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/api/authenticate/post_register.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/unit/app/register/register_authenticate.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +24,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/api/authenticate" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/unit/app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -43,10 +43,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/unit/app" />
       <recent name="$PROJECT_DIR$/test/api/authenticate" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Routes: POST Register.Register user.shouldnt authenticate user return error empty body was sent">
+  <component name="RunManager" selected="Jest.App -&gt; User -&gt; Post.Success path.test">
     <configuration name="App -&gt; User -&gt; Post.Fail path" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -54,25 +55,25 @@
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/unit/app/authenticate/post_authenticate.spec.ts" />
+      <test-file value="$PROJECT_DIR$/test/unit/app/register/register_authenticate.spec.ts" />
       <test-names>
         <test-name value="App -&gt; User -&gt; Post" />
         <test-name value="Fail path" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Routes: POST Register.Register user.should return register user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="App -&gt; User -&gt; Post.Success path.test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/authenticate/post_register.spec.ts" />
+      <test-file value="$PROJECT_DIR$/test/unit/app/register/register_authenticate.spec.ts" />
       <test-names>
-        <test-name value="Routes: POST Register" />
-        <test-name value="Register user" />
-        <test-name value="should return register user" />
+        <test-name value="App -&gt; User -&gt; Post" />
+        <test-name value="Success path" />
+        <test-name value="test" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -123,11 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.App -&gt; User -&gt; Post.Success path.test" />
+        <item itemvalue="Jest.App -&gt; User -&gt; Post.Fail path" />
         <item itemvalue="Jest.Routes: POST Register.Register user.shouldnt authenticate user return error empty body was sent" />
         <item itemvalue="Jest.Routes: POST Register.Register user.shouldnt register user return error empty password was sent" />
         <item itemvalue="Jest.Routes: POST Register.Register user.shouldnt register user return error empty username was sent" />
-        <item itemvalue="Jest.Routes: POST Register.Register user.should return register user" />
-        <item itemvalue="Jest.App -&gt; User -&gt; Post.Fail path" />
       </list>
     </recent_temporary>
   </component>
@@ -140,7 +141,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624122269090</updated>
       <workItem from="1624122271738" duration="11602000" />
-      <workItem from="1624484637521" duration="55354000" />
+      <workItem from="1624484637521" duration="56018000" />
     </task>
     <servers />
   </component>
