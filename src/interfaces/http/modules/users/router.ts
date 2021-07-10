@@ -10,7 +10,7 @@ export default ({
 }: any) => {
   const router = Router();
 
- router.use(auth.authenticate())
+ // router.use(auth.authenticate())
 
   router
     .get('/', (req: any, res: any) => {
