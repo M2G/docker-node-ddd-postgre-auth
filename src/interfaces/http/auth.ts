@@ -1,30 +1,41 @@
 /*eslint-disable*/
 import passport from 'passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import BearerStrategy from 'passport-http-bearer';
+import jwt from '../../infra/jwt';
 
 /**
  * middleware to check the if auth vaid
  */
 
-export default ({ config, repository: { userRepository } }: any) => {
+export default ({ config, repository: { usersRepository } }: any) => {
 
   console.log('config', config)
 
-  const params = {
-   //  secretOrKey: config.authSecret,
-    secretOrKey: 'SECRET',
-    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt')
-  }
+  // @ts-ignore
+  const strategy = new BearerStrategy(
+    'bearer',
+    function(token: any, done: (arg0: null, arg1: null | { id: any, username: any, // @ts-ignore
+      password }) => any) {
 
-  const strategy = new Strategy(params, (payload: { id: any; }, done: (arg0: null, arg1: null) => void) => {
 
-    console.log('payload payload payload', payload)
+      // @ts-ignore
+      const { id } = jwt(config)
+        .decode()(token);
 
-    userRepository.findById(payload?.id)
-      .then((user: any) => done(null, user))
-      .catch((error: null) => done(error, null))
-  });
+         usersRepository.findById(id)
+           .then((user: any) => {
+             const { id, username, password } = user;
+            done(null, { id, username, password });
+           })
+           .catch((error: null) => {
 
+             console.log('userRepository.findById error', error)
+
+             done(error, null);
+           })
+
+
+       });
 
   console.log('strategy', strategy)
 
@@ -34,10 +45,21 @@ export default ({ config, repository: { userRepository } }: any) => {
 
   return {
     initialize: () => {
+
+      console.log('passport.initialize')
+
       return passport.initialize();
     },
     authenticate: () => {
-      return passport.authenticate('jwt');
+
+      console.log('passport.authenticate')
+
+      return passport.authenticate('bearer', { session: false }, function(req, res) {
+
+        console.log('passport.authenticate passport.authenticate')
+
+        // res.json({ id: req.user.id, username: req.user.username });
+      });
     }
   }
 }

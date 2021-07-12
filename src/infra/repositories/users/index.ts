@@ -4,7 +4,10 @@ import toEntity from './transform';
 const { comparePassword } = require('../../encryption');
 
 export default ({ model }: any) => {
-  const getAll = (...args: any[]) =>
+  const getAll = (...args: any[]) => {
+
+    console.log('getall', args)
+
     model.findAll(...args).then((entity: { dataValues: any }[]) =>
       entity?.map((data: { dataValues: any }) => {
         const { dataValues } = data || {};
@@ -12,6 +15,7 @@ export default ({ model }: any) => {
       })).catch((error: any) => {
         return error;
     });
+  }
 
   const register = (...args: any[]) => {
     const { username, password } = args?.[0];
@@ -55,8 +59,8 @@ export default ({ model }: any) => {
       console.log('dataValues dataValues dataValues', dataValues);
 
       if (dataValues?.length){
-        const { username, password_hash } = dataValues?.[0];
-        return new toEntity({ username, password: password_hash });
+        const { id, username, password_hash } = dataValues?.[0];
+        return new toEntity({ id, username, password: password_hash });
       }
 
       return dataValues;

@@ -27,7 +27,7 @@ export default ({
       .authenticate({ body: { username, password } })
       .then(async (data: any) => {
 
-        const { username, password } = data || {};
+        const { id, username, password } = data || {};
 
         if (!username) {
           // 404
@@ -37,15 +37,14 @@ export default ({
 
        const match: boolean = await bcrypt.compare(body.password, password);
 
-        console.log('match :::: ', match)
-
           if (match) {
+
+            const payload: { id: number, username: string, password: string } = { id, username, password };
+
             // if user is found and password is right, create a token
-            const token = jwt.sign({ username, password }, process.env.SECRET as string || 'secret',
+            const token = jwt.sign(payload, process.env.SECRET as string || 'secret',
               // expires in 10 hours
               { expiresIn: 60 * 60 * 10 });
-
-            console.log('token :::: ', token)
 
             logger.info({ token: token });
             return res.status(Status.OK).json(Success({
