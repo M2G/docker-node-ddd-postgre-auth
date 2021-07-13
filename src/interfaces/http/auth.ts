@@ -50,13 +50,15 @@ export default ({ config, repository: { usersRepository } }: any) => {
 
       return passport.initialize();
     },
-    authenticate: () => {
+    authenticate: (app: any) => {
 
-      console.log('passport.authenticate')
+      console.log('passport.authenticate', app)
 
-      return passport.authenticate('bearer', { session: false }, function(req, res) {
+     // return passport.authenticate('bearer', { session: false });
 
-        console.log('passport.authenticate passport.authenticate')
+       return passport.authenticate('bearer', { session: false }, function(err, user) {
+
+         console.log('err, user', err, user)
 
         // res.json({ id: req.user.id, username: req.user.username });
       });

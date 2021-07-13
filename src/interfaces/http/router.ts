@@ -7,10 +7,10 @@ import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 import verify from './middlewares/verify';
 // controller
-import * as index from '../http/modules';
-import * as authenticate from '../http/modules/authenticate';
-import * as register from '../http/modules/register';
-import * as users from '../http/modules/users';
+import index from '../http/modules';
+import authenticate from '../http/modules/authenticate';
+import register from '../http/modules/register';
+import users from '../http/modules/users';
 
 export default ({ config, logger, database }: any) => {
   // console.log('database', database);
@@ -27,10 +27,10 @@ export default ({ config, logger, database }: any) => {
     }))
     .use(bodyParser.json());
 
-  router.use('/', index.default());
-  router.use('/api/register', register.default().router);
-  router.use('/api/authenticate', authenticate.default().router);
-  router.use('/api/users', users.default().router);
+  router.use('/', index());
+  router.use('/api/register', register().router);
+  router.use('/api/authenticate', authenticate().router);
+  router.use('/api/users', users().router);
   router.use(partialRight(errorHandler, [logger, config]));
   router.use(verify);
 

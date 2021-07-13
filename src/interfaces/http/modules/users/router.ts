@@ -6,11 +6,12 @@ export default ({
   getUseCase,
   logger,
   response: { Success, Fail },
-  auth
+  auth,
+  app
 }: any) => {
   const router = Router();
 
- router.use(auth.authenticate())
+  router.use(auth.authenticate(app))
 
   router
     .get('/', (req: any, res: any) => {
