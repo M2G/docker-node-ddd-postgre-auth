@@ -7,11 +7,10 @@ export default ({
   logger,
   response: { Success, Fail },
   auth,
-  app
 }: any) => {
   const router = Router();
 
-  router.use(auth.authenticate(app))
+  router.use((req, res, next) => auth.authenticate(req, res, next));
 
   router
     .get('/', (req: any, res: any) => {

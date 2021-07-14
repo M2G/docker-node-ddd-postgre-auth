@@ -1,8 +1,8 @@
 /* eslint-disable*/
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import Status from 'http-status';
 import { Router } from 'express';
+import jwt from '../../../../infra/jwt';
 
 export default ({
   postUseCase,
@@ -30,7 +30,6 @@ export default ({
         const { id, username, password } = data || {};
 
         if (!username) {
-          // 404
           res.status(Status.NOT_FOUND).json(Fail('Wrong username and password combination.'));
           return;
         }
