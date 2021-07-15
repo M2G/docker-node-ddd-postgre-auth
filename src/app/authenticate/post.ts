@@ -9,8 +9,6 @@ import Users from '../../domain/users';
   */
 export default ({ usersRepository }: any) => {
 
-  console.log('usersRepository', usersRepository)
-
   // code for getting all the items
   const authenticate = ({ body }: any) =>
     Promise.resolve()

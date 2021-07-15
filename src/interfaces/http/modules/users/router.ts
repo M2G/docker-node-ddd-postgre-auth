@@ -15,8 +15,6 @@ export default ({
   router
     .get('/', (req: any, res: any) => {
 
-      console.log('GET')
-
       getUseCase
         .all(req, res)
         .then((data: any) => {

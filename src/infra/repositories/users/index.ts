@@ -4,18 +4,16 @@ import toEntity from './transform';
 const { comparePassword } = require('../../encryption');
 
 export default ({ model }: any) => {
-  const getAll = (...args: any[]) => {
-
-    console.log('getall', args)
-
+  const getAll = (...args: any[]) =>
     model.findAll(...args).then((entity: { dataValues: any }[]) =>
       entity?.map((data: { dataValues: any }) => {
         const { dataValues } = data || {};
-        return new toEntity(dataValues);
+        const { id, username } = dataValues;
+        return new toEntity({ id, username });
       })).catch((error: any) => {
         return error;
     });
-  }
+
 
   const register = (...args: any[]) => {
     const { username, password } = args?.[0];
