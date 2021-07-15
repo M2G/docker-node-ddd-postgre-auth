@@ -4,11 +4,7 @@
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624122269090</updated>
       <workItem from="1624122271738" duration="11602000" />
-      <workItem from="1624484637521" duration="77944000" />
+      <workItem from="1624484637521" duration="79366000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,7 @@ import { Router } from 'express';
 import jwt from '../../../../infra/jwt';
 
 export default ({
+  config,
   postUseCase,
   logger,
   response: { Success, Fail },
@@ -41,9 +42,7 @@ export default ({
             const payload: { id: number, username: string, password: string } = { id, username, password };
 
             // if user is found and password is right, create a token
-            const token = jwt.sign(payload, process.env.SECRET as string || 'secret',
-              // expires in 10 hours
-              { expiresIn: 60 * 60 * 10 });
+            const token: any = jwt(config).signin()(payload);
 
             logger.info({ token: token });
             return res.status(Status.OK).json(Success({
