@@ -29,6 +29,9 @@ export default ({ model }: any) => {
   const findById = (...args: any[]) =>
     model.findByPk(...args)
       .then((dataValues: any) => {
+
+        if (!dataValues) return [];
+
         const { id, username, password_hash } = dataValues;
         return new toEntity({ id, username, password: password_hash });
       })

@@ -4,9 +4,7 @@ import post from '../../../../app/authenticate';
 export default () => {
   const {cradle} = container;
   const {
- repository: {
-   usersRepository
-    }
+    repository: {usersRepository}
   } = cradle;
 
   const postUseCase = post({usersRepository});

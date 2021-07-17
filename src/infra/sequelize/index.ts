@@ -5,23 +5,23 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 export default ({ config, basePath }: any) => {
 
-  /*const sequelize = new Sequelize(
+  const sequelize = new Sequelize(
     process.env.POSTGRES_DB || '',
     process.env.DB_USER || '',
     process.env.DB_PASSWORD || '',
-    { ...config.db })*/
+    { ...config.db })
 
-  const sequelize = new Sequelize(
-    'test_db2',
-  'postgres',
-  'postgres',
-    {
-      host: 'localhost',
-      port: 5432,
-      dialect: 'postgres',
-      logging: process.env.ENV === 'production' ? false : console.log,
-    })
-
+  /* const sequelize = new Sequelize(
+     'test_db2',
+   'postgres',
+   'postgres',
+     {
+       host: 'localhost',
+       port: 5432,
+       dialect: 'postgres',
+       logging: process.env.ENV === 'production' ? false : console.log,
+     })
+ */
   const db = {
     sequelize,
     Sequelize,

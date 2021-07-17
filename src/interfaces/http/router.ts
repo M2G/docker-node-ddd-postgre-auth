@@ -5,7 +5,6 @@ import { Router } from 'express';
 import { partialRight } from 'ramda';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
-import verify from './middlewares/verify';
 // controller
 import index from '../http/modules';
 import authenticate from '../http/modules/authenticate';
@@ -32,7 +31,6 @@ export default ({ config, logger, database }: any) => {
   router.use('/api/authenticate', authenticate().router);
   router.use('/api/users', users().router);
   router.use(partialRight(errorHandler, [logger, config]));
-  router.use(verify);
 
   return router;
 };

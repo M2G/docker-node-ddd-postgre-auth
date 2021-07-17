@@ -3,13 +3,22 @@ import router from './router';
 import instance from './instance';
 
 export default () => {
-  const {logger, response: {Success, Fail}} = container.cradle;
+  const {
+    logger,
+    jwt,
+    config,
+    response: {Success, Fail}
+  } = container.cradle;
   const app = instance();
 
   return {
     app,
-    router: router(
-      {logger, response: {Fail, Success}, ...app}
-      )
+    router: router({
+      config,
+      jwt,
+      logger,
+      response: {Fail, Success},
+      ...app
+    })
   };
 };

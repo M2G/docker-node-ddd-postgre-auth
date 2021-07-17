@@ -2,14 +2,14 @@
 import bcrypt from 'bcrypt';
 import Status from 'http-status';
 import { Router } from 'express';
-import jwt from '../../../../infra/jwt';
 
 export default ({
-  config,
+  jwt,
   postUseCase,
   logger,
   response: { Success, Fail },
 }: any) => {
+
   const router = Router();
 
   router.post('/', (req: any, res: any) => {
@@ -17,11 +17,11 @@ export default ({
     const { username, password } = body;
 
     if (!username) {
-      res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty username.'));
+      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty username.'));
     }
 
     if (!password) {
-      res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty password.'));
+      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty password.'));
     }
 
     postUseCase
@@ -31,8 +31,7 @@ export default ({
         const { id, username, password } = data || {};
 
         if (!username) {
-          res.status(Status.NOT_FOUND).json(Fail('Wrong username and password combination.'));
-          return;
+          return res.status(Status.NOT_FOUND).json(Fail('Wrong username and password combination.'));
         }
 
        const match: boolean = await bcrypt.compare(body.password, password);
@@ -42,7 +41,7 @@ export default ({
             const payload: { id: number, username: string, password: string } = { id, username, password };
 
             // if user is found and password is right, create a token
-            const token: any = jwt(config).signin()(payload);
+            const token: any = jwt.signin()(payload);
 
             logger.info({ token: token });
             return res.status(Status.OK).json(Success({
