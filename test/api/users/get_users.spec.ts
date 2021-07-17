@@ -57,10 +57,12 @@ describe('Routes: POST Register', () => {
 
     it('should return unauthorized if no token', (done) => {
       rqt.get(`/api/users`)
-        .expect(401)
-        .end((err: any, res: { text: any; }) => {
-          expect(res.text).toEqual('Unauthorized');
-          done(err);
+        .expect(403)
+        .end((err: any, res: any) => {
+          expect(err).toBeFalsy();
+          expect(JSON.parse(res.text).error.false).toBeFalsy();
+          expect(JSON.parse(res.text).error.message).toEqual('No token provided.');
+          done();
         })
     })
   });
