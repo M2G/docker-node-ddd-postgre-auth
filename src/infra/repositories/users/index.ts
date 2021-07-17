@@ -59,12 +59,10 @@ export default ({ model }: any) => {
 
       console.log('dataValues dataValues dataValues', dataValues);
 
-      if (dataValues?.length){
+      if (!dataValues) return [];
+
         const { id, username, password_hash } = dataValues?.[0];
         return new toEntity({ id, username, password: password_hash });
-      }
-
-      return dataValues;
 
     }).catch((error: any) => {
       console.log('catch catch catch', error);

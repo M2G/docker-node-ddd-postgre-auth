@@ -14,10 +14,7 @@ export default ({ config }: any) => ({
   },
   verify: (options?: any) => (token: string) => {
     const opt = Object.assign({}, options);
-
-    console.log('verify', opt)
-
-    return jwt.verify(token, config.authSecret as string || 'SECRET', opt);
+   return jwt.verify(token, config.authSecret as string || 'SECRET', opt);
   },
   decode: (options?: any) => (token: any) => {
     const opt = Object.assign({}, options);

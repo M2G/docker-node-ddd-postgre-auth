@@ -11,7 +11,7 @@ import authenticate from '../http/modules/authenticate';
 import register from '../http/modules/register';
 import users from '../http/modules/users';
 
-export default ({ config, logger, database }: any) => {
+export default ({ config, logger, database, verify }: any) => {
   // console.log('database', database);
   const router = Router();
 
@@ -29,6 +29,8 @@ export default ({ config, logger, database }: any) => {
   router.use('/', index());
   router.use('/api/register', register().router);
   router.use('/api/authenticate', authenticate().router);
+
+  router.use(verify);
   router.use('/api/users', users().router);
   router.use(partialRight(errorHandler, [logger, config]));
 

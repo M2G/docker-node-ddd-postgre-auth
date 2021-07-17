@@ -3,7 +3,6 @@ import passport from 'passport';
 import BearerStrategy from 'passport-http-bearer';
 import Status from 'http-status';
 
-
 /**
  * middleware to check the if auth vaid
  */
