@@ -19,22 +19,22 @@ export default ({ response: { Fail }, jwt }: any) => {
         console.log('::::::::::: e e e', e.stack);
 
         if (e.message === 'jwt expired') {
-          res.status(Status.UNAUTHORIZED).json(Fail({
+          return res.status(Status.UNAUTHORIZED).json(Fail({
             success: false,
             message: 'Failed to authenticate token is expired.'
           }));
         }
 
-        res.status(Status.UNAUTHORIZED).json(Fail({
+        return res.status(Status.BAD_REQUEST).json(Fail({
           success: false,
-          message: 'Failed to authenticate token.'
+          message: Status[Status.BAD_REQUEST]
         }));
       }
 
       return next();
     }
 
-    res.status(Status.FORBIDDEN).json(Fail({
+    return res.status(Status.FORBIDDEN).json(Fail({
       success: false,
       message: 'No token provided.'
     }));
