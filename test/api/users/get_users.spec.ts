@@ -42,7 +42,7 @@ describe('Routes: POST Register', () => {
       })
   });
 
-  describe('Register user', () => {
+ describe('Register user', () => {
     it('should return users list', (done) => {
       rqt
         .get(`/api/users`)
@@ -52,6 +52,21 @@ describe('Routes: POST Register', () => {
           expect(err).toBeFalsy();
           expect(res.body.data.length).toEqual(2);
           done(err)
+        });
+    });
+
+    it('should return unauthorized token expired', (done) => {
+      rqt
+        .get(`/api/users`)
+        .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUxLCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYiQxMCRqVFNubkduS09weG9ZVHlMTjFTek8uZHd4bXBtdXlGeVVHeTZ4UEt0LkhGZmZsM09nSmhKbSIsImlhdCI6MTYyNjQ4NTQyNCwiZXhwIjoxNjI2NDg1NDM0fQ.OlwLxiCHTb964uoZ53ZhHhq7FfJ31YP20T_nQZCmFyM')
+        .expect(400)
+        .end((err: any, res: any) => {
+          console.log('res res res', res.error)
+          expect(err).toBeFalsy();
+          expect(res.success).toBeFalsy();
+          expect(JSON.parse(res.text).error.success).toBeFalsy();
+          expect(JSON.parse(res.text).error.message).toEqual('Bad Request');
+          done()
         });
     });
 

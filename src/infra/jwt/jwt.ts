@@ -9,11 +9,17 @@ import {
 
 export default ({ config }: any) => ({
   signin: (options?: any) => (payload: string | object | Buffer) => {
+
+    console.log('signin config', config)
+
     const opt = Object.assign({}, options, { expiresIn: 60 * 60 } );
     return jwt.sign(payload, config.authSecret as string || 'SECRET', opt);
   },
   verify: (options?: any) => (token: string) => {
     const opt = Object.assign({}, options);
+
+    console.log('verify config', config)
+
    return jwt.verify(token, config.authSecret as string || 'SECRET', opt);
   },
   decode: (options?: any) => (token: any) => {

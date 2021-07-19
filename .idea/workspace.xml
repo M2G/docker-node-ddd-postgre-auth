@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,21 +48,7 @@
       <recent name="$PROJECT_DIR$/test/api/authenticate" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Routes: POST Register.Register user.should return unauthorized if no token">
-    <configuration name="App -&gt; User -&gt; Post.Fail path (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" />
-      <test-names>
-        <test-name value="App -&gt; User -&gt; Post" />
-        <test-name value="Fail path" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Jest.Routes: POST Register.Register user.should return unauthorized token expired">
     <configuration name="App -&gt; User -&gt; Post.Success path.should display all the user on success" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -120,13 +107,28 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="Routes: POST Register.Register user.should return unauthorized token expired" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/api/users/get_users.spec.ts" />
+      <test-names>
+        <test-name value="Routes: POST Register" />
+        <test-name value="Register user" />
+        <test-name value="should return unauthorized token expired" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Routes: POST Register.Register user.should return unauthorized token expired" />
         <item itemvalue="Jest.Routes: POST Register.Register user.should return unauthorized if no token" />
         <item itemvalue="Jest.Routes: POST Register.Register user.should return register user" />
         <item itemvalue="Jest.Routes: POST Register" />
         <item itemvalue="Jest.App -&gt; User -&gt; Post.Success path.should display all the user on success" />
-        <item itemvalue="Jest.App -&gt; User -&gt; Post.Fail path (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +141,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624122269090</updated>
       <workItem from="1624122271738" duration="11602000" />
-      <workItem from="1624484637521" duration="102211000" />
+      <workItem from="1624484637521" duration="105484000" />
     </task>
     <servers />
   </component>
