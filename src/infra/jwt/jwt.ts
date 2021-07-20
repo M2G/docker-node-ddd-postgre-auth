@@ -12,11 +12,11 @@ export default ({ config }: any) => ({
 
     console.log('signin config', config)
 
-    const opt = Object.assign({}, options, { expiresIn: 60 * 60 } );
+    const opt = Object.assign({}, options);
     return jwt.sign(payload, config.authSecret as string || 'SECRET', opt);
   },
   verify: (options?: any) => (token: string) => {
-    const opt = Object.assign({}, options);
+    const opt = Object.assign({}, options, { ignoreExpiration: true });
 
     console.log('verify config', config)
 

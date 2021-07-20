@@ -41,7 +41,7 @@ export default ({
             const payload: { id: number, username: string, password: string } = { id, username, password };
 
             // if user is found and password is right, create a token
-            const token: any = jwt.signin()(payload);
+            const token: any = jwt.signin({ expiresIn: 60 * 60 })(payload);
 
             logger.info({ token: token });
             return res.status(Status.OK).json(Success({

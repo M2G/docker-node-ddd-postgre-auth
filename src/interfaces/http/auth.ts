@@ -24,14 +24,9 @@ export default ({
     ) => {
       const { id }: any | number = jwt.decode()(token);
 
-      console.log('jwt.verify()(token)', jwt.verify({ maxAge: 60 * 60 })(token))
-
       usersRepository
         .findById(id)
         .then((user: any) => {
-
-          console.log('user user user', user)
-
           if (!user) {
             return done(Status[Status.NOT_FOUND], null);
           }
