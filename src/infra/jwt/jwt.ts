@@ -13,14 +13,14 @@ export default ({ config }: any) => ({
     console.log('signin config', config)
 
     const opt = Object.assign({}, options);
-    return jwt.sign(payload, config.authSecret as string || 'SECRET', opt);
+    return jwt.sign(payload, config.authSecret as string, opt);
   },
   verify: (options?: any) => (token: string) => {
     const opt = Object.assign({}, options, { ignoreExpiration: true });
 
     console.log('verify config', config)
 
-   return jwt.verify(token, config.authSecret as string || 'SECRET', opt);
+   return jwt.verify(token, config.authSecret as string, opt);
   },
   decode: (options?: any) => (token: any) => {
     const opt = Object.assign({}, options);

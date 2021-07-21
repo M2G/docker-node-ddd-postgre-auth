@@ -1,6 +1,5 @@
 /*eslint-disable*/
 import express from 'express';
-
 import Status from 'http-status';
 const router = express.Router();
 
@@ -14,7 +13,7 @@ export default ({ response: { Fail }, jwt }: any) => {
       const token = req?.headers?.authorization?.split(' ')[1];
 
       try {
-        jwt.verify({ maxAge: '120ms' })(token);
+        jwt.verify({ maxAge: 60 * 60 })(token);
       } catch (e) {
         console.log('::::::::::: e e e', e.name);
 

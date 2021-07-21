@@ -34,16 +34,16 @@ export default ({
           return res.status(Status.NOT_FOUND).json(Fail('Wrong username and password combination.'));
         }
 
-       const match: boolean = await bcrypt.compare(body.password, password);
+          const match: boolean = await bcrypt.compare(body.password, password);
 
           if (match) {
 
             const payload: { id: number, username: string, password: string } = { id, username, password };
 
             // if user is found and password is right, create a token
-            const token: any = jwt.signin({ expiresIn: 60 * 60 })(payload);
+            const token: string = jwt.signin({ expiresIn: 60 * 60 })(payload);
 
-            logger.info({ token: token });
+            logger.info({ token });
             return res.status(Status.OK).json(Success({
               success: true,
               token: token
