@@ -23,6 +23,7 @@
     "serve": "node --harmony-top-level-await build/src/index.js",
     "watch-node": "nodemon build/src/index.js",
     "watch": "NODE_ENV=development concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch2": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
     "watch-test": "npm run test -- --watchAll",
     "test": "npm run test:cov && npm run test:specs",
     "test:cov": "NODE_ENV=test jest unit --forceExit --verbose",

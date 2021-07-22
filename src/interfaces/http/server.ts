@@ -14,6 +14,9 @@ export default ({ config, router, logger, auth }: any) => {
       const http = app.listen(config.port, () => {
         // @ts-ignore
         const { port } = http.address()
+
+        console.log('::::', process.env.NODE_ENV)
+
         logger.info(`API - Port ${port}`);
       })
     })

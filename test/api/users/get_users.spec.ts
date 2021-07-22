@@ -15,7 +15,6 @@ describe('Routes: POST Register', () => {
   const signIn = jwt.signin();
   const signIn2 = jwt.signin({ expiresIn: 0 });
   let token: any;
-  //@ts-ignore
   let token2: any;
   beforeEach((done) => {
     // we need to add user before we can request our token
@@ -80,7 +79,7 @@ describe('Routes: POST Register', () => {
         });
     });
 
-    /*it('should return unauthorized token is expired', (done) => {
+    it('should return unauthorized token is expired', (done) => {
       setTimeout(function() {
         rqt
           .get(`${BASE_URI}/users`)
@@ -96,7 +95,7 @@ describe('Routes: POST Register', () => {
           done(err);
         });
       }, 1500);
-    });*/
+    });
 
     it('should return unauthorized if no token', (done) => {
       rqt

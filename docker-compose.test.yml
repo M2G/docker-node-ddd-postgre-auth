@@ -20,7 +20,8 @@ services:
     volumes:
       - .:/app
       - /app/node_modules/bcrypt
-    command: npm run watch-test
+    #command: npm run watch-test
+    command: npm run watch2
     depends_on:
       - postgres
       - redis
