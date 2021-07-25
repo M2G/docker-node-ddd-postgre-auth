@@ -25,9 +25,13 @@ export default ({
       postUseCase
         .register({ body: body })
         .then((data: any) => {
+
+          console.log('::::::::::: 1', data)
+
           res.status(Status.OK).json(Success(data));
         })
-        .catch((error: { message: any }) => {
+        .catch((error: { message: string }) => {
+          console.log('::::::::::: 2', error.message)
           logger.error(error);
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message));

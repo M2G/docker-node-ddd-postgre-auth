@@ -12,7 +12,8 @@ export default ({
   response: { Fail },
   jwt,
 }: any) => {
-  // @ts-expect-error
+
+  // @ts-ignore
   const strategy = new BearerStrategy(
     'bearer',
     (

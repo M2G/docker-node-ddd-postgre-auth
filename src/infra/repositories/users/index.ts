@@ -11,7 +11,7 @@ export default ({ model }: any) => {
         const { id, username } = dataValues;
         return new toEntity({ id, username });
       })).catch((error: any) => {
-        return error;
+      throw new Error(error);
     });
 
 
@@ -22,7 +22,7 @@ export default ({ model }: any) => {
          const { id, username, password_hash } = dataValues;
          return new toEntity({ id, username, password: password_hash });
      }).catch((error: any) => {
-       return error;
+       throw new Error(error);
      });
   }
 
@@ -65,9 +65,7 @@ export default ({ model }: any) => {
         return new toEntity({ id, username, password: password_hash });
 
     }).catch((error: any) => {
-      console.log('catch catch catch', error);
-
-      return error;
+      throw new Error(error);
     });
   }
 
