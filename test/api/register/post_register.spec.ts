@@ -47,6 +47,19 @@ describe('Routes: POST Register', () => {
         });
     });
 
+    it('should return error duplicate registered user ',  async (done) => {
+      await rqt
+        .post(`/api/register`)
+        .send({
+          username: 'test',
+          password: 'test',
+        }).then(async (res: any) => {
+
+        console.log(':::::::::::', res.body.data)
+          done();
+        });
+    });
+
     it('shouldnt register user return error empty username was sent', (done) => {
       rqt
         .post(`/api/register`)

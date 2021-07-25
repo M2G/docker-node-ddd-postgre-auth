@@ -1,46 +1,67 @@
 /* eslint-disable */
-const { QueryTypes } = require('sequelize');
+import { QueryTypes, UniqueConstraintError } from 'sequelize';
 import toEntity from './transform';
 const { comparePassword } = require('../../encryption');
 
 export default ({ model }: any) => {
   const getAll = (...args: any[]) =>
-    model.findAll(...args).then((entity: { dataValues: any }[]) =>
-      entity?.map((data: { dataValues: any }) => {
-        const { dataValues } = data || {};
-        const { id, username } = dataValues;
-        return new toEntity({ id, username });
-      })).catch((error: any) => {
-      throw new Error(error);
-    });
-
+    model
+      .findAll(...args)
+      .then((entity: { dataValues: any }[]) =>
+        entity?.map((data: { dataValues: any }) => {
+          const { dataValues } = data || {};
+          const { id, username } = dataValues;
+          return new toEntity({ id, username });
+        }),
+      )
+      .catch((error: any) => {
+        throw new Error(error);
+      });
 
   const register = (...args: any[]) => {
     const { username, password } = args?.[0];
-   return model.create({ username, password_hash: password })
-     .then((dataValues: any) => {
-         const { id, username, password_hash } = dataValues;
-         return new toEntity({ id, username, password: password_hash });
-     }).catch((error: any) => {
-       throw new Error(error);
-     });
-  }
+    return model
+      .create({ username, password_hash: password })
+      .then((dataValues: any) => {
+        const { id, username, password_hash } = dataValues;
+        return new toEntity({
+          id,
+          username,
+          password: password_hash,
+        });
+      })
+      .catch((error: any) => {
+        if (error instanceof UniqueConstraintError) {
+          throw new Error('Duplicate error');
+        }
+
+        throw new Error(error);
+      });
+  };
 
   const findById = (...args: any[]) =>
-    model.findByPk(...args)
+    model
+      .findByPk(...args)
       .then((dataValues: any) => {
-
         if (!dataValues) return [];
 
         const { id, username, password_hash } = dataValues;
-        return new toEntity({ id, username, password: password_hash });
+        return new toEntity({
+          id,
+          username,
+          password: password_hash,
+        });
       })
-      .catch((error: string | undefined) => { throw new Error(error) })
+      .catch((error: string | undefined) => {
+        throw new Error(error);
+      });
 
   const authenticate = async (...args: any[]) => {
     const { username } = args?.[0];
 
-    return await model.sequelize.query(`SELECT * FROM users WHERE username=:username`, { replacements: { username },
+    return await model.sequelize
+      .query(`SELECT * FROM users WHERE username=:username`, {
+        replacements: { username },
         // A function (or false) for logging your queries
         // Will get called for every SQL query that gets sent
         // to the server.
@@ -54,26 +75,30 @@ export default ({ model }: any) => {
         raw: false,
 
         // The type of query you are executing. The query type affects how results are formatted before they are passed back.
-        type: QueryTypes.SELECT
-    }).then((dataValues: any) => {
+        type: QueryTypes.SELECT,
+      })
+      .then((dataValues: any) => {
+        console.log('dataValues dataValues dataValues', dataValues);
 
-      console.log('dataValues dataValues dataValues', dataValues);
-
-      if (!dataValues) return [];
+        if (!dataValues) return [];
 
         const { id, username, password_hash } = dataValues?.[0];
-        return new toEntity({ id, username, password: password_hash });
+        return new toEntity({
+          id,
+          username,
+          password: password_hash,
+        });
+      })
+      .catch((error: any) => {
+        throw new Error(error);
+      });
+  };
 
-    }).catch((error: any) => {
-      throw new Error(error);
-    });
-  }
+  const validatePassword = (endcodedPassword: any) => (
+    password: any,
+  ) => comparePassword(password, endcodedPassword);
 
-  const validatePassword = (endcodedPassword: any) => (password: any) =>
-    comparePassword(password, endcodedPassword)
-
-  const destroy = (...args: any[]) =>
-    model.destroy(...args)
+  const destroy = (...args: any[]) => model.destroy(...args);
 
   return {
     findById,
@@ -81,6 +106,6 @@ export default ({ model }: any) => {
     getAll,
     register,
     validatePassword,
-    destroy
-  }
-}
+    destroy,
+  };
+};
