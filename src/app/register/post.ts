@@ -16,6 +16,7 @@ export default ({ usersRepository }: any) => {
         return usersRepository.register({ username, password });
       })
       .catch((error) => {
+        console.log('register register', error)
         throw new Error(error);
       });
 

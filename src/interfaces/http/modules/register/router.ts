@@ -3,7 +3,7 @@ import Status from 'http-status';
 import { Router } from 'express';
 
 export default ({
-                  postUseCase,
+  postUseCase,
   logger,
   response: { Success, Fail },
 }: any) => {
@@ -28,12 +28,12 @@ export default ({
 
           console.log('::::::::::: 1', data)
 
-          res.status(Status.OK).json(Success(data));
+         return res.status(Status.OK).json(Success(data));
         })
         .catch((error: { message: string }) => {
           console.log('::::::::::: 2', error.message)
           logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
+          return res.status(Status.BAD_REQUEST).json(
             Fail(error.message));
         });
     });

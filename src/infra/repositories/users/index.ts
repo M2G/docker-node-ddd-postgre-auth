@@ -30,7 +30,7 @@ export default ({ model }: any) => {
           password: password_hash,
         });
       })
-      .catch((error: any) => {
+      .catch((error: any | UniqueConstraintError) => {
         if (error instanceof UniqueConstraintError) {
           throw new Error('Duplicate error');
         }

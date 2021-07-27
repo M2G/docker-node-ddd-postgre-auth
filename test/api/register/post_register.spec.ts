@@ -23,6 +23,21 @@ describe('Routes: POST Register', () => {
       .then((_: any) => done());
   });
 
+    it('should return error duplicate registered user',  (done) => {
+      rqt
+        .post(`/api/register`)
+        .send({
+          username: 'test',
+          password: 'test',
+        })
+        .expect(400)
+        .end((err: any, res: any) => {
+          expect(err).toBeFalsy();
+          expect(res.body.error).toEqual('Error: Duplicate error');
+          done();
+        });
+    });
+
   describe('Register user', () => {
     beforeEach((done) => {
       usersRepository
@@ -43,19 +58,6 @@ describe('Routes: POST Register', () => {
           expect(res.body.data).toHaveProperty('id');
           expect(res.body.data).toHaveProperty('username', 'test');
           expect(res.body.data).toHaveProperty('password');
-          done();
-        });
-    });
-
-    it('should return error duplicate registered user ',  async (done) => {
-      await rqt
-        .post(`/api/register`)
-        .send({
-          username: 'test',
-          password: 'test',
-        }).then(async (res: any) => {
-
-        console.log(':::::::::::', res.body.data)
           done();
         });
     });
