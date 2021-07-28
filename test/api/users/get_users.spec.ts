@@ -22,14 +22,8 @@ describe('Routes: POST Register', () => {
       .destroy({ where: {} })
       .then(() =>
         usersRepository.register({
-          username: 'test',
-          password: 'test',
-        }),
-      )
-      .then(() =>
-        usersRepository.register({
-          username: 'test2',
-          password: 'test2',
+          username: 'test1',
+          password: 'test1',
         }),
       )
       .then((user: { id: any; username: any }) => {
@@ -37,12 +31,18 @@ describe('Routes: POST Register', () => {
           id: user.id,
           username: user.username,
         });
-
+      })
+      .then(() =>
+        usersRepository.register({
+          username: 'test2',
+          password: 'test2',
+        }),
+      )
+      .then((user: { id: any; username: any }) => {
         token2 = signIn2({
           id: user.id,
           username: user.username,
         });
-
         done();
       });
   });

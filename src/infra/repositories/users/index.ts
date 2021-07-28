@@ -80,7 +80,7 @@ export default ({ model }: any) => {
       .then((dataValues: any) => {
         console.log('dataValues dataValues dataValues', dataValues);
 
-        if (!dataValues) return [];
+        if (!dataValues || !dataValues.length) return [];
 
         const { id, username, password_hash } = dataValues?.[0];
         return new toEntity({
