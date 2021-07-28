@@ -10,7 +10,7 @@ export default ({ usersRepository }: any) => {
 
         console.log('::::::::: REDIS');
 
-        usersRepository.getAll({
+        return usersRepository.getAll({
           attributes: [
             'id',
             'username',

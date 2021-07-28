@@ -56,7 +56,7 @@ describe('Routes: POST Register', () => {
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
           expect(res.body.data.length).toEqual(2);
-          done(err);
+          done();
         });
     });
 

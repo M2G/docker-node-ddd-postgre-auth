@@ -14,13 +14,9 @@ export default ({
       const { body = {} } = req || {};
       const { username, password } = body;
 
-     if (!username) {
-       res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty username.'));
+     if (!username || !password) {
+       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty value.'));
      }
-
-      if (!password) {
-        res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty password.'));
-      }
 
       postUseCase
         .register({ body: body })

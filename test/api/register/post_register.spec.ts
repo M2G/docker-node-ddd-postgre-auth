@@ -21,89 +21,82 @@ describe('Routes: POST Register', () => {
         }),
       )
       .then((_: any) => done());
+
   });
 
-    it('should return error duplicate registered user',  (done) => {
-      rqt
-        .post(`/api/register`)
-        .send({
-          username: 'test',
-          password: 'test',
-        })
-        .expect(400)
-        .end((err: any, res: any) => {
-          expect(err).toBeFalsy();
-          expect(res.body.error).toEqual('Error: Duplicate error');
-          done();
-        });
-    });
+  it('should return register user', (done) => {
+    rqt
+      .post(`/api/register`)
+      .send({
+        username: 'test2',
+        password: 'test2',
+      })
+      .expect(200)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.data).toHaveProperty('id');
+        expect(res.body.data).toHaveProperty('username', 'test2');
+        expect(res.body.data).toHaveProperty('password');
+        done();
+      });
+  });
 
-  describe('Register user', () => {
-    beforeEach((done) => {
-      usersRepository
-        .destroy({ where: {} })
-        .then(() => done())
-    })
+  it('shouldnt register user return error empty username was sent', (done) => {
+    rqt
+      .post(`/api/register`)
+      .send({
+        username: '',
+        password: 'gesdf',
+      })
+      .expect(422)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.success).toBeFalsy();
+        expect(res.body.error).toEqual('Empty value.');
+        done();
+      });
+  });
 
-    it('should return register user', (done) => {
-      rqt
-        .post(`/api/register`)
-        .send({
-          username: 'test',
-          password: 'test',
-        })
-        .expect(200)
-        .end((err: any, res: any) => {
-          expect(err).toBeFalsy();
-          expect(res.body.data).toHaveProperty('id');
-          expect(res.body.data).toHaveProperty('username', 'test');
-          expect(res.body.data).toHaveProperty('password');
-          done();
-        });
-    });
+  it('shouldnt register user return error empty password was sent', (done) => {
+    rqt
+      .post(`/api/register`)
+      .send({
+        username: 'gesdf',
+        password: '',
+      })
+      .expect(422)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.success).toBeFalsy();
+        expect(res.body.error).toEqual('Empty value.');
+        done();
+      });
+  });
 
-    it('shouldnt register user return error empty username was sent', (done) => {
-      rqt
-        .post(`/api/register`)
-        .send({
-          username: '',
-          password: 'gesdf',
-        })
-        .expect(422)
-        .end((err: any, res: any) => {
-          expect(err).toBeFalsy();
-          expect(res.body.success).toBeFalsy();
-          expect(res.body.error).toEqual('Empty username.');
-          done();
-        });
-    });
+  it('shouldnt authenticate user return error empty body was sent', (done) => {
+    rqt
+      .post(`/api/register`)
+      .send({})
+      .expect(422)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.success).toBeFalsy();
+        done();
+      });
+  });
 
-    it('shouldnt register user return error empty password was sent', (done) => {
-      rqt
-        .post(`/api/register`)
-        .send({
-          username: 'gesdf',
-          password: '',
-        })
-        .expect(422)
-        .end((err: any, res: any) => {
-          expect(err).toBeFalsy();
-          expect(res.body.success).toBeFalsy();
-          expect(res.body.error).toEqual('Empty password.');
-          done();
-        });
-    });
-
-    it('shouldnt authenticate user return error empty body was sent', (done) => {
-      rqt
-        .post(`/api/register`)
-        .send({})
-        .expect(422)
-        .end((err: any, res: any) => {
-          expect(err).toBeFalsy();
-          expect(res.body.success).toBeFalsy();
-          done();
-        });
-    });
+  it('should return error duplicate registered user', (done) => {
+    rqt
+      .post(`/api/register`)
+      .send({
+        username: 'test',
+        password: 'test',
+      })
+      .expect(400)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.error).toEqual('Error: Duplicate error');
+        done();
+      });
   });
 });
