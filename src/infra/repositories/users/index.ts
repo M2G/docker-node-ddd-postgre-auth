@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { QueryTypes, UniqueConstraintError } from 'sequelize';
 import toEntity from './transform';
-const { comparePassword } = require('../../encryption');
+import { comparePassword } from '../../encryption';
 
 export default ({ model }: any) => {
   const getAll = (...args: any[]) =>

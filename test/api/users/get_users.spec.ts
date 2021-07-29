@@ -12,10 +12,8 @@ describe('Routes: POST Register', () => {
   const BASE_URI = '/api';
 
   const jwt = container.resolve('jwt') as any;
-  const signIn = jwt.signin();
-  const signIn2 = jwt.signin({ expiresIn: 0 });
+  const signIn = jwt.signin({ expiresIn: 0 });
   let token: any;
-  let token2: any;
   beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
@@ -31,23 +29,11 @@ describe('Routes: POST Register', () => {
           id: user.id,
           username: user.username,
         });
-      })
-      .then(() =>
-        usersRepository.register({
-          username: 'test2',
-          password: 'test2',
-        }),
-      )
-      .then((user: { id: any; username: any }) => {
-        token2 = signIn2({
-          id: user.id,
-          username: user.username,
-        });
         done();
-      });
+      })
+
   });
 
-  describe('Register user', () => {
     it('should return users list', (done) => {
       rqt
         .get(`${BASE_URI}/users`)
@@ -55,7 +41,7 @@ describe('Routes: POST Register', () => {
         .expect(200)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
-          expect(res.body.data.length).toEqual(2);
+          expect(res.body.data.length).toEqual(1);
           done();
         });
     });
@@ -85,7 +71,7 @@ describe('Routes: POST Register', () => {
           .get(`${BASE_URI}/users`)
         .set(
           'Authorization',
-          `Bearer ${token2}`,
+          `Bearer ${token}`,
         )
         .expect(401)
         .end((err: any, res: any) => {
@@ -94,7 +80,7 @@ describe('Routes: POST Register', () => {
           expect(JSON.parse(res.text).error.message).toEqual('Failed to authenticate token is expired.');
           done(err);
         });
-      }, 1500);
+      }, 1250);
     });
 
     it('should return unauthorized if no token', (done) => {
@@ -110,5 +96,4 @@ describe('Routes: POST Register', () => {
           done();
         });
     });
-  });
 });

@@ -13,15 +13,13 @@ export default ({
   const router = Router();
 
   router.post('/', (req: any, res: any) => {
-    const { body = {} } = req || {};
+    const { body = {
+      password: undefined,
+    } } = req || {};
     const { username, password } = body;
 
-    if (!username) {
-      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty username.'));
-    }
-
-    if (!password) {
-      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty password.'));
+    if (!username || !password) {
+      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty value.'));
     }
 
     postUseCase
