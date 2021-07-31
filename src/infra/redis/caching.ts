@@ -20,6 +20,45 @@ const get = (req: any, res: any, next: any) => {
   });
 }
 
+/**
+ * Returns value or null when the key is missing - See [redis get]{@link https://redis.io/commands/get}
+ * @async
+ * @param key - key for the value stored
+ * @returns value or null when the key is missing
+ */
+const get2 = async (key: string):Promise<any> => {
+  let result = await super.sendCommand('get', [key])
+
+  try {
+    result = JSON.parse(result)
+  } catch (e) {
+    // do nothing
+  }
+  return result;
+}
+
+/**
+ * Returns 'OK' if successful
+ *
+ * @param key - key for the value stored
+ * @param value - value to stored
+ * @param ttlInSeconds - time to live in seconds
+ * @returns 'OK' if successful
+ */
+const set2 = (key: string, value: any, ttlInSeconds?: number): Promise<any> => {
+  const str =
+    Array.isArray(value) || isJSON(value, true)
+      ? JSON.stringify(value)
+      : value
+
+  const ttl = validatedTtl(ttlInSeconds, this.defaultTtlInS)
+  if (ttl) {
+    return super.sendCommand('setex', [key, ttl, str])
+  }
+  return super.sendCommand('set', [key, str])
+}
+
+
 export {
   set,
   get
