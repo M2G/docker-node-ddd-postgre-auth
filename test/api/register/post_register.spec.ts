@@ -21,7 +21,6 @@ describe('Routes: POST Register', () => {
         }),
       )
       .then((_: any) => done());
-
   });
 
   it('should return register user', (done) => {

@@ -5,6 +5,8 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 export default ({ config, basePath }: any) => {
 
+  console.log(':::::::', config);
+
   /* const sequelize = new Sequelize(
      process.env.POSTGRES_DB || '',
      process.env.DB_USER || '',

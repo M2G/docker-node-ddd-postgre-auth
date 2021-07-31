@@ -66,7 +66,7 @@ describe('Routes: POST Auth', () => {
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('Empty username.');
+        expect(res.body.error).toEqual('Empty value.');
         done();
       });
   });
@@ -82,7 +82,7 @@ describe('Routes: POST Auth', () => {
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('Empty password.');
+        expect(res.body.error).toEqual('Empty value.');
         done();
       });
   });

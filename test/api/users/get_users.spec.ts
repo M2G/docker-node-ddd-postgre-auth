@@ -12,8 +12,10 @@ describe('Routes: POST Register', () => {
   const BASE_URI = '/api';
 
   const jwt = container.resolve('jwt') as any;
-  const signIn = jwt.signin({ expiresIn: 0 });
+  const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
+  const signIn2 = jwt.signin();
   let token: any;
+  let token2: any;
   beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
@@ -29,6 +31,11 @@ describe('Routes: POST Register', () => {
           id: user.id,
           username: user.username,
         });
+        token2 = signIn2({
+          id: user.id,
+          username: user.username,
+        });
+
         done();
       })
 
@@ -37,7 +44,7 @@ describe('Routes: POST Register', () => {
     it('should return users list', (done) => {
       rqt
         .get(`${BASE_URI}/users`)
-        .set('Authorization', `Bearer ${token}`)
+        .set('Authorization', `Bearer ${token2}`)
         .expect(200)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
@@ -69,10 +76,7 @@ describe('Routes: POST Register', () => {
       setTimeout(function() {
         rqt
           .get(`${BASE_URI}/users`)
-        .set(
-          'Authorization',
-          `Bearer ${token}`,
-        )
+        .set('Authorization', `Bearer ${token}`)
         .expect(401)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
@@ -80,7 +84,7 @@ describe('Routes: POST Register', () => {
           expect(JSON.parse(res.text).error.message).toEqual('Failed to authenticate token is expired.');
           done(err);
         });
-      }, 1250);
+      }, 2500);
     });
 
     it('should return unauthorized if no token', (done) => {

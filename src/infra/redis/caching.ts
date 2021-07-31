@@ -9,7 +9,6 @@ const redisClient = redis.createClient(portRedis);
 const set = (key: string, value: any) =>
   redisClient.set(key, JSON.stringify(value));
 
-
 const get = (req: any, res: any, next: any) => {
   const { params = {} } = req;
   const { id } = params;
