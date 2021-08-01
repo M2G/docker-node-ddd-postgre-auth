@@ -58,8 +58,8 @@ function unsetDefaultTtlInS(): boolean {
  * @param str - string passed
  * @returns 'PONG'/string passed
  */
-function ping(str?: string): Promise<string> {
-  return super.sendCommand('ping', str ? [str] : [])
+function ping(str?: string | any): boolean {
+  return redisClient.ping(str ? str : []);
 }
 
 /**
@@ -68,11 +68,11 @@ function ping(str?: string): Promise<string> {
  * @param key - key for the value stored
  * @returns value or null when the key is missing
  */
-const get2 = async (key: string):Promise<any> => {
-  let result = await redisClient.set('get', [key])
+const get = async (key: string):Promise<any> => {
+  let result = await redisClient.get(key);
 
   try {
-    result = JSON.parse(result)
+    result = JSON.parse(result);
   } catch (e) {
     // do nothing
   }
@@ -87,17 +87,17 @@ const get2 = async (key: string):Promise<any> => {
  * @param ttlInSeconds - time to live in seconds
  * @returns 'OK' if successful
  */
-function set2(key: string, value: any, ttlInSeconds?: number): Promise<any> {
+function set(key: string, value: any, ttlInSeconds?: number): boolean {
   const str =
-    Array.isArray(value) || isJSON(value, true)
+    Array.isArray(value)
       ? JSON.stringify(value)
-      : value
+      : value;
 
-  const ttl = validatedTtl(ttlInSeconds, this.defaultTtlInS)
+  const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
   if (ttl) {
-    return super.sendCommand('setex', [key, ttl, str])
+    return redisClient.setex(key, ttl, str);
   }
-  return super.sendCommand('set', [key, str])
+  return super.set(key, str);
 }
 
 /**
@@ -114,12 +114,12 @@ async function getset(
   ttlInSeconds: number | undefined
 ): Promise<any> {
   const str =
-    Array.isArray(value) || isJSON(value, true)
+    Array.isArray(value)
       ? JSON.stringify(value)
       : value
-  const ttl = validatedTtl(ttlInSeconds, this.defaultTtlInS)
+  const ttl = validatedTtl(ttlInSeconds, defaultTtlInS)
 
-  let result = await super.sendCommand('getset', [key, str])
+  let result = await redisClient.getset(key, str);
   try {
     result = JSON.parse(result)
   } catch (e) {
@@ -127,9 +127,9 @@ async function getset(
   }
 
   if (ttl) {
-    await super.sendCommand('expire', [key, ttl])
+    await redisClient.expire(key, ttl);
   }
-  return result
+  return result;
 }
 
 /**
@@ -138,8 +138,8 @@ async function getset(
  * @param keys - list of keys to delete
  * @returns The number of keys that were removed.
  */
-function del(keys: string[] = []): Promise<number> {
-  return super.sendCommand('del', keys)
+function del(keys: string[] = []): boolean {
+  return redisClient.del(keys);
 }
 
 /**
@@ -149,9 +149,9 @@ function del(keys: string[] = []): Promise<number> {
  * @param   {number}  ttlInSeconds - time to live in seconds
  * @returns 1 if the timeout was set successfully; if not 0
  */
-function expire(key: string, ttlInSeconds: number): Promise<number> {
+function expire(key: string, ttlInSeconds: number): boolean {
   const ttl = validatedTtl(ttlInSeconds)
-  return super.sendCommand('expire', [key, ttl])
+  return redisClient.expire(key, <number>ttl);
 }
 
 /**
@@ -160,8 +160,8 @@ function expire(key: string, ttlInSeconds: number): Promise<number> {
  * @param key - list of keys to delete
  * @returns TTL in seconds, or a negative value in order to signal an error
  */
-function getTtl(key: string): Promise<number> {
-  return super.sendCommand('ttl', [key])
+function getTtl(key: string): boolean {
+  return redisClient.ttl(key);
 }
 
 /**
@@ -170,19 +170,8 @@ function getTtl(key: string): Promise<number> {
  * @param pattern - glob-style patterns/default '*'
  * @returns all keys matching pattern
  */
-function keys(pattern = '*'): Promise<string[]> {
-  return super.sendCommand('keys', [pattern])
-}
-
-/**
- * Deletes all keys matching pattern
- *
- * @param pattern - glob-style patterns/default '*'
- * @returns The number of keys that were removed.
- */
-function deleteAll(pattern = '*'): Promise<number> {
-  debug('clearing redis keys: ', pattern)
-return this._executeDeleteAll(pattern)
+function keys(pattern = '*'): boolean {
+  return redisClient.keys( pattern);
 }
 
 
