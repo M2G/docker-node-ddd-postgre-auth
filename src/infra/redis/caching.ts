@@ -7,7 +7,7 @@ const portRedis = process.env.PORT_REDIS ?? '6379';
 
 const redisClient = redis.createClient(portRedis);
 
-let defaultTtlInS = validatedTtl(null);
+let defaultTtlInS = validatedTtl(5 * 60);
 
 /*
 const set = (key: string, value: any) =>
@@ -29,7 +29,7 @@ const get = (req: any, res: any, next: any) => {
  * @returns defaultTtlInS
  */
 function getDefaultTtlInS(): number | undefined {
-  return defaultTtlInS
+  return defaultTtlInS;
 }
 
 /**
@@ -69,7 +69,7 @@ function ping(str?: string | any): boolean {
  * @returns value or null when the key is missing
  */
 const get = async (key: string):Promise<any> => {
-  let result = await redisClient.get(key);
+  let result = await redisClient.get(key) as any;
 
   try {
     result = JSON.parse(result);
@@ -97,7 +97,7 @@ function set(key: string, value: any, ttlInSeconds?: number): boolean {
   if (ttl) {
     return redisClient.setex(key, ttl, str);
   }
-  return super.set(key, str);
+  return redisClient.set(key, str);
 }
 
 /**
@@ -119,7 +119,7 @@ async function getset(
       : value
   const ttl = validatedTtl(ttlInSeconds, defaultTtlInS)
 
-  let result = await redisClient.getset(key, str);
+  let result = await redisClient.getset(key, str) as any;
   try {
     result = JSON.parse(result)
   } catch (e) {
