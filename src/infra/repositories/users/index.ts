@@ -11,7 +11,7 @@ export default ({ model }: any) => {
         entity?.map((data: { dataValues: any }) => {
           const { dataValues } = data || {};
           const { id, username } = dataValues;
-          return new toEntity({ id, username });
+          return toEntity({ id, username });
         }),
       )
       .catch((error: any) => {
@@ -24,7 +24,7 @@ export default ({ model }: any) => {
       .create({ username, password_hash: password })
       .then((dataValues: any) => {
         const { id, username, password_hash } = dataValues;
-        return new toEntity({
+        return toEntity({
           id,
           username,
           password: password_hash,
@@ -46,7 +46,7 @@ export default ({ model }: any) => {
         if (!dataValues) return [];
 
         const { id, username, password_hash } = dataValues;
-        return new toEntity({
+        return toEntity({
           id,
           username,
           password: password_hash,
@@ -83,7 +83,7 @@ export default ({ model }: any) => {
         if (!dataValues || !dataValues.length) return [];
 
         const { id, username, password_hash } = dataValues?.[0];
-        return new toEntity({
+        return toEntity({
           id,
           username,
           password: password_hash,

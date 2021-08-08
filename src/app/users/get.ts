@@ -1,7 +1,6 @@
 /*eslint-disable*/
 
 import { set, get } from '../../infra/redis';
-import Users from '../../domain/users';
 const KEY = 'LIST_USERS';
 
 /**
@@ -12,22 +11,22 @@ export default ({ usersRepository }: any) => {
      Promise.resolve()
       .then(async() => {
 
-        // const cachingUserList = await get(KEY);
-        // console.log('::::::::: REDIS', cachingUserList);
+        const cachingUserList = await get(KEY);
+        console.log('::::::::: REDIS', cachingUserList);
 
-        // if (cachingUserList) return cachingUserList;
+        if (cachingUserList) return cachingUserList;
 
-        const userList = usersRepository.getAll({
+        const userList = await usersRepository.getAll({
           attributes: [
             'id',
             'username',
           ]
         });
 
-        const data = new Users(userList);
-        console.log('data data data', await data)
+        console.log('data data data data data', userList)
 
-        // await set(KEY, JSON.stringify(userList), 0.6 * 60);
+
+        await set(KEY, JSON.stringify(userList), 0.6 * 60);
 
         return userList;
 

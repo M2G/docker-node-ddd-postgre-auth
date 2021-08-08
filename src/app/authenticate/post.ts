@@ -13,8 +13,12 @@ export default ({ usersRepository }: any) => {
   const authenticate = ({ body }: any) =>
     Promise.resolve()
       .then(() => {
-        const { username, password } = new Users(body);
-        return usersRepository?.authenticate({ username, password });
+
+        const users = Users(body);
+
+        console.log('::::::::::', users)
+
+        return usersRepository?.authenticate(users);
       })
       .catch((error) => {
 

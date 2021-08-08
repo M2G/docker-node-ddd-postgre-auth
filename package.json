@@ -84,7 +84,7 @@
     "ramda": "0.26.1",
     "redis": "^3.1.2",
     "sequelize": "^6.6.2",
-    "structure": "^2.0.1",
+    "tcomb": "^3.2.29",
     "ts-jest": "^27.0.3",
     "typescript": "^4.2.4",
     "winston": "3.2.1"
