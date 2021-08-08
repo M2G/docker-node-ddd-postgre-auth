@@ -3,27 +3,12 @@ import * as redis from 'redis';
 import Status from 'http-status';
 import validatedTtl from './validatedTtl';
 
-const portRedis = process.env.PORT_REDIS ?? '6379';
+const portRedis = process.env.PORT_REDIS || '6379';
 
-const redisClient = redis.createClient(portRedis);
+const redisClient = redis.createClient(Number(portRedis), 'redis', undefined);
 
 let defaultTtlInS = validatedTtl(5 * 60);
 
-/*
-const set = (key: string, value: any) =>
-  redisClient.set(key, JSON.stringify(value));
-
-const get = (req: any, res: any, next: any) => {
-  const { params = {} } = req;
-  const { id } = params;
-
-  redisClient.get(id, (error, data) => {
-    if (error) return res.status(Status.BAD_REQUEST).send(error);
-    if (data !== null) return res.status(Status.OK).send(JSON.parse(data));
-    else return next();
-  });
-}
-*/
 /**
  * Return the defaultTtlInS
  * @returns defaultTtlInS
@@ -68,15 +53,25 @@ function ping(str?: string | any): boolean {
  * @param key - key for the value stored
  * @returns value or null when the key is missing
  */
-const get = async (key: string):Promise<any> => {
-  let result = await redisClient.get(key) as any;
+const get = async (key: string):Promise<Error | string | null> => {
+  return new Promise((resolve, reject) => {
+    redisClient.get(key, async (err: Error | null, res: string | null) => {
+      if (err) return reject(err);
 
-  try {
-    result = JSON.parse(result);
-  } catch (e) {
-    // do nothing
-  }
-  return result;
+      console.log(':::::::: redisClient.get', { err, res })
+
+      return resolve(res ? JSON.parse(<string>res) : null);
+    });
+
+    /*try {
+      result = JSON.parse(result);
+    } catch (e) {
+      // do nothing
+      throw new Error(e);
+    }
+    return result;*
+     */
+  });
 }
 
 /**
@@ -124,6 +119,7 @@ async function getset(
     result = JSON.parse(result)
   } catch (e) {
     // do nothing
+    throw new Error(e);
   }
 
   if (ttl) {
@@ -177,5 +173,6 @@ function keys(pattern = '*'): boolean {
 
 export {
   set,
-  get
+  get,
+  getset
 }
