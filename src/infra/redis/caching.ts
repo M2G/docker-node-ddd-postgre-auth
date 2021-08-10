@@ -62,15 +62,6 @@ const get = async (key: string):Promise<Error | string | null> => {
 
       return resolve(res ? JSON.parse(<string>res) : null);
     });
-
-    /*try {
-      result = JSON.parse(result);
-    } catch (e) {
-      // do nothing
-      throw new Error(e);
-    }
-    return result;*
-     */
   });
 }
 
@@ -89,9 +80,8 @@ function set(key: string, value: any, ttlInSeconds?: number): boolean {
       : value;
 
   const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
-  if (ttl) {
-    return redisClient.setex(key, ttl, str);
-  }
+  if (ttl) return redisClient.setex(key, ttl, str);
+
   return redisClient.set(key, str);
 }
 
@@ -108,6 +98,7 @@ async function getset(
   value: any,
   ttlInSeconds: number | undefined
 ): Promise<any> {
+  return new Promise((resolve, reject) => {
   const str =
     Array.isArray(value)
       ? JSON.stringify(value)
@@ -115,6 +106,7 @@ async function getset(
   const ttl = validatedTtl(ttlInSeconds, defaultTtlInS)
 
   let result = await redisClient.getset(key, str) as any;
+  /*
   try {
     result = JSON.parse(result)
   } catch (e) {
@@ -125,7 +117,8 @@ async function getset(
   if (ttl) {
     await redisClient.expire(key, ttl);
   }
-  return result;
+  return result;*/
+  });
 }
 
 /**

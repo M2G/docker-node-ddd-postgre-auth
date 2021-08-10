@@ -7,6 +7,4 @@ const Users = t.struct({
   username: t.String
 });
 
-export default compose(
-  Users
-);
+export default compose(Users);
