@@ -10,6 +10,8 @@ module.exports = {
     "!<rootDir>/src/utils/**",
     "!<rootDir>/src/index.ts"
   ],
+  forceExit: true,
+  notify: true,
   globals: {
     "ts-jest": {
       "tsConfig": "<rootDir>/tsconfig.json"

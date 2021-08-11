@@ -72,6 +72,7 @@ describe('Routes: POST Register', () => {
         });
     });
 
+    //@see: https://github.com/auth0/node-jsonwebtoken/issues/288
     it('should return unauthorized token is expired', (done) => {
       setTimeout(function() {
         rqt

@@ -1,9 +1,10 @@
 /*eslint-disable*/
 import * as redis from 'redis';
+//@ts-ignore
 import Status from 'http-status';
 import validatedTtl from './validatedTtl';
 
-const portRedis = process.env.PORT_REDIS || '6379';
+const portRedis = process.env.PORT_REDIS || 6379;
 
 const redisClient = redis.createClient(Number(portRedis), 'redis', undefined);
 
@@ -13,6 +14,7 @@ let defaultTtlInS = validatedTtl(5 * 60);
  * Return the defaultTtlInS
  * @returns defaultTtlInS
  */
+//@ts-ignore
 function getDefaultTtlInS(): number | undefined {
   return defaultTtlInS;
 }
@@ -22,6 +24,7 @@ function getDefaultTtlInS(): number | undefined {
  * @param ttl
  * @returns defaultTtlInS
  */
+//@ts-ignore
 function setDefaultTtlInS(ttl: number): number | undefined {
   defaultTtlInS = validatedTtl(ttl)
   return defaultTtlInS
@@ -32,6 +35,7 @@ function setDefaultTtlInS(ttl: number): number | undefined {
  * @param ttl
  * @returns true
  */
+//@ts-ignore
 function unsetDefaultTtlInS(): boolean {
   defaultTtlInS = undefined
   return true
@@ -43,6 +47,7 @@ function unsetDefaultTtlInS(): boolean {
  * @param str - string passed
  * @returns 'PONG'/string passed
  */
+//@ts-ignore
 function ping(str?: string | any): boolean {
   return redisClient.ping(str ? str : []);
 }
@@ -57,8 +62,6 @@ const get = async (key: string):Promise<Error | string | null> => {
   return new Promise((resolve, reject) => {
     redisClient.get(key, async (err: Error | null, res: string | null) => {
       if (err) return reject(err);
-
-      console.log(':::::::: redisClient.get', { err, res })
 
       return resolve(res ? JSON.parse(<string>res) : null);
     });
@@ -98,15 +101,15 @@ async function getset(
   value: any,
   ttlInSeconds: number | undefined
 ): Promise<any> {
-  return new Promise((resolve, reject) => {
   const str =
     Array.isArray(value)
       ? JSON.stringify(value)
       : value
+
   const ttl = validatedTtl(ttlInSeconds, defaultTtlInS)
 
   let result = await redisClient.getset(key, str) as any;
-  /*
+
   try {
     result = JSON.parse(result)
   } catch (e) {
@@ -117,8 +120,7 @@ async function getset(
   if (ttl) {
     await redisClient.expire(key, ttl);
   }
-  return result;*/
-  });
+  return result;
 }
 
 /**
@@ -127,6 +129,7 @@ async function getset(
  * @param keys - list of keys to delete
  * @returns The number of keys that were removed.
  */
+//@ts-ignore
 function del(keys: string[] = []): boolean {
   return redisClient.del(keys);
 }
@@ -138,6 +141,7 @@ function del(keys: string[] = []): boolean {
  * @param   {number}  ttlInSeconds - time to live in seconds
  * @returns 1 if the timeout was set successfully; if not 0
  */
+//@ts-ignore
 function expire(key: string, ttlInSeconds: number): boolean {
   const ttl = validatedTtl(ttlInSeconds)
   return redisClient.expire(key, <number>ttl);
@@ -149,6 +153,7 @@ function expire(key: string, ttlInSeconds: number): boolean {
  * @param key - list of keys to delete
  * @returns TTL in seconds, or a negative value in order to signal an error
  */
+//@ts-ignore
 function getTtl(key: string): boolean {
   return redisClient.ttl(key);
 }
@@ -159,6 +164,7 @@ function getTtl(key: string): boolean {
  * @param pattern - glob-style patterns/default '*'
  * @returns all keys matching pattern
  */
+//@ts-ignore
 function keys(pattern = '*'): boolean {
   return redisClient.keys( pattern);
 }

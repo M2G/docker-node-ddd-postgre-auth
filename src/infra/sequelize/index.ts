@@ -13,7 +13,7 @@ export default ({ config, basePath }: any) => {
     { ...config.db },
   );
 
-  /* const sequelize = new Sequelize(
+  /*const sequelize = new Sequelize(
      'test_db2',
    'postgres',
    'postgres',

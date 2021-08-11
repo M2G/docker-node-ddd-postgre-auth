@@ -16,8 +16,6 @@ export default ({ usersRepository }: any) => {
 
         const users = Users(body);
 
-        console.log('::::::::::', users)
-
         return usersRepository?.authenticate(users);
       })
       .catch((error) => {

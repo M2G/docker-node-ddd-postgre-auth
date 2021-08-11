@@ -25,7 +25,7 @@ module.exports = {
   parserOptions: {
     project: path.resolve(__dirname, './tsconfig.json'),
     tsconfigRootDir: __dirname,
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
     extraFileExtensions: [".scss"]
   },

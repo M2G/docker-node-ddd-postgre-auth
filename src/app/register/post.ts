@@ -12,7 +12,10 @@ export default ({ usersRepository }: any) => {
   const register = ({ body }: any) =>
     Promise.resolve()
       .then(() => {
-        return usersRepository.register(Users(body));
+
+        const users = Users(body);
+
+        return usersRepository.register(users);
       })
       .catch((error) => {
         console.log('register register', error)

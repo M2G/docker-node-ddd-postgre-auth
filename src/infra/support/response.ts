@@ -2,29 +2,25 @@
 import { assoc } from 'ramda';
 
 export default ({ config }: any) => {
-  const defaultResponse = (success = true) => {
-    return {
+  const defaultResponse = (success = true) => ({
       success,
       version: config.version,
       date: new Date()
-    }
-  }
+  })
 
-  const Success = (data: any) => {
-    return assoc(
+  const Success = (data: any) =>
+     assoc(
       'data',
       data,
-      defaultResponse(true)
-    )
-  }
+      defaultResponse(true))
 
-  const Fail = (data: any) => {
-    return assoc(
+
+  const Fail = (data: any) =>
+     assoc(
       'error',
       data,
-      defaultResponse(false)
-    )
-  }
+      defaultResponse(false))
+
 
   return {
     Success,

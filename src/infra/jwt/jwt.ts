@@ -27,8 +27,7 @@ export default ({ config }: any) => ({
 
     const decodeToken = compose(partialRight(jwt.decode, [opt] as any),
       trim,
-      replace(/JWT|jwt/g, '')
-    )
+      replace(/JWT|jwt/g, ''))
 
     return decodeToken(token);
   }
