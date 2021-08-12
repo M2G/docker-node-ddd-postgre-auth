@@ -7,7 +7,7 @@ export default (
     return defaultTtlInS;
   }
 
-  const ttl = parseInt(ttlInSeconds, 10);
+  const ttl = parseInt(ttlInSeconds as string, 10);
   if (Number.isNaN(ttl) || ttl <= 0) {
     throw new Error('ttlInSeconds should be a non-zero integer');
   }

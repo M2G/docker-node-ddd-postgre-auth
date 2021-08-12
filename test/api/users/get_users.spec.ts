@@ -17,6 +17,10 @@ describe('Routes: POST Register', () => {
   let token: any;
   let token2: any;
   beforeEach((done) => {
+
+
+// call redis
+
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })

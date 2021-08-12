@@ -7,6 +7,7 @@ import auth from './interfaces/http/auth';
 import verify from './interfaces/http/middlewares/verify';
 import config from '../config';
 import jwt from './infra/jwt/jwt';
+import redis from './infra/redis/caching';
 import logger from './infra/logging/logger';
 import response from './infra/support/response';
 import repository from './infra/repositories';
@@ -22,6 +23,7 @@ container.register({
   database: asFunction(database).singleton(),
   jwt: asFunction(jwt).singleton(),
   logger: asFunction(logger).singleton(),
+  redis: asFunction(redis).singleton(),
   repository: asFunction(repository).singleton(),
   response: asFunction(response).singleton(),
   router: asFunction(router).singleton(),

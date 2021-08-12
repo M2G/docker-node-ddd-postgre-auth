@@ -1,17 +1,15 @@
 /*eslint-disable*/
-
-import { set, get } from '../../infra/redis';
 const KEY = 'LIST_USERS';
 
 /**
   * function for get users.
   */
-export default ({ usersRepository }: any) => {
+export default ({ usersRepository, redis }: any) => {
   const all = () =>
      Promise.resolve()
       .then(async() => {
 
-        const cachingUserList = await get(KEY);
+        const cachingUserList = await redis.get(KEY);
         console.log('::::::::: REDIS', cachingUserList);
 
         if (cachingUserList) return cachingUserList;
@@ -26,7 +24,7 @@ export default ({ usersRepository }: any) => {
         console.log('data data data data data', userList)
 
 
-        await set(KEY, JSON.stringify(userList), 0.6 * 60);
+        await redis.set(KEY, JSON.stringify(userList), 0.6 * 60);
 
         return userList;
 

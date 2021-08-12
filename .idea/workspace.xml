@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/redis/caching.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/caching.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/redis/validatedTtl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/validatedTtl.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/support/response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/support/response.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +57,7 @@
       <recent name="$PROJECT_DIR$/test/api/authenticate" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Routes: POST Auth">
+  <component name="RunManager" selected="Jest.Routes: POST Register.should return users list">
     <configuration name="Routes: POST Auth" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="/usr/local/bin/node" />
       <node-options value="" />
@@ -129,10 +127,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Routes: POST Register.should return users list" />
+        <item itemvalue="Jest.Routes: POST Register (1)" />
         <item itemvalue="Jest.Routes: POST Auth" />
         <item itemvalue="Jest.Routes: POST Register" />
-        <item itemvalue="Jest.Routes: POST Register (1)" />
-        <item itemvalue="Jest.Routes: POST Register.should return users list" />
         <item itemvalue="Jest.Routes: POST Register.should return register user" />
       </list>
     </recent_temporary>
@@ -148,7 +146,7 @@
       <workItem from="1624122271738" duration="11602000" />
       <workItem from="1624484637521" duration="143008000" />
       <workItem from="1627512698146" duration="16062000" />
-      <workItem from="1628206231911" duration="19396000" />
+      <workItem from="1628206231911" duration="24038000" />
     </task>
     <servers />
   </component>
