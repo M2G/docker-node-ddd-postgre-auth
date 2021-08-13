@@ -33,10 +33,10 @@ describe('App -> User -> Post', () => {
   describe('Fail path', () => {
     beforeEach(() => {
       const MockRepository = {
-        getAll: () => Promise.reject('Error');
+        getAll: () => Promise.reject('Error'),
       }
       const MockRedis = {
-        get: () => Promise.reject('Error');
+        get: () => Promise.reject('Error'),
       }
 
       useCase = getUsecase({
