@@ -10,7 +10,6 @@ export default ({ usersRepository, redis }: any) => {
       .then(async() => {
 
         const cachingUserList = await redis.get(KEY);
-        console.log('::::::::: REDIS', cachingUserList);
 
         if (cachingUserList) return cachingUserList;
 
@@ -20,9 +19,6 @@ export default ({ usersRepository, redis }: any) => {
             'username',
           ]
         });
-
-        console.log('data data data data data', userList)
-
 
         await redis.set(KEY, JSON.stringify(userList), 0.6 * 60);
 

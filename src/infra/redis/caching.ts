@@ -2,9 +2,11 @@
 import * as redis from 'redis';
 import validatedTtl from './validatedTtl';
 
+const HOST = process.env.NODE_ENV === 'development' ? 'redis' : 'localhost';
+
 const portRedis = process.env.HOST_PORT_REDIS || 6379;
 
-const redisClient = redis.createClient(Number(portRedis), 'redis', undefined);
+const redisClient = redis.createClient(Number(portRedis), HOST);
 
 let defaultTtlInS = validatedTtl(5 * 60);
 
@@ -187,6 +189,7 @@ export default ({ config }: any) => ({
    * @param ttlInSeconds - time to live in seconds
    * @returns 'OK' if successful
    */
+
   set: (key: string, value: any, ttlInSeconds?: number): boolean => {
     const str =
       Array.isArray(value)
@@ -198,6 +201,7 @@ export default ({ config }: any) => ({
 
     return redisClient.set(key, str);
   },
+
   /**
    * Returns value or null when the key is missing - See [redis get]{@link https://redis.io/commands/get}
    * @async

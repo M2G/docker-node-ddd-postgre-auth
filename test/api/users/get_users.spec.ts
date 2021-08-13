@@ -10,16 +10,22 @@ const { usersRepository } = container.resolve('repository');
 
 describe('Routes: POST Register', () => {
   const BASE_URI = '/api';
+  const KEY = 'LIST_USERS_TEST';
 
   const jwt = container.resolve('jwt') as any;
+  const redis = container.resolve('redis') as any;
   const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
   const signIn2 = jwt.signin();
   let token: any;
   let token2: any;
   beforeEach((done) => {
 
-
-// call redis
+    redis.set(KEY, JSON.stringify([
+      {
+        "id": 1080,
+        "username": "test"
+      }
+    ]));
 
     // we need to add user before we can request our token
     usersRepository
@@ -42,7 +48,6 @@ describe('Routes: POST Register', () => {
 
         done();
       })
-
   });
 
     it('should return users list', (done) => {

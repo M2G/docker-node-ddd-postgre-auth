@@ -3,15 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/redis/caching.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/caching.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/redis/validatedTtl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/validatedTtl.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/unit/app/register/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/app/register/post_register.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,46 @@
       <recent name="$PROJECT_DIR$/test/api/authenticate" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Routes: POST Register.should return users list">
+  <component name="RunManager" selected="Jest.App -&gt; User -&gt; Post (2)">
+    <configuration name="App -&gt; User -&gt; Post (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/test/unit/app/register/post_register.spec.ts" />
+      <test-names>
+        <test-name value="App -&gt; User -&gt; Post" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="App -&gt; User -&gt; Post (2)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/test/unit/app/authenticate/post_authenticate.spec.ts" />
+      <test-names>
+        <test-name value="App -&gt; User -&gt; Post" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="App -&gt; User -&gt; Post" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" />
+      <test-names>
+        <test-name value="App -&gt; User -&gt; Post" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Routes: POST Auth" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="/usr/local/bin/node" />
       <node-options value="" />
@@ -68,19 +107,6 @@
       <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
       <test-names>
         <test-name value="Routes: POST Auth" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: POST Register (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="/usr/local/bin/node" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/api/users/get_users.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Register" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -97,41 +123,13 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Routes: POST Register.should return register user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="/usr/local/bin/node" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/register/post_register.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Register" />
-        <test-name value="should return register user" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: POST Register.should return users list" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="/usr/local/bin/node" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/users/get_users.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Register" />
-        <test-name value="should return users list" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Routes: POST Register.should return users list" />
-        <item itemvalue="Jest.Routes: POST Register (1)" />
+        <item itemvalue="Jest.App -&gt; User -&gt; Post (2)" />
+        <item itemvalue="Jest.App -&gt; User -&gt; Post (1)" />
+        <item itemvalue="Jest.App -&gt; User -&gt; Post" />
         <item itemvalue="Jest.Routes: POST Auth" />
         <item itemvalue="Jest.Routes: POST Register" />
-        <item itemvalue="Jest.Routes: POST Register.should return register user" />
       </list>
     </recent_temporary>
   </component>
@@ -146,7 +144,7 @@
       <workItem from="1624122271738" duration="11602000" />
       <workItem from="1624484637521" duration="143008000" />
       <workItem from="1627512698146" duration="16062000" />
-      <workItem from="1628206231911" duration="24038000" />
+      <workItem from="1628206231911" duration="29553000" />
     </task>
     <servers />
   </component>

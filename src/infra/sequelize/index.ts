@@ -22,7 +22,7 @@ export default ({ config, basePath }: any) => {
        port: 5432,
        dialect: 'postgres',
        logging: process.env.ENV === 'production' ? false : console.log,
-     })
+     });
 
   const db = {
     sequelize,

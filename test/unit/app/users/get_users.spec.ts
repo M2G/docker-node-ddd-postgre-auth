@@ -14,37 +14,46 @@ describe('App -> User -> Post', () => {
         getAll: () => mockData
       }
 
+      const MockRedis = {
+        get: () => mockData
+      }
+
       useCase = getUsecase({
-        usersRepository: MockRepository
+        usersRepository: MockRepository,
+        redis: MockRedis
       })
-    })
+    });
 
     it('should display all the user on success', async () => {
       const lists = await useCase.all();
       expect(lists).toEqual(mockData);
     })
-  })
+  });
 
   describe('Fail path', () => {
     beforeEach(() => {
       const MockRepository = {
-        getAll: () => Promise.reject('Error')
+        getAll: () => Promise.reject('Error');
+      }
+      const MockRedis = {
+        get: () => Promise.reject('Error');
       }
 
       useCase = getUsecase({
-        usersRepository: MockRepository
+        usersRepository: MockRepository,
+        redis: MockRedis
       })
     })
 
     it('should display error on rejection', async () => {
 
-      let error
+      let error;
       try {
-        await useCase.all()
+        await useCase.all();
       } catch (e) {
-        error = e.message
+        error = e.message;
       }
-      expect(error).toEqual('Error')
+      expect(error).toEqual('Error');
     })
   })
 

@@ -20,9 +20,9 @@ describe('App -> User -> Post', () => {
         password: 'test',
       }
 
-      const lists = await useCase.register({ body })
-      expect(lists.username).toEqual(body.username)
-      expect(lists.password).toEqual(body.password)
+      const lists = await useCase.register({ body });
+      expect(lists.username).toEqual(body.username);
+      expect(lists.password).toEqual(body.password);
     })
   })
 
