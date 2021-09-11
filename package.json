@@ -1,20 +1,23 @@
 {
   "name": "docker-nodejs-typescript",
   "version": "0.0.1",
-  "description": "Docker, NodeJS and Typescript",
+  "description": "Docker, NodeJS, DDD, Auth, PostgreSQL and Typescript",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/M2G/docker-nodejs-typescript-starter-pack"
+    "url": "https://github.com/M2G/docker-node-ddd-postgresql-auth"
   },
-  "homepage": "https://github.com/M2G/docker-nodejs-typescript-starter-pack",
+  "homepage": "https://github.com/M2G/docker-node-ddd-postgresql-auth",
   "bugs": {
-    "url": "https://github.com/M2G/docker-nodejs-typescript-starter-pack/issues"
+    "url": "https://github.com/M2G/docker-node-ddd-postgresql-auth/issues"
   },
   "keywords": [
     "docker",
     "nodejs",
-    "typescript"
+    "typescript",
+    "postgresql",
+    "ddd",
+    "auth"
   ],
   "author": "M2G",
   "scripts": {
