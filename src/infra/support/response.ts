@@ -1,6 +1,4 @@
 /*eslint-disable*/
-import { assoc } from 'ramda';
-
 export default ({ config }: any) => {
   const defaultResponse = (success = true) => ({
       success,
@@ -8,19 +6,13 @@ export default ({ config }: any) => {
       date: new Date()
   })
 
-  const Success = (data: any) =>
-     assoc(
-      'data',
-      data,
-      defaultResponse(true))
+  const Success = (data: any) => {
+    return { ...defaultResponse(true), data };
+  }
 
-
-  const Fail = (data: any) =>
-     assoc(
-      'error',
-      data,
-      defaultResponse(false))
-
+  const Fail = (data: any) => {
+    return { ...defaultResponse(false), error: data };
+  }
 
   return {
     Success,
