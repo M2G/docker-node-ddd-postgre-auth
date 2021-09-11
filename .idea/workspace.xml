@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/support/response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/support/response.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +140,7 @@
       <workItem from="1628206231911" duration="31022000" />
       <workItem from="1629575235347" duration="1396000" />
       <workItem from="1630153816020" duration="1698000" />
-      <workItem from="1630156225105" duration="15225000" />
+      <workItem from="1630156225105" duration="16278000" />
     </task>
     <servers />
   </component>
