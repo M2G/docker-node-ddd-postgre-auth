@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +25,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaces/http/utils" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -46,6 +45,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/interfaces/http/utils" />
       <recent name="$PROJECT_DIR$/test/api" />
       <recent name="$PROJECT_DIR$/test/unit/app" />
       <recent name="$PROJECT_DIR$/test/api/authenticate" />
@@ -119,11 +119,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Routes: POST Register" />
+        <item itemvalue="Jest.Routes: POST Auth" />
+        <item itemvalue="Jest.App -&gt; User -&gt; Post" />
         <item itemvalue="Jest.App -&gt; User -&gt; Post (2)" />
         <item itemvalue="Jest.App -&gt; User -&gt; Post (1)" />
-        <item itemvalue="Jest.App -&gt; User -&gt; Post" />
-        <item itemvalue="Jest.Routes: POST Auth" />
-        <item itemvalue="Jest.Routes: POST Register" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +139,9 @@
       <workItem from="1624484637521" duration="143008000" />
       <workItem from="1627512698146" duration="16062000" />
       <workItem from="1628206231911" duration="31022000" />
-      <workItem from="1629575235347" duration="1152000" />
+      <workItem from="1629575235347" duration="1396000" />
+      <workItem from="1630153816020" duration="1698000" />
+      <workItem from="1630156225105" duration="12918000" />
     </task>
     <servers />
   </component>
