@@ -10,10 +10,10 @@ export default (
 
   const response = {
     type: 'InternalServerError',
-    ...config.env === 'development' && {
+    ...(config.env === 'development' && {
       message: err.message,
-      stack: err.stack
-    }
+      stack: err.stack,
+    }),
   };
 
   res.status(500).json(response);

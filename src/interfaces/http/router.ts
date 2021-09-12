@@ -2,7 +2,7 @@
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Router } from 'express';
-import { partialRight } from 'ramda';
+// import { partialRight } from 'ramda';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 // controller
@@ -32,7 +32,14 @@ export default ({ config, logger, database, verify }: any) => {
 
   router.use(verify);
   router.use('/api/users', users().router);
-  router.use(partialRight(errorHandler, [logger, config]));
+  router.use(function() {
+    return {
+      ...errorHandler,
+    ...[logger, config]
+    }
+  });
+  // router.use(partialRight(errorHandler, [logger, config]));
+
 
   return router;
 };
