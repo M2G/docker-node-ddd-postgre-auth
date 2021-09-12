@@ -1,7 +1,4 @@
-export default (
-  ttlInSeconds: any,
-  defaultTtlInS?: number
-): number | undefined => {
+export default (ttlInSeconds: any, defaultTtlInS?: number): number | undefined => {
   // validate only if ttl is given
   if (!ttlInSeconds) {
     return defaultTtlInS;

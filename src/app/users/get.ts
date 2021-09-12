@@ -1,6 +1,6 @@
 /*eslint-disable*/
 const KEY = 'LIST_USERS';
-
+const TTL = 0.6 * 60;
 /**
   * function for get users.
   */
@@ -20,7 +20,7 @@ export default ({ usersRepository, redis }: any) => {
           ]
         });
 
-        await redis.set(KEY, JSON.stringify(userList), 0.6 * 60);
+        await redis.set(KEY, JSON.stringify(userList), TTL);
 
         return userList;
 
