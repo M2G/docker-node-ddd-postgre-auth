@@ -26,9 +26,11 @@ RUN cp .env.example .env
 # Install dependencies
 RUN npm install
 
-# FROM node:alpine as app
+FROM node:alpine as app
 
 ## Copy built node modules and binaries without including the toolchain
-#COPY --from=builder node_modules .
+COPY --from=build /app .
+
+WORKDIR /app
 
 CMD [ "/app/scripts/run.sh" ]

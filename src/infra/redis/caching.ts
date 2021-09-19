@@ -9,7 +9,9 @@ const portRedis = process.env.HOST_PORT_REDIS || 6379;
 
 const redisClient = redis.createClient(Number(portRedis), HOST);
 
-let defaultTtlInS = validatedTtl(5 * 60);
+const TTL = 5 * 60;
+
+let defaultTtlInS = validatedTtl(TTL);
 
 export default ({ config }: any) => ({
   /**
@@ -65,7 +67,7 @@ export default ({ config }: any) => ({
 
     const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
 
-    let result = (await redisClient.getset(key, str)) as any;
+    let result = (redisClient.getset(key, str)) as any;
 
     try {
       result = JSON.parse(result);
@@ -75,7 +77,7 @@ export default ({ config }: any) => ({
     }
 
     if (ttl) {
-      await redisClient.expire(key, ttl);
+      redisClient.expire(key, ttl);
     }
     return result;
   },
@@ -115,10 +117,8 @@ export default ({ config }: any) => ({
 
   /**
    * Unsets the defaultTtlInS
-   * @param ttl
    * @returns true
    */
-
   unsetDefaultTtlInS: (): boolean => {
     defaultTtlInS = undefined;
     return true;

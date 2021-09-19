@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/redis/caching.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/caching.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/redis/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/redis/validatedTtl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/validatedTtl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/support/response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/support/response.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +144,8 @@
       <workItem from="1628206231911" duration="31022000" />
       <workItem from="1629575235347" duration="1396000" />
       <workItem from="1630153816020" duration="1698000" />
-      <workItem from="1630156225105" duration="26946000" />
+      <workItem from="1630156225105" duration="29915000" />
+      <workItem from="1631919742302" duration="2771000" />
     </task>
     <servers />
   </component>
