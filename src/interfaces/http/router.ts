@@ -10,6 +10,14 @@ import authenticate from '../http/modules/authenticate';
 import register from '../http/modules/register';
 import users from '../http/modules/users';
 
+const ROUTES = {
+  INDEX: '/',
+  REGISTER: '/api/register',
+  AUTHENTICATE: '/api/authenticate',
+  USERS: '/api/users'
+};
+
+
 export default ({ config, logger, database, verify }: any) => {
   // console.log('database', database);
   const router = Router();
@@ -25,12 +33,11 @@ export default ({ config, logger, database, verify }: any) => {
     }))
     .use(bodyParser.json());
 
-  router.use('/', index());
-  router.use('/api/register', register().router);
-  router.use('/api/authenticate', authenticate().router);
-
+  router.use(ROUTES.INDEX, index());
+  router.use(ROUTES.REGISTER, register().router);
+  router.use(ROUTES.AUTHENTICATE, authenticate().router);
   router.use(verify);
-  router.use('/api/users', users().router);
+  router.use(ROUTES.USERS, users().router);
 
   router.use(function() {
     return {
