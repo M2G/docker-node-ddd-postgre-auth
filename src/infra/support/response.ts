@@ -1,20 +1,19 @@
-/*eslint-disable*/
-export default ({ config }: any) => {
+export default ({config}: any) => {
   const defaultResponse = (success = true) =>
     ({
+      date: new Date(),
       success,
-      version: config.version,
-      date: new Date()
+      version: config.version
   });
 
   const Success = (data: any) =>
-    ({ ...defaultResponse(true), data });
+    ({...defaultResponse(true), data});
 
   const Fail = (data: any) =>
-    ({ ...defaultResponse(false), error: data });
+    ({...defaultResponse(false), error: data});
 
   return {
-    Success,
-    Fail
-  }
-}
+    Fail,
+    Success
+  };
+};

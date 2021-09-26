@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="">
+    <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/node-postgresql-auth.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/redis/caching.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/caching.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/support/response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/support/response.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1uAxbmpZcgfVVNTUdc2fjDupSD2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1yNL1GTdCNyNQHq2V2TNOrjfM2j" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,133 +28,31 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaces/http/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="/usr/local/bin/node" />
-    <property name="node.js.path.for.package.standard" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="prettierjs.PrettierConfiguration.NodeInterpreter" value="/usr/local/bin/node" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/interfaces/http/utils" />
-      <recent name="$PROJECT_DIR$/test/api" />
-      <recent name="$PROJECT_DIR$/test/unit/app" />
-      <recent name="$PROJECT_DIR$/test/api/authenticate" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Jest.App -&gt; User -&gt; Post (2)">
-    <configuration name="App -&gt; User -&gt; Post (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/unit/app/register/post_register.spec.ts" />
-      <test-names>
-        <test-name value="App -&gt; User -&gt; Post" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="App -&gt; User -&gt; Post (2)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/unit/app/authenticate/post_authenticate.spec.ts" />
-      <test-names>
-        <test-name value="App -&gt; User -&gt; Post" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="App -&gt; User -&gt; Post" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" />
-      <test-names>
-        <test-name value="App -&gt; User -&gt; Post" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: POST Auth" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="/usr/local/bin/node" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Auth" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: POST Register" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="/usr/local/bin/node" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/api/register/post_register.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Register" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Jest.Routes: POST Register" />
-        <item itemvalue="Jest.Routes: POST Auth" />
-        <item itemvalue="Jest.App -&gt; User -&gt; Post" />
-        <item itemvalue="Jest.App -&gt; User -&gt; Post (2)" />
-        <item itemvalue="Jest.App -&gt; User -&gt; Post (1)" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b7ddf47b-ec96-4da0-831e-92535770060a" name="Default Changelist" comment="" />
-      <created>1624122269090</created>
+      <changelist id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="" />
+      <created>1632086881588</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1624122269090</updated>
-      <workItem from="1624122271738" duration="11602000" />
-      <workItem from="1624484637521" duration="143008000" />
-      <workItem from="1627512698146" duration="16062000" />
-      <workItem from="1628206231911" duration="31022000" />
-      <workItem from="1629575235347" duration="1396000" />
-      <workItem from="1630153816020" duration="1698000" />
-      <workItem from="1630156225105" duration="29915000" />
-      <workItem from="1631919742302" duration="2771000" />
+      <updated>1632086881588</updated>
+      <workItem from="1632086884041" duration="1059000" />
+      <workItem from="1632440039091" duration="160000" />
+      <workItem from="1632440232294" duration="319000" />
+      <workItem from="1632528261557" duration="64000" />
+      <workItem from="1632528403002" duration="1485000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
