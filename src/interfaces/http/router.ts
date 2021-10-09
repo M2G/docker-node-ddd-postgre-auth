@@ -1,24 +1,18 @@
-/*eslint-disable*/
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { Router } from 'express';
+import {Router} from 'express';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 // controller
-import index from '../http/modules';
-import authenticate from '../http/modules/authenticate';
-import register from '../http/modules/register';
-import users from '../http/modules/users';
+import index from "./modules";
+import authenticate from "./modules/authenticate";
+import register from "./modules/register";
+import users from "./modules/users";
+import ROUTES from '../../../config/routes';
 
-const ROUTES = {
-  INDEX: '/',
-  REGISTER: '/api/register',
-  AUTHENTICATE: '/api/authenticate',
-  USERS: '/api/users'
-};
-
-
-export default ({ config, logger, database, verify }: any) => {
+export default ({
+ config, logger, database, verify
+}: any) => {
   // console.log('database', database);
   const router = Router();
 
@@ -28,8 +22,13 @@ export default ({ config, logger, database, verify }: any) => {
   router
     .use(cors({
       allowedHeaders: ['Content-Type', 'Authorization'],
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      origin: ['http://localhost:3000', 'http://localhost:3001'],
+      methods: [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE'
+      ],
+      origin: ['http://localhost:3000', 'http://localhost:3001']
     }))
     .use(bodyParser.json());
 
@@ -39,14 +38,11 @@ export default ({ config, logger, database, verify }: any) => {
   router.use(verify);
   router.use(ROUTES.USERS, users().router);
 
-  router.use(function() {
-    return {
+  router.use(() => ({
       ...errorHandler,
     ...[logger, config]
-    }
-  });
+    }));
   // router.use(partialRight(errorHandler, [logger, config]));
-
 
   return router;
 };

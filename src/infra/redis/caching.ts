@@ -1,13 +1,33 @@
 /*eslint-disable*/
-import * as redis from 'redis';
+import redis, { ClientOpts as RedisOptions } from 'redis'
 import validatedTtl from './validatedTtl';
 
-const HOST =
-  process.env.NODE_ENV === 'development' ? 'redis' : 'localhost';
+const HOST = process.env.NODE_ENV === 'development' ? 'redis' : 'localhost';
 
 const portRedis = process.env.HOST_PORT_REDIS || 6379;
 
-const redisClient = redis.createClient(Number(portRedis), HOST);
+const createClient = (redisOptions: RedisOptions) => {
+  return new Promise((resolve, reject) => {
+    console.log('Start redis createClient', redisOptions);
+    const client = redis.createClient(redisOptions)
+
+    client.on('error', err => {
+      console.log('Failed redis createClient', err);
+      reject(err);
+    })
+    client.on('connect', () => {
+      console.log('Succeeded redis createClient', redisOptions);
+      resolve(client);
+    })
+  })
+}
+
+const redisOptions: RedisOptions = {
+  port: Number(portRedis),
+  host: HOST,
+}
+
+const redisClient = createClient(redisOptions) as any;
 
 const TTL = 5 * 60;
 

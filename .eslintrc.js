@@ -61,6 +61,7 @@ module.exports = {
 
     "lines-between-class-members": "off",
 
+    "@typescript-eslint/object-curly-spacing": 0,
     "@typescript-eslint/no-unsafe-return": 1,
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "off",
