@@ -44,14 +44,10 @@ export default ({ config, basePath }: any) => {
 
   const dir = path.join(basePath as string, './models');
 
-  fs.readdirSync(dir)
-    ?.filter(
-      (file) =>
-        !file.startsWith('.') &&
-        file !== 'index.js' &&
-        file.endsWith('.js'),
-    )
-    ?.forEach((file) => {
+  fs.readdirSync(dir)?.filter((file) =>
+    !file.startsWith('.')
+      && file !== 'index.js'
+      && file.endsWith('.js'))?.forEach((file) => {
       const modelDir = path.join(dir, file);
 
       /*
@@ -72,10 +68,7 @@ export default ({ config, basePath }: any) => {
     });
 
   // Removes all tables and recreates them (only available if env is not in production)
-  if (
-    DB_FORCE_RESTART === 'true' &&
-    process.env.ENV !== 'production'
-  ) {
+  if (DB_FORCE_RESTART === 'true' && process.env.ENV !== 'production') {
     sequelizeOptions.force = true;
   }
 

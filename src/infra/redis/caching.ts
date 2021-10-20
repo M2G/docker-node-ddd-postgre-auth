@@ -9,7 +9,7 @@ const portRedis = process.env.HOST_PORT_REDIS || 6379;
 const createClient = (redisOptions: RedisOptions) => {
   return new Promise((resolve, reject) => {
     console.log('Start redis createClient', redisOptions);
-    const client = redis.createClient(redisOptions)
+    const client = redis.createClient(redisOptions);
 
     client.on('error', err => {
       console.log('Failed redis createClient', err);

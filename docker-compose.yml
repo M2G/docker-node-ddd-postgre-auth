@@ -1,5 +1,5 @@
 #
-# Docker NodeJS
+# Docker NodeJS Typescript Starter
 # Example Docker Compose file
 #
 
@@ -19,47 +19,28 @@ services:
       - ${PORT}:${PORT}
     volumes:
       - .:/app
-      - /app/node_modules/bcrypt
     command: npm run watch
     depends_on:
-      - postgres
-      - redis
+      - db
 
-  redis:
-    image: redis:alpine
-    container_name: cache
-    ports:
-      - ${HOST_PORT_REDIS}:${CONTAINER_PORT_REDIS}
-    volumes:
-      - ./redis-data:/data
-
-  postgres:
-    image: postgres:13.2
-    restart: always
-    environment:
-      - POSTGRES_DB=test_db2
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - DB_SCHEMA=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_HOST=postgres
-      - SECRET=SECRET
-    logging:
-      options:
-        max-size: 10m
-        max-file: '10' # good
+  db:
+    image: mongo:5.0.3
+    container_name: mongodb
     ports:
       - ${HOST_PORT}:${CONTAINER_PORT}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+    env_file:
+      - .env
+    restart: always
+    command: mongod --auth
     volumes:
-      - postgres-data:/var/lib/postgresql/data
-      - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
-      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-      # copy the sql script to fill tables
-      - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
-    security_opt:
-      - seccomp:unconfined
-    cap_add:
-      - SYS_NICE
+      #add persistent storage
+      - db:/data/db
+      #add path to startup script
+      - ./entrypoint/:/docker-entrypoint-initdb.d/
+
 volumes:
-  postgres-data:
+  db:
