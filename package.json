@@ -33,7 +33,7 @@
     "test:integration": "NODE_ENV=test jest --testTimeout=15000 --forceExit",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "tslint": "eslint -c tslint.json -p tsconfig.json",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect build/src/index.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
@@ -76,6 +76,7 @@
     "jest-watch-typeahead": "0.6.4",
     "jsonwebtoken": "8.5.0",
     "module-alias": "^2.2.2",
+    "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",

@@ -6,3 +6,4 @@ config
 custom.d.ts
 jest.config.js
 test
+entrypoint

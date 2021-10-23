@@ -1,6 +1,6 @@
 /* eslint-disable */
-import sequelize from '../sequelize';
-
+ import mongoose from '../mongoose';
+/*
 export default ({ logger, config }: any) => {
   const { db = null } = config;
   if (!db) {
@@ -9,4 +9,11 @@ export default ({ logger, config }: any) => {
   }
 
   return sequelize({ config, basePath: __dirname });
+};
+*/
+
+export default ({ logger, config }: any) => {
+
+  return mongoose({ logger, config });
+
 };

@@ -19,9 +19,19 @@ services:
       - ${PORT}:${PORT}
     volumes:
       - .:/app
+      - /app/node_modules/bcrypt
     command: npm run watch
     depends_on:
       - db
+      - redis
+
+  redis:
+    image: redis:alpine
+    container_name: cache
+    ports:
+      - ${HOST_PORT_REDIS}:${CONTAINER_PORT_REDIS}
+    volumes:
+      - ./redis-data:/data
 
   db:
     image: mongo:5.0.3

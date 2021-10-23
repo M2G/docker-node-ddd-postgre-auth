@@ -1,9 +1,12 @@
 /* eslint-disable */
-import { QueryTypes, UniqueConstraintError } from 'sequelize';
-import toEntity from './transform';
-import { comparePassword } from '../../encryption';
+// import { QueryTypes, UniqueConstraintError } from 'sequelize';
+// import toEntity from './transform';
+// import { comparePassword } from '../../encryption';
 
 export default ({ model }: any) => {
+  console.log('model', model)
+
+  /*
   const getAll = (...args: any[]) =>
     model
       .findAll(...args)
@@ -107,5 +110,5 @@ export default ({ model }: any) => {
     register,
     validatePassword,
     destroy,
-  };
+  };*/
 };
