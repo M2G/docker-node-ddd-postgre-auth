@@ -1,4 +1,4 @@
-import {createContainer, asValue, asFunction} from 'awilix';
+import { createContainer, asValue, asFunction } from 'awilix';
 
 import app from './app';
 import server from './interfaces/http/server';

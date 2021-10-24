@@ -61,7 +61,7 @@ export default ({ config }: any) => ({
 
   get: (key: string): Promise<Error | string | null> =>
     new Promise((resolve, reject) => {
-      redisClient.get(
+      return redisClient.get(
         key,
         (err: Error | null, res: string | null) => {
           if (err) return reject(err);

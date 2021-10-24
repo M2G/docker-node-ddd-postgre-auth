@@ -2,23 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/infra/mongoose/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.sequelizerc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entrypoint/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/mongoose/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/mongoose/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/redis/caching.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/caching.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +68,7 @@
       <workItem from="1633649299791" duration="4225000" />
       <workItem from="1633818290743" duration="5530000" />
       <workItem from="1633877239672" duration="4861000" />
-      <workItem from="1634851910950" duration="18787000" />
+      <workItem from="1634851910950" duration="40617000" />
     </task>
     <servers />
   </component>

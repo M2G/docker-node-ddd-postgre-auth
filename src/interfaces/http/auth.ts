@@ -26,7 +26,7 @@ export default ({
       const { id }: any | number = jwt.decode()(token);
 
       usersRepository
-        .findById(id)
+        .findByOne(id)
         .then((user: any) => {
           if (!user) {
             return done(Status[Status.NOT_FOUND], null);

@@ -12,8 +12,8 @@ export default ({ logger, config }: any) => {
 };
 */
 
-export default ({ logger, config }: any) => {
+export default ({ config }: any) => {
 
-  return mongoose({ logger, config });
+  return mongoose({  config, basePath: __dirname });
 
 };

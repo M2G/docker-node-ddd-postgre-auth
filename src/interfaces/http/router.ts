@@ -35,13 +35,13 @@ export default ({
   router.use(ROUTES.INDEX, index());
   router.use(ROUTES.REGISTER, register().router);
   router.use(ROUTES.AUTHENTICATE, authenticate().router);
-  router.use(verify);
+  // router.use(verify);
   router.use(ROUTES.USERS, users().router);
 
-  router.use(() => ({
+  /*router.use(() => ({
       ...errorHandler,
     ...[logger, config]
-    }));
+    }));*/
   // router.use(partialRight(errorHandler, [logger, config]));
 
   return router;

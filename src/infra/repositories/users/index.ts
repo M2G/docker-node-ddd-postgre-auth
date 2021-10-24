@@ -1,30 +1,35 @@
 /* eslint-disable */
-// import { QueryTypes, UniqueConstraintError } from 'sequelize';
 // import toEntity from './transform';
-// import { comparePassword } from '../../encryption';
+import { comparePassword } from '../../encryption';
 
 export default ({ model }: any) => {
-  console.log('model', model)
 
-  /*
-  const getAll = (...args: any[]) =>
-    model
-      .findAll(...args)
-      .then((entity: { dataValues: any }[]) =>
-        entity?.map((data: { dataValues: any }) => {
+  const getAll = (...args: any[]) => {
+
+    console.log('getAll', ...args)
+
+    return model
+      .find()
+      .then((entity: any) => {
+
+        console.log('entity', entity)
+
+      // .then((entity: { dataValues: any }[]) => {
+        /*entity?.map((data: { dataValues: any }) => {
           const { dataValues } = data || {};
           const { id, username } = dataValues;
           return toEntity({ id, username });
-        }),
-      )
+        }),*/
+      })
       .catch((error: any) => {
         throw new Error(error);
       });
-
+  }
+/*
   const register = (...args: any[]) => {
     const { username, password } = args?.[0];
     return model
-      .create({ username, password_hash: password })
+      .insert({ username, password_hash: password })
       .then((dataValues: any) => {
         const { id, username, password_hash } = dataValues;
         return toEntity({
@@ -33,18 +38,14 @@ export default ({ model }: any) => {
           password: password_hash,
         });
       })
-      .catch((error: any | UniqueConstraintError) => {
-        if (error instanceof UniqueConstraintError) {
-          throw new Error('Duplicate error');
-        }
-
+      .catch((error: any) => {
         throw new Error(error);
       });
   };
 
   const findById = (...args: any[]) =>
     model
-      .findByPk(...args)
+      .findByOne(...args)
       .then((dataValues: any) => {
         if (!dataValues) return [];
 
@@ -59,7 +60,7 @@ export default ({ model }: any) => {
         throw new Error(error);
       });
 
-  const authenticate = async (...args: any[]) => {
+  /*const authenticate = async (...args: any[]) => {
     const { username } = args?.[0];
 
     return await model.sequelize
@@ -95,20 +96,16 @@ export default ({ model }: any) => {
       .catch((error: any) => {
         throw new Error(error);
       });
-  };
+  };*/
 
-  const validatePassword = (endcodedPassword: any) => (
-    password: any,
-  ) => comparePassword(password, endcodedPassword);
-
-  const destroy = (...args: any[]) => model.destroy(...args);
+  const validatePassword = (endcodedPassword: any) => (password: any) =>
+    comparePassword(password, endcodedPassword);
 
   return {
-    findById,
-    authenticate,
+    // findById,
+    // authenticate,
     getAll,
-    register,
+    //  register,
     validatePassword,
-    destroy,
-  };*/
+  };
 };
