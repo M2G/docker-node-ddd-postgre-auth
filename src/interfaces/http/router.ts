@@ -38,10 +38,10 @@ export default ({
   // router.use(verify);
   router.use(ROUTES.USERS, users().router);
 
-  /*router.use(() => ({
+  router.use(() => ({
       ...errorHandler,
     ...[logger, config]
-    }));*/
+    }));
   // router.use(partialRight(errorHandler, [logger, config]));
 
   return router;

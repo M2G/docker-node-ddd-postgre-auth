@@ -1,31 +1,33 @@
 /* eslint-disable */
-// import toEntity from './transform';
+import toEntity from './transform';
 import { comparePassword } from '../../encryption';
 
 export default ({ model }: any) => {
 
   const getAll = (...args: any[]) => {
-
-    console.log('getAll', ...args)
-
     return model
-      .find()
-      .then((entity: any) => {
+      .find(...args)
+      .then((entity: any) =>
+           entity?.map((data: {}) => {
 
-        console.log('entity', entity)
+            const {
+              _id,
+              username,
+              password_hash
+            } = data || {};
 
-      // .then((entity: { dataValues: any }[]) => {
-        /*entity?.map((data: { dataValues: any }) => {
-          const { dataValues } = data || {};
-          const { id, username } = dataValues;
-          return toEntity({ id, username });
-        }),*/
-      })
-      .catch((error: any) => {
-        throw new Error(error);
-      });
+            return toEntity({
+              _id,
+              username,
+              password_hash
+            });
+          }))
+          .catch((error: any) => {
+            throw new Error(error);
+          });
+
   }
-/*
+
   const register = (...args: any[]) => {
     const { username, password } = args?.[0];
     return model
@@ -102,10 +104,10 @@ export default ({ model }: any) => {
     comparePassword(password, endcodedPassword);
 
   return {
-    // findById,
+    findById,
     // authenticate,
     getAll,
-    //  register,
+    register,
     validatePassword,
   };
 };

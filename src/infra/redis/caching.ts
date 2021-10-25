@@ -7,19 +7,17 @@ const HOST = process.env.NODE_ENV === 'development' ? 'redis' : 'localhost';
 const portRedis = process.env.HOST_PORT_REDIS || 6379;
 
 const createClient = (redisOptions: RedisOptions) => {
-  return new Promise((resolve, reject) => {
     console.log('Start redis createClient', redisOptions);
     const client = redis.createClient(redisOptions);
 
     client.on('error', err => {
       console.log('Failed redis createClient', err);
-      reject(err);
-    })
+    });
     client.on('connect', () => {
       console.log('Succeeded redis createClient', redisOptions);
-      resolve(client);
-    })
-  })
+  });
+
+    return client;
 }
 
 const redisOptions: RedisOptions = {
@@ -47,6 +45,9 @@ export default ({ config }: any) => ({
     const str = Array.isArray(value) ? JSON.stringify(value) : value;
 
     const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
+
+    console.log('::::::::', { key, ttl, str })
+
     if (ttl) return redisClient.setex(key, ttl, str);
 
     return redisClient.set(key, str);
@@ -59,8 +60,12 @@ export default ({ config }: any) => ({
    * @returns value or null when the key is missing
    */
 
-  get: (key: string): Promise<Error | string | null> =>
-    new Promise((resolve, reject) => {
+  get: (key: string): Promise<Error | string | null> => {
+
+    console.log('get key', key)
+    console.log('get redisClient', key)
+
+    return new Promise((resolve, reject) => {
       return redisClient.get(
         key,
         (err: Error | null, res: string | null) => {
@@ -69,7 +74,8 @@ export default ({ config }: any) => ({
           return resolve(res ? JSON.parse(<string>res) : null);
         },
       );
-    }),
+    })
+  },
   /**
    * Returns 'OK' if successful
    * @async

@@ -4,8 +4,6 @@ import get from '../../../../app/users';
 export default () => {
   const { cradle } = container;
 
-  console.log('cradle', cradle.repository)
-
   const {
     redis,
     repository: { usersRepository }

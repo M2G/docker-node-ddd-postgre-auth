@@ -8,13 +8,9 @@ export default ({ usersRepository, redis }: any) => {
   const all = async () =>
      Promise.resolve()
       .then(async () => {
+       const cachingUserList = await redis.get(KEY);
 
-        console.log('usersRepository', usersRepository)
-        console.log('redis', redis.get)
-
-       /* const cachingUserList = await redis.get(KEY);
-
-        if (cachingUserList) return cachingUserList;*/
+        if (cachingUserList) return cachingUserList;
 
         const userList = await usersRepository.getAll({});
 

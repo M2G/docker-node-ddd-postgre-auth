@@ -20,7 +20,7 @@ export default ({
         .all(req, res)
         .then((data: any) => {
 
-          console.log('getUseCase ::::::', data);
+          console.log('data ::::::', data);
 
           res.status(Status.OK).json(Success(data));
         })
