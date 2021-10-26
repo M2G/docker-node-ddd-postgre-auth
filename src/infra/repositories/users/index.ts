@@ -29,13 +29,13 @@ export default ({ model }: any) => {
   }
 
   const register = (...args: any[]) => {
-    const { username, password } = args?.[0];
+    const { username, password_hash } = args;
     return model
-      .insert({ username, password_hash: password })
-      .then((dataValues: any) => {
-        const { id, username, password_hash } = dataValues;
+      .insert({ username, password_hash })
+      .then((data: any) => {
+        const { _id, username, password_hash } = data;
         return toEntity({
-          id,
+          _id,
           username,
           password: password_hash,
         });

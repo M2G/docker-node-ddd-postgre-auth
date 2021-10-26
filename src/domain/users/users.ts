@@ -1,7 +1,7 @@
 import t from 'tcomb';
 
 const Users = t.struct({
-  _id: t.Object,
+  _id: t.maybe(t.Object),
   password_hash: t.String,
   username: t.String
 });
