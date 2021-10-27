@@ -11,12 +11,11 @@ export default ({ usersRepository }: any) => {
   const register = async ({ body }: any) =>
     Promise.resolve()
       .then(() => {
-
         const { username, password } = body;
 
         const users = Users({ password_hash: password, username });
 
-       return usersRepository.register(users);
+        return usersRepository.register(users);
       })
       .catch((error: string | undefined) => {
         console.log('register register', error);
@@ -24,6 +23,6 @@ export default ({ usersRepository }: any) => {
       });
 
   return {
-    register
+    register,
   };
 };

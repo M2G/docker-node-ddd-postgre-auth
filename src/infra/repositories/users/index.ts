@@ -29,17 +29,26 @@ export default ({ model }: any) => {
   }
 
   const register = (...args: any[]) => {
-    const { username, password_hash } = args;
-    return model
-      .insert({ username, password_hash })
+    const [{ username, password_hash }] = args;
+
+    console.log('data', { username, password_hash })
+
+    const m = new model({ username, password_hash });
+
+   return m
+      .save()
       .then((data: any) => {
+
+        console.log('data', data)
+
         const { _id, username, password_hash } = data;
+
         return toEntity({
           _id,
           username,
           password: password_hash,
         });
-      })
+    /*  })
       .catch((error: any) => {
         throw new Error(error);
       });
