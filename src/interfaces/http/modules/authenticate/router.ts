@@ -13,20 +13,18 @@ export default ({
   const router = Router();
 
   router.post('/', (req: any, res: any) => {
-    const { body = {
-      password: undefined,
-    } } = req || {};
-    const { username, password } = body;
+    const { body } = req || {};
+    const { username, password, email } = body;
 
     if (!username || !password) {
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty value.'));
     }
 
     postUseCase
-      .authenticate({ body: { username, password } })
+      .authenticate({ email })
       .then(async (data: any) => {
 
-        const { id, username, password } = data || {};
+        const { _id, username, password } = data || {};
 
         if (!username) {
           return res.status(Status.NOT_FOUND).json(Fail('Wrong username and password combination.'));
@@ -36,16 +34,24 @@ export default ({
 
           if (match) {
 
-            const payload: { id: number, username: string, password: string } = { id, username, password };
+            const payload: {
+              _id: number;
+              username: string;
+              password: string;
+              email: string;
+            } = { _id, username, password, email };
+
+            const options = { subject: email, audience: {}, expiresIn: 60 * 60 };
 
             // if user is found and password is right, create a token
-            const token: string = jwt.signin({ expiresIn: 60 * 60 })(payload);
+            const token: string = jwt.signin(options)(payload);
 
             logger.info({ token });
-            return res.status(Status.OK).json(Success({
-              success: true,
-              token: token
-            }));
+            return res.status(Status.OK).json(
+              Success({
+                success: true,
+                token: token,
+              }));
           }
 
           return res.status(Status.UNAUTHORIZED).json(Fail('Wrong username and password combination.'));

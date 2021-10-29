@@ -3,11 +3,13 @@ print('Count of rows in test collection: ' + db.users.count());
 
 db.users.insertMany([
   {
-    password_hash: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
+    email: 'test@gmail.com',
+    password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
     username: 'test'
   },
   {
-    password_hash: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
+    email: 'test2@gmail.com',
+    password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
     username: 'test2'
   },
 ]);

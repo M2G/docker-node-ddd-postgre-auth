@@ -1,6 +1,5 @@
 /* eslint-disable */
 import toEntity from './transform';
-import { comparePassword } from '../../encryption';
 
 export default ({ model }: any) => {
 
@@ -9,31 +8,17 @@ export default ({ model }: any) => {
       .find(...args)
       .then((entity: any) =>
            entity?.map((data: {}) => {
-
-            const {
-              _id,
-              username,
-              password_hash
-            } = data || {};
-
-            return toEntity({
-              _id,
-              username,
-              password_hash
-            });
+            return toEntity(data);
           }))
           .catch((error: any) => {
             throw new Error(error);
           });
-
   }
 
   const register = (...args: any[]) => {
-    const [{ username, password_hash }] = args;
+    const [{ username, password, email }] = args;
 
-    console.log('data', { username, password_hash })
-
-    const m = new model({ username, password_hash });
+    const m = new model({ username, email, password });
 
    return m
       .save()
@@ -41,14 +26,19 @@ export default ({ model }: any) => {
 
         console.log('data', data)
 
-        const { _id, username, password_hash } = data;
+        const {
+          _id,
+          username,
+          password
+        } = data;
 
         return toEntity({
           _id,
           username,
-          password: password_hash,
+          password: password,
         });
-    /*  })
+
+     })
       .catch((error: any) => {
         throw new Error(error);
       });
@@ -56,67 +46,42 @@ export default ({ model }: any) => {
 
   const findById = (...args: any[]) =>
     model
-      .findByOne(...args)
-      .then((dataValues: any) => {
-        if (!dataValues) return [];
+      .findOne(...args)
+      .then((data: any) => {
 
-        const { id, username, password_hash } = dataValues;
-        return toEntity({
-          id,
-          username,
-          password: password_hash,
-        });
+        console.log('findById 1', data);
+
+        if (!data) return [];
+        return toEntity(data);
       })
       .catch((error: string | undefined) => {
         throw new Error(error);
       });
 
-  /*const authenticate = async (...args: any[]) => {
-    const { username } = args?.[0];
-
-    return await model.sequelize
-      .query(`SELECT * FROM users WHERE username=:username`, {
-        replacements: { username },
-        // A function (or false) for logging your queries
-        // Will get called for every SQL query that gets sent
-        // to the server.
-        logging: console.log,
-
-        // If plain is true, then sequelize will only return the first
-        // record of the result set. In case of false it will return all records.
-        plain: false,
-
-        // Set this to true if you don't have a model definition for your query.
-        raw: false,
-
-        // The type of query you are executing. The query type affects how results are formatted before they are passed back.
-        type: QueryTypes.SELECT,
-      })
+  const authenticate = async (...args: any[]) => {
+    model
+      .findOne(...args)
       .then((dataValues: any) => {
         console.log('dataValues dataValues dataValues', dataValues);
 
         if (!dataValues || !dataValues.length) return [];
 
-        const { id, username, password_hash } = dataValues?.[0];
+        const [{ id, username, password }] = dataValues;
         return toEntity({
           id,
           username,
-          password: password_hash,
+          password,
         });
       })
       .catch((error: any) => {
         throw new Error(error);
       });
-  };*/
-
-  const validatePassword = (endcodedPassword: any) => (password: any) =>
-    comparePassword(password, endcodedPassword);
+  };
 
   return {
     findById,
-    // authenticate,
+    authenticate,
     getAll,
     register,
-    validatePassword,
   };
 };

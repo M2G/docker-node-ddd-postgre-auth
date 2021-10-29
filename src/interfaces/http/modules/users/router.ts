@@ -10,8 +10,8 @@ export default ({
 }: any) => {
   const router = Router();
 
-  //router.use((req, res, next) =>
-    // auth.authenticate(req, res, next));
+  router.use((req, res, next) =>
+    auth.authenticate(req, res, next));
 
   router
     .get('/', async (req: any, res: any) => {
@@ -19,9 +19,7 @@ export default ({
      getUseCase
         .all(req, res)
         .then((data: any) => {
-
           console.log('data ::::::', data);
-
           res.status(Status.OK).json(Success(data));
         })
         .catch((error: { message: any }) => {

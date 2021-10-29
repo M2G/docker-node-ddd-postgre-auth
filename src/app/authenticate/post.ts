@@ -13,7 +13,7 @@ export default ({ usersRepository }: any) => {
       .then(() => {
         const users = Users(body);
 
-        return usersRepository?.authenticate(users);
+        return usersRepository.authenticate(users);
       })
       .catch((error: string | undefined) => {
         console.log('sgdgsdfsdfsdfsd', error);

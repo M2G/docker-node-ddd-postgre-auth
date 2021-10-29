@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import path from 'path';
 import fs from 'fs';
 
@@ -11,8 +11,11 @@ export default ({ config, basePath }: any) => {
 
   console.log('configDb', configDb)
 
-
-  mongoose.connect(`mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`);
+  mongoose.connect(`mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    } as ConnectOptions);
 
   const con = mongoose.connection;
   con.on('error', console.error.bind(console, 'connection error:'));

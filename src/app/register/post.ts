@@ -11,9 +11,7 @@ export default ({ usersRepository }: any) => {
   const register = async ({ body }: any) =>
     Promise.resolve()
       .then(() => {
-        const { username, password } = body;
-
-        const users = Users({ password_hash: password, username });
+        const users = Users(body);
 
         return usersRepository.register(users);
       })
@@ -23,6 +21,6 @@ export default ({ usersRepository }: any) => {
       });
 
   return {
-    register,
+    register
   };
 };
