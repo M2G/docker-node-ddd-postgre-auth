@@ -25,12 +25,10 @@ export default ({
 
     postUseCase
       .register({
-        body: {
           email,
           password: hashedPassword,
           username,
-        },
-      })
+        })
       .then((data: any) => {
         const { _id, email, password } = data;
 
@@ -41,6 +39,7 @@ export default ({
           username: string;
           password: string;
         } = { _id, username, password };
+
         const options = { subject: email, audience: {}, expiresIn: 60 * 60 };
 
         // if user is found and password is right, create a token

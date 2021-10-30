@@ -46,13 +46,12 @@ export default ({ model }: any) => {
 
   const findById = (...args: any[]) =>
     model
-      .findOne(...args)
+      .findOne({ ...args })
       .then((data: any) => {
 
         console.log('findById 1', data);
 
-        if (!data) return [];
-        return toEntity(data);
+        // return toEntity({ ...data });
       })
       .catch((error: string | undefined) => {
         throw new Error(error);

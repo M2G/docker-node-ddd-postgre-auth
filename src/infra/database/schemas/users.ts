@@ -1,8 +1,22 @@
-export default ({ mongoose }: any) => {
+/*eslint-disable*/
+import type { Model } from 'mongoose';
+import { Schema, model } from 'mongoose';
+import type { IUser } from '../../../core/user';
 
-  const userSchema = new mongoose.Schema({
+export default ({ mongoose }: any) => {
+   // Validation match
+   //  let phone_match = [/[\+0-9]+/, "No phone number found ({VALUE})"];
+  const emailMatch = [/([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i, "No email found ({VALUE})"] as [RegExp, string];
+  // const { Schema } = mongoose;
+
+  /**
+   * User schema for mangoose
+   * @type {Schema}
+   */
+  const User = new Schema({
     email: {
       lowercase: true,
+      match: emailMatch,
       maxlength: 255,
       minlength: 5,
       required: false,
@@ -23,7 +37,7 @@ export default ({ mongoose }: any) => {
     }
   });
 
-  userSchema.set('toJSON', { virtuals: true });
+  const userSchemaModel: Model<IUser> = model<IUser>('User', User);
 
-  return mongoose.model('User', userSchema);
+  return userSchemaModel;
 };

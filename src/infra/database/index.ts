@@ -9,6 +9,6 @@ export default ({ logger, config }: any) => {
     return false;
   }
 
-  return mongoose({  config, basePath: __dirname });
+  return mongoose({  config, basePath: __dirname, logger });
 
 };

@@ -7,6 +7,7 @@ const time = process.env.NODE_ENV === 'development' ?
   process.env.JWT_TOKEN_EXPIRE_TIME :
   '2s';
 
+const TOKEN_EXPIRED_ERROR = 'TokenExpiredError';
 const FAIL_AUTH = 'Failed to authenticate token is expired.'
 
 export default ({ response: { Fail }, jwt }: any) => {
@@ -21,7 +22,7 @@ export default ({ response: { Fail }, jwt }: any) => {
       } catch (e) {
         console.log('::::::::::: e e e', e.name);
 
-        if (e.name === 'TokenExpiredError') {
+        if (e.name === TOKEN_EXPIRED_ERROR) {
           return res.status(Status.UNAUTHORIZED).json(Fail({
             success: false,
             expireTime: true,

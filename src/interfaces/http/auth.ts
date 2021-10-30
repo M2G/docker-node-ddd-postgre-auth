@@ -25,8 +25,10 @@ export default ({
     ) => {
       const { id }: any | number = jwt.decode()(token);
 
+      console.log('BearerStrategy id', id)
+
       usersRepository
-        .findByOne(id)
+        .findById(id)
         .then((user: any) => {
           if (!user) {
             return done(Status[Status.NOT_FOUND], null);

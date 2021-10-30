@@ -3,7 +3,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import path from 'path';
 import fs from 'fs';
 
-export default ({ config, basePath }: any) => {
+export default ({ config, basePath, logger }: any) => {
 
   const configDb = { ...config.db };
   // mongodb://db:27017/root_db
@@ -17,21 +17,21 @@ export default ({ config, basePath }: any) => {
       useUnifiedTopology: true,
     } as ConnectOptions);
 
-  const con = mongoose.connection;
-  con.on('error', console.error.bind(console, 'connection error:'));
-  con.once('open', () => console.log('connected to MongoDB database!'));
+  mongoose.connection.on('connecting', () => logger.info('database connecting'));
+  mongoose.connection.on('connected', () => logger.info('database connected'));
+  mongoose.connection.on('disconnecting', () => logger.info('database disconnecting'));
+  mongoose.connection.on('disconnected', () => logger.info('database disconnected'));
+  mongoose.connection.on('error', () => logger.error('database error'));
 
   const db = {
     mongoose,
     models: {}
-  }
+  };
 
   const dir = path.join(basePath, './schemas');
 
-  for (const files of fs.readdirSync(dir)
-    ?.filter((file) =>
-      (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js')
-    )) {
+  for (const files of fs.readdirSync(dir)?.filter((file) =>
+    (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js'))) {
 
       const modelDir = path.join(dir, files);
 
