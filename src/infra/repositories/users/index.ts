@@ -8,6 +8,9 @@ export default ({ model }: any) => {
       .find(...args)
       .then((entity: any) =>
            entity?.map((data: {}) => {
+
+             console.log('data', data)
+
             return toEntity(data);
           }))
           .catch((error: any) => {
@@ -47,12 +50,7 @@ export default ({ model }: any) => {
   const findById = (...args: any[]) =>
     model
       .findOne({ ...args })
-      .then((data: any) => {
-
-        console.log('findById 1', data);
-
-        // return toEntity({ ...data });
-      })
+      .then((data: any) => toEntity({ ...data }))
       .catch((error: string | undefined) => {
         throw new Error(error);
       });

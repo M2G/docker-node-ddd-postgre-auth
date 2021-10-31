@@ -23,12 +23,12 @@ export default ({
         arg1: { id: any; username: any; password: any } | null,
       ) => any,
     ) => {
-      const { id }: any | number = jwt.decode()(token);
+      const { _id }: any | number = jwt.decode()(token);
 
-      console.log('BearerStrategy id', id)
+      console.log('BearerStrategy id',  jwt.decode()(token))
 
       usersRepository
-        .findById(id)
+        .findById({ _id })
         .then((user: any) => {
           if (!user) {
             return done(Status[Status.NOT_FOUND], null);

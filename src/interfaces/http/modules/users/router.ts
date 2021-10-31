@@ -19,7 +19,6 @@ export default ({
      getUseCase
         .all(req, res)
         .then((data: any) => {
-          console.log('data ::::::', data);
           res.status(Status.OK).json(Success(data));
         })
         .catch((error: { message: any }) => {
