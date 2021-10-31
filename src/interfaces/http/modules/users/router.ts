@@ -23,8 +23,7 @@ export default ({
         })
         .catch((error: { message: any }) => {
           logger.error(error);
-          res.status(Status.BAD_REQUEST)
-            .json(Fail(error.message));
+          res.status(Status.BAD_REQUEST).json(Fail(error.message));
         });
     });
 

@@ -40,7 +40,7 @@ export default ({
           password: string;
         } = { _id, username, password };
 
-        const options = { subject: email, audience: {}, expiresIn: 60 * 60 };
+        const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 
         // if user is found and password is right, create a token
         const token: string = jwt.signin(options)(payload);

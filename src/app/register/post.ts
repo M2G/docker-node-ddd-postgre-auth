@@ -8,10 +8,10 @@ import Users from '../../domain/users';
  */
 export default ({ usersRepository }: any) => {
   // code for getting all the items
-  const register = async ({ body }: any) =>
+  const register = async ({ ...args }: any) =>
     Promise.resolve()
       .then(() => {
-        const users = Users(body);
+        const users = Users(args);
 
         return usersRepository.register(users);
       })

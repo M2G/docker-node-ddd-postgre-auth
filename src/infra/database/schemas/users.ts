@@ -1,13 +1,9 @@
 /*eslint-disable*/
 import type { Model } from 'mongoose';
-import { Schema, model } from 'mongoose';
 import type { IUser } from '../../../core/user';
 
-export default ({ mongoose }: any) => {
-   // Validation match
-   //  let phone_match = [/[\+0-9]+/, "No phone number found ({VALUE})"];
+export default ({ model, Schema }: any) => {
   const emailMatch = [/([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i, "No email found ({VALUE})"] as [RegExp, string];
-  // const { Schema } = mongoose;
 
   /**
    * User schema for mangoose
@@ -37,6 +33,7 @@ export default ({ mongoose }: any) => {
     }
   });
 
+  // @ts-ignore
   const userSchemaModel: Model<IUser> = model<IUser>('User', User);
 
   return userSchemaModel;

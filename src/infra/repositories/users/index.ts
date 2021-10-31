@@ -3,20 +3,16 @@ import toEntity from './transform';
 
 export default ({ model }: any) => {
 
-  const getAll = (...args: any[]) => {
-    return model
+  const getAll = (...args: any[]) =>
+    model
       .find(...args)
       .then((entity: any) =>
-           entity?.map((data: {}) => {
-
-             console.log('data', data)
-
-            return toEntity(data);
-          }))
+        entity?.map((data: {}) =>
+          toEntity(data)))
           .catch((error: any) => {
             throw new Error(error);
           });
-  }
+
 
   const register = (...args: any[]) => {
     const [{ username, password, email }] = args;
@@ -25,23 +21,7 @@ export default ({ model }: any) => {
 
    return m
       .save()
-      .then((data: any) => {
-
-        console.log('data', data)
-
-        const {
-          _id,
-          username,
-          password
-        } = data;
-
-        return toEntity({
-          _id,
-          username,
-          password: password,
-        });
-
-     })
+      .then((data: any) => toEntity(data))
       .catch((error: any) => {
         throw new Error(error);
       });
@@ -50,7 +30,7 @@ export default ({ model }: any) => {
   const findById = (...args: any[]) =>
     model
       .findOne({ ...args })
-      .then((data: any) => toEntity({ ...data }))
+      .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         throw new Error(error);
       });
@@ -61,9 +41,6 @@ export default ({ model }: any) => {
       .findOne({ email })
       .then((data: any) => toEntity(data))
       .catch((error: any) => {
-
-        console.log('authenticate 2', error);
-
         throw new Error(error);
       });
   };

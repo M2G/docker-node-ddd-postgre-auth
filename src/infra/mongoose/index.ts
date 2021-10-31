@@ -1,17 +1,13 @@
 /*eslint-disable*/
-import mongoose, { ConnectOptions } from 'mongoose';
+import { ConnectOptions, connect, connection, Schema, model } from 'mongoose';
 import path from 'path';
 import fs from 'fs';
 
 export default ({ config, basePath, logger }: any) => {
 
   const configDb = { ...config.db };
-  // mongodb://db:27017/root_db
-  // await mongoose.connect(`mongodb://db${configDb.host}/${configDb.database}`);
-
-  console.log('configDb', configDb)
-
-  mongoose.connect(`mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
+  // mongodb://root_user':root_user_pw@db:27017/root_db
+  connect(`mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -22,14 +18,13 @@ export default ({ config, basePath, logger }: any) => {
       loggerLevel: 'error'
     } as ConnectOptions);
 
-  mongoose.connection.on('connecting', () => logger.info('database connecting'));
-  mongoose.connection.on('connected', () => logger.info('database connected'));
-  mongoose.connection.on('disconnecting', () => logger.info('database disconnecting'));
-  mongoose.connection.on('disconnected', () => logger.info('database disconnected'));
-  mongoose.connection.on('error', () => logger.error('database error'));
+  connection.on('connecting', () => logger.info('database connecting'));
+  connection.on('connected', () => logger.info('database connected'));
+  connection.on('disconnecting', () => logger.info('database disconnecting'));
+  connection.on('disconnected', () => logger.info('database disconnected'));
+  connection.on('error', () => logger.error('database error'));
 
   const db = {
-    mongoose,
     models: {}
   };
 
@@ -40,14 +35,13 @@ export default ({ config, basePath, logger }: any) => {
 
       const modelDir = path.join(dir, files);
 
-      const models: any = require(modelDir);
+      const requireModel: any = require(modelDir);
 
-     const fileName = path.parse(files).name;
+      const fileName = path.parse(files).name;
 
-    const model = models.default;
+      const models = requireModel.default;
 
-
-     db.models[fileName] = model({ mongoose });
+      db.models[fileName] = models({ Schema, model });
 
     }
 
