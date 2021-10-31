@@ -24,7 +24,7 @@ export default ({ mongoose }: any) => {
       type: String,
       unique: true
     },
-    name: {
+    username: {
       maxlength: 100,
       minlength: 2,
       required: true,

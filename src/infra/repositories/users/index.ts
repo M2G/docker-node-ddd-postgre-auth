@@ -58,21 +58,14 @@ export default ({ model }: any) => {
       });
 
   const authenticate = async (...args: any[]) => {
-    model
-      .findOne(...args)
-      .then((dataValues: any) => {
-        console.log('dataValues dataValues dataValues', dataValues);
-
-        if (!dataValues || !dataValues.length) return [];
-
-        const [{ id, username, password }] = dataValues;
-        return toEntity({
-          id,
-          username,
-          password,
-        });
-      })
+    const [{ email }] = args;
+    return model
+      .findOne({ email })
+      .then((data: any) => toEntity(data))
       .catch((error: any) => {
+
+        console.log('authenticate 2', error);
+
         throw new Error(error);
       });
   };

@@ -15,6 +15,11 @@ export default ({ config, basePath, logger }: any) => {
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      minPoolSize: 1,
+      maxPoolSize: 20,
+      socketTimeoutMS: 60000,
+      serverSelectionTimeoutMS: 60000,
+      loggerLevel: 'error'
     } as ConnectOptions);
 
   mongoose.connection.on('connecting', () => logger.info('database connecting'));
