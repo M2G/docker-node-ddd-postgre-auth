@@ -13,7 +13,6 @@ module.exports = {
     "./node_modules/eslint-config-airbnb-base/rules/variables.js",
     "./node_modules/eslint-config-airbnb-base/rules/es6.js",
     "prettier",
-    "prettier/@typescript-eslint",
     "eslint:all",
     "plugin:import/errors",
     "plugin:import/warnings",

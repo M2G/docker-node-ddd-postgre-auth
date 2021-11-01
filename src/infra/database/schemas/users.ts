@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import type { Model } from 'mongoose';
-import type { IUser } from '../../../core/user';
+import type { IUser } from '../../../core/IUser';
 
 export default ({ model, Schema }: any) => {
   const emailMatch = [/([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i, "No email found ({VALUE})"] as [RegExp, string];

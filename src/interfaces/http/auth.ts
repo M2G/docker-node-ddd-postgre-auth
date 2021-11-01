@@ -2,6 +2,7 @@
 import passport from 'passport';
 import BearerStrategy from 'passport-http-bearer';
 import Status from 'http-status';
+import { Router, Request, Response, NextFunction } from 'express';
 
 /**
  * middleware to check the if auth vaid
@@ -47,7 +48,7 @@ export default ({
 
   return {
     initialize: () => passport.initialize(),
-    authenticate: (req: any, res: any, next: any) =>
+    authenticate: (req: Request, res: Response, next: NextFunction) =>
       passport.authenticate(
         'bearer',
         { session: false },

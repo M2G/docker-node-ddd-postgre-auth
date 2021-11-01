@@ -1,7 +1,7 @@
 /* eslint-disable*/
 import bcrypt from 'bcrypt';
 import Status from 'http-status';
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 
 export default ({
   jwt,
@@ -12,7 +12,7 @@ export default ({
 
   const router = Router();
 
-  router.post('/', (req: any, res: any) => {
+  router.post('/', (req: Request, res: Response) => {
     const { body } = req || {};
     const { password, email } = body;
 

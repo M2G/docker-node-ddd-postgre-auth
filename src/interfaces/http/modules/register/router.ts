@@ -1,6 +1,7 @@
 /* eslint-disable*/
 import Status from 'http-status';
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
+
 import { encryptPassword } from '../../../../infra/encryption';
 
 export default ({
@@ -11,7 +12,7 @@ export default ({
 }: any) => {
   const router = Router();
 
-  router.post('/', (req: any, res: any) => {
+  router.post('/', (req: Request, res: Response) => {
     const { body = {} } = req || {};
     const { email, password, username } = body;
 

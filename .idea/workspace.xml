@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/core/IUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IRepository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/mongoose/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/mongoose/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" afterDir="false" />
     </list>
@@ -27,7 +32,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infra" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -37,6 +42,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/core" />
       <recent name="$PROJECT_DIR$/src/infra" />
       <recent name="$PROJECT_DIR$/src/infra/database/schemas" />
       <recent name="$PROJECT_DIR$/src/infra/database" />
@@ -62,7 +68,7 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="36573000" />
+      <workItem from="1635366872672" duration="44631000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,8 @@
 /* eslint-disable */
+import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
-export default ({ model }: any) => {
+export default ({ model }: IRead<any> & IWrite<any>) => {
 
   const getAll = (...args: any[]) =>
     model
