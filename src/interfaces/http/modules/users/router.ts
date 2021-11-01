@@ -14,7 +14,7 @@ export default ({
     auth.authenticate(req, res, next));
 
   router
-    .get('/', async (req: any, res: any) => {
+    .get('/', async (req: Request, res: Response) => {
 
      getUseCase
         .all(req, res)

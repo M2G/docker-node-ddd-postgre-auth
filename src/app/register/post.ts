@@ -21,6 +21,6 @@ export default ({ usersRepository }: any) => {
       });
 
   return {
-    register
+    register,
   };
 };

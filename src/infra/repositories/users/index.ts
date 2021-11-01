@@ -1,29 +1,28 @@
-/* eslint-disable */
+/*eslint-disable*/
 import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
-export default ({ model }: IRead<any> & IWrite<any>) => {
+export default ({ model }: any) => {
+
+  // const { find, findOne, create } = model as IRead<any> & IWrite<any>;
 
   const getAll = (...args: any[]) =>
     model
       .find(...args)
-      .then((entity: any) =>
-        entity?.map((data: {}) =>
-          toEntity(data)))
-          .catch((error: any) => {
-            throw new Error(error);
-          });
+      .then((entity: any) => entity?.map((data: {}) => toEntity(data)))
+      .catch((error: any) => {
+        throw new Error(error);
+      });
 
 
   const register = (...args: any[]) => {
+
     const [{ username, password, email }] = args;
 
-    const m = new model({ username, email, password });
-
-   return m
-      .save()
-      .then((data: any) => toEntity(data))
-      .catch((error: any) => {
+   return model
+     .create({ username, password, email })
+     .then((data: any) => toEntity(data))
+     .catch((error: any) => {
         throw new Error(error);
       });
   };

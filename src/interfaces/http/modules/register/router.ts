@@ -1,8 +1,8 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
-
 import { encryptPassword } from '../../../../infra/encryption';
+import IUser from '../../../../core/IUser';
 
 export default ({
   postUseCase,
@@ -14,7 +14,7 @@ export default ({
 
   router.post('/', (req: Request, res: Response) => {
     const { body = {} } = req || {};
-    const { email, password, username } = body;
+    const { email, password, username } = <IUser>body;
 
     if (!email || !password || !username) {
       return res
@@ -31,15 +31,8 @@ export default ({
           username,
         })
       .then((data: any) => {
-        const { _id, email, password } = data;
-
-        console.log('data ::::::', data);
-
-        const payload: {
-          _id: number;
-          username: string;
-          password: string;
-        } = { _id, username, password };
+        const { _id, email, password } = <IUser>data;
+        const payload = <IUser>{ _id, username, password };
 
         const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 

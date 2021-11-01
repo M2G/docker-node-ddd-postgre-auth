@@ -2,7 +2,7 @@
 import passport from 'passport';
 import BearerStrategy from 'passport-http-bearer';
 import Status from 'http-status';
-import { Router, Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 /**
  * middleware to check the if auth vaid
@@ -25,8 +25,6 @@ export default ({
       ) => any,
     ) => {
       const { _id }: any | number = jwt.decode()(token);
-
-      console.log('BearerStrategy id',  jwt.decode()(token))
 
       usersRepository
         .findById({ _id })

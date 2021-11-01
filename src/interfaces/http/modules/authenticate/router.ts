@@ -2,6 +2,7 @@
 import bcrypt from 'bcrypt';
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
+import IUser from '../../../../core/IUser';
 
 export default ({
   jwt,
@@ -14,7 +15,7 @@ export default ({
 
   router.post('/', (req: Request, res: Response) => {
     const { body } = req || {};
-    const { password, email } = body;
+    const { password, email } = <IUser>body;
 
     if (!email || !password) {
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty value.'));
@@ -24,7 +25,7 @@ export default ({
       .authenticate({ email })
       .then(async (data: any) => {
 
-        const { _id, email, username, password } = data || {};
+        const { _id, email, username, password } = <IUser>data || {};
 
         if (!email) {
           return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${email})`));
@@ -34,12 +35,7 @@ export default ({
 
           if (match) {
 
-            const payload: {
-              _id: number;
-              username: string;
-              password: string;
-              email: string;
-            } = { _id, username, password, email };
+            const payload = <IUser>{ _id, username, password, email };
 
             const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 

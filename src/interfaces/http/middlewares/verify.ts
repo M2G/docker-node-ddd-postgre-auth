@@ -1,7 +1,7 @@
 /*eslint-disable*/
-import express from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import Status from 'http-status';
-const router = express.Router();
+const router = Router();
 
 const time = process.env.NODE_ENV === 'development' ?
   process.env.JWT_TOKEN_EXPIRE_TIME :
@@ -11,8 +11,8 @@ const TOKEN_EXPIRED_ERROR = 'TokenExpiredError';
 const FAIL_AUTH = 'Failed to authenticate token is expired.'
 
 export default ({ response: { Fail }, jwt }: any) => {
-  return router.use((req, res, next) => {
-    const extractToken = req?.headers?.authorization && req?.headers?.authorization.startsWith('Bearer ');
+  return router.use((req: Request, res: Response, next: NextFunction) => {
+    const extractToken = req?.headers?.authorization?.startsWith('Bearer ');
 
     if (extractToken) {
       const token = req?.headers?.authorization?.split(' ')[1];
