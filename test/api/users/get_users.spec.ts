@@ -28,14 +28,10 @@ describe('Routes: POST Register', () => {
     ]));
 
     // we need to add user before we can request our token
-    usersRepository
-      .destroy({ where: {} })
-      .then(() =>
         usersRepository.register({
           username: 'test1',
           password: 'test1',
-        }),
-      )
+        })
       .then((user: { id: any; username: any }) => {
         token = signIn({
           id: user.id,

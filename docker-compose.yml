@@ -7,12 +7,13 @@
 # https://docs.docker.com/compose/compose-file/
 
 # Docker compose file version
-version: "3.7"
+version: "3.8"
 
 services:
   app:
     build: .
     working_dir: /app
+    restart: unless-stopped
     env_file:
       - .env
     ports:
@@ -24,6 +25,8 @@ services:
     depends_on:
       - db
       - redis
+    stdin_open: true
+    tty: true
 
   redis:
     image: redis:alpine

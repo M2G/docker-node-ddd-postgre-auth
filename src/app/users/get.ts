@@ -23,6 +23,6 @@ export default ({ usersRepository, redis }: any) => {
       });
 
   return {
-    all
+    all,
   };
 };

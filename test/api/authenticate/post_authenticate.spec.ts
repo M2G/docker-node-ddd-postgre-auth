@@ -6,27 +6,28 @@ const server: any = container.resolve('server');
 
 const rqt: any = request(server.app);
 
+const { models } = container.resolve('database')
 const { usersRepository } = container.resolve('repository');
 
 describe('Routes: POST Auth', () => {
+
+  console.log('models', models)
+
   // const BASE_URI = '/api';
   beforeEach((done) => {
     // we need to add user before we can request our token
-    usersRepository
-      .destroy({ where: {} })
-      .then(() =>
         usersRepository.register({
+          email: 'test@gmail.com',
           username: 'test',
           password: 'test',
-        }),
-      )
-      .then((_: any) => done());
+        }).then((_: any) => done());
   });
 
   it('should return authenticate user', (done) => {
     rqt
       .post(`/api/authenticate`)
       .send({
+        email: 'test@gmail.com',
         username: 'test',
         password: 'test',
       })

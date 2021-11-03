@@ -1,19 +1,21 @@
 /*eslint-disable*/
-import { IRead, IWrite } from '../../../core/IRepository';
+// import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
 export default ({ model }: any) => {
+
+  console.log(':::::::::', model)
 
   // const { find, findOne, create } = model as IRead<any> & IWrite<any>;
 
   const getAll = (...args: any[]) =>
     model
       .find(...args)
+      .sort({ username: 1 })
       .then((entity: any) => entity?.map((data: {}) => toEntity(data)))
       .catch((error: any) => {
         throw new Error(error);
       });
-
 
   const register = (...args: any[]) => {
 

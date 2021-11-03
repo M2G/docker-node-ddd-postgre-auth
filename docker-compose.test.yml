@@ -7,27 +7,40 @@
 # https://docs.docker.com/compose/compose-file/
 
 # Docker compose file version
-version: "3.7"
+version: "3.8"
 
 services:
   app:
     build: .
     working_dir: /app
+    restart: unless-stopped
     env_file:
       - .env
     ports:
       - ${PORT}:${PORT}
     volumes:
       - .:/app
+      - /app/node_modules/bcrypt
     command: npm run test
     depends_on:
       - db
+      - redis
+    stdin_open: true
+    tty: true
+
+  redis:
+    image: redis:alpine
+    container_name: cache
+    ports:
+      - ${HOST_PORT_REDIS}:${CONTAINER_PORT_REDIS}
+    volumes:
+      - ./redis-data:/data
 
   db:
-    image: mongo:3.6
+    image: mongo:5.0.3
     container_name: mongodb
     ports:
-      - 27018:27017
+      - ${HOST_PORT}:${CONTAINER_PORT}
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}

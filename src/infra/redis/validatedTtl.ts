@@ -1,6 +1,6 @@
 export default (
   ttlInSeconds: any,
-  defaultTtlInS?: number
+  defaultTtlInS?: number,
 ): number | undefined => {
   // validate only if ttl is given
   if (!ttlInSeconds) {

@@ -15,7 +15,7 @@ export default ({ response: { Fail }, jwt }: any) => {
     const extractToken = req?.headers?.authorization?.startsWith('Bearer ');
 
     if (extractToken) {
-      const token = req?.headers?.authorization?.split(' ')[1];
+      const token = req?.headers?.authorization?.split(' ')?.[1];
 
       try {
         jwt.verify({ maxAge: time })(token);

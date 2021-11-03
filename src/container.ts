@@ -28,7 +28,7 @@ container.register({
   response: asFunction(response).singleton(),
   router: asFunction(router).singleton(),
   server: asFunction(server).singleton(),
-  verify: asFunction(verify).singleton()
+  verify: asFunction(verify).singleton(),
 });
 
 export default container;
