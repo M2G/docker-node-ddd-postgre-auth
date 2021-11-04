@@ -12,9 +12,10 @@ const { usersRepository } = container.resolve('repository');
 describe('Routes: POST Auth', () => {
 
   console.log('models', models)
-
+  console.log('usersRepository', usersRepository)
   // const BASE_URI = '/api';
   beforeEach((done) => {
+
     // we need to add user before we can request our token
         usersRepository.register({
           email: 'test@gmail.com',
