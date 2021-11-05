@@ -9,7 +9,11 @@ import {
 import path from 'path';
 import fs from 'fs';
 
-export default ({ config, basePath, logger }: any) => {
+export default async ({
+                        config,
+                        basePath,
+                        logger
+                      }: any) => {
   const configDb = { ...config.db };
   // mongodb://root_user':root_user_pw@db:27017/root_db
   connect(
@@ -45,8 +49,6 @@ export default ({ config, basePath, logger }: any) => {
 
   const dir = path.join(basePath, './schemas');
 
-  console.log('models files',  dir)
-
   for (const files of fs
     .readdirSync(dir)
     ?.filter(
@@ -58,24 +60,21 @@ export default ({ config, basePath, logger }: any) => {
 
     const modelDir = path.join(dir, files);
 
-    // const requireModel: any = require(modelDir);
-    const requireModel: any = import(modelDir);
+     // const requireModel: any = require(modelDir);
+    const requireModel: any = await import(modelDir);
 
     const fileName = path.parse(files).name;
 
-   // const models = requireModel.default;
+    // const models = requireModel.default;
+    const models = requireModel.default;
 
-    console.log('requireModel',  requireModel)
-    console.log('fileName',  fileName)
-
-   // db.models[fileName] = models({ Schema, model });
+    db.models[fileName] = models({
+      Schema,
+      model
+    });
   }
 
- // const test = import('../database/schemas/users');
+  console.log('db 2', db)
 
-  // console.log('IMPORT test',  test)
-
-  console.log('db 2',  db)
-
-  // return db;
+  return db;
 };

@@ -6,25 +6,28 @@ const server: any = container.resolve('server');
 
 const rqt: any = request(server.app);
 
-const { models } = container.resolve('database')
-const { usersRepository } = container.resolve('repository');
-
 describe('Routes: POST Auth', () => {
 
-  console.log('models', models)
-  console.log('usersRepository', usersRepository)
   // const BASE_URI = '/api';
-  beforeEach((done) => {
+ /* beforeEach(  async (done) => {
+
+    const { usersRepository } = await container.resolve('repository');
+
+    console.log('usersRepository', usersRepository)
 
     // we need to add user before we can request our token
-        usersRepository.register({
-          email: 'test@gmail.com',
-          username: 'test',
-          password: 'test',
-        }).then((_: any) => done());
-  });
+    usersRepository.register({
+      email: 'test@gmail.com',
+      username: 'test',
+      password: 'test',
+    })
+      .then((_: any) => done());
+  });*/
 
-  it('should return authenticate user', (done) => {
+  it('should return authenticate user',  (done) => {
+
+    console.log(':::::::', rqt)
+
     rqt
       .post(`/api/authenticate`)
       .send({
