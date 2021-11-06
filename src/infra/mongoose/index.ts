@@ -9,13 +9,8 @@ import {
 import path from 'path';
 import fs from 'fs';
 
-export default async ({
-                        config,
-                        basePath,
-                        logger
-                      }: any) => {
+export default async ({ config, basePath, logger }: any) => {
   const configDb = { ...config.db };
-  // mongodb://root_user':root_user_pw@db:27017/root_db
   connect(
     `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
     {
@@ -59,13 +54,11 @@ export default async ({
     )) {
 
     const modelDir = path.join(dir, files);
-
-     // const requireModel: any = require(modelDir);
     const requireModel: any = await import(modelDir);
+    // const requireModel: any = require(modelDir);
 
     const fileName = path.parse(files).name;
 
-    // const models = requireModel.default;
     const models = requireModel.default;
 
     db.models[fileName] = models({
@@ -74,7 +67,7 @@ export default async ({
     });
   }
 
-  console.log('db 2', db)
+  console.log('db 2', db);
 
   return db;
 };

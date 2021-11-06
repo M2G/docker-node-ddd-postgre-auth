@@ -2,20 +2,23 @@
 // import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
-export default ({ model }: any) => {
+export default async ({ model }: any) => {
 
-  console.log(':::::::::', model)
 
   // const { find, findOne, create } = model as IRead<any> & IWrite<any>;
 
-  const getAll = (...args: any[]) =>
-    model
+  const getAll = (...args: any[]) => Promise.resolve().then(() => {
+
+    console.log(':::::::::', model)
+
+    return model
       .find(...args)
       .sort({ username: 1 })
       .then((entity: any) => entity?.map((data: {}) => toEntity(data)))
       .catch((error: any) => {
         throw new Error(error);
       });
+  });
 
   const register = (...args: any[]) => {
 
@@ -29,23 +32,33 @@ export default ({ model }: any) => {
       });
   };
 
-  const findById = (...args: any[]) =>
-    model
-      .findOne({ ...args })
+  const findById = (...args: any[]) => Promise.resolve().then(async() => {
+
+
+    console.log(':::::::::', model)
+
+
+    return model.findOne({ ...args })
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         throw new Error(error);
       });
+  });
 
-  const authenticate = async (...args: any[]) => {
+  const authenticate = (...args: any[]) => Promise.resolve().then(async() => {
+
+
+    console.log('::::::::: model',await model())
+
+    const m = await model()
+
     const [{ email }] = args;
-    return model
-      .findOne({ email })
+    return m.findOne({ email })
       .then((data: any) => toEntity(data))
       .catch((error: any) => {
         throw new Error(error);
       });
-  };
+  });
 
   return {
     findById,

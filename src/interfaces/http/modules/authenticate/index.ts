@@ -7,7 +7,7 @@ export default () => {
     logger,
     jwt,
     config,
-    response: {Success, Fail}
+    response: { Success, Fail },
   } = container.cradle;
   const app = instance();
 
@@ -17,8 +17,8 @@ export default () => {
       config,
       jwt,
       logger,
-      response: {Fail, Success},
-      ...app
-    })
+      response: { Fail, Success },
+      ...app,
+    }),
   };
 };

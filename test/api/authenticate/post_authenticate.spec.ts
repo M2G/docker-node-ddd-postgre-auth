@@ -6,12 +6,12 @@ const server: any = container.resolve('server');
 
 const rqt: any = request(server.app);
 
+const { usersRepository } = container.resolve('repository');
+
 describe('Routes: POST Auth', () => {
 
   // const BASE_URI = '/api';
- /* beforeEach(  async (done) => {
-
-    const { usersRepository } = await container.resolve('repository');
+  beforeEach(   (done) => {
 
     console.log('usersRepository', usersRepository)
 
@@ -20,13 +20,10 @@ describe('Routes: POST Auth', () => {
       email: 'test@gmail.com',
       username: 'test',
       password: 'test',
-    })
-      .then((_: any) => done());
-  });*/
+    }).then((_: any) => done());
+  });
 
   it('should return authenticate user',  (done) => {
-
-    console.log(':::::::', rqt)
 
     rqt
       .post(`/api/authenticate`)

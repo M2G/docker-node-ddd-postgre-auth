@@ -1,14 +1,18 @@
 /*eslint-disable*/
 import Users from './users';
-export default async ({ database }: any) => {
+export default ({ database }: any) => {
 
-  console.log('database database database', await database)
+  const usersModel = async () =>
+  Promise.resolve()
+    .then(async() => {
 
-  const { models } = await database;
+      const { models } = await database;
+      const { users } = models;
 
-  const { users } = await models;
+      return users;
 
-  const usersModel: any = await users;
+    });
+
 
   return {
     usersRepository: Users({ model: usersModel }),
