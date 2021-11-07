@@ -1,18 +1,16 @@
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import {Router} from 'express';
+import { Router } from 'express';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 // controller
-import index from "./modules";
-import authenticate from "./modules/authenticate";
-import register from "./modules/register";
-import users from "./modules/users";
+import index from './modules';
+import authenticate from './modules/authenticate';
+import register from './modules/register';
+import users from './modules/users';
 import ROUTES from '../../../config/routes';
 
-export default ({
- config, logger, database, verify
-}: any) => {
+export default ({ config, logger, database, verify }: any) => {
   // console.log('database', database);
   const router = Router();
 
@@ -20,16 +18,13 @@ export default ({
     router.use(httpLogger(logger));
   }
   router
-    .use(cors({
-      allowedHeaders: ['Content-Type', 'Authorization'],
-      methods: [
-        'GET',
-        'POST',
-        'PUT',
-        'DELETE'
-      ],
-      origin: ['http://localhost:3000', 'http://localhost:3001']
-    }))
+    .use(
+      cors({
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        origin: ['http://localhost:3000', 'http://localhost:3001'],
+      }),
+    )
     .use(bodyParser.json());
 
   router.use(ROUTES.INDEX, index());
@@ -39,9 +34,9 @@ export default ({
   router.use(ROUTES.USERS, users().router);
 
   router.use(() => ({
-      ...errorHandler,
-    ...[logger, config]
-    }));
+    ...errorHandler,
+    ...[logger, config],
+  }));
   // router.use(partialRight(errorHandler, [logger, config]));
 
   return router;

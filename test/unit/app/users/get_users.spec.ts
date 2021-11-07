@@ -3,6 +3,7 @@ import getUsecase from  '../../../../src/app/users/get';
 describe('App -> User -> Post', () => {
   let useCase: { all: () => Promise<void> };
   const mockData = [{
+    email: "test@hotmail.fr",
     username: 'test',
     password: 'test',
   }]

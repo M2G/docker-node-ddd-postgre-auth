@@ -13,10 +13,12 @@ export default ({ usersRepository }: any) => {
       .then(() => {
         const users = Users(args);
 
+        console.log('register ok', users);
+
         return usersRepository.register(users);
       })
       .catch((error: string | undefined) => {
-        console.log('register register', error);
+        console.log('register error', error);
         throw new Error(error);
       });
 

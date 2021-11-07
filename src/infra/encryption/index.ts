@@ -1,9 +1,9 @@
 import {
   encryptPassword,
-  comparePassword
+  comparePassword,
 } from './encryption';
 
 export {
   encryptPassword,
-  comparePassword
+  comparePassword,
 };

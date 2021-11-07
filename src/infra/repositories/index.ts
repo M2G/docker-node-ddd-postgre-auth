@@ -2,19 +2,17 @@
 import Users from './users';
 export default ({ database }: any) => {
 
-  const usersModel = async () =>
-  Promise.resolve()
-    .then(async() => {
+  console.log('database database', database)
 
-      const { models } = await database;
-      const { users } = models;
+  return {
+    usersRepository: Users({ model: database }),
+  };
 
-      return users;
-
-    });
-
+  /*const { models } = database;
+  const { users } = models;
+  const usersModel: any = users;
 
   return {
     usersRepository: Users({ model: usersModel }),
-  };
+  };*/
 };

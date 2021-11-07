@@ -16,11 +16,13 @@ describe('App -> User -> Post', () => {
 
     it('test', async () => {
       const body = {
+        email: "test@hotmail.fr",
         username: 'test',
         password: 'test',
       }
 
-      const lists = await useCase.register({ body });
+      const lists = await useCase.register({ ...body });
+      expect(lists.email).toEqual(body.email);
       expect(lists.username).toEqual(body.username);
       expect(lists.password).toEqual(body.password);
     })
@@ -28,6 +30,7 @@ describe('App -> User -> Post', () => {
 
   describe('Fail path', () => {
     const body = {
+      email: "test@hotmail.fr",
       username: 'test',
       password: 'test',
     }

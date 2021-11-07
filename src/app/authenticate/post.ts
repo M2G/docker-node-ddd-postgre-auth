@@ -8,19 +8,14 @@ import Users from '../../domain/users';
  */
 export default ({ usersRepository }: any) => {
   // code for getting all the items
-  const authenticate = ({ email }: any) =>
+  const authenticate = async ({ email }: any) =>
     Promise.resolve()
-      .then(async () => {
-
-        const { authenticate } = await usersRepository;
-
-        console.log('authenticate 1', authenticate);
+      .then(() => {
+        console.log('usersRepository', usersRepository);
 
         const users = Users({ email });
 
-        return authenticate(users);
-
-        // return usersRepository.authenticate(users);
+        return usersRepository.authenticate(users);
       })
       .catch((error: string | undefined) => {
         console.log('authenticate error', error);

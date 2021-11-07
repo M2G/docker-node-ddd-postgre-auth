@@ -14,9 +14,9 @@ describe('Routes: POST Register', () => {
 
   const jwt = container.resolve('jwt') as any;
   const redis = container.resolve('redis') as any;
-  const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
+  // const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
   const signIn2 = jwt.signin();
-  let token: any;
+  // let token: any;
   let token2: any;
   beforeEach((done) => {
 
@@ -33,10 +33,10 @@ describe('Routes: POST Register', () => {
           password: 'test1',
         })
       .then((user: { id: any; username: any }) => {
-        token = signIn({
+        /*token = signIn({
           id: user.id,
           username: user.username,
-        });
+        });*/
         token2 = signIn2({
           id: user.id,
           username: user.username,
@@ -78,7 +78,7 @@ describe('Routes: POST Register', () => {
     });
 
     //@see: https://github.com/auth0/node-jsonwebtoken/issues/288
-    it('should return unauthorized token is expired', (done) => {
+    /*it('should return unauthorized token is expired', (done) => {
       setTimeout(function() {
         rqt
           .get(`${BASE_URI}/users`)
@@ -91,7 +91,7 @@ describe('Routes: POST Register', () => {
           done(err);
         });
       }, 2500);
-    });
+    });*/
 
     it('should return unauthorized if no token', (done) => {
       rqt

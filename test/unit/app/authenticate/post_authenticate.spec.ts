@@ -16,18 +16,20 @@ describe('App -> User -> Post', () => {
 
     it('test', async () => {
       const body = {
+        email: "test@hotmail.fr",
         username: 'test',
         password: 'test',
       }
 
-      const lists = await useCase.authenticate({ body })
-      expect(lists.username).toEqual(body.username)
-      expect(lists.password).toEqual(body.password)
+      const lists = await useCase.authenticate({ ...body })
+      const { email } = lists;
+      expect(email).toEqual(body.email)
     })
   })
 
   describe('Fail path', () => {
     const body = {
+      email: "test@hotmail.fr",
       username: 'test',
       password: 'test',
     }

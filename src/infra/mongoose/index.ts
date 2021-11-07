@@ -1,18 +1,21 @@
 /*eslint-disable*/
 import {
-  ConnectOptions,
-  connect,
-  connection,
+  //ConnectOptions,
+  //connect,
+  //connection,
   Schema,
-  model,
+  model, Model,
 } from 'mongoose';
-import path from 'path';
-import fs from 'fs';
 
-export default async ({ config, basePath, logger }: any) => {
+// import path from 'path';
+// import fs from 'fs';
+import IUser from '../../core/IUser';
+
+export default ({ config, basePath, logger }: any) => {
+  /*
   const configDb = { ...config.db };
   connect(
-    `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
+     `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -36,7 +39,12 @@ export default async ({ config, basePath, logger }: any) => {
   );
   connection.on('error', () => logger.error('database error'));
 
-  const db = {
+   */
+
+
+
+
+  /*const db = {
     models: {
       test: 'test',
     },
@@ -54,8 +62,7 @@ export default async ({ config, basePath, logger }: any) => {
     )) {
 
     const modelDir = path.join(dir, files);
-    const requireModel: any = await import(modelDir);
-    // const requireModel: any = require(modelDir);
+    const requireModel: any = require(modelDir);
 
     const fileName = path.parse(files).name;
 
@@ -65,9 +72,48 @@ export default async ({ config, basePath, logger }: any) => {
       Schema,
       model
     });
+
+    console.log('db 2', db);
+
   }
 
-  console.log('db 2', db);
+  return db;*/
 
-  return db;
+  const emailMatch = [/([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i, "No email found ({VALUE})"] as [RegExp, string];
+
+  /**
+   * User schema for mangoose
+   * @type {Schema}
+   */
+  const User = new Schema({
+    email: {
+      lowercase: true,
+      match: emailMatch,
+      maxlength: 255,
+      minlength: 5,
+      required: false,
+      trim: true,
+      type: String,
+      unique: true
+    },
+    username: {
+      maxlength: 100,
+      minlength: 2,
+      required: true,
+      trim: true,
+      type: String
+    },
+    password: {
+      required: true,
+      type: String
+    }
+  });
+
+  // @ts-ignore
+  const userSchemaModel: Model<IUser> = model<IUser>('User', User);
+
+  return userSchemaModel;
+
+
+
 };

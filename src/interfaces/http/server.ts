@@ -13,10 +13,8 @@ export default ({ config, router, logger, auth }: any) => {
     start: () => new Promise(() => {
       const http = app.listen(config.port, () => {
         // @ts-ignore
-        const { port } = http.address()
-
-        console.log('::::', process.env.NODE_ENV)
-
+        const { port } = http.address();
+        console.log(`API - Port ${port}`);
         logger.info(`API - Port ${port}`);
       })
     })
