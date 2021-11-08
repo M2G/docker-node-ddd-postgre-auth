@@ -4,50 +4,48 @@ import {
   //connect,
   //connection,
   Schema,
-  model, Model,
+  model,
+  // Model,
 } from 'mongoose';
-
-// import path from 'path';
-// import fs from 'fs';
-import IUser from '../../core/IUser';
+import path from 'path';
+import fs from 'fs';
+// import IUser from '../../core/IUser';
+// import * as m from '../../infra/database/schemas';
 
 export default ({ config, basePath, logger }: any) => {
-  /*
-  const configDb = { ...config.db };
-  connect(
-     `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      minPoolSize: 1,
-      maxPoolSize: 20,
-      socketTimeoutMS: 60000,
-      serverSelectionTimeoutMS: 60000,
-      loggerLevel: 'error',
-    } as ConnectOptions,
-  );
-
-  connection.on('connecting', () =>
-    logger.info('database connecting'),
-  );
-  connection.on('connected', () => logger.info('database connected'));
-  connection.on('disconnecting', () =>
-    logger.info('database disconnecting'),
-  );
-  connection.on('disconnected', () =>
-    logger.info('database disconnected'),
-  );
-  connection.on('error', () => logger.error('database error'));
-
-   */
 
 
+  /*console.log('m m m m', m.users({
+    model,
+    Schema,
+  }))*/
 
+  //const { env } = config;
 
-  /*const db = {
-    models: {
-      test: 'test',
-    },
+  /*if (env !== 'test') {
+    const configDb = { ...config.db };
+    connect(
+       `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        minPoolSize: 1,
+        maxPoolSize: 20,
+        socketTimeoutMS: 60000,
+        serverSelectionTimeoutMS: 60000,
+        loggerLevel: 'error',
+      } as ConnectOptions,
+    );
+
+    connection.on('connecting', () => logger.info('database connecting'));
+    connection.on('connected', () => logger.info('database connected'));
+    connection.on('disconnecting', () => logger.info('database disconnecting'));
+    connection.on('disconnected', () => logger.info('database disconnected'));
+    connection.on('error', () => logger.error('database error'));
+  }*/
+
+  const db = {
+    models: {},
   };
 
   const dir = path.join(basePath, './schemas');
@@ -63,9 +61,7 @@ export default ({ config, basePath, logger }: any) => {
 
     const modelDir = path.join(dir, files);
     const requireModel: any = require(modelDir);
-
     const fileName = path.parse(files).name;
-
     const models = requireModel.default;
 
     db.models[fileName] = models({
@@ -73,11 +69,12 @@ export default ({ config, basePath, logger }: any) => {
       model
     });
 
-    console.log('db 2', db);
-
+    console.log('test db',  db);
   }
 
-  return db;*/
+  return db;
+
+  /*
 
   const emailMatch = [/([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i, "No email found ({VALUE})"] as [RegExp, string];
 
@@ -85,6 +82,8 @@ export default ({ config, basePath, logger }: any) => {
    * User schema for mangoose
    * @type {Schema}
    */
+
+  /*
   const User = new Schema({
     email: {
       lowercase: true,
@@ -113,7 +112,7 @@ export default ({ config, basePath, logger }: any) => {
   const userSchemaModel: Model<IUser> = model<IUser>('User', User);
 
   return userSchemaModel;
-
+*/
 
 
 };

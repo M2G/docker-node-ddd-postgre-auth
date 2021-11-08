@@ -2,24 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/infra/database/schemas/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.test.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/encryption/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/encryption/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/mongoose/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/mongoose/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/unit/app/authenticate/post_authenticate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/app/authenticate/post_authenticate.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/unit/app/register/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/app/register/post_register.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,8 +118,8 @@
       <list>
         <item itemvalue="Jest.Routes: POST Register.should return register user" />
         <item itemvalue="Jest.Routes: POST Register (1)" />
-        <item itemvalue="Jest.Routes: POST Auth.should return authenticate user" />
         <item itemvalue="Jest.Routes: POST Auth" />
+        <item itemvalue="Jest.Routes: POST Auth.should return authenticate user" />
         <item itemvalue="Jest.App -&gt; User -&gt; Post (1)" />
       </list>
     </recent_temporary>
@@ -153,7 +143,7 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="102003000" />
+      <workItem from="1635366872672" duration="114742000" />
     </task>
     <servers />
   </component>

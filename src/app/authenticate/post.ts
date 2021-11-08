@@ -7,7 +7,6 @@ import Users from '../../domain/users';
  * function for create user.
  */
 export default ({ usersRepository }: any) => {
-  // code for getting all the items
   const authenticate = async ({ email }: any) =>
     Promise.resolve()
       .then(() => {

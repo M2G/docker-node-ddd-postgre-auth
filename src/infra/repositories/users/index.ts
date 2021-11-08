@@ -7,17 +7,16 @@ export default ({ model }: any) => {
 
   console.log('model', model);
 
-  const getAll = (...args: any[]) => {
-    return model
+  const getAll = (...args: any[]) =>
+     model
       .find(...args)
       .sort({ username: 1 })
       .then((entity: any) =>
-        entity?.map((data: {}) => toEntity(data)),
-      )
+        entity?.map((data: {}) => toEntity(data)))
       .catch((error: any) => {
         throw new Error(error);
       });
-  };
+
 
   const register = (...args: any[]) => {
     const [{ username, password, email }] = args;

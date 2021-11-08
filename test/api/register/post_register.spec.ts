@@ -56,9 +56,7 @@ describe('Routes: POST Register', () => {
         email: "test5@hotmail.fr",
         username: 'test',
         password: 'test',
-      });
-
-      done();
+      }).then(() => done());
   });
   afterEach(async () => await clear());
   afterAll(async () => await close());

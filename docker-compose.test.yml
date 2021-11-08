@@ -21,7 +21,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules/bcrypt
-    command: npm run test
+    command: npm run start
     depends_on:
       - db
       - redis
