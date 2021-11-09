@@ -55,6 +55,8 @@
     "@typescript-eslint/parser": "^4.26.0",
     "assert": "^1.4.1",
     "awilix": "^4.3.3",
+    "babel-jest": "^27.3.1",
+    "babel-preset-airbnb": "^5.0.0",
     "bcrypt": "^5.0.1",
     "body-parser": "1.18.3",
     "concurrently": "^6.0.2",

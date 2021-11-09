@@ -48,6 +48,31 @@ export default ({ config, basePath, logger }: any) => {
     models: {},
   };
 
+
+  console.log('basePath ', basePath);
+  console.log('START ', fs.readdirSync(basePath + '/schemas'));
+
+
+
+
+  var files = fs.readdirSync(basePath + '/schemas').filter(
+    (file) =>
+      file.indexOf('.') !== 0 &&
+      file !== 'index.js' &&
+      file.slice(-3) === '.js');
+
+  var out = {};
+  for(var i=0; i<files.length; i++){
+    var filename = '';
+    filename = files[i].split('.')[0];
+      out[filename] = require(basePath + '/schemas/' + files[i]);
+  }
+
+  console.log('> files files files ', out);
+
+
+
+
   const dir = path.join(basePath, './schemas');
 
   for (const files of fs
@@ -61,6 +86,9 @@ export default ({ config, basePath, logger }: any) => {
 
     const modelDir = path.join(dir, files);
     const requireModel: any = require(modelDir);
+
+    console.log('requireModel',  requireModel);
+
     const fileName = path.parse(files).name;
     const models = requireModel.default;
 

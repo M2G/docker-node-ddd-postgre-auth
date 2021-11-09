@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/infra/database/schemas/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.test.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/mongoose/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/mongoose/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +25,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infra/database/schemas" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
@@ -39,11 +36,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/infra/database/schemas" />
+      <recent name="$PROJECT_DIR$/src/domain/users" />
       <recent name="$PROJECT_DIR$/src/core" />
       <recent name="$PROJECT_DIR$/src/infra" />
-      <recent name="$PROJECT_DIR$/src/infra/database/schemas" />
       <recent name="$PROJECT_DIR$/src/infra/database" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.Routes: POST Register.should return register user">
@@ -143,11 +140,17 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="114742000" />
+      <workItem from="1635366872672" duration="120594000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/domain/users/users.js" />
+        <option value="$PROJECT_DIR$/src/infra/database/schemas/users.js" />
+      </list>
+    </option>
   </component>
 </project>
