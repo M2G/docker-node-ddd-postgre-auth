@@ -46,8 +46,6 @@ export default ({ config }: any) => ({
 
     const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
 
-    console.log('::::::::', { key, ttl, str })
-
     if (ttl) return redisClient.setex(key, ttl, str);
 
     return redisClient.set(key, str);

@@ -75,28 +75,28 @@ describe('Routes: POST Register', () => {
 
         console.log('res res res', res);
 
-        /*expect(err).toBeFalsy();
+        expect(err).toBeFalsy();
         expect(res.body.data).toHaveProperty('id');
         expect(res.body.data).toHaveProperty('username', 'test2');
         expect(res.body.data).toHaveProperty('password');
-        done();*/
+        done();
       });
     done();
   });
 
- /* it('shouldnt register user return error empty username was sent', (done) => {
+  it('shouldnt register user return error empty username was sent', (done) => {
     rqt
       .post(`/api/register`)
       .send({
         email: "",
-        username: '',
+        username: "",
         password: 'gesdf',
       })
       .expect(422)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('Empty value.');
+        expect(res.body.error).toEqual('Invalid parameters in request.');
         done();
       });
   });
@@ -113,7 +113,7 @@ describe('Routes: POST Register', () => {
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('Empty value.');
+        expect(res.body.error).toEqual('Invalid parameters in request.');
         done();
       });
   });
@@ -141,8 +141,8 @@ describe('Routes: POST Register', () => {
       .expect(400)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
-        expect(res.body.error).toEqual('Error: Duplicate error');
+        expect(res.body.error).toEqual('Error: MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"test5@hotmail.fr\" }');
         done();
       });
-  });*/
+  });
 });

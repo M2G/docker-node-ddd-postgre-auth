@@ -1,28 +1,20 @@
 /*eslint-disable*/
 import {
-  //ConnectOptions,
-  //connect,
-  //connection,
+  ConnectOptions,
+  connect,
+  connection,
   Schema,
   model,
   // Model,
 } from 'mongoose';
 import path from 'path';
 import fs from 'fs';
-// import IUser from '../../core/IUser';
-// import * as m from '../../infra/database/schemas';
 
 export default ({ config, basePath, logger }: any) => {
 
+  const { env } = config;
 
-  /*console.log('m m m m', m.users({
-    model,
-    Schema,
-  }))*/
-
-  //const { env } = config;
-
-  /*if (env !== 'test') {
+  if (env !== 'test') {
     const configDb = { ...config.db };
     connect(
        `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
@@ -42,36 +34,11 @@ export default ({ config, basePath, logger }: any) => {
     connection.on('disconnecting', () => logger.info('database disconnecting'));
     connection.on('disconnected', () => logger.info('database disconnected'));
     connection.on('error', () => logger.error('database error'));
-  }*/
+  }
 
   const db = {
     models: {},
   };
-
-
-  console.log('basePath ', basePath);
-  console.log('START ', fs.readdirSync(basePath + '/schemas'));
-
-
-
-
-  var files = fs.readdirSync(basePath + '/schemas').filter(
-    (file) =>
-      file.indexOf('.') !== 0 &&
-      file !== 'index.js' &&
-      file.slice(-3) === '.js');
-
-  var out = {};
-  for(var i=0; i<files.length; i++){
-    var filename = '';
-    filename = files[i].split('.')[0];
-      out[filename] = require(basePath + '/schemas/' + files[i]);
-  }
-
-  console.log('> files files files ', out);
-
-
-
 
   const dir = path.join(basePath, './schemas');
 
@@ -86,9 +53,6 @@ export default ({ config, basePath, logger }: any) => {
 
     const modelDir = path.join(dir, files);
     const requireModel: any = require(modelDir);
-
-    console.log('requireModel',  requireModel);
-
     const fileName = path.parse(files).name;
     const models = requireModel.default;
 
@@ -96,51 +60,8 @@ export default ({ config, basePath, logger }: any) => {
       Schema,
       model
     });
-
-    console.log('test db',  db);
   }
 
   return db;
-
-  /*
-
-  const emailMatch = [/([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i, "No email found ({VALUE})"] as [RegExp, string];
-
-  /**
-   * User schema for mangoose
-   * @type {Schema}
-   */
-
-  /*
-  const User = new Schema({
-    email: {
-      lowercase: true,
-      match: emailMatch,
-      maxlength: 255,
-      minlength: 5,
-      required: false,
-      trim: true,
-      type: String,
-      unique: true
-    },
-    username: {
-      maxlength: 100,
-      minlength: 2,
-      required: true,
-      trim: true,
-      type: String
-    },
-    password: {
-      required: true,
-      type: String
-    }
-  });
-
-  // @ts-ignore
-  const userSchemaModel: Model<IUser> = model<IUser>('User', User);
-
-  return userSchemaModel;
-*/
-
 
 };
