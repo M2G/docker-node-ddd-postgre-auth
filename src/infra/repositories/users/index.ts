@@ -49,6 +49,7 @@ export default ({ model }: any) => {
     return model
       .findOne({ email })
       .then((data: any) => {
+        if (!data) return false;
         console.log('then authenticate', data);
         return toEntity(data);
       })

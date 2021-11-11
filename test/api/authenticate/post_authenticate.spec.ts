@@ -39,7 +39,7 @@ import container from '../../../src/container';
 const server: any = container.resolve('server');
 const rqt: any = request(server.app);
 const { usersRepository } = container.resolve('repository');
-jest.setTimeout(15000);
+
 
 
 describe('Routes: POST Auth', () => {
@@ -64,17 +64,12 @@ describe('Routes: POST Auth', () => {
         email: 'test@gmail.com',
         password: 'test',
       })
-       // .expect(200)
+       .expect(200)
       .end((err: any, res: any) => {
-
-        console.log('::::::::', res.body)
-
-      /*  expect(err).toBeFalsy();
+       expect(err).toBeFalsy();
         expect(res.body.data.token).toBeTruthy();
-        expect(res.body.data.success).toBeTruthy();*/
-
+        expect(res.body.data.success).toBeTruthy();
         done();
-
       });
   });
 
@@ -82,14 +77,14 @@ describe('Routes: POST Auth', () => {
     rqt
       .post(`/api/authenticate`)
       .send({
-        username: 'gesdf',
-        password: 'gesdf',
+        email: 'test2@gmail.com',
+        password: 'test',
       })
       .expect(404)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('Wrong username and password combination.');
+        expect(res.body.error).toEqual('User not found (email: test2@gmail.com).');
         done();
       });
   });
@@ -98,7 +93,7 @@ describe('Routes: POST Auth', () => {
     rqt
       .post(`/api/authenticate`)
       .send({
-        username: '',
+        email: '',
         password: 'gesdf',
       })
       .expect(422)

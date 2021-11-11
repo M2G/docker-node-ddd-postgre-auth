@@ -30,7 +30,7 @@ export default ({
         const { _id, email, username, password } = <IUser>data || {};
 
         if (!email) {
-          return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${email})`));
+          return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${body.email}).`));
         }
 
         console.log('body.password', body.password)

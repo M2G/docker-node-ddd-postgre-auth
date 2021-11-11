@@ -1,5 +1,38 @@
 /* eslint-disable */
 import request from 'supertest';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
+const mongod = new MongoMemoryServer();
+
+const connect = async (): Promise<void> => {
+  const mongod = await MongoMemoryServer.create();
+
+  const uri = mongod.getUri();
+
+  const mongooseOpts: any = {
+    useNewUrlParser: true,
+    // autoReconnect: true,
+    // reconnectTries: Number.MAX_VALUE,
+    // reconnectInterval: 1000,
+  };
+
+  await mongoose.connect(uri, mongooseOpts);
+};
+
+const close = async (): Promise<void> => {
+  await mongoose.connection.dropDatabase();
+  await mongoose.connection.close();
+  await mongod.stop();
+};
+
+const clear = async (): Promise<void> => {
+  const collections = mongoose.connection.collections;
+
+  for (const key in collections) {
+    const collection = collections[key];
+    await collection.deleteMany({});
+  }
+};
 import container from '../../../src/container';
 
 const server: any = container.resolve('server');
@@ -8,15 +41,20 @@ const rqt: any = request(server.app);
 
 const { usersRepository } = container.resolve('repository');
 
+jest.setTimeout(20000);
+
 describe('Routes: POST Register', () => {
+  beforeAll(async () => await connect());
+  // const BASE_URI = '/api';
+
   const BASE_URI = '/api';
   const KEY = 'LIST_USERS_TEST';
 
   const jwt = container.resolve('jwt') as any;
   const redis = container.resolve('redis') as any;
-  // const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
+  const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
   const signIn2 = jwt.signin();
-  // let token: any;
+  let token: any;
   let token2: any;
   beforeEach((done) => {
 
@@ -33,10 +71,10 @@ describe('Routes: POST Register', () => {
           password: 'test1',
         })
       .then((user: { id: any; username: any }) => {
-        /*token = signIn({
+        token = signIn({
           id: user.id,
           username: user.username,
-        });*/
+        });
         token2 = signIn2({
           id: user.id,
           username: user.username,
@@ -45,6 +83,9 @@ describe('Routes: POST Register', () => {
         done();
       })
   });
+
+  afterEach(async () => await clear());
+  afterAll(async () => await close());
 
     it('should return users list', (done) => {
       rqt
@@ -78,7 +119,7 @@ describe('Routes: POST Register', () => {
     });
 
     //@see: https://github.com/auth0/node-jsonwebtoken/issues/288
-    /*it('should return unauthorized token is expired', (done) => {
+    it('should return unauthorized token is expired', (done) => {
       setTimeout(function() {
         rqt
           .get(`${BASE_URI}/users`)
@@ -91,7 +132,7 @@ describe('Routes: POST Register', () => {
           done(err);
         });
       }, 2500);
-    });*/
+    });
 
     it('should return unauthorized if no token', (done) => {
       rqt
