@@ -10,7 +10,7 @@ export default ({ usersRepository }: any) => {
   const authenticate = async ({ email }: any) =>
     Promise.resolve()
       .then(() => {
-        console.log('usersRepository', usersRepository);
+        console.log('authenticate email', email);
 
         const users = Users({ email });
 

@@ -47,10 +47,6 @@ describe('Routes: POST Register', () => {
   beforeAll(async () => await connect());
   // const BASE_URI = '/api';
   beforeEach((done) => {
-
-    console.log('rqt', rqt)
-    console.log('usersRepository', usersRepository)
-
     // we need to add user before we can request our token
      usersRepository.register({
         email: "test5@hotmail.fr",
@@ -72,25 +68,37 @@ describe('Routes: POST Register', () => {
       })
       .expect(200)
       .end((err: any, res: any) => {
-
-        console.log('res res res', res);
-
         expect(err).toBeFalsy();
-        expect(res.body.data).toHaveProperty('id');
-        expect(res.body.data).toHaveProperty('username', 'test2');
-        expect(res.body.data).toHaveProperty('password');
+        expect(res.body.data).toHaveProperty('success', true);
+        expect(res.body.data).toHaveProperty('token');
         done();
       });
-    done();
   });
 
-  it('shouldnt register user return error empty username was sent', (done) => {
+  it('shouldnt register user return error empty email/username was sent', (done) => {
     rqt
       .post(`/api/register`)
       .send({
-        email: "",
-        username: "",
-        password: 'gesdf',
+        email: "test@hotmail.fr",
+        username: "test",
+        password: '',
+      })
+      .expect(422)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.success).toBeFalsy();
+        expect(res.body.error).toEqual('Invalid parameters in request.');
+        done();
+      });
+  });
+
+  it('shouldnt register user return error empty username/password was sent', (done) => {
+    rqt
+      .post(`/api/register`)
+      .send({
+        email: '',
+        username: "test",
+        password: 'test',
       })
       .expect(422)
       .end((err: any, res: any) => {
@@ -105,8 +113,8 @@ describe('Routes: POST Register', () => {
     rqt
       .post(`/api/register`)
       .send({
-        email: "",
-        username: 'gesdf',
+        email: '',
+        username: 'test',
         password: '',
       })
       .expect(422)

@@ -1,43 +1,83 @@
 /* eslint-disable */
 import request from 'supertest';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
+const mongod = new MongoMemoryServer();
+
+const connect = async (): Promise<void> => {
+  const mongod = await MongoMemoryServer.create();
+
+  const uri = mongod.getUri();
+
+  const mongooseOpts: any = {
+    useNewUrlParser: true,
+    // autoReconnect: true,
+    // reconnectTries: Number.MAX_VALUE,
+    // reconnectInterval: 1000,
+  };
+
+  await mongoose.connect(uri, mongooseOpts);
+};
+
+const close = async (): Promise<void> => {
+  await mongoose.connection.dropDatabase();
+  await mongoose.connection.close();
+  await mongod.stop();
+};
+
+const clear = async (): Promise<void> => {
+  const collections = mongoose.connection.collections;
+
+  for (const key in collections) {
+    const collection = collections[key];
+    await collection.deleteMany({});
+  }
+};
+
 import container from '../../../src/container';
 
 const server: any = container.resolve('server');
 const rqt: any = request(server.app);
-
 const { usersRepository } = container.resolve('repository');
+jest.setTimeout(15000);
+
 
 describe('Routes: POST Auth', () => {
   // const BASE_URI = '/api';
-  beforeEach(   (done) => {
-
-
-  usersRepository.register({
+  beforeAll(async () => await connect());
+  // const BASE_URI = '/api';
+  beforeEach((done) => {
+    // we need to add user before we can request our token
+    usersRepository.register({
       email: 'test@gmail.com',
       username: 'test',
-      password: 'test',
-    });
-    done();
+      password: '$2a$10$5DgmInxX6fJGminwlgv2jeMoO.28z0A6HXN.tBE7vhmPxo1LwTWaG',
+    }).then(() => done());
   });
+  afterEach(async () => await clear());
+  afterAll(async () => await close());
 
 
  it('should return authenticate user',  (done) => {
-     console.log('::::::::::', rqt.post(`/api/authenticate`)
+     rqt.post(`/api/authenticate`)
       .send({
         email: 'test@gmail.com',
-        username: 'test',
         password: 'test',
-      }))
-      /*.expect(200)
+      })
+       // .expect(200)
       .end((err: any, res: any) => {
-        expect(err).toBeFalsy();
+
+        console.log('::::::::', res.body)
+
+      /*  expect(err).toBeFalsy();
         expect(res.body.data.token).toBeTruthy();
-        expect(res.body.data.success).toBeTruthy();
+        expect(res.body.data.success).toBeTruthy();*/
+
         done();
-      });*/
-   done();
+
+      });
   });
-/*
+
   it('shouldnt authenticate user return error cannot find any user', (done) => {
     rqt
       .post(`/api/authenticate`)
@@ -96,5 +136,5 @@ describe('Routes: POST Auth', () => {
         expect(res.body.success).toBeFalsy();
         done();
       });
-  });*/
+  });
 });

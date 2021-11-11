@@ -22,6 +22,9 @@ export default ({
         .json(Fail('Invalid parameters in request.'));
     }
 
+
+    console.log('::::::::', { email, password, username })
+
     const hashedPassword = encryptPassword(password);
 
     postUseCase

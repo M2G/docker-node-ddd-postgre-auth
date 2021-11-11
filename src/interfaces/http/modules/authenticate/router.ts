@@ -25,13 +25,20 @@ export default ({
       .authenticate({ email })
       .then(async (data: any) => {
 
+        console.log('postUseCase authenticate', data)
+
         const { _id, email, username, password } = <IUser>data || {};
 
         if (!email) {
           return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${email})`));
         }
 
+        console.log('body.password', body.password)
+        console.log('password', password)
+
           const match: boolean = await bcrypt.compare(body.password, password);
+
+        console.log('match', match)
 
           if (match) {
 
