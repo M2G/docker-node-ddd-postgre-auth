@@ -42,10 +42,7 @@ export default ({ config, basePath, logger }: any) => {
 
   const dir = path.join(basePath, './schemas');
 
-  for (const files of fs
-    .readdirSync(dir)
-    ?.filter(
-      (file) =>
+  for (const files of fs.readdirSync(dir)?.filter((file) =>
         file.indexOf('.') !== 0 &&
         file !== 'index.js' &&
         file.slice(-3) === '.js',

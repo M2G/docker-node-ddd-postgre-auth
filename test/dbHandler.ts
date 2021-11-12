@@ -33,6 +33,7 @@ const clear = async (): Promise<void> => {
 };
 
 export {
+  MongoMemoryServer,
   connect,
   close,
   clear,
