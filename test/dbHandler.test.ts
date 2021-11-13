@@ -5,12 +5,11 @@ import { MongoMemoryServer } from './dbHandler';
 // This is an Example test, do not merge it with others and do not delete this file
 
 describe('Single MongoMemoryServer', () => {
-  let con: ;
   let mongoServer: MongoMemoryServer;
 
   beforeAll(async () => {
     mongoServer = await MongoMemoryServer.create();
-    con = await mongoose.connect(mongoServer.getUri(), {});
+    await mongoose.connect(mongoServer.getUri(), {});
   });
 
   afterAll(async () => {

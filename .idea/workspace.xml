@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/dbHandler.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/mongoose/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/mongoose/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/dbHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/dbHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/dbHandler.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/dbHandler.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +41,7 @@
       <recent name="$PROJECT_DIR$/src/infra/database" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Single MongoMemoryServer.should successfully set &amp; get information from the database">
+  <component name="RunManager" selected="Jest.Single MongoMemoryServer">
     <configuration name="Routes: POST Auth" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -112,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Single MongoMemoryServer.should successfully set &amp; get information from the database" />
         <item itemvalue="Jest.Single MongoMemoryServer" />
+        <item itemvalue="Jest.Single MongoMemoryServer.should successfully set &amp; get information from the database" />
         <item itemvalue="Jest.Routes: POST Register.should return unauthorized token is expired" />
         <item itemvalue="Jest.Routes: POST Register" />
         <item itemvalue="Jest.Routes: POST Auth" />
@@ -139,7 +138,7 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="132549000" />
+      <workItem from="1635366872672" duration="133644000" />
     </task>
     <servers />
   </component>

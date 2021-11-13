@@ -1,11 +1,10 @@
 /*eslint-disable*/
-// import { IRead, IWrite } from '../../../core/IRepository';
+import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
-export default ({ model }: any) => {
-  // const { find, findOne, create } = model as IRead<any> & IWrite<any>;
+const IRepository: IRead<any> & IWrite<any>;
 
-  console.log('model', model);
+export default ({ model }: any) => {
 
   const getAll = (...args: any[]) =>
      model
@@ -20,16 +19,10 @@ export default ({ model }: any) => {
 
   const register = (...args: any[]) => {
     const [{ username, password, email }] = args;
-    console.log('register', { username, password, email });
-
     return model
       .create({ username, password, email })
-      .then((data: any) => {
-        console.log('then register', data);
-        return toEntity(data);
-      })
+      .then((data: any) => toEntity(data))
       .catch((error: any) => {
-        console.log('catch register', error);
         throw new Error(error);
       });
   };
@@ -44,17 +37,13 @@ export default ({ model }: any) => {
 
   const authenticate = (...args: any[]) => {
     const [{ email }] = args;
-    console.log('authenticate', { email });
-
     return model
       .findOne({ email })
       .then((data: any) => {
         if (!data) return false;
-        console.log('then authenticate', data);
         return toEntity(data);
       })
       .catch((error: any) => {
-        console.log('catch authenticate', error);
         throw new Error(error);
       });
   };
