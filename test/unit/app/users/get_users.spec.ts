@@ -1,11 +1,15 @@
+import faker from 'faker';
 import getUsecase from  '../../../../src/app/users/get';
 
 describe('App -> User -> Post', () => {
+  const randomEmail = faker.internet.email();
+  const randomUserName = faker.internet.userName();
+  const randomPassword = faker.internet.password();
   let useCase: { all: () => Promise<void> };
   const mockData = [{
-    email: "test@hotmail.fr",
-    username: 'test',
-    password: 'test',
+    email: randomEmail,
+    username: randomUserName,
+    password: randomPassword,
   }]
 
   describe('Success path', () => {

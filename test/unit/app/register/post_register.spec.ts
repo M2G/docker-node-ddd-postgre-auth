@@ -1,6 +1,10 @@
+import faker from 'faker';
 import postUsecase from  '../../../../src/app/register/post';
 
 describe('App -> User -> Post', () => {
+  const randomEmail = faker.internet.email();
+  const randomUserName = faker.internet.userName();
+  const randomPassword = faker.internet.password();
   let useCase: { register: any; };
 
   describe('Success path', () => {
@@ -16,9 +20,9 @@ describe('App -> User -> Post', () => {
 
     it('test', async () => {
       const body = {
-        email: "test@hotmail.fr",
-        username: 'test',
-        password: 'test',
+        email: randomEmail,
+        username: randomUserName,
+        password: randomPassword,
       }
 
       const lists = await useCase.register({ ...body });
@@ -30,9 +34,9 @@ describe('App -> User -> Post', () => {
 
   describe('Fail path', () => {
     const body = {
-      email: "test@hotmail.fr",
-      username: 'test',
-      password: 'test',
+      email: randomEmail,
+      username: randomUserName,
+      password: randomPassword,
     }
 
     beforeEach(() => {
