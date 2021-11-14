@@ -10,5 +10,5 @@ const comparePassword = (password: any, encodedPassword: string) =>
 
 export {
   encryptPassword,
-  comparePassword
+  comparePassword,
 };

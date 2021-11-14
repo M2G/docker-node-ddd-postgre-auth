@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/encryption/encryption.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/encryption/encryption.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/logging/logger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/logging/logger.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +143,7 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="139453000" />
+      <workItem from="1635366872672" duration="140392000" />
     </task>
     <servers />
   </component>

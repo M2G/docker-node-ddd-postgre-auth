@@ -10,7 +10,9 @@ import register from './modules/register';
 import users from './modules/users';
 import ROUTES from '../../../config/routes';
 
-export default ({ config, logger, database, verify }: any) => {
+export default ({
+ config, logger, database, verify,
+}: any) => {
   // console.log('database', database);
   const router = Router();
 
@@ -37,7 +39,6 @@ export default ({ config, logger, database, verify }: any) => {
     ...errorHandler,
     ...[logger, config],
   }));
-  // router.use(partialRight(errorHandler, [logger, config]));
 
   return router;
 };

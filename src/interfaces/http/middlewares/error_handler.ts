@@ -4,7 +4,7 @@ export default (
   res: any,
   next: any,
   logger: any,
-  config: any
+  config: any,
 ) => {
   logger.error(err);
 

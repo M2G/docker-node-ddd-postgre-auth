@@ -33,7 +33,6 @@ export default ({ model, Schema }) => {
     }
   });
 
-  // @ts-ignore
   const userSchemaModel = model('User', User);
 
   return userSchemaModel;

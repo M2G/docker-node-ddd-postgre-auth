@@ -1,5 +1,5 @@
-// const KEY = 'LIST_USERS';
-// const TTL = 0.6 * 60;
+const KEY = 'LIST_USERS';
+const TTL = 0.6 * 60;
 
 /**
  * function for get users.
@@ -8,13 +8,13 @@ export default ({ usersRepository, redis }: any) => {
   const all = async () =>
      Promise.resolve()
       .then(async () => {
-        // const cachingUserList = await redis.get(KEY);
+        const cachingUserList = await redis.get(KEY);
 
-        // if (cachingUserList) return cachingUserList;
+        if (cachingUserList) return cachingUserList;
 
         const userList = await usersRepository.getAll({});
 
-        // await redis.set(KEY, JSON.stringify(userList), TTL);
+        await redis.set(KEY, JSON.stringify(userList), TTL);
 
         return userList;
       })
