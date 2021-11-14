@@ -1,5 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
+import faker from 'faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 
@@ -9,41 +10,50 @@ const { usersRepository } = container.resolve('repository');
 
 jest.setTimeout(20000);
 
+
+
 describe('Routes: POST Register', () => {
-  beforeAll(async () => await connect());
-  // const BASE_URI = '/api';
-
-  const BASE_URI = '/api';
+  const BASE_URI = '/api/users';
   const KEY = 'LIST_USERS_TEST';
-
   const jwt = container.resolve('jwt') as any;
   const redis = container.resolve('redis') as any;
+  const randomEmail = faker.internet.email();
+  const randomUserName = faker.internet.userName();
+  const randomPassword = faker.internet.password();
   const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
   const signIn2 = jwt.signin();
   let token: any;
   let token2: any;
+  beforeAll(async () => await connect());
   beforeEach((done) => {
 
     redis.set(KEY, JSON.stringify([
       {
         "id": 1080,
-        "username": "test"
+        "email": randomEmail,
+        "username": randomUserName,
+        "password": randomPassword,
       }
     ]));
 
     // we need to add user before we can request our token
         usersRepository.register({
-          username: 'test1',
-          password: 'test1',
+          "email": randomEmail,
+          "username": randomUserName,
+          "password": randomPassword,
         })
-      .then((user: { id: any; username: any }) => {
+      .then((user: { id: any; email: any; username: any, password: any }) => {
         token = signIn({
           id: user.id,
+          email: user.email,
           username: user.username,
+          password: user.password,
         });
         token2 = signIn2({
           id: user.id,
+          email: user.email,
           username: user.username,
+          password: user.password,
         });
 
         done();
@@ -55,7 +65,7 @@ describe('Routes: POST Register', () => {
 
     it('should return users list', (done) => {
       rqt
-        .get(`${BASE_URI}/users`)
+        .get(BASE_URI)
         .set('Authorization', `Bearer ${token2}`)
         .expect(200)
         .end((err: any, res: any) => {
@@ -67,7 +77,7 @@ describe('Routes: POST Register', () => {
 
     it('should return unauthorized token invalid signature', (done) => {
       rqt
-        .get(`${BASE_URI}/users`)
+        .get(BASE_URI)
         .set(
           'Authorization',
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM5LCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYiQxMCRoTTBy1ONWk3OE1FUndSNDJGSVllWjVzeEtsWHFQQWtRTmxkb1VqOTdSaGs2MWRjUjRJLiIsImlhdCI6MTYyNjIyMzU3NCwiZXhwIjoxNjI2MjU5NTc0fQ.yRAM-ZuNaUoKmUWX2BmacSB7LeHg2tIHawoc5-EXXSU',
@@ -88,7 +98,7 @@ describe('Routes: POST Register', () => {
     it('should return unauthorized token is expired', (done) => {
       setTimeout(function() {
         rqt
-          .get(`${BASE_URI}/users`)
+          .get(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
         .expect(401)
         .end((err: any, res: any) => {
@@ -102,7 +112,7 @@ describe('Routes: POST Register', () => {
 
     it('should return unauthorized if no token', (done) => {
       rqt
-        .get(`${BASE_URI}/users`)
+        .get(BASE_URI)
         .expect(403)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();

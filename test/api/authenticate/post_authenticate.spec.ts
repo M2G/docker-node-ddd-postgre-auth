@@ -1,5 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
+import faker from 'faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 
@@ -8,14 +9,16 @@ const rqt: any = request(server.app);
 const { usersRepository } = container.resolve('repository');
 
 describe('Routes: POST Auth', () => {
-  // const BASE_URI = '/api';
+  const BASE_URI = '/api/authenticate';
+  const randomEmail = faker.internet.email();
+  const randomUserName = faker.internet.userName();
+
   beforeAll(async () => await connect());
-  // const BASE_URI = '/api';
   beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository.register({
-      email: 'test@gmail.com',
-      username: 'test',
+      email: randomEmail,
+      username: randomUserName,
       password: '$2a$10$5DgmInxX6fJGminwlgv2jeMoO.28z0A6HXN.tBE7vhmPxo1LwTWaG',
     }).then(() => done());
   });
@@ -24,9 +27,9 @@ describe('Routes: POST Auth', () => {
 
 
  it('should return authenticate user',  (done) => {
-     rqt.post(`/api/authenticate`)
+     rqt.post(BASE_URI)
       .send({
-        email: 'test@gmail.com',
+        email: randomEmail,
         password: 'test',
       })
        .expect(200)
@@ -39,27 +42,30 @@ describe('Routes: POST Auth', () => {
   });
 
   it('shouldnt authenticate user return error cannot find any user', (done) => {
+    const randomEmail = faker.internet.email();
+    const randomPassword = faker.internet.password();
     rqt
-      .post(`/api/authenticate`)
+      .post(BASE_URI)
       .send({
-        email: 'test2@gmail.com',
-        password: 'test',
+        email: randomEmail,
+        password: randomPassword,
       })
       .expect(404)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('User not found (email: test2@gmail.com).');
+        expect(res.body.error).toEqual(`User not found (email: ${randomEmail}).`);
         done();
       });
   });
 
   it('shouldnt authenticate user return error empty username was sent', (done) => {
+    const randomPassword = faker.internet.password();
     rqt
-      .post(`/api/authenticate`)
+      .post(BASE_URI)
       .send({
         email: '',
-        password: 'gesdf',
+        password: randomPassword,
       })
       .expect(422)
       .end((err: any, res: any) => {
@@ -71,10 +77,11 @@ describe('Routes: POST Auth', () => {
   });
 
   it('shouldnt authenticate user return error empty password was sent', (done) => {
+    const randomEmail = faker.internet.email();
     rqt
-      .post(`/api/authenticate`)
+      .post(BASE_URI)
       .send({
-        username: 'gesdf',
+        email: randomEmail,
         password: '',
       })
       .expect(422)
@@ -88,7 +95,7 @@ describe('Routes: POST Auth', () => {
 
   it('shouldnt authenticate user return error empty body was sent', (done) => {
     rqt
-      .post(`/api/authenticate`)
+      .post(BASE_URI)
       .send({})
       .expect(422)
       .end((err: any, res: any) => {

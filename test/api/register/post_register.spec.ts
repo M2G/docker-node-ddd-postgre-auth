@@ -1,5 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
+import faker from 'faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 
@@ -8,14 +9,18 @@ const rqt: any = request(server.app);
 const { usersRepository } = container.resolve('repository');
 
 describe('Routes: POST Register', () => {
+  const BASE_URI = '/api/register';
+  const randomEmail = faker.internet.email();
+  const randomUserName = faker.internet.userName();
+  const randomPassword = faker.internet.password();
+
   beforeAll(async () => await connect());
-  // const BASE_URI = '/api';
   beforeEach((done) => {
     // we need to add user before we can request our token
      usersRepository.register({
-        email: "test5@hotmail.fr",
-        username: 'test',
-        password: 'test',
+       email: randomEmail,
+       username: randomUserName,
+       password: randomPassword,
       }).then(() => done());
   });
   afterEach(async () => await clear());
@@ -23,12 +28,15 @@ describe('Routes: POST Register', () => {
 
 
   it('should return register user', (done) => {
+    const randomEmail = faker.internet.email();
+    const randomUserName = faker.internet.userName();
+    const randomPassword = faker.internet.password();
    rqt
-      .post(`/api/register`)
+      .post(BASE_URI)
       .send({
-        email: "test@hotmail.fr",
-        username: 'test2',
-        password: 'test2',
+        email: randomEmail,
+        username: randomUserName,
+        password: randomPassword,
       })
       .expect(200)
       .end((err: any, res: any) => {
@@ -40,11 +48,13 @@ describe('Routes: POST Register', () => {
   });
 
   it('shouldnt register user return error empty email/username was sent', (done) => {
+    const randomEmail = faker.internet.email();
+    const randomUserName = faker.internet.userName();
     rqt
-      .post(`/api/register`)
+      .post(BASE_URI)
       .send({
-        email: "test@hotmail.fr",
-        username: "test",
+        email: randomEmail,
+        username: randomUserName,
         password: '',
       })
       .expect(422)
@@ -57,12 +67,14 @@ describe('Routes: POST Register', () => {
   });
 
   it('shouldnt register user return error empty username/password was sent', (done) => {
+    const randomUserName = faker.internet.userName();
+    const randomPassword = faker.internet.password();
     rqt
-      .post(`/api/register`)
+      .post(BASE_URI)
       .send({
         email: '',
-        username: "test",
-        password: 'test',
+        username: randomUserName,
+        password: randomPassword,
       })
       .expect(422)
       .end((err: any, res: any) => {
@@ -74,11 +86,12 @@ describe('Routes: POST Register', () => {
   });
 
   it('shouldnt register user return error empty password was sent', (done) => {
+    const randomUserName = faker.internet.userName();
     rqt
       .post(`/api/register`)
       .send({
         email: '',
-        username: 'test',
+        username: randomUserName,
         password: '',
       })
       .expect(422)
@@ -106,14 +119,14 @@ describe('Routes: POST Register', () => {
     rqt
       .post(`/api/register`)
       .send({
-        email: "test5@hotmail.fr",
-        username: 'test',
-        password: 'test',
+        email: randomEmail,
+        username: randomUserName,
+        password: randomPassword,
       })
       .expect(400)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
-        expect(res.body.error).toEqual('Error: MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"test5@hotmail.fr\" }');
+        expect(res.body.error).toEqual(`Error: MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"${randomEmail.toLowerCase()}\" }`);
         done();
       });
   });

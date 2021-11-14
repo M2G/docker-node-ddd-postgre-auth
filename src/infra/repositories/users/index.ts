@@ -2,8 +2,6 @@
 import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
-// const IRepository: IRead<any> & IWrite<any>;
-
 export default ({ model }: any) => {
 
   const getAll = (...args: any[]) => {
@@ -22,6 +20,7 @@ export default ({ model }: any) => {
     const [{ username, password, email }] = args;
     const m :IWrite<any> = model;
     return m
+      //@ts-ignore
       .create({ username, password, email })
       .then((data: any) => toEntity(data))
       .catch((error: any) => {
