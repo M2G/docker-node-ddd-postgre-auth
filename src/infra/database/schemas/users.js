@@ -1,5 +1,4 @@
 /*eslint-disable*/
-import { Model } from 'mongoose';
 // import IUser from '../../../core/IUser';
 
 export default ({ model, Schema }) => {
