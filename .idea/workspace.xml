@@ -2,10 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/company/delete.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/company/get.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/company/getOne.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/company/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/company/post.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/company/put.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/users/delete.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/users/put.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/company/company.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/company/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/company/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/company/instance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/company/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/IRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IRepository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infra/database/schemas" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/company" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
@@ -43,11 +61,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/company" />
+      <recent name="$PROJECT_DIR$/src/interfaces/http/modules" />
       <recent name="$PROJECT_DIR$/src/infra/database/schemas" />
       <recent name="$PROJECT_DIR$/src/domain/users" />
       <recent name="$PROJECT_DIR$/src/core" />
-      <recent name="$PROJECT_DIR$/src/infra" />
-      <recent name="$PROJECT_DIR$/src/infra/database" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.App -&gt; User -&gt; Post (1)">
@@ -146,11 +164,23 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="147136000" />
+      <workItem from="1635366872672" duration="160598000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/config/database.ts</url>
+          <line>26</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

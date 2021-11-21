@@ -30,5 +30,6 @@ export interface IWrite<T extends Document> {
             callback?: (error: any, result?: T[]) => void) => Query<T[], T>);
   update: (_id?: Types.ObjectId, item?: UpdateQuery<T>,
            callback?: (error: any, result: any) => void) => void;
-  delete: (_id: string, callback: (error: any, result: any) => void) => void;
+  findByIdAndUpdate: (_id: string, callback: (error: any, result: any) => void) => void;
+  findByIdAndDelete: (_id: string, callback: (error: any, result: any) => void) => void;
 }
