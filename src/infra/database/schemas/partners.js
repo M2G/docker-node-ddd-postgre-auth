@@ -1,6 +1,4 @@
 /*eslint-disable*/
-import { encryptPassword } from '../../encryption';
-
 // @ts-ignore
 export default ({ model, Schema }) => {
   const emailMatch = [
@@ -9,10 +7,10 @@ export default ({ model, Schema }) => {
   ];
 
   /**
-   * User schema for mangoose
+   * Partner schema for mangoose
    * @type {Schema}
    */
-  const User = new Schema({
+  const Partner = new Schema({
     email: {
       lowercase: true,
       match: emailMatch,
@@ -23,15 +21,14 @@ export default ({ model, Schema }) => {
       type: String,
       unique: true,
     },
-    username: {
+    firstName: {
       maxlength: 100,
       minlength: 2,
-      required: true,
-      trim: true,
       type: String,
     },
-    password: {
-      required: true,
+    lastName: {
+      maxlength: 100,
+      minlength: 2,
       type: String,
     },
     createdAt: {
@@ -45,21 +42,16 @@ export default ({ model, Schema }) => {
     }
   });
 
-  User.pre('save', function (/** @type {() => void} */ next) {
+  Partner.pre('save', function (/** @type {() => void} */ next) {
     if (this._doc) {
       let doc = this._doc;
 
       console.log('doc', doc)
-
-      if (doc.password) {
-        console.log('is not modif pwd')
-        doc.password = encryptPassword(doc.password);
-      }
     }
     return next();
   });
 
-  const userSchemaModel = model('User', User);
+  const partnerSchemaModel = model('Partner', Partner);
 
-  return userSchemaModel;
+  return partnerSchemaModel;
 };

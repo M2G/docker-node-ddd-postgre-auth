@@ -23,6 +23,16 @@ export default ({ model, Schema }) => {
       type: String,
       unique: true,
     },
+    firstName: {
+      maxlength: 100,
+      minlength: 2,
+      type: String,
+    },
+    lastName: {
+      maxlength: 100,
+      minlength: 2,
+      type: String,
+    },
     username: {
       maxlength: 100,
       minlength: 2,

@@ -20,7 +20,6 @@ export default ({ model }: any) => {
     const [{ ...params }] = args;
     const m :IWrite<any> = model;
     return m
-      //@ts-ignore
       .create({ ...params })
       .then((data: any) => toEntity(data))
       .catch((error: any) => {
@@ -59,10 +58,10 @@ export default ({ model }: any) => {
   }
 
   const authenticate = (...args: any[]) => {
-    const [{ ...params }] = args;
+    const [{ email }] = args;
     const m :IRead<any> = model;
     return m
-      .findOne({ ...params })
+      .findOne({ email })
       .then((data: any) => {
         if (!data) return false;
         return toEntity(data);

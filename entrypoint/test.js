@@ -1,5 +1,6 @@
 print('===============JAVASCRIPT===============');
-print('Count of rows in test collection: ' + db.users.count());
+print('Count of rows in test collection (User) : ' + db.users.count());
+print('Count of rows in test collection (Partner) : ' + db.partners.count());
 
 db.users.insertMany([
   {
@@ -18,10 +19,22 @@ db.users.insertMany([
   }
 ]);
 
+db.partners.insertMany([
+  {},
+  {},
+]);
+
+
 print('===============AFTER JS INSERT==========');
-print('Count of rows in test collection (users) : ' + db.users.count());
+print('Count of rows in test collection (User) : ' + db.users.count());
+print('Count of rows in test collection (Partner) : ' + db.partners.count());
 
 alltest = db.users.find();
 while (alltest.hasNext()) {
   printjson(alltest.next());
+}
+
+alltest2 = db.partners.find();
+while (alltest2.hasNext()) {
+  printjson(alltest2.next());
 }

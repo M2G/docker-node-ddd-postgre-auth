@@ -3,17 +3,19 @@ import router from './router';
 import instance from './instance';
 
 export default () => {
+  const { cradle } = container;
+
   const {
-    jwt,
     logger,
     response: { Success, Fail },
-  } = container.cradle;
+    auth,
+  } = cradle;
   const app = instance();
 
   return {
     app,
     router: router({
-      jwt,
+      auth,
       logger,
       response: { Fail, Success },
       ...app,

@@ -1,15 +1,15 @@
 import container from '../../../../container';
-import post from '../../../../app/register';
+import post from '../../../../app/partners';
 
 export default () => {
   const { cradle } = container;
   const {
-    repository: { usersRepository }
+    repository: { partnersRepository },
   } = cradle;
 
-  const postUseCase = post({ usersRepository });
+  const postUseCase = post({ partnersRepository });
 
   return {
-    postUseCase
+    postUseCase,
   };
 };

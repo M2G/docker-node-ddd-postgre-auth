@@ -1,6 +1,6 @@
 import t from 'tcomb';
 
-const Users = t.struct({
+const Partners = t.struct({
   _id: t.maybe(t.Object),
   email: t.maybe(t.String),
   firstName: t.maybe(t.String),
@@ -9,4 +9,4 @@ const Users = t.struct({
   username: t.maybe(t.String),
 });
 
-export default Users;
+export default Partners;
