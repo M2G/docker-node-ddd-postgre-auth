@@ -1,14 +1,12 @@
 import type { Document } from 'mongoose';
 
-interface IUser extends Document {
+interface IParner extends Document {
   email?: string;
-  username?: string;
   firstName?: string;
   lastName?: string;
   password?: string;
   createdAt?: string;
   modifiedAt?: string;
-  partnerId?: string;
 }
 
-export default IUser;
+export default IParner;

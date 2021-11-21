@@ -2,24 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/users/delete.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/users/post.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/users/put.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/IPartner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entrypoint/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/company/delete.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/company/get.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/company/getOne.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/company/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/company/post.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/company/put.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/users/delete.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/users/put.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/company/company.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/company/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/IRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IUser.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/company/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/company/instance.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/company/router.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/company" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/core" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
@@ -57,11 +53,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/core" />
       <recent name="$PROJECT_DIR$/src/app/company" />
       <recent name="$PROJECT_DIR$/src/interfaces/http/modules" />
       <recent name="$PROJECT_DIR$/src/infra/database/schemas" />
       <recent name="$PROJECT_DIR$/src/domain/users" />
-      <recent name="$PROJECT_DIR$/src/core" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.App -&gt; User -&gt; Post (1)">
@@ -160,7 +156,7 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="161870000" />
+      <workItem from="1635366872672" duration="168175000" />
     </task>
     <servers />
   </component>

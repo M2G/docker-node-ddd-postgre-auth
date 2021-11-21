@@ -4,22 +4,22 @@
 import Users from '../../domain/users';
 
 /**
- * function for create user.
+ * function for update user.
  */
 export default ({ usersRepository }: any) => {
   // code for getting all the items
-  const register = async ({ ...args }: any) =>
+  const update = async ({ ...args }: any) =>
     Promise.resolve()
       .then(() => {
         const users = Users({ ...args });
 
-        return usersRepository.register(users);
+        return usersRepository.update(users);
       })
       .catch((error: string | undefined) => {
         throw new Error(error);
       });
 
   return {
-    register,
+    update,
   };
 };

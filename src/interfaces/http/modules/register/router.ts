@@ -1,7 +1,6 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
-// import { encryptPassword } from '../../../../infra/encryption';
 import IUser from '../../../../core/IUser';
 
 export default ({
@@ -20,13 +19,10 @@ export default ({
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
     }
 
-    // const hashedPassword = encryptPassword(password);
-
     postUseCase
       .register({
           email,
           password,
-         // password: hashedPassword,
           username,
         })
       .then((data: IUser) => {

@@ -7,10 +7,10 @@ import Users from '../../domain/users';
  * function for authenticate user.
  */
 export default ({ usersRepository }: any) => {
-  const authenticate = async ({ email }: any) =>
+  const authenticate = async ({ ...args }: any) =>
     Promise.resolve()
       .then(() => {
-        const users = Users({ email });
+        const users = Users({ ...args });
 
         return usersRepository.authenticate(users);
       })
