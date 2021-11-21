@@ -25,20 +25,13 @@ export default ({
       .authenticate({ email })
       .then(async (data: any) => {
 
-        console.log('postUseCase authenticate', data)
-
         const { _id, email, username, password } = <IUser>data || {};
 
         if (!email) {
           return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${body.email}).`));
         }
 
-        console.log('body.password', body.password)
-        console.log('password', password)
-
           const match: boolean = await bcrypt.compare(body.password, password);
-
-        console.log('match', match)
 
           if (match) {
 
@@ -62,7 +55,7 @@ export default ({
       })
       .catch((error: { message: any }) => {
         logger.error(error);
-        res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(Status[Status.INTERNAL_SERVER_ERROR]));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(Status[Status.INTERNAL_SERVER_ERROR]));
       });
   });
 

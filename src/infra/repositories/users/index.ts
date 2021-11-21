@@ -41,26 +41,6 @@ export default ({ model }: any) => {
       });
   }
 
-  const remove = (...args: any[]) => {
-    const m :IWrite<any> = model;
-    return m
-      .findByIdAndDelete({ ...args })
-      .then((data: any) => toEntity(data))
-      .catch((error: string | undefined) => {
-        throw new Error(error);
-      });
-  }
-
-  const update = (...args: any[]) => {
-    const m :IWrite<any> = model;
-    return m
-      .findByIdAndUpdate({ ...args })
-      .then((data: any) => toEntity(data))
-      .catch((error: string | undefined) => {
-        throw new Error(error);
-      });
-  }
-
   const authenticate = (...args: any[]) => {
     const [{ email }] = args;
     const m :IRead<any> = model;
@@ -76,8 +56,6 @@ export default ({ model }: any) => {
   };
 
   return {
-    remove,
-    update,
     findById,
     authenticate,
     getAll,

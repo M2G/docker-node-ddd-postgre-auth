@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import { encryptPassword } from '../../../infra/encryption';
+import { encryptPassword } from '../../encryption';
 
 // @ts-ignore
 export default ({ model, Schema }) => {
@@ -40,16 +40,15 @@ export default ({ model, Schema }) => {
 
   const userSchemaModel = model('User', User);
 
-  userSchemaModel.pre('save', function (/** @type {() => void} */ next, /** @type {any} */ err) {
+  userSchemaModel.pre('save', function (/** @type {() => void} */ next) {
     if (this._doc) {
       let doc = this._doc;
       let now = new Date();
 
-     if (!doc.isModified('password')) {
+     if (doc.isModified('password')) {
        console.log('is not modif pwd')
-       // return next();
+       doc.password = encryptPassword(doc.password);
      }
-      doc.password = encryptPassword(doc.password);
 
       if (!doc.createdAt) {
         doc.createdAt = now;
