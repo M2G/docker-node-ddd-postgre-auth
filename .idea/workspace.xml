@@ -2,26 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/partners/delete.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/partners/get.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/partners/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/partners/post.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/partners/put.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/partners/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/partners/partners.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infra/repositories/partners/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infra/repositories/partners/transform.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/partners/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/partners/instance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/partners/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entrypoint/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/partners.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/partners.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/partners/delete.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/partners/get.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/partners/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/partners/post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/partners/put.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/IPartner.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/partners/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/partners/partners.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/partners.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/partners/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/partners/transform.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/partners/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/partners/instance.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/partners/router.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +158,7 @@
       <workItem from="1633877239672" duration="4861000" />
       <workItem from="1634851910950" duration="58050000" />
       <workItem from="1635366797650" duration="46000" />
-      <workItem from="1635366872672" duration="169727000" />
+      <workItem from="1635366872672" duration="171473000" />
     </task>
     <servers />
   </component>
