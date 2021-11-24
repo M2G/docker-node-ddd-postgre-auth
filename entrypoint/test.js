@@ -28,21 +28,23 @@ db.users.insertMany([
 db.partners.insertMany([
   {
     partner_id: 1,
-    firstName: 'test',
-    lastName: 'test',
+    first_name: 'test',
+    last_name: 'test',
     email: 'facebook@facebook.com',
     password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
-    createDate: '2021-11-21T15:47:44.533Z',
-    modifiedAt: '2021-11-22T15:47:44.533Z',
+    created_at: '2021-11-21T15:47:44.533Z',
+    modified_at: '2021-11-22T15:47:44.533Z',
+    phone: ''
   },
   {
     partner_id: 2,
-    firstName: 'test',
-    lastName: 'test',
+    first_name: 'test',
+    last_name: 'test',
     email: 'brut@brut.media',
     password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
-    createDate: '2021-11-21T15:47:44.533Z',
-    modifiedAt: '2021-11-22T15:47:44.533Z',
+    created_at: '2021-11-21T15:47:44.533Z',
+    modified_at: '2021-11-22T15:47:44.533Z',
+    phone: ''
   },
 ]);
 

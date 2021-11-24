@@ -8,7 +8,7 @@ export default () => {
   const {
     logger,
     response: { Success, Fail },
-    auth
+    auth,
   } = cradle;
   const app = instance();
 
@@ -18,7 +18,7 @@ export default () => {
       auth,
       logger,
       response: { Fail, Success },
-      ...app
-    })
+      ...app,
+    }),
   };
 };

@@ -44,12 +44,12 @@ export default ({ model, Schema }) => {
       required: true,
       type: String,
     },
-    createdAt: {
+    created_at: {
       type: Date,
       required: false,
       default: new Date().toISOString()
     },
-    modifiedAt: {
+    modified_at: {
       type: Date,
       required: false
     }
