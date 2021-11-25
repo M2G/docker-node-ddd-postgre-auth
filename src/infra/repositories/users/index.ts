@@ -20,7 +20,6 @@ export default ({ model }: any) => {
     const [{ ...params }] = args;
     const m :IWrite<any> = model;
     return m
-      //@ts-ignore
       .create({ ...params })
       .then((data: any) => toEntity(data))
       .catch((error: any) => {

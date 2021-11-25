@@ -39,8 +39,7 @@ export default ({
         })
         .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          res.status(Status.BAD_REQUEST).json(Fail(error.message));
         })
     })
 
@@ -53,8 +52,7 @@ export default ({
         })
         .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          res.status(Status.BAD_REQUEST).json(Fail(error.message));
         })
     })
 
@@ -67,8 +65,7 @@ export default ({
         })
         .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          res.status(Status.BAD_REQUEST).json(Fail(error.message));
         })
     })
 
@@ -81,8 +78,7 @@ export default ({
         })
         .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          res.status(Status.BAD_REQUEST).json(Fail(error.message));
         })
     })
 

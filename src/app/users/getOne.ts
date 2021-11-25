@@ -3,7 +3,7 @@ import Users from '../../domain/users';
 /**
  * function for get one user.
  */
-export default ({ usersRepository, redis }: any) => {
+export default ({ usersRepository }: any) => {
   const getOne = async ({ ...args }: any) =>
     Promise.resolve()
       .then(() => {
