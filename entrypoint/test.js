@@ -11,7 +11,7 @@ db.users.insertMany([
     username: 'test',
     created_at: '2021-11-21T15:47:44.533Z',
     modified_at: '2021-11-22T15:47:44.533Z',
-    partner_id: 2,
+    partner_id: NumberInt(2),
   },
   {
     first_name: 'test',
@@ -21,13 +21,13 @@ db.users.insertMany([
     username: 'test2',
     created_at: '2021-11-21T15:47:44.533Z',
     modified_at: '2021-11-22T15:47:44.533Z',
-    partner_id: 1,
+    partner_id: NumberInt(1),
   }
 ]);
 
 db.partners.insertMany([
   {
-    partner_id: 1,
+    partner_id: NumberInt(1),
     first_name: 'test',
     last_name: 'test',
     email: 'facebook@facebook.com',
@@ -36,7 +36,7 @@ db.partners.insertMany([
     modified_at: '2021-11-22T15:47:44.533Z',
   },
   {
-    partner_id: 2,
+    partner_id: NumberInt(2),
     first_name: 'test',
     last_name: 'test',
     email: 'brut@brut.media',

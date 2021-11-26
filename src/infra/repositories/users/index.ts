@@ -2,6 +2,9 @@
 import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
+const cleanData = (obj: { [x: string]: any; }) =>
+  Object.keys(obj).reduce((acc, key) => obj[key] === undefined ? {...acc} : {...acc, [key] : obj[key]} , {});
+
 export default ({ model }: any) => {
 
   const getAll = (...args: any[]) => {
@@ -61,8 +64,9 @@ export default ({ model }: any) => {
     const [{ ...params }] = args;
     const m :IRead<any> = model;
     return m
-      .findOne({ ...params })
+      .findOne(cleanData(params))
       .then((data: any) => {
+        console.log('authenticate data', data)
         if (!data) return false;
         return toEntity(data);
       })
