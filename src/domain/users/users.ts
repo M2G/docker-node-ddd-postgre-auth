@@ -1,7 +1,7 @@
 import t from 'tcomb';
 
 const Users = t.struct({
-  _id: t.maybe(t.Object),
+  _id: t.maybe(t.Any),
   created_at: t.maybe(t.Date),
   email: t.maybe(t.String),
   first_name: t.maybe(t.String),

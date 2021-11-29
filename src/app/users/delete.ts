@@ -11,7 +11,10 @@ export default ({ usersRepository }: any) => {
   const remove = async ({ ...args }: any) =>
     Promise.resolve()
       .then(() => {
+
         const users = Users({ ...args });
+
+        console.log('req.params.id ', args)
 
         return usersRepository.remove(users);
       })

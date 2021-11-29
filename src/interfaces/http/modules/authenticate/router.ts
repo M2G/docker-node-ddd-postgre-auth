@@ -25,13 +25,15 @@ export default ({
       .authenticate({ email })
       .then(async (data: any) => {
 
+        console.log('data', data)
+
         const { _id, email, username, password } = <IUser>data || {};
 
         if (!email) {
           return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${body.email}).`));
         }
 
-          const match: boolean = await bcrypt.compare(body.password, password);
+          const match: boolean = await bcrypt.compare(body.password, password as string);
 
           if (match) {
 

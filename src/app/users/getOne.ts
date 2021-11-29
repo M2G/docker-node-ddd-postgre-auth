@@ -1,4 +1,5 @@
 import Users from '../../domain/users';
+import { cleanData } from '../../interfaces/http/utils';
 
 /**
  * function for get one user.
@@ -9,7 +10,7 @@ export default ({ usersRepository }: any) => {
       .then(() => {
         const users = Users({ ...args });
 
-        return usersRepository.findById(users);
+        return usersRepository.findById(cleanData(users));
       })
       .catch((error: string | undefined) => {
         throw new Error(error);

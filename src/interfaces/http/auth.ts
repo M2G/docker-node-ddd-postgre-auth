@@ -21,7 +21,7 @@ export default ({
       token: any,
       done: (
         arg0: any,
-        arg1: { id: any; username: any; password: any } | null,
+        arg1: { _id: any; username: any; password: any } | null,
       ) => any,
     ) => {
       const { _id }: any | number = jwt.decode()(token);
@@ -33,8 +33,8 @@ export default ({
             return done(Status[Status.NOT_FOUND], null);
           }
 
-          const { id, username, password } = user;
-          done(null, { id, username, password });
+          const { _id, username, password } = user;
+          done(null, { _id, username, password });
         })
         .catch((error: null) => done(error, null));
     },

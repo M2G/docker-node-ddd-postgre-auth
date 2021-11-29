@@ -3,6 +3,7 @@ import Status from 'http-status';
 import { Router, Request, Response, NextFunction } from 'express';
 
 export default ({
+  getOneUseCase,
   getUseCase,
   postUseCase,
   putUseCase,
@@ -19,6 +20,8 @@ export default ({
   router
     .get('/', async (req: Request, res: Response) => {
 
+      console.log('ALL');
+
      getUseCase
         .all(req, res)
         .then((data: any) => {
@@ -32,8 +35,11 @@ export default ({
 
   router
     .get('/:id', (req: Request, res: Response) => {
-      putUseCase
-        .update({ id: req.params.id })
+
+      console.log('req.params.id', req.params.id);
+
+      getOneUseCase
+        .getOne({ _id: req.params.id })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
@@ -59,7 +65,7 @@ export default ({
   router
     .put('/:id', (req: Request, res: Response) => {
       putUseCase
-        .update({ id: req.params.id, body: req.body })
+        .update({ _id: req.params.id, body: req.body })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
@@ -72,7 +78,7 @@ export default ({
   router
     .delete('/:id', (req: Request, res: Response) => {
       deleteUseCase
-        .remove({ id: req.params.id })
+        .remove({ _id: req.params.id })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })

@@ -2,15 +2,13 @@
 import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
 
-const cleanData = (obj: { [x: string]: any; }) =>
-  Object.keys(obj).reduce((acc, key) => obj[key] === undefined ? {...acc} : {...acc, [key] : obj[key]} , {});
-
 export default ({ model }: any) => {
 
   const getAll = (...args: any[]) => {
     const m :IRead<any> = model;
     return m
       .find(...args)
+      .select('-password -__v')
       .sort({ username: 1 })
       .then((entity: any) =>
         entity?.map((data: {}) => toEntity(data)))
@@ -32,8 +30,13 @@ export default ({ model }: any) => {
 
   const findById = (...args: any[]) => {
     const m :IRead<any> = model;
+    const [{ ...params }] = args;
+
+    console.log('---> findById', params)
+
     return m
-      .findOne({ ...args })
+      .findOne({ ...params })
+      .select('-password -__v')
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         throw new Error(error);
@@ -42,6 +45,8 @@ export default ({ model }: any) => {
 
   const remove = (...args: any) => {
     const m :IWrite<any> = model;
+    console.log('remove', args)
+
     return m
       .findByIdAndDelete({ ...args })
       .then((data: any) => toEntity(data))
@@ -64,7 +69,7 @@ export default ({ model }: any) => {
     const [{ ...params }] = args;
     const m :IRead<any> = model;
     return m
-      .findOne(cleanData(params))
+      .findOne({ ...params })
       .then((data: any) => {
         console.log('authenticate data', data)
         if (!data) return false;

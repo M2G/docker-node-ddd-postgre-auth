@@ -7,43 +7,20 @@ db.users.insertMany([
     first_name: 'test',
     last_name: 'test',
     email: 'test@gmail.com',
-    password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
+    password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
     username: 'test',
     created_at: '2021-11-21T15:47:44.533Z',
-    modified_at: '2021-11-22T15:47:44.533Z',
-    partner_id: NumberInt(2),
+    modified_at: '2021-11-22T15:47:44.533Z'
   },
   {
     first_name: 'test',
     last_name: 'test',
     email: 'test2@gmail.com',
-    password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
+    password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
     username: 'test2',
     created_at: '2021-11-21T15:47:44.533Z',
-    modified_at: '2021-11-22T15:47:44.533Z',
-    partner_id: NumberInt(1),
+    modified_at: '2021-11-22T15:47:44.533Z'
   }
-]);
-
-db.partners.insertMany([
-  {
-    partner_id: NumberInt(1),
-    first_name: 'test',
-    last_name: 'test',
-    email: 'facebook@facebook.com',
-    password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
-    created_at: '2021-11-21T15:47:44.533Z',
-    modified_at: '2021-11-22T15:47:44.533Z',
-  },
-  {
-    partner_id: NumberInt(2),
-    first_name: 'test',
-    last_name: 'test',
-    email: 'brut@brut.media',
-    password: '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
-    created_at: '2021-11-21T15:47:44.533Z',
-    modified_at: '2021-11-22T15:47:44.533Z',
-  },
 ]);
 
 

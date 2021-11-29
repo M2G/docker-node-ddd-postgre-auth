@@ -1,6 +1,6 @@
 import container from '../../../../container';
 import {
- get, post, put, remove,
+ get, getOne, post, put, remove,
 } from '../../../../app/users';
 
 export default () => {
@@ -12,12 +12,14 @@ export default () => {
   } = cradle;
 
   const getUseCase = get({ redis, usersRepository });
-  const postUseCase = post({ redis, usersRepository });
-  const putUseCase = put({ redis, usersRepository });
-  const deleteUseCase = remove({ redis, usersRepository });
+  const getOneUseCase = getOne({ usersRepository });
+  const postUseCase = post({ usersRepository });
+  const putUseCase = put({ usersRepository });
+  const deleteUseCase = remove({ usersRepository });
 
   return {
     deleteUseCase,
+    getOneUseCase,
     getUseCase,
     postUseCase,
     putUseCase,
