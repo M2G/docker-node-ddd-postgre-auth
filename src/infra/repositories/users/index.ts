@@ -22,6 +22,7 @@ export default ({ model }: any) => {
     const m :IWrite<any> = model;
     return m
       .create({ ...params })
+      .select('-password -__v')
       .then((data: any) => toEntity(data))
       .catch((error: any) => {
         throw new Error(error);
@@ -39,16 +40,17 @@ export default ({ model }: any) => {
       .select('-password -__v')
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
+        console.log('catch', error)
         throw new Error(error);
       });
   }
 
   const remove = (...args: any) => {
     const m :IWrite<any> = model;
-    console.log('remove', args)
-
+    const [{ ...params }] = args;
     return m
-      .findByIdAndDelete({ ...args })
+      .findByIdAndDelete({ ...params })
+      .select('-password -__v')
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         throw new Error(error);
@@ -72,7 +74,7 @@ export default ({ model }: any) => {
       .findOne({ ...params })
       .then((data: any) => {
         console.log('authenticate data', data)
-        if (!data) return false;
+        if (!data) return null;
         return toEntity(data);
       })
       .catch((error: any) => {

@@ -35,9 +35,6 @@ export default ({
 
   router
     .get('/:id', (req: Request, res: Response) => {
-
-      console.log('req.params.id', req.params.id);
-
       getOneUseCase
         .getOne({ _id: req.params.id })
         .then((data: any) => {
@@ -52,7 +49,7 @@ export default ({
   router
     .post('/', (req: Request, res: Response) => {
       postUseCase
-        .create({ body: req.body })
+        .register({ ...req.body })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })

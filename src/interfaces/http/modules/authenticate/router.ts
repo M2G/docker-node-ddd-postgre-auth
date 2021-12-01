@@ -25,8 +25,6 @@ export default ({
       .authenticate({ email })
       .then(async (data: any) => {
 
-        console.log('data', data)
-
         const { _id, email, username, password } = <IUser>data || {};
 
         if (!email) {
