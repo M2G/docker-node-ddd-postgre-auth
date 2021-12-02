@@ -62,7 +62,7 @@ export default ({
   router
     .put('/:id', (req: Request, res: Response) => {
       putUseCase
-        .update({ _id: req.params.id, body: req.body })
+        .update({ _id: req.params.id, ...req.body })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
