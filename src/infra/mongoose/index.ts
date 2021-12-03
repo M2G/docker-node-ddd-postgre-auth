@@ -5,6 +5,7 @@ import {
   connection,
   Schema,
   model,
+  Types,
   // Model,
 } from 'mongoose';
 import path from 'path';
@@ -56,6 +57,7 @@ export default ({ config, basePath, logger }: any) => {
     db.models[fileName] = models({
       Schema,
       model
+      Types,
     });
   }
 

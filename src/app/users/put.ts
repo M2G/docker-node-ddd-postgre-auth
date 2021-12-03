@@ -3,6 +3,7 @@
  */
 import Users from '../../domain/users';
 import { cleanData } from '../../interfaces/http/utils';
+
 /**
  * function for update user.
  */
@@ -14,9 +15,7 @@ export default ({ usersRepository }: any) => {
 
         const users = Users({ ...args });
 
-        console.log('----->', cleanData(users))
-
-       // return usersRepository.update(users);
+       return usersRepository.update(cleanData(users));
       })
       .catch((error: string | undefined) => {
         throw new Error(error);

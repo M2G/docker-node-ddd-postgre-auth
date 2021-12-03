@@ -59,14 +59,23 @@ export default ({ model }: any) => {
 
   const update = (...args: any) => {
     const m :IWrite<any> = model;
-    console.log('update args', args)
+    const [{ _id, ...params }] = args;
 
-    /*return m
-      .findByIdAndUpdate({ ...args })
-      .then((data: any) => toEntity(data))
+
+    console.log('::::::::', { _id, params })
+
+    return m
+      .findByIdAndUpdate({ _id }, { ...params })
+      .then((data: any) => {
+        console.log('1', data)
+
+        console.log('::::::::', toEntity(data))
+
+        return toEntity(data)
+      })
       .catch((error: string | undefined) => {
         throw new Error(error);
-      });*/
+      });
   }
 
   const authenticate = (...args: any[]) => {
