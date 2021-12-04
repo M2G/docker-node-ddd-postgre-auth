@@ -2,6 +2,7 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import IUser from '../../../../core/IUser';
+import { encryptPassword } from '../../../../infra/encryption';
 
 export default ({
   postUseCase,
@@ -19,10 +20,12 @@ export default ({
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
     }
 
+    const hasPassword = encryptPassword(password);
+
     postUseCase
       .register({
           email,
-          password,
+          password: hasPassword,
           username,
         })
       .then((data: IUser) => {

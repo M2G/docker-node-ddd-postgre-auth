@@ -19,9 +19,6 @@ export default ({
 
   router
     .get('/', async (req: Request, res: Response) => {
-
-      console.log('ALL');
-
      getUseCase
         .all(req, res)
         .then((data: any) => {
@@ -62,7 +59,7 @@ export default ({
   router
     .put('/:id', (req: Request, res: Response) => {
       putUseCase
-        .update({ _id: req.params.id, ...req.body })
+        .update({ _id: req.params.id, ...req.body, modified_at: new Date().toISOString() })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })

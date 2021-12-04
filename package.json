@@ -20,6 +20,10 @@
     "auth"
   ],
   "author": "M2G",
+  "_moduleAliases": {
+    "@root"      : ".",
+    "@deep"      : "src/some/deep/directory/or/file"
+  },
   "scripts": {
     "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint",
@@ -78,7 +82,6 @@
     "jest-resolve": "27.0.4",
     "jest-watch-typeahead": "0.6.4",
     "jsonwebtoken": "8.5.0",
-    "module-alias": "^2.2.2",
     "mongodb-memory-server": "^8.0.1",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
@@ -103,6 +106,7 @@
     "concurrently": "^6.0.2",
     "supertest": "3.4.2",
     "supertest-as-promised": "^4.0.2",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "module-alias": "^2.2.2"
   }
 }

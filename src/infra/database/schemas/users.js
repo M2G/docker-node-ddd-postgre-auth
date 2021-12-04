@@ -1,5 +1,4 @@
 /*eslint-disable*/
-import { encryptPassword } from '../../encryption';
 
 // @ts-ignore
 export default ({ model, Schema }) => {
@@ -47,29 +46,13 @@ export default ({ model, Schema }) => {
     created_at: {
       type: Date,
       required: false,
-      default: new Date().toISOString()
+      default: new Date().toISOString(),
     },
     modified_at: {
       type: Date,
-      required: false
-    }
+      required: false,
+    },
   });
 
-  User.pre('save', function (/** @type {() => void} */ next) {
-    if (this._doc) {
-      let doc = this._doc;
-
-      console.log('doc', doc)
-
-      if (doc.password) {
-        console.log('is not modif pwd')
-        doc.password = encryptPassword(doc.password);
-      }
-    }
-    return next();
-  });
-
-  const userSchemaModel = model('User', User);
-
-  return userSchemaModel;
+  return model('User', User);
 };

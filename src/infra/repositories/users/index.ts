@@ -6,12 +6,15 @@ export default ({ model }: any) => {
 
   const getAll = (...args: any[]) => {
     const m :IRead<any> = model;
+
+    console.log('getAll', args)
+
     return m
       .find(...args)
       .select('-password -__v')
       .sort({ username: 1 })
       .then((entity: any) =>
-        entity?.map((data: {}) => toEntity(data)))
+        entity?.map((data: {}) => data))
       .catch((error: any) => {
         throw new Error(error);
       });
@@ -22,7 +25,6 @@ export default ({ model }: any) => {
     const m :IWrite<any> = model;
     return m
       .create({ ...params })
-      .select('-password -__v')
       .then((data: any) => toEntity(data))
       .catch((error: any) => {
         throw new Error(error);
@@ -32,8 +34,6 @@ export default ({ model }: any) => {
   const findById = (...args: any[]) => {
     const m :IRead<any> = model;
     const [{ ...params }] = args;
-
-    console.log('---> findById', params)
 
     return m
       .findOne({ ...params })
@@ -61,16 +61,12 @@ export default ({ model }: any) => {
     const m :IWrite<any> = model;
     const [{ _id, ...params }] = args;
 
-
-    console.log('::::::::', { _id, params })
+    delete params.password;
 
     return m
-      .findByIdAndUpdate({ _id }, { ...params })
+      .findByIdAndUpdate({ _id } as any, { ...params })
+      .select('-password -__v')
       .then((data: any) => {
-        console.log('1', data)
-
-        console.log('::::::::', toEntity(data))
-
         return toEntity(data)
       })
       .catch((error: string | undefined) => {

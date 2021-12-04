@@ -12,10 +12,9 @@ export default ({ usersRepository }: any) => {
   const update = async ({ ...args }: any) =>
     Promise.resolve()
       .then(() => {
-
         const users = Users({ ...args });
 
-       return usersRepository.update(cleanData(users));
+        return usersRepository.update(cleanData(users));
       })
       .catch((error: string | undefined) => {
         throw new Error(error);
