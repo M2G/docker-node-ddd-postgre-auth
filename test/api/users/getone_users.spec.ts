@@ -10,45 +10,30 @@ const { usersRepository } = container.resolve('repository');
 
 jest.setTimeout(20000);
 
-describe('Routes: POST Register', () => {
-  const BASE_URI = '/api/users';
-  const KEY = 'LIST_USERS_TEST';
+describe('Routes: GET User', () => {
+  const BASE_URI = (id: any) => `/api/users/${id}`;
   const jwt = container.resolve('jwt') as any;
-  const redis = container.resolve('redis') as any;
+  let randomUUID: any;
   const randomEmail = faker.internet.email();
   const randomUserName = faker.internet.userName();
   const randomPassword = faker.internet.password();
-  const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
-  const signIn2 = jwt.signin();
+  const signIn = jwt.signin();
   let token: any;
-  let token2: any;
   beforeAll(async () => await connect());
   beforeEach((done) => {
 
-    redis.set(KEY, JSON.stringify([
-      {
-        "id": 1080,
-        "email": randomEmail,
-        "username": randomUserName,
-        "password": randomPassword,
-      }
-    ]));
-
     // we need to add user before we can request our token
         usersRepository.register({
-          "email": randomEmail,
-          "username": randomUserName,
-          "password": randomPassword,
+          email: randomEmail,
+          username: randomUserName,
+          password: randomPassword,
         })
-      .then((user: { id: any; email: any; username: any, password: any }) => {
+      .then((user: { _id: any; email: any; username: any, password: any }) => {
+
+        randomUUID = user._id;
+
         token = signIn({
-          id: user.id,
-          email: user.email,
-          username: user.username,
-          password: user.password,
-        });
-        token2 = signIn2({
-          id: user.id,
+          _id: user._id,
           email: user.email,
           username: user.username,
           password: user.password,
@@ -62,20 +47,24 @@ describe('Routes: POST Register', () => {
   afterAll(async () => await close());
 
     it('should return users list', (done) => {
-      rqt
-        .get(BASE_URI)
-        .set('Authorization', `Bearer ${token2}`)
+
+    rqt
+        .get(BASE_URI(randomUUID))
+        .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
-          expect(res.body.data.length).toEqual(1);
+          expect(res.body.data._id).toEqual(randomUUID.toString());
+          expect(res.body.data.email).toEqual(randomEmail.toLowerCase());
+          expect(res.body.data.username).toEqual(randomUserName.toLowerCase());
+          expect(res.body.data.created_at).toBeDefined();
           done();
         });
     });
 
     it('should return unauthorized token invalid signature', (done) => {
       rqt
-        .get(BASE_URI)
+        .get(BASE_URI(randomUUID))
         .set(
           'Authorization',
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM5LCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYiQxMCRoTTBy1ONWk3OE1FUndSNDJGSVllWjVzeEtsWHFQQWtRTmxkb1VqOTdSaGs2MWRjUjRJLiIsImlhdCI6MTYyNjIyMzU3NCwiZXhwIjoxNjI2MjU5NTc0fQ.yRAM-ZuNaUoKmUWX2BmacSB7LeHg2tIHawoc5-EXXSU',
@@ -96,7 +85,7 @@ describe('Routes: POST Register', () => {
     it('should return unauthorized token is expired', (done) => {
       setTimeout(function() {
         rqt
-          .get(BASE_URI)
+          .get(BASE_URI(randomUUID))
         .set('Authorization', `Bearer ${token}`)
         .expect(401)
         .end((err: any, res: any) => {
@@ -110,7 +99,7 @@ describe('Routes: POST Register', () => {
 
     it('should return unauthorized if no token', (done) => {
       rqt
-        .get(BASE_URI)
+        .get(BASE_URI(randomUUID))
         .expect(403)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();

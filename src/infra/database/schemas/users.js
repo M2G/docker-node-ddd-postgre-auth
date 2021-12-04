@@ -35,6 +35,7 @@ export default ({ model, Schema }) => {
     username: {
       maxlength: 100,
       minlength: 2,
+      lowercase: true,
       required: true,
       trim: true,
       type: String,

@@ -9,7 +9,7 @@ export default ({ model }: any) => {
 
     return m
       .find(...args)
-      .select({ password: -1 })
+      .select('-password -__v')
       .sort({ username: 1 })
       .then((entity: any) =>
         entity?.map((data: {}) => data))
@@ -35,7 +35,7 @@ export default ({ model }: any) => {
 
     return m
       .findOne({ ...params })
-      .select({ password: -1 })
+      .select('-password -__v')
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         console.log('catch', error)
@@ -48,7 +48,7 @@ export default ({ model }: any) => {
     const [{ ...params }] = args;
     return m
       .findByIdAndDelete({ ...params })
-      .select({ password: -1 })
+      .select('-password -__v')
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         throw new Error(error);
@@ -63,7 +63,7 @@ export default ({ model }: any) => {
 
     return m
       .findByIdAndUpdate({ _id } as any, { ...params })
-      .select({ password: -1 })
+      .select('-password -__v')
       .then((data: any) => {
         return toEntity(data)
       })

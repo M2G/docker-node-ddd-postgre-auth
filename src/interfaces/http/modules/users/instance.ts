@@ -1,7 +1,5 @@
 import container from '../../../../container';
-import {
- get, getOne, post, put, remove,
-} from '../../../../app/users';
+import { get, getOne, put, remove } from '../../../../app/users';
 
 export default () => {
   const { cradle } = container;
@@ -13,7 +11,6 @@ export default () => {
 
   const getUseCase = get({ redis, usersRepository });
   const getOneUseCase = getOne({ usersRepository });
-  const postUseCase = post({ usersRepository });
   const putUseCase = put({ usersRepository });
   const deleteUseCase = remove({ usersRepository });
 
@@ -21,7 +18,6 @@ export default () => {
     deleteUseCase,
     getOneUseCase,
     getUseCase,
-    postUseCase,
     putUseCase,
   };
 };
