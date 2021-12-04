@@ -7,11 +7,9 @@ export default ({ model }: any) => {
   const getAll = (...args: any[]) => {
     const m :IRead<any> = model;
 
-    console.log('getAll', args)
-
     return m
       .find(...args)
-      .select('-password -__v')
+      .select({ password: -1 })
       .sort({ username: 1 })
       .then((entity: any) =>
         entity?.map((data: {}) => data))
@@ -37,7 +35,7 @@ export default ({ model }: any) => {
 
     return m
       .findOne({ ...params })
-      .select('-password -__v')
+      .select({ password: -1 })
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         console.log('catch', error)
@@ -50,7 +48,7 @@ export default ({ model }: any) => {
     const [{ ...params }] = args;
     return m
       .findByIdAndDelete({ ...params })
-      .select('-password -__v')
+      .select({ password: -1 })
       .then((data: any) => toEntity(data))
       .catch((error: string | undefined) => {
         throw new Error(error);
@@ -65,7 +63,7 @@ export default ({ model }: any) => {
 
     return m
       .findByIdAndUpdate({ _id } as any, { ...params })
-      .select('-password -__v')
+      .select({ password: -1 })
       .then((data: any) => {
         return toEntity(data)
       })

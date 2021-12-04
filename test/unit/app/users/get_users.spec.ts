@@ -1,7 +1,7 @@
 import faker from 'faker';
 import getUsecase from  '../../../../src/app/users/get';
 
-describe('App -> User -> Post', () => {
+describe('App -> User -> Get All', () => {
   const randomEmail = faker.internet.email();
   const randomUserName = faker.internet.userName();
   const randomPassword = faker.internet.password();
