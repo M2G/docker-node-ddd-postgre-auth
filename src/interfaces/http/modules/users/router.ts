@@ -1,6 +1,7 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response, NextFunction } from 'express';
+import IUser from '../../../../core/IUser';
 
 export default ({
   getOneUseCase,
@@ -44,8 +45,21 @@ export default ({
 
   router
     .put('/:id', (req: Request, res: Response) => {
+
+      const { body = {}, params } = req || {};
+      const { id } = params;
+      const { email, password, username } = <IUser>body;
+
+      if (!id) {
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
+      }
+
+      if (!email && !password && !username) {
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
+      }
+
       putUseCase
-        .update({ _id: req.params.id, ...req.body, modified_at: new Date().toISOString() })
+        .update({ _id: id, ...body, modified_at: new Date().toISOString() })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
@@ -59,8 +73,8 @@ export default ({
     .delete('/:id', (req: Request, res: Response) => {
       deleteUseCase
         .remove({ _id: req.params.id })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data))
+        .then(() => {
+          res.status(Status.OK).json(Success())
         })
         .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging

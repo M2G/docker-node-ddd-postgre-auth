@@ -27,7 +27,7 @@ describe('Routes: POST Register', () => {
 
     redis.set(KEY, JSON.stringify([
       {
-        "id": 1080,
+        "_id": 1080,
         "email": randomEmail,
         "username": randomUserName,
         "password": randomPassword,
@@ -40,15 +40,15 @@ describe('Routes: POST Register', () => {
           "username": randomUserName,
           "password": randomPassword,
         })
-      .then((user: { id: any; email: any; username: any, password: any }) => {
+      .then((user: { _id: any; email: any; username: any, password: any }) => {
         token = signIn({
-          id: user.id,
+          _id: user._id,
           email: user.email,
           username: user.username,
           password: user.password,
         });
         token2 = signIn2({
-          id: user.id,
+          _id: user._id,
           email: user.email,
           username: user.username,
           password: user.password,

@@ -62,7 +62,7 @@ export default ({ model }: any) => {
     delete params.password;
 
     return m
-      .findByIdAndUpdate({ _id } as any, { ...params })
+      .findByIdAndUpdate({ _id } as any, { ...params }, { new: true })
       .select('-password -__v')
       .then((data: any) => {
         return toEntity(data)

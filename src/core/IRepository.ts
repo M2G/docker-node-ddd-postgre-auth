@@ -30,8 +30,12 @@ export interface IWrite<T extends Document> {
             callback?: (error: any, result?: T[]) => void) => Query<T[], T>);
   update: (_id?: Types.ObjectId, item?: UpdateQuery<T>,
            callback?: (error: any, result: Model<T> | null) => void) => void;
-  findByIdAndUpdate: (_id?: Types.ObjectId, item?: UpdateQuery<T>,
+  findByIdAndUpdate: (_id?: Types.ObjectId, item?: UpdateQuery<T>, options?: {
+                        new?: boolean; upsert?: boolean; runValidators?: boolean;
+                        setDefaultsOnInsert?: boolean; sort?: any; select?: any;
+                        rawResult?: any; strict?: any;
+                      },
                       callback?: (error: any, result: Model<T> | null) => any) => any;
-  findByIdAndDelete: (_id?: Types.ObjectId, item?: UpdateQuery<T>,
+  findByIdAndDelete: (_id?: Types.ObjectId, item?: UpdateQuery<T>, options?: {},
                       callback?: (error: any, result: Model<T> | null) => any) => any;
 }

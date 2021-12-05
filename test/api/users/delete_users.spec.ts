@@ -10,7 +10,7 @@ const { usersRepository } = container.resolve('repository');
 
 jest.setTimeout(20000);
 
-describe('Routes: GET User', () => {
+describe('Routes: DELETE User', () => {
   const BASE_URI = (id: any) => `/api/users/${id}`;
   const jwt = container.resolve('jwt') as any;
   let randomUUID: any;
@@ -49,24 +49,20 @@ describe('Routes: GET User', () => {
     it('should return users list', (done) => {
 
     rqt
-        .get(BASE_URI(randomUUID))
+        .delete(BASE_URI(randomUUID))
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
           expect(res.body.date).toBeDefined();
           expect(res.body.success).toEqual(true);
-          expect(res.body.data._id).toEqual(randomUUID.toString());
-          expect(res.body.data.email).toEqual(randomEmail.toLowerCase());
-          expect(res.body.data.username).toEqual(randomUserName.toLowerCase());
-          expect(res.body.data.created_at).toBeDefined();
           done();
         });
     });
 
     it('should return unauthorized token invalid signature', (done) => {
       rqt
-        .get(BASE_URI(randomUUID))
+        .delete(BASE_URI(randomUUID))
         .set(
           'Authorization',
           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM5LCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYiQxMCRoTTBy1ONWk3OE1FUndSNDJGSVllWjVzeEtsWHFQQWtRTmxkb1VqOTdSaGs2MWRjUjRJLiIsImlhdCI6MTYyNjIyMzU3NCwiZXhwIjoxNjI2MjU5NTc0fQ.yRAM-ZuNaUoKmUWX2BmacSB7LeHg2tIHawoc5-EXXSU',
@@ -87,7 +83,7 @@ describe('Routes: GET User', () => {
     it('should return unauthorized token is expired', (done) => {
       setTimeout(function() {
         rqt
-          .get(BASE_URI(randomUUID))
+          .delete(BASE_URI(randomUUID))
         .set('Authorization', `Bearer ${token}`)
         .expect(401)
         .end((err: any, res: any) => {
@@ -101,7 +97,7 @@ describe('Routes: GET User', () => {
 
     it('should return unauthorized if no token', (done) => {
       rqt
-        .get(BASE_URI(randomUUID))
+        .delete(BASE_URI(randomUUID))
         .expect(403)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
