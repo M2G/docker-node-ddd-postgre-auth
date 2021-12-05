@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/api/users/put_register.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/IRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IRepository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/users/getone_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/getone_users.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/users/put_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/put_register.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,62 +52,22 @@
       <recent name="$PROJECT_DIR$/src/infra/repositories" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Routes: PUT User.shouldnt register user return error empty values was sent">
-    <configuration name="Routes: DELETE User" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" />
-      <test-names>
-        <test-name value="Routes: DELETE User" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: GET User.should return unauthorized if no token" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.Routes: PUT User.should return unauthorized if no token">
+    <configuration name="Routes: PUT User.should return unauthorized if no token" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/users/getone_users.spec.ts" />
+      <test-file value="$PROJECT_DIR$/test/api/users/put_register.spec.ts" />
       <test-names>
-        <test-name value="Routes: GET User" />
+        <test-name value="Routes: PUT User" />
         <test-name value="should return unauthorized if no token" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Routes: GET User.should return users list (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" />
-      <test-names>
-        <test-name value="Routes: GET User" />
-        <test-name value="should return users list" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: PUT User" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/api/users/put_register.spec.ts" />
-      <test-names>
-        <test-name value="Routes: PUT User" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: PUT User.shouldnt register user return error empty values was sent" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Routes: PUT User.should return unauthorized token invalid signature" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -121,17 +77,59 @@
       <test-file value="$PROJECT_DIR$/test/api/users/put_register.spec.ts" />
       <test-names>
         <test-name value="Routes: PUT User" />
-        <test-name value="shouldnt register user return error empty values was sent" />
+        <test-name value="should return unauthorized token invalid signature" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Routes: PUT User.should return unauthorized token is expired" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/api/users/put_register.spec.ts" />
+      <test-names>
+        <test-name value="Routes: PUT User" />
+        <test-name value="should return unauthorized token is expired" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Routes: PUT User.shouldnt authenticate user return error empty body was sent" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/api/users/put_register.spec.ts" />
+      <test-names>
+        <test-name value="Routes: PUT User" />
+        <test-name value="shouldnt authenticate user return error empty body was sent" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Routes: PUT User.shouldnt register user return error empty params was sent" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/test/api/users/put_register.spec.ts" />
+      <test-names>
+        <test-name value="Routes: PUT User" />
+        <test-name value="shouldnt register user return error empty params was sent" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Routes: PUT User.shouldnt register user return error empty values was sent" />
-        <item itemvalue="Jest.Routes: PUT User" />
-        <item itemvalue="Jest.Routes: DELETE User" />
-        <item itemvalue="Jest.Routes: GET User.should return users list (1)" />
-        <item itemvalue="Jest.Routes: GET User.should return unauthorized if no token" />
+        <item itemvalue="Jest.Routes: PUT User.should return unauthorized if no token" />
+        <item itemvalue="Jest.Routes: PUT User.should return unauthorized token is expired" />
+        <item itemvalue="Jest.Routes: PUT User.should return unauthorized token invalid signature" />
+        <item itemvalue="Jest.Routes: PUT User.shouldnt register user return error empty params was sent" />
+        <item itemvalue="Jest.Routes: PUT User.shouldnt authenticate user return error empty body was sent" />
       </list>
     </recent_temporary>
   </component>
@@ -156,7 +154,7 @@
       <workItem from="1635366797650" duration="46000" />
       <workItem from="1635366872672" duration="175505000" />
       <workItem from="1637787030069" duration="10763000" />
-      <workItem from="1637889207847" duration="53872000" />
+      <workItem from="1637889207847" duration="58144000" />
     </task>
     <servers />
   </component>

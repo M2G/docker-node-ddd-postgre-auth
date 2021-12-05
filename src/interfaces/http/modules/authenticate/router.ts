@@ -17,9 +17,8 @@ export default ({
     const { body } = req || {};
     const { password, email } = <IUser>body;
 
-    if (!email || !password) {
+    if (!email || !password)
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty value.'));
-    }
 
     postUseCase
       .authenticate({ email })
@@ -27,9 +26,8 @@ export default ({
 
         const { _id, email, username, password } = <IUser>data || {};
 
-        if (!email) {
+        if (!email)
           return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${body.email}).`));
-        }
 
           const match: boolean = await bcrypt.compare(body.password, password as string);
 

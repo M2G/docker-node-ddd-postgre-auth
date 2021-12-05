@@ -2,6 +2,10 @@
 import Status from 'http-status';
 import { Router, Request, Response, NextFunction } from 'express';
 import IUser from '../../../../core/IUser';
+import { Types } from 'mongoose';
+import { ObjectId, ObjectIdLike } from 'bson';
+
+const isValidObjID = (id: string | number | ObjectId | Uint8Array | ObjectIdLike) => Types.ObjectId.isValid(id);
 
 export default ({
   getOneUseCase,
@@ -20,7 +24,7 @@ export default ({
   router
     .get('/', async (req: Request, res: Response) => {
      getUseCase
-        .all(req, res)
+        .all()
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
         })
@@ -32,6 +36,13 @@ export default ({
 
   router
     .get('/:id', (req: Request, res: Response) => {
+
+      const { params } = req || {};
+      const { id } = params;
+      if (!id)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
+
+
       getOneUseCase
         .getOne({ _id: req.params.id })
         .then((data: any) => {
@@ -50,13 +61,11 @@ export default ({
       const { id } = params;
       const { email, password, username } = <IUser>body;
 
-      if (!id) {
-        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
-      }
+      if (!isValidObjID(id))
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
-      if (!email && !password && !username) {
+      if (!email && !password && !username)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
-      }
 
       putUseCase
         .update({ _id: id, ...body, modified_at: new Date().toISOString() })
@@ -71,8 +80,14 @@ export default ({
 
   router
     .delete('/:id', (req: Request, res: Response) => {
+      const { params } = req || {};
+      const { id } = params;
+
+      if (!isValidObjID(id))
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
+
       deleteUseCase
-        .remove({ _id: req.params.id })
+        .remove({ _id: id })
         .then(() => {
           res.status(Status.OK).json(Success())
         })

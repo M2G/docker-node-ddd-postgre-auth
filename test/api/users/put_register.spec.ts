@@ -11,7 +11,7 @@ const { usersRepository } = container.resolve('repository');
 jest.setTimeout(20000);
 
 describe('Routes: PUT User', () => {
-  const BASE_URI = (id: any) => `/api/users/${id}`;
+  const BASE_URI = (id: string = '') => `/api/users/${id}`;
   const jwt = container.resolve('jwt') as any;
   let randomUUID: any;
   const randomEmail = faker.internet.email();
@@ -85,6 +85,73 @@ describe('Routes: PUT User', () => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
         expect(res.body.error).toEqual('Invalid parameters in request.');
+        done();
+      });
+  });
+
+  it('should return unauthorized token invalid signature', (done) => {
+    rqt
+      .put(BASE_URI(randomUUID))
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM5LCJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6IiQyYiQxMCRoTTBy1ONWk3OE1FUndSNDJGSVllWjVzeEtsWHFQQWtRTmxkb1VqOTdSaGs2MWRjUjRJLiIsImlhdCI6MTYyNjIyMzU3NCwiZXhwIjoxNjI2MjU5NTc0fQ.yRAM-ZuNaUoKmUWX2BmacSB7LeHg2tIHawoc5-EXXSU',
+      )
+      .expect(400)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.success).toBeFalsy();
+        expect(JSON.parse(res.text).error.success).toBeFalsy();
+        expect(JSON.parse(res.text).error.message).toEqual(
+          'Bad Request',
+        );
+        done();
+      });
+  });
+
+  //@see: https://github.com/auth0/node-jsonwebtoken/issues/288
+  it('should return unauthorized token is expired', (done) => {
+    setTimeout(function() {
+      rqt
+        .put(BASE_URI(randomUUID))
+        .set('Authorization', `Bearer ${token}`)
+        .expect(401)
+        .end((err: any, res: any) => {
+          expect(err).toBeFalsy();
+          expect(JSON.parse(res.text).error.success).toBeFalsy();
+          expect(JSON.parse(res.text).error.message).toEqual('Failed to authenticate token is expired.');
+          done(err);
+        });
+    }, 2500);
+  });
+
+  it('should return unauthorized if no token', (done) => {
+    rqt
+      .put(BASE_URI(randomUUID))
+      .expect(403)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(JSON.parse(res.text).error.false).toBeFalsy();
+        expect(JSON.parse(res.text).error.message).toEqual(
+          'No token provided.',
+        );
+        done();
+      });
+  });
+
+  it('shouldnt register user return error empty params was sent', (done) => {
+    rqt
+      .put(BASE_URI('zzzzzz'))
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        email: randomEmail,
+        username: randomUserName,
+        password: randomPassword,
+      })
+      .expect(422)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.success).toBeFalsy();
+        expect(res.body.error).toEqual('Invalid id parameters in request.');
         done();
       });
   });
