@@ -17,7 +17,6 @@ export default ({ model, Schema }) => {
       match: emailMatch,
       maxlength: 255,
       minlength: 5,
-      required: false,
       trim: true,
       type: String,
       unique: true,
@@ -36,11 +35,12 @@ export default ({ model, Schema }) => {
       maxlength: 100,
       minlength: 2,
       lowercase: true,
-      required: true,
       trim: true,
       type: String,
     },
     password: {
+      maxlength: 100,
+      minlength: 5,
       required: true,
       type: String,
     },
@@ -53,6 +53,15 @@ export default ({ model, Schema }) => {
       type: Date,
       required: false,
     },
+  });
+
+  User.pre('findOneAndUpdate', function(/** @type {() => void} */ next) {
+
+    if (!this._update.modified_at) {
+      this._update.modified_at = new Date().toISOString();
+    }
+
+    next();
   });
 
   return model('User', User);

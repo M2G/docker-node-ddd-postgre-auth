@@ -24,7 +24,7 @@ export default ({
       .authenticate({ email })
       .then(async (data: any) => {
 
-        const { _id, email, username, password } = <IUser>data || {};
+        const { _id, email, password } = <IUser>data || {};
 
         if (!email)
           return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${body.email}).`));
@@ -33,7 +33,7 @@ export default ({
 
           if (match) {
 
-            const payload = <IUser>{ _id, username, password, email };
+            const payload = <IUser>{ _id, password, email };
 
             const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 

@@ -93,6 +93,22 @@ describe('Routes: POST Auth', () => {
       });
   });
 
+  it('shouldnt authenticate user return error empty username/password was sent', (done) => {
+    rqt
+      .post(BASE_URI)
+      .send({
+        email: '',
+        password: '',
+      })
+      .expect(422)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.success).toBeFalsy();
+        expect(res.body.error).toEqual('Empty value.');
+        done();
+      });
+  });
+
   it('shouldnt authenticate user return error empty body was sent', (done) => {
     rqt
       .post(BASE_URI)

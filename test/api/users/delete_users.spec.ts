@@ -108,4 +108,17 @@ describe('Routes: DELETE User', () => {
           done();
         });
     });
+
+  it('shouldnt register user return error empty params was sent', (done) => {
+    rqt
+      .delete(BASE_URI('zzzzzz'))
+      .set('Authorization', `Bearer ${token}`)
+      .expect(422)
+      .end((err: any, res: any) => {
+        expect(err).toBeFalsy();
+        expect(res.body.success).toBeFalsy();
+        expect(res.body.error).toEqual('Invalid id parameters in request.');
+        done();
+      });
+  });
 });
