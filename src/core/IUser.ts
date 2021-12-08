@@ -1,7 +1,7 @@
-import type { Document } from 'mongoose';
+import type { Document, Types} from 'mongoose';
 
 interface IUser extends Document {
-  _id?: object;
+  _id?: Types.ObjectId | string;
   email?: string;
   username?: string;
   firstName?: string;
@@ -9,6 +9,8 @@ interface IUser extends Document {
   password?: string | undefined;
   createdAt?: string;
   modifiedAt?: string;
+  oldPassword?: string;
+  newPassword?: string;
 }
 
 export default IUser;

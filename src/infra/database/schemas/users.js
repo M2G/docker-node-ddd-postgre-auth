@@ -1,6 +1,8 @@
 /*eslint-disable*/
 
 // @ts-ignore
+import t from 'tcomb';
+
 export default ({ model, Schema }) => {
   const emailMatch = [
     /([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i,
@@ -52,6 +54,16 @@ export default ({ model, Schema }) => {
     modified_at: {
       type: Date,
       required: false,
+    },
+    old_password: {
+      maxlength: 100,
+      minlength: 5,
+      type: String,
+    },
+    new_password: {
+      maxlength: 100,
+      minlength: 5,
+      type: String,
     },
   });
 

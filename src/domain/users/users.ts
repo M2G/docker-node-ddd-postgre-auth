@@ -7,6 +7,8 @@ const Users = t.struct({
   first_name: t.maybe(t.String),
   last_name: t.maybe(t.String),
   modified_at: t.maybe(t.Any),
+  newPassword: t.maybe(t.String),
+  oldPassword: t.maybe(t.String),
   password: t.maybe(t.String),
   username: t.maybe(t.String),
 });

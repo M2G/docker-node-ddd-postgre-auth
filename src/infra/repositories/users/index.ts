@@ -32,7 +32,6 @@ export default ({ model }: any) => {
   const findById = (...args: any[]) => {
     const m :IRead<any> = model;
     const [{ ...params }] = args;
-
     return m
       .findOne({ ...params })
       .select('-password -__v')

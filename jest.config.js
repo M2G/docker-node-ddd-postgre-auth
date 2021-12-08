@@ -8,7 +8,7 @@ module.exports = {
     "!<rootDir>/src/models/**",
     "!<rootDir>/src/repository/**",
     "!<rootDir>/src/utils/**",
-    "!<rootDir>/src/index.ts"
+    "!<rootDir>/src/app/index.ts"
   ],
   forceExit: true,
   globals: {
