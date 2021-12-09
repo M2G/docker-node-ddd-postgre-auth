@@ -44,6 +44,7 @@ module.exports = {
     "multiline-ternary": 0,
     "init-declarations": 0,
     "func-style": 0,
+    "camelcase": 1,
 
     "max-statements": 0,
     "max-lines": 0,
@@ -91,6 +92,62 @@ module.exports = {
     "import/resolver": {
       node: {
         extensions: [".js", ".ts"]
+      },
+      alias: {
+        map: [
+          [
+            "constants",
+            "./src/constants"
+          ],
+          [
+            "config",
+            "./src/config"
+          ],
+          [
+            "components",
+            "./src/components"
+          ],
+          [
+            "api",
+            "./src/api"
+          ],
+          [
+            "utils",
+            "./src/utils"
+          ],
+          [
+            "actions",
+            "./src/actions"
+          ],
+          [
+            "reducers",
+            "./src/reducers"
+          ],
+          [
+            "schemas",
+            "./src/schemas"
+          ],
+          [
+            "store",
+            "./src/store"
+          ],
+          [
+            "storage",
+            "./src/storage"
+          ],
+          [
+            "hooks",
+            "./src/hooks"
+          ],
+          [
+            "tests",
+            "./src/tests"
+          ],
+          [
+            "styles",
+            "./src/styles"
+          ]
+        ]
       }
     }
   },

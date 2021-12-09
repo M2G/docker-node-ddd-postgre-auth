@@ -4,21 +4,21 @@
 import Users from '../../domain/users';
 
 /**
- * function for change password user.
+ * function for forgot password user.
  */
 export default ({ usersRepository }: any) => {
-  const changePassword = async ({ ...args }: any) =>
+  const forgotPassword = async ({ ...args }: any) =>
     Promise.resolve()
       .then(() => {
         const users = Users({ ...args });
 
-        return usersRepository.changePassword(users);
+        return usersRepository.forgotPassword(users);
       })
       .catch((error: string | undefined) => {
         throw new Error(error);
       });
 
   return {
-    changePassword,
+    forgotPassword,
   };
 };

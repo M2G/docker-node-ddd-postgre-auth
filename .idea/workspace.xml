@@ -2,17 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/change_password/post.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/change_password/instance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/change_password/router.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/forgot_password/post.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/reset_password/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/instance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/change_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/change_password/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/change_password/posts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/change_password/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/change_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/forgot_password/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/change_password/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reset_password/post.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/schemas/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/schemas/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/change_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/change_password/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/change_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +46,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/api/users" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
@@ -52,11 +59,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src/interfaces/http/modules" />
       <recent name="$PROJECT_DIR$/test/api/users" />
       <recent name="$PROJECT_DIR$/test/unit/app/users" />
-      <recent name="$PROJECT_DIR$/src/app" />
       <recent name="$PROJECT_DIR$/src/domain" />
-      <recent name="$PROJECT_DIR$/src/infra/repositories" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.Routes: POST Auth.shouldnt authenticate user return error empty username/password was sent">
@@ -162,7 +169,7 @@
       <workItem from="1635366872672" duration="175505000" />
       <workItem from="1637787030069" duration="10763000" />
       <workItem from="1637889207847" duration="66199000" />
-      <workItem from="1638835660351" duration="4298000" />
+      <workItem from="1638835660351" duration="6419000" />
     </task>
     <servers />
   </component>

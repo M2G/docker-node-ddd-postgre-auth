@@ -6,7 +6,6 @@ export default ({ model }: any) => {
 
   const getAll = (...args: any[]) => {
     const m :IRead<any> = model;
-
     return m
       .find(...args)
       .select('-password -__v')

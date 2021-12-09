@@ -9,8 +9,8 @@ interface IUser extends Document {
   password?: string | undefined;
   createdAt?: string;
   modifiedAt?: string;
-  oldPassword?: string;
-  newPassword?: string;
+  reset_password_token?: string;
+  reset_password_expires?: Date;
 }
 
 export default IUser;
