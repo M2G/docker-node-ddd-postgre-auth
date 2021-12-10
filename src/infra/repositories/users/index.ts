@@ -28,6 +28,14 @@ export default ({ model }: any) => {
       });
   };
 
+  const forgotPassword = (...args: any[]) => {
+
+    console.log('forgotPassword', args);
+
+  }
+
+  const resetPassword = (...args: any[]) => {}
+
   const findById = (...args: any[]) => {
     const m :IRead<any> = model;
     const [{ ...params }] = args;
@@ -90,6 +98,8 @@ export default ({ model }: any) => {
     update,
     findById,
     authenticate,
+    resetPassword,
+    forgotPassword,
     getAll,
     register,
   };

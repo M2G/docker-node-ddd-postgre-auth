@@ -8,6 +8,7 @@ import index from './modules';
 import authenticate from './modules/authenticate';
 import register from './modules/register';
 import users from './modules/users';
+import forgotPassword from './modules/forgot_password';
 import ROUTES from '../../../config/routes';
 
 export default ({
@@ -32,6 +33,8 @@ export default ({
   router.use(ROUTES.INDEX, index());
   router.use(ROUTES.REGISTER, register().router);
   router.use(ROUTES.AUTHENTICATE, authenticate().router);
+  router.use(ROUTES.AUTHENTICATE, authenticate().router);
+  router.use(ROUTES.FORGOT_PASSWORD, forgotPassword().router);
   router.use(verify);
   router.use(ROUTES.USERS, users().router);
 
