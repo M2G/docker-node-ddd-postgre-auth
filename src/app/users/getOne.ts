@@ -12,7 +12,7 @@ export default ({ usersRepository }: any) => {
 
         const users = Users({ ...args });
 
-        return usersRepository.findById(cleanData(users));
+        return usersRepository.findOne(cleanData(users));
       })
       .catch((error: string | undefined) => {
         throw new Error(error);

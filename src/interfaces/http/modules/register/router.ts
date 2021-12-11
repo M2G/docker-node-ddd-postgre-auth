@@ -26,11 +26,10 @@ export default ({
       .register({
           email,
           password: hasPassword,
-          username,
         })
       .then((data: IUser) => {
         const { _id, email, password } = <IUser>data;
-        const payload = { _id, username, password };
+        const payload = { _id, email, password };
         const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 
         // if user is found and password is right, create a token

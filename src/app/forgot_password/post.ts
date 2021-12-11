@@ -3,6 +3,7 @@
  */
 import Users from '../../domain/users';
 import { cleanData } from '../../interfaces/http/utils';
+
 /**
  * function for forgot password user.
  */

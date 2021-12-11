@@ -1,8 +1,10 @@
 /*eslint-disable*/
 import { IRead, IWrite } from '../../../core/IRepository';
 import toEntity from './transform';
+import { cleanData } from '../../../interfaces/http/utils';
+import IUser from '../../../core/IUser';
 
-export default ({ model }: any) => {
+export default ({ model, jwt }: any) => {
 
   const getAll = (...args: any[]) => {
     const m :IRead<any> = model;
@@ -28,15 +30,33 @@ export default ({ model }: any) => {
       });
   };
 
-  const forgotPassword = (...args: any[]) => {
 
-    console.log('forgotPassword', args);
+
+
+  const forgotPassword = async (...args: any[]) => {
+
+    const [{ ...params }] = args;
+
+    console.log('--------', args);
+
+    const { ...data }: any = await findOne(params);
+
+    console.log('forgotPassword', cleanData(data));
+
+    const { _id, email, password } = <IUser>data;
+    const payload = { _id, email, password };
+    const options = { subject: email, audience: [], expiresIn: 60 * 60 };
+
+    // if user is found and password is right, create a token
+    const token: string = jwt.signin(options)(payload);
+
+
 
   }
 
   const resetPassword = (...args: any[]) => {}
 
-  const findById = (...args: any[]) => {
+  const findOne = (...args: any[]) => {
     const m :IRead<any> = model;
     const [{ ...params }] = args;
     return m
@@ -96,7 +116,7 @@ export default ({ model }: any) => {
   return {
     remove,
     update,
-    findById,
+    findOne,
     authenticate,
     resetPassword,
     forgotPassword,
