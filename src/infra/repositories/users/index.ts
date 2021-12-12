@@ -19,15 +19,20 @@ export default ({ model, jwt }: any) => {
       });
   }
 
-  const register = (...args: any[]) => {
-    const [{ ...params }] = args;
-    const m :IWrite<any> = model;
-    return m
-      .create({ ...params })
-      .then((data: any) => toEntity(data))
-      .catch((error: any) => {
-        throw new Error(error);
-      });
+  const register = async (...args: any[]) => {
+
+    try {
+
+      const [{ ...params }] = args;
+      const m :IWrite<any> = model;
+
+      return await m.create({ ...params });
+
+    } catch (error) {
+
+      throw new Error(error);
+
+    }
   };
 
 
@@ -127,20 +132,6 @@ export default ({ model, jwt }: any) => {
       throw new Error(error);
 
     }
-
-
-   /* const [{ ...params }] = args;
-    const m :IRead<any> = model;
-    return m
-      .findOne({ ...params })
-      .then((data: any) => {
-        console.log('authenticate data', data)
-        if (!data) return null;
-        return toEntity(data);
-      })
-      .catch((error: any) => {
-        throw new Error(error);
-      });*/
   };
 
   return {
