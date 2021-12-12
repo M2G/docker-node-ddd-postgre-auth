@@ -20,9 +20,15 @@ export default ({
     if (!email || !password)
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Empty value.'));
 
-    postUseCase
+
+
+    const test =  postUseCase
       .authenticate({ email })
-      .then(async (data: any) => {
+
+
+    console.log('-----> postUseCase test', test)
+
+    test.then(async (data: any) => {
 
         const { _id, email, password } = <IUser>data || {};
 

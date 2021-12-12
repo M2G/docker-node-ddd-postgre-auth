@@ -69,8 +69,9 @@
     "eslint-config-airbnb-typescript": "^14.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-loader": "4.0.2",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-prettier": "^3.1.4",
     "express": "4.16.4",
@@ -105,7 +106,6 @@
     "@types/passport-http-bearer": "^1.0.37",
     "babel-eslint": "^10.0.3",
     "concurrently": "^6.0.2",
-    "module-alias": "^2.2.2",
     "supertest": "3.4.2",
     "supertest-as-promised": "^4.0.2",
     "ts-node": "^10.0.0"

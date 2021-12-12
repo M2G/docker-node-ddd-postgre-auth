@@ -89,67 +89,19 @@ module.exports = {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts"]
     },
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        extensions: [".js", ".ts"]
+        paths: ["src"],
+        extensions: ['.js', '.ts'],
+        moduleDirectory: ['node_modules', 'src/'],
       },
-      alias: {
-        map: [
-          [
-            "constants",
-            "./src/constants"
-          ],
-          [
-            "config",
-            "./src/config"
-          ],
-          [
-            "components",
-            "./src/components"
-          ],
-          [
-            "api",
-            "./src/api"
-          ],
-          [
-            "utils",
-            "./src/utils"
-          ],
-          [
-            "actions",
-            "./src/actions"
-          ],
-          [
-            "reducers",
-            "./src/reducers"
-          ],
-          [
-            "schemas",
-            "./src/schemas"
-          ],
-          [
-            "store",
-            "./src/store"
-          ],
-          [
-            "storage",
-            "./src/storage"
-          ],
-          [
-            "hooks",
-            "./src/hooks"
-          ],
-          [
-            "tests",
-            "./src/tests"
-          ],
-          [
-            "styles",
-            "./src/styles"
-          ]
-        ]
-      }
-    }
+      typescript: {
+        alwaysTryTypes: true,
+        tests: '/src/tests',
+        js: '/src/js',
+        styles: '/src/styles',
+      },
+    },
   },
   env: {
     browser: true,
