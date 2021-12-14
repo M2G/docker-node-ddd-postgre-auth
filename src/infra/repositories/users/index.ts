@@ -4,19 +4,22 @@ import toEntity from './transform';
 import { cleanData } from '../../../interfaces/http/utils';
 import IUser from '../../../core/IUser';
 
+const select = '-password -__v';
+
 export default ({ model, jwt }: any) => {
 
-  const getAll = (...args: any[]) => {
-    const m :IRead<any> = model;
-    return m
-      .find(...args)
-      .select('-password -__v')
-      .sort({ username: 1 })
-      .then((entity: any) =>
-        entity?.map((data: {}) => data))
-      .catch((error: any) => {
-        throw new Error(error);
-      });
+  const getAll = async (...args: any[]) => {
+
+    try {
+
+      const m :IRead<any> = model;
+      return await m.find(...args)
+        .select(select)
+        .sort({ email: 1 });
+
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   const register = async (...args: any[]) => {
@@ -25,103 +28,103 @@ export default ({ model, jwt }: any) => {
 
       const [{ ...params }] = args;
       const m :IWrite<any> = model;
+      const user = await m.create({ ...params });
 
-      return await m.create({ ...params });
+      return toEntity(user);
 
     } catch (error) {
-
       throw new Error(error);
-
     }
   };
-
-
-
 
   const forgotPassword = async (...args: any[]) => {
 
     const [{ ...params }] = args;
-
-    console.log('--------', args);
-
     const { ...data }: any = await findOne(params);
 
-    console.log('forgotPassword', cleanData(data));
-
-    const { _id, email, password } = <IUser>data;
+    const user = cleanData(data);
+    const { _id, email, password } = <IUser>user;
     const payload = { _id, email, password };
     const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 
     // if user is found and password is right, create a token
     const token: string = jwt.signin(options)(payload);
 
-    console.log('token token token', token);
-    update({
+    const updatedUser = await update({
       _id,
       reset_password_token: token,
       reset_password_expires: Date.now() + 86400000
     });
 
+    return toEntity(updatedUser);
 
   }
 
   const resetPassword = (...args: any[]) => {}
 
-  const findOne = (...args: any[]) => {
-    const m :IRead<any> = model;
-    const [{ ...params }] = args;
-    return m
-      .findOne({ ...params })
-      .select('-password -__v')
-      .then((data: any) => toEntity(data))
-      .catch((error: string | undefined) => {
-        console.log('catch', error)
-        throw new Error(error);
-      });
+  const findOne = async (...args: any[]) => {
+
+    try {
+
+      const m :IRead<any> = model;
+      const [{ ...params }] = args;
+      const user = await m.findOne({ ...params })
+        .select(select);
+
+      return toEntity(user);
+
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  const remove = (...args: any) => {
-    const m :IWrite<any> = model;
-    const [{ ...params }] = args;
-    return m
-      .findByIdAndDelete({ ...params })
-      .select('-password -__v')
-      .then((data: any) => toEntity(data))
-      .catch((error: string | undefined) => {
-        throw new Error(error);
-      });
+  const remove = async (...args: any) => {
+
+    try {
+
+      const m :IWrite<any> = model;
+      const [{ ...params }] = args;
+      const user = await m.findByIdAndDelete({ ...params })
+        .select(select);
+
+      return toEntity(user);
+
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  const update = (...args: any) => {
-    const m :IWrite<any> = model;
-    const [{ _id, ...params }] = args;
+  const update = async (...args: any) => {
 
-    console.log('UPDATE ----->', { _id, ...params });
+    try {
 
-    if (params.password) delete params.password;
+      const m :IWrite<any> = model;
+      const [{ _id, ...params }] = args;
 
-    return m
-      .findByIdAndUpdate(
-        { _id } as any,
+      console.log('UPDATE ----->', { _id, ...params });
+
+      if (params.password) delete params.password;
+
+      const user = await m.findByIdAndUpdate({ _id } as any,
         { ...params },
         { upsert: true, new: true })
-      .select('-password -__v')
-      .then((data: any) => {
-        return toEntity(data)
-      })
-      .catch((error: string | undefined) => {
-        throw new Error(error);
-      });
+        .select(select);
+
+      console.log('OUT OUT update', user)
+
+      return toEntity(user);
+
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   const authenticate = async (...args: any[]) => {
-
 
     try {
 
       const [{ ...params }] = args;
       const m :IRead<any> = model;
-
       const user = await m.findOne({ ...params });
 
       if (!user) return null;

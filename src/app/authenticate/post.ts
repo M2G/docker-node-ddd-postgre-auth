@@ -9,15 +9,10 @@ import { cleanData } from '../../interfaces/http/utils';
  */
 export default ({ usersRepository }: any) => {
   const authenticate = ({ ...args }: any) => {
-
     try {
       const users = Users({ ...args });
 
-      const t = usersRepository.authenticate(cleanData(users));
-
-        console.log('-----> usersRepository authenticate', t);
-
-      return t;
+      return usersRepository.authenticate(cleanData(users));
     } catch (error: any | unknown) {
       throw new Error(error);
     }

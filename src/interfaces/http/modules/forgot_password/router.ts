@@ -2,9 +2,6 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import IUser from '../../../../core/IUser';
-// import { encryptPassword } from '../../../../infra/encryption';
-
-//    const hasPassword = encryptPassword(password);
 
 export default ({
                   postUseCase,
@@ -27,18 +24,8 @@ export default ({
         email,
       })
       .then((data: IUser) => {
-
-        console.log('----->', data)
-
-      /*  const { _id, email, password } = <IUser>data;
-        const payload = { _id, username, password };
-        const options = { subject: email, audience: [], expiresIn: 60 * 60 };
-
-        // if user is found and password is right, create a token
-        const token: string = jwt.signin(options)(payload);
-
-        logger.info({ token });
-        return res.status(Status.OK).json(Success({ success: true, token: token }));*/
+        logger.info({ ...data });
+        return res.status(Status.OK).json(Success({ success: true, ...data }));
       })
       .catch((error: { message: string }) => {
         console.log('::::::::::: 2', error.message);
