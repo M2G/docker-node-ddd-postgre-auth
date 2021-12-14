@@ -13,9 +13,11 @@ export default ({ model, jwt }: any) => {
     try {
 
       const m :IRead<any> = model;
-      return await m.find(...args)
+      const users = await m.find(...args)
         .select(select)
         .sort({ email: 1 });
+
+      return users.map(user => toEntity(user));
 
     } catch (error) {
       throw new Error(error);
