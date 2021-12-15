@@ -98,7 +98,7 @@ module.exports = {
       typescript: {
         alwaysTryTypes: true,
         tests: '/src/tests',
-        js: '/src/js',
+        core: '/src/core',
         styles: '/src/styles',
       },
     },

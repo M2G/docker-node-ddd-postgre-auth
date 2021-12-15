@@ -20,8 +20,15 @@ export default ({
 
   router
     .get('/', async (req: Request, res: Response) => {
+
+      console.log('--------> req', req.query)
+
+      const { query } = req || {};
+      const { search } = query;
+
+
      getUseCase
-        .all()
+        .all({ search })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
         })
