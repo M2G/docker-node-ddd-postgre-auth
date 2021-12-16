@@ -11,9 +11,25 @@ export default ({ model, jwt }: any) => {
   const getAll = async (...args: any[]) => {
 
     try {
+      const [{ ...params }] = args;
+
+      let query = {}
+
+      if (params.search) {
+        query = {
+          $or: [
+            { first_name : { $regex: params.search, $options: 'i' }},
+            { last_name: { $regex: params.search, $options: 'i' } },
+            { email : { $regex: params.search, $options: 'i' }}
+          ]
+        }
+      }
+
+      console.log('query', query)
 
       const m :IRead<any> = model;
-      const users = await m.find(...args)
+
+      const users = await m.find(query)
         .select(select)
         .sort({ email: 1 });
 

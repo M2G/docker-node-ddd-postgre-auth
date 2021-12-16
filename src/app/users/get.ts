@@ -7,18 +7,15 @@ const TTL = 0.6 * 60;
 export default ({ usersRepository, redis }: any) => {
   const all = async ({ ...arg }) => {
     try {
-
-      console.log(':::::: arg', arg);
-
-      /*const cachingUserList = await redis.get(KEY);
+      const cachingUserList = await redis.get(KEY);
 
       if (cachingUserList) return cachingUserList;
 
-      const userList = await usersRepository.getAll({});
+      const userList = await usersRepository.getAll({ ...arg });
 
       await redis.set(KEY, JSON.stringify(userList), TTL);
 
-      return userList;*/
+      return userList;
     } catch (error: unknown) {
       throw new Error(error);
     }

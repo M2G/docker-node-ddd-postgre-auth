@@ -21,14 +21,13 @@ export default ({
   router
     .get('/', async (req: Request, res: Response) => {
 
-      console.log('--------> req', req.query)
-
       const { query } = req || {};
       const { search } = query;
 
+      console.log('--------> req', req.query)
 
      getUseCase
-        .all({ search })
+        .all(search ? { search } : {})
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
         })
