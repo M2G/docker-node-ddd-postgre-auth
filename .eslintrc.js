@@ -98,8 +98,13 @@ module.exports = {
       typescript: {
         alwaysTryTypes: true,
         tests: '/src/tests',
+        app: '/src/app',
         core: '/src/core',
         styles: '/src/styles',
+        domain: '/src/domain',
+        infra: '/src/infra',
+        interfaces: '/src/interfaces',
+
       },
     },
   },

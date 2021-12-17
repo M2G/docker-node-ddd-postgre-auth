@@ -21,22 +21,6 @@ export default ({ usersRepository, redis }: any) => {
     }
   };
 
-     /* Promise.resolve()
-      .then(async () => {
-        const cachingUserList = await redis.get(KEY);
-
-        if (cachingUserList) return cachingUserList;
-
-        const userList = await usersRepository.getAll({});
-
-        await redis.set(KEY, JSON.stringify(userList), TTL);
-
-        return userList;
-      })
-      .catch((error: string | undefined) => {
-        throw new Error(error);
-      }); */
-
   return {
     all,
   };
