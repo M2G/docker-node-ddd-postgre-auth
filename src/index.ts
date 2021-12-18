@@ -1,5 +1,4 @@
-import 'module-alias/register';
-import container from './container';
+import container from './container/container';
 
 export const app: any = container.resolve('app');
 

@@ -30,17 +30,20 @@
       "ES2018",
       "ES2019",
       "ES2020",
-      "ESNext",
-      "dom"
+      "ESNext"
     ],
     "rootDirs": ["src"],
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
-      "@config": ["src/config"]
+      "app/*": ["./app"],
+      "container": ["./container"],
+      "infra/*": ["./infra"],
+      "domain/*": ["./domain"]
     }
   },
-  "include": ["./src", "./test"],
+  "include": ["src"],
   "exclude": [
+    "test",
     "**/__tests__/*",
     "node_modules",
     "dist",

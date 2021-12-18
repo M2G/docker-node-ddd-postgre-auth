@@ -1,4 +1,4 @@
-import container from '../../../../container';
+import container from '../../../../container/container';
 import post from '../../../../app/register';
 
 export default () => {

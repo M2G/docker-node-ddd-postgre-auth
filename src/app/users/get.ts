@@ -17,7 +17,7 @@ export default ({ usersRepository, redis }: any) => {
 
       return userList;
     } catch (error: unknown) {
-      throw new Error(error);
+      throw new Error(error as string | undefined);
     }
   };
 

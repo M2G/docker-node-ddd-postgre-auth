@@ -20,10 +20,6 @@
     "auth"
   ],
   "author": "M2G",
-  "_moduleAliases": {
-    "@root": ".",
-    "@deep": "src/some/deep/directory/or/file"
-  },
   "scripts": {
     "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint",
@@ -35,8 +31,8 @@
     "test": "npm run test:integration && npm run test:unit",
     "test:unit": "NODE_ENV=test jest unit --forceExit",
     "test:integration": "NODE_ENV=test jest --forceExit",
-    "build-ts": "tsc",
-    "watch-ts": "tsc -w",
+    "build-ts": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./build/src",
+    "watch-ts": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./build/src -w",
     "tslint": "eslint -c tslint.json -p tsconfig.json",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect build/src/index.js",
@@ -68,14 +64,11 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-airbnb-typescript": "^14.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-prettier": "^3.1.4",
     "express": "4.16.4",
-    "express-graphql": "^0.12.0",
     "faker": "^5.5.3",
     "http-status": "^1.5.0",
     "identity-obj-proxy": "^3.0.0",
@@ -94,6 +87,7 @@
     "redis": "^3.1.2",
     "tcomb": "^3.2.29",
     "ts-jest": "^27.0.3",
+    "tscpaths": "^0.0.9",
     "typescript": "^4.2.4",
     "winston": "3.2.1"
   },
@@ -108,6 +102,7 @@
     "concurrently": "^6.0.2",
     "supertest": "3.4.2",
     "supertest-as-promised": "^4.0.2",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.12.0"
   }
 }

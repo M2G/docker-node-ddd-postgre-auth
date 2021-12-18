@@ -1,4 +1,4 @@
-import container from '../../../../container';
+import container from '../../../../container/container';
 import { get, getOne, put, remove } from '../../../../app/users';
 
 export default () => {

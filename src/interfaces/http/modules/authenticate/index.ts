@@ -1,4 +1,4 @@
-import container from '../../../../container';
+import container from 'container';
 import router from './router';
 import instance from './instance';
 
