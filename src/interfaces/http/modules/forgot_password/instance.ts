@@ -1,4 +1,4 @@
-import container from '../../../../container/container';
+import container from '../../../../container';
 import post from '../../../../app/forgot_password';
 
 export default () => {

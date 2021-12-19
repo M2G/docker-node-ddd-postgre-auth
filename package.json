@@ -5,17 +5,17 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/M2G/docker-node-ddd-mongodb-auth"
+    "url": "https://github.com/M2G/docker-node-ddd-postgresql-auth"
   },
-  "homepage": "https://github.com/M2G/docker-node-ddd-mongodb-auth",
+  "homepage": "https://github.com/M2G/docker-node-ddd-postgresql-auth",
   "bugs": {
-    "url": "https://github.com/M2G/docker-node-ddd-mongodb-auth/issues"
+    "url": "https://github.com/M2G/docker-node-ddd-postgresql-auth/issues"
   },
   "keywords": [
     "docker",
     "nodejs",
     "typescript",
-    "mongodb",
+    "postgresql",
     "ddd",
     "auth"
   ],
@@ -31,6 +31,7 @@
     "test": "npm run test:integration && npm run test:unit",
     "test:unit": "NODE_ENV=test jest unit --forceExit",
     "test:integration": "NODE_ENV=test jest --forceExit",
+    "alias": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./build/src",
     "build-ts": "tsc",
     "watch-ts": "tsc --watch",
     "tslint": "eslint -c tslint.json -p tsconfig.json",
@@ -87,6 +88,7 @@
     "redis": "^3.1.2",
     "tcomb": "^3.2.29",
     "ts-jest": "^27.0.3",
+    "tscpaths": "^0.0.9",
     "typescript": "^4.2.4",
     "winston": "3.2.1"
   },
@@ -100,8 +102,6 @@
     "babel-eslint": "^10.0.3",
     "concurrently": "^6.0.2",
     "supertest": "3.4.2",
-    "supertest-as-promised": "^4.0.2",
-    "ts-node": "^10.0.0",
-    "tsconfig-paths": "^3.12.0"
+    "supertest-as-promised": "^4.0.2"
   }
 }

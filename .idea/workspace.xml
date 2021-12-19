@@ -2,12 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/users/getone_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/getone_users.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/users/put_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/put_register.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,8 +71,8 @@
       <recent name="$PROJECT_DIR$/src/domain" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/container" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/container" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.Routes: POST Auth.shouldnt authenticate user return error empty username/password was sent">
@@ -165,7 +179,8 @@
       <workItem from="1637787030069" duration="10763000" />
       <workItem from="1637889207847" duration="66199000" />
       <workItem from="1638835660351" duration="42487000" />
-      <workItem from="1639782895286" duration="30432000" />
+      <workItem from="1639782895286" duration="32008000" />
+      <workItem from="1639875538986" duration="574000" />
     </task>
     <servers />
   </component>
@@ -180,7 +195,6 @@
         <option value="$PROJECT_DIR$/src/app/index.js" />
         <option value="$PROJECT_DIR$/src/core/IRepository.js" />
         <option value="$PROJECT_DIR$/src/core/IUser.js" />
-        <option value="$PROJECT_DIR$/src/container/container.js" />
         <option value="$PROJECT_DIR$/config/env/index.js" />
         <option value="$PROJECT_DIR$/config/env/staging.js" />
         <option value="$PROJECT_DIR$/config/env/test.js" />

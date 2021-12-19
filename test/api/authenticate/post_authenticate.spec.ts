@@ -2,7 +2,7 @@
 import request from 'supertest';
 import faker from 'faker';
 import { connect, clear, close } from '../../dbHandler';
-import container from '../../../src/container/container';
+import container from '../../../src/container';
 
 const server: any = container.resolve('server');
 const rqt: any = request(server.app);

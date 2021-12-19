@@ -1,5 +1,5 @@
-import container from '../../../../container';
-import post from '../../../../app/authenticate';
+import container from '@container';
+import post from '@app/authenticate';
 
 export default () => {
   const { cradle } = container;
