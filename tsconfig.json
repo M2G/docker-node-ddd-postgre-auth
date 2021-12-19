@@ -34,12 +34,7 @@
     ],
     "rootDirs": ["src"],
     "baseUrl": "src",
-    "paths": {
-      "app/*": ["./app"],
-      "container": ["./container"],
-      "infra/*": ["./infra"],
-      "domain/*": ["./domain"]
-    }
+    "paths": {}
   },
   "include": ["src"],
   "exclude": [

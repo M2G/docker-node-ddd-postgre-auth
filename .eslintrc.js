@@ -93,18 +93,7 @@ module.exports = {
       node: {
         paths: ["src"],
         extensions: ['.js', '.ts'],
-        moduleDirectory: ['node_modules', 'src/'],
-      },
-      typescript: {
-        alwaysTryTypes: true,
-        tests: '/src/tests',
-        app: '/src/app',
-        core: '/src/core',
-        styles: '/src/styles',
-        domain: '/src/domain',
-        infra: '/src/infra',
-        interfaces: '/src/interfaces',
-
+        moduleDirectory: ['node_modules', 'src'],
       },
     },
   },
