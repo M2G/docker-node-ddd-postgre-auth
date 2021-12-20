@@ -8,16 +8,15 @@ import { cleanData } from '../../interfaces/http/utils';
  * function for forgot password user.
  */
 export default ({ usersRepository }: any) => {
-  const forgotPassword = async ({ ...args }: any) =>
-    Promise.resolve()
-      .then(() => {
-        const users = Users({ ...args });
+  const forgotPassword = ({ ...args }: any) => {
+    try {
+      const users = Users({ ...args });
 
-        return usersRepository.forgotPassword(cleanData(users));
-      })
-      .catch((error: string | undefined) => {
-        throw new Error(error);
-      });
+      return usersRepository.forgotPassword(cleanData(users));
+    } catch (error: any | unknown) {
+      throw new Error(error as string | undefined);
+    }
+  };
 
   return {
     forgotPassword,

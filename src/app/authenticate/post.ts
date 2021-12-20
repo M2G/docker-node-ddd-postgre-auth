@@ -14,7 +14,7 @@ export default ({ usersRepository }: any) => {
 
       return usersRepository.authenticate(cleanData(users));
     } catch (error: any | unknown) {
-      throw new Error(error);
+      throw new Error(error as string | undefined);
     }
   };
 

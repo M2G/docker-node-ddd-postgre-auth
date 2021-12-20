@@ -35,8 +35,12 @@
     "rootDirs": ["src"],
     "baseUrl": "src",
     "paths": {
-      "@container": ["./container"],
-      "@app/*": ["./app"]
+      "container": ["./container"],
+      "app/*": ["./app"],
+      "core": ["./core"],
+      "domain": ["./domain"],
+      "interfaces/*": ["./interfaces"],
+      "utils": ["./interfaces/http/utils"]
     }
   },
   "include": ["src"],

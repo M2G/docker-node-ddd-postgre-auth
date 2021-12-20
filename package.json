@@ -32,7 +32,7 @@
     "test:unit": "NODE_ENV=test jest unit --forceExit",
     "test:integration": "NODE_ENV=test jest --forceExit",
     "alias": "tscpaths -p tsconfig.json -s ./src -o ./build/src",
-     "loop": "while sleep 15; do npm run alias; done",
+    "loop": "while sleep 10; do npm run alias; done",
     "build-ts": "tsc",
     "watch-ts": "tsc --watch",
     "tslint": "eslint -c tslint.json -p tsconfig.json",

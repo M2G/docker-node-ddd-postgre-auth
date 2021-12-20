@@ -7,18 +7,15 @@ import Users from '../../domain/users';
  * function for create user.
  */
 export default ({ usersRepository }: any) => {
-  // code for getting all the items
-  const register = async ({ ...args }: any) =>
-    Promise.resolve()
-      .then(() => {
-        const users = Users({ ...args });
+  const register = ({ ...args }: any) => {
+    try {
+      const users = Users({ ...args });
 
-        return usersRepository.register(users);
-      })
-      .catch((error: string | undefined) => {
-        throw new Error(error);
-      });
-
+      return usersRepository.register(users);
+    } catch (error: any | unknown) {
+      throw new Error(error as string | undefined);
+    }
+  };
   return {
     register,
   };

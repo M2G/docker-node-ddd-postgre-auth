@@ -1,8 +1,8 @@
 /*eslint-disable*/
-import { IRead, IWrite } from '../../../core/IRepository';
+import { IRead, IWrite } from 'core/IRepository';
+import { cleanData } from 'utils';
+import IUser from 'core/IUser';
 import toEntity from './transform';
-import { cleanData } from '../../../interfaces/http/utils';
-import IUser from '../../../core/IUser';
 
 const select = '-password -__v';
 
@@ -64,8 +64,6 @@ export default ({ model, jwt }: any) => {
     const { _id, email, password } = <IUser>user;
     const payload = { _id, email, password };
     const options = { subject: email, audience: [], expiresIn: 60 * 60 };
-
-    // if user is found and password is right, create a token
     const token: string = jwt.signin(options)(payload);
 
     const updatedUser = await update({
@@ -78,7 +76,37 @@ export default ({ model, jwt }: any) => {
 
   }
 
-  const resetPassword = (...args: any[]) => {}
+  const resetPassword = async (...args: any[]) => {
+
+    const [{ ...params }] = args;
+    const { ...data }: any = await findOne(params);
+    const user = cleanData(data);
+
+    console.log('----->', user);
+
+    /*if (req.body.newPassword === req.body.verifyPassword) {
+      user.hash_password = bcrypt.hashSync(req.body.newPassword, 10);
+      user.reset_password_token = undefined;
+      user.reset_password_expires = undefined;
+      user.save(function(err) {
+        if (err) {
+          return res.status(422).send({
+            message: err
+          });
+        } else {
+          var data = {
+            to: user.email,
+            from: email,
+            template: 'reset-password-email',
+            subject: 'Password Reset Confirmation',
+            context: {
+              name: user.fullName.split(' ')[0]
+            }
+          };
+        }
+      }
+    }*/
+  }
 
   const findOne = async (...args: any[]) => {
 

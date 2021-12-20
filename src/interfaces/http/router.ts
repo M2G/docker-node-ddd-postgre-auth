@@ -9,7 +9,16 @@ import authenticate from './modules/authenticate';
 import register from './modules/register';
 import users from './modules/users';
 import forgotPassword from './modules/forgot_password';
-import ROUTES from '../../../config/routes';
+import resetPassword from './modules/reset_password';
+
+const ROUTES = {
+  AUTHENTICATE: '/api/authenticate',
+  FORGOT_PASSWORD: '/api/forgot_password',
+  INDEX: '/',
+  REGISTER: '/api/register',
+  RESET_PASSWORD: '/api/reset_password',
+  USERS: '/api/users',
+};
 
 export default ({
  config, logger, database, verify,
@@ -33,8 +42,8 @@ export default ({
   router.use(ROUTES.INDEX, index());
   router.use(ROUTES.REGISTER, register().router);
   router.use(ROUTES.AUTHENTICATE, authenticate().router);
-  router.use(ROUTES.AUTHENTICATE, authenticate().router);
   router.use(ROUTES.FORGOT_PASSWORD, forgotPassword().router);
+  router.use(ROUTES.RESET_PASSWORD, resetPassword().router);
   router.use(verify);
   router.use(ROUTES.USERS, users().router);
 
