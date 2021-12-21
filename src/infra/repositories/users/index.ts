@@ -58,9 +58,8 @@ export default ({ model, jwt }: any) => {
   const forgotPassword = async (...args: any[]) => {
 
     const [{ ...params }] = args;
-    const { ...data }: any = await findOne(params);
+    const { ...user }: any = await findOne(params);
 
-    const user = cleanData(data);
     const { _id, email, password } = <IUser>user;
     const payload = { _id, email, password };
     const options = { subject: email, audience: [], expiresIn: 60 * 60 };
@@ -79,10 +78,10 @@ export default ({ model, jwt }: any) => {
   const resetPassword = async (...args: any[]) => {
 
     const [{ ...params }] = args;
-    const { ...data }: any = await findOne(params);
-    const user = cleanData(data);
 
-    console.log('----->', user);
+    const { ...data }: any = await findOne(params);
+
+    console.log('-----> data', data);
 
     /*if (req.body.newPassword === req.body.verifyPassword) {
       user.hash_password = bcrypt.hashSync(req.body.newPassword, 10);
@@ -93,17 +92,6 @@ export default ({ model, jwt }: any) => {
           return res.status(422).send({
             message: err
           });
-        } else {
-          var data = {
-            to: user.email,
-            from: email,
-            template: 'reset-password-email',
-            subject: 'Password Reset Confirmation',
-            context: {
-              name: user.fullName.split(' ')[0]
-            }
-          };
-        }
       }
     }*/
   }

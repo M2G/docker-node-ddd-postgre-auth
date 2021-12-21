@@ -4,15 +4,16 @@ interface IUser extends Document {
   _id?: Types.ObjectId | string;
   email?: string;
   username?: string;
-  firstName?: string;
-  lastName?: string;
+  first_name?: string;
+  last_name?: string;
   password?: string | undefined;
-  createdAt?: string;
-  modifiedAt?: string;
+  created_at?: string;
+  modified_at?: string;
   reset_password_token?: string;
   reset_password_expires?: Date;
-  newPassword?: string;
-  verifyPassword?: string;
+  new_password?: string;
+  verify_password?: string;
+  token?: string;
 }
 
 export default IUser;

@@ -11,16 +11,17 @@ export default ({
   const router = Router();
 
   router.post('/', async (req: Request, res: Response) => {
-    const { body = {} } = req || {};
-    const { newPassword, verifyPassword } = <IUser>body;
+    const { body = {}, headers = {} } = req || {};
+    const { new_password, verify_password } = <IUser>body;
+    const { authorization } = headers;
 
-    if (!newPassword || !verifyPassword || newPassword !== verifyPassword) {
+    if (!new_password || !verify_password || new_password !== verify_password) {
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
     }
 
     try {
 
-      const user = await postUseCase.resetPassword({ newPassword, verifyPassword });
+      const user = await postUseCase.resetPassword({ new_password, verify_password, token: authorization?.split(' ')?.[1] });
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));

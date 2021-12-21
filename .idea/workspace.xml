@@ -3,21 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/forgot_password/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/forgot_password/post.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/reset_password/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reset_password/post.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/instance.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,74 +170,12 @@
       <workItem from="1637889207847" duration="66199000" />
       <workItem from="1638835660351" duration="42487000" />
       <workItem from="1639782895286" duration="32008000" />
-      <workItem from="1639875538986" duration="12577000" />
+      <workItem from="1639875538986" duration="17998000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/config/index.js" />
-        <option value="$PROJECT_DIR$/config/database.js" />
-        <option value="$PROJECT_DIR$/src/app/index.js" />
-        <option value="$PROJECT_DIR$/src/core/IRepository.js" />
-        <option value="$PROJECT_DIR$/src/core/IUser.js" />
-        <option value="$PROJECT_DIR$/config/env/index.js" />
-        <option value="$PROJECT_DIR$/config/env/staging.js" />
-        <option value="$PROJECT_DIR$/config/env/test.js" />
-        <option value="$PROJECT_DIR$/config/env/development.js" />
-        <option value="$PROJECT_DIR$/config/env/production.js" />
-        <option value="$PROJECT_DIR$/src/app/users/delete.js" />
-        <option value="$PROJECT_DIR$/src/app/users/index.js" />
-        <option value="$PROJECT_DIR$/src/app/users/get.js" />
-        <option value="$PROJECT_DIR$/src/app/users/getOne.js" />
-        <option value="$PROJECT_DIR$/src/app/users/put.js" />
-        <option value="$PROJECT_DIR$/src/app/register/index.js" />
-        <option value="$PROJECT_DIR$/src/app/register/post.js" />
-        <option value="$PROJECT_DIR$/src/app/authenticate/index.js" />
-        <option value="$PROJECT_DIR$/src/app/authenticate/post.js" />
-        <option value="$PROJECT_DIR$/src/app/forgot_password/index.js" />
-        <option value="$PROJECT_DIR$/src/app/forgot_password/post.js" />
-        <option value="$PROJECT_DIR$/src/infra/jwt/jwt.js" />
-        <option value="$PROJECT_DIR$/src/infra/redis/caching.js" />
-        <option value="$PROJECT_DIR$/src/infra/redis/validatedTtl.js" />
-        <option value="$PROJECT_DIR$/src/infra/logging/logger.js" />
-        <option value="$PROJECT_DIR$/src/infra/support/response.js" />
-        <option value="$PROJECT_DIR$/src/infra/database/index.js" />
-        <option value="$PROJECT_DIR$/src/infra/mongoose/index.js" />
-        <option value="$PROJECT_DIR$/src/infra/encryption/index.js" />
-        <option value="$PROJECT_DIR$/src/infra/encryption/encryption.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/index.js" />
-        <option value="$PROJECT_DIR$/src/domain/users/index.js" />
-        <option value="$PROJECT_DIR$/src/domain/users/users.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/router.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/auth.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/server.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/users/index.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/users/transform.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/utils/cleandata.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/utils/index.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/utils/isValidObjId.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/index.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/users/index.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/users/router.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/register/index.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/register/router.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/index.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/router.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/instance.js" />
-      </list>
-    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
