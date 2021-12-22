@@ -39,6 +39,7 @@
       "app/*": ["./app"],
       "core": ["./core"],
       "domain/*": ["./domain/*"],
+      "infra/*": ["./infra/*"],
       "interfaces": ["./interfaces"],
       "utils": ["./interfaces/http/utils"]
     }

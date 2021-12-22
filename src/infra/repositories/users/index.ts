@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import { IRead, IWrite } from 'core/IRepository';
-import { cleanData } from 'utils';
 import IUser from 'core/IUser';
+import { encryptPassword } from 'infra/encryption';
 import toEntity from './transform';
 
 const select = '-password -__v';
@@ -79,31 +79,43 @@ export default ({ model, jwt }: any) => {
 
     const [{ ...params }] = args;
 
-    const { ...data }: any = await findOne(params);
+    console.log('----> params', params);
 
-    console.log('-----> data', data);
-
-    /*if (req.body.newPassword === req.body.verifyPassword) {
-      user.hash_password = bcrypt.hashSync(req.body.newPassword, 10);
-      user.reset_password_token = undefined;
-      user.reset_password_expires = undefined;
-      user.save(function(err) {
-        if (err) {
-          return res.status(422).send({
-            message: err
-          });
+    const { ...data }: any = await findOne({
+      reset_password_token: params.token,
+      reset_password_expires: {
+        $gt: Date.now()
       }
-    }*/
+    });
+
+    console.log('----> data', data);
+
+    /*data.password = params.hashPassword;
+    data.reset_password_token = undefined;
+    data.reset_password_expires = undefined;
+
+    delete data._id;
+
+    await register({ ...data });*/
   }
 
   const findOne = async (...args: any[]) => {
+
+    console.log('args findOne', args)
 
     try {
 
       const m :IRead<any> = model;
       const [{ ...params }] = args;
+
+      console.log('params findOne', { ...params })
+
       const user = await m.findOne({ ...params })
         .select(select);
+
+      if (!user) return null;
+
+      console.log('user user', user)
 
       return toEntity(user);
 

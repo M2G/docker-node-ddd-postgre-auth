@@ -2,6 +2,7 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import IUser from 'core/IUser';
+import { encryptPassword } from 'infra/encryption';
 
 export default ({
                   postUseCase,
@@ -21,7 +22,9 @@ export default ({
 
     try {
 
-      const user = await postUseCase.resetPassword({ new_password, verify_password, token: authorization?.split(' ')?.[1] });
+      const hashPassword = encryptPassword(verify_password);
+
+      const user = await postUseCase.resetPassword({ hashPassword, token: authorization?.split(' ')?.[1] });
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));
