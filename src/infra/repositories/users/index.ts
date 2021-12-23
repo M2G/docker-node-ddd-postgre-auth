@@ -13,17 +13,17 @@ export default ({ model, jwt }: any) => {
     try {
       const [{ ...params }] = args;
 
-      let query = {}
+      let query: any = {
+        $or: []
+      }
 
       if (params.search) {
-        query = {
-          $or: [
+          query.$or.push(...[
             { first_name : { $regex: params.search, $options: 'i' }},
             { last_name: { $regex: params.search, $options: 'i' } },
             { email : { $regex: params.search, $options: 'i' }}
-          ]
+          ]);
         }
-      }
 
       console.log('query', query)
 
@@ -90,13 +90,11 @@ export default ({ model, jwt }: any) => {
 
     console.log('----> data', data);
 
-    /*data.password = params.hashPassword;
+    data.password = params.hashPassword;
     data.reset_password_token = undefined;
     data.reset_password_expires = undefined;
 
-    delete data._id;
-
-    await register({ ...data });*/
+    await update({ ...data });
   }
 
   const findOne = async (...args: any[]) => {
@@ -149,7 +147,7 @@ export default ({ model, jwt }: any) => {
 
       console.log('UPDATE ----->', { _id, ...params });
 
-      if (params.password) delete params.password;
+      // if (params.password) delete params.password;
 
       const user = await m.findByIdAndUpdate({ _id } as any,
         { ...params },
