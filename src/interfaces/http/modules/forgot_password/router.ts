@@ -29,16 +29,6 @@ export default ({
       logger.error(error);
       return res.status(Status.BAD_REQUEST).json(Fail(error.message));
     }
-      /*
-      .then((data: IUser) => {
-        logger.info({ ...data });
-        return res.status(Status.OK).json(Success({ success: true, ...data }));
-      })
-      .catch((error: { message: string }) => {
-        console.log('::::::::::: 2', error.message);
-        logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
-      });*/
   });
 
   return router;

@@ -1,5 +1,7 @@
-import container from '../../../../container';
-import { get, getOne, put, remove } from '../../../../app/users';
+import container from 'container';
+import {
+ get, getOne, put, remove,
+} from 'app/users';
 
 export default () => {
   const { cradle } = container;

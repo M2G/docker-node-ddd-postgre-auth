@@ -36,12 +36,11 @@
     "baseUrl": "src",
     "paths": {
       "container": ["./container"],
-      "app/*": ["./app"],
+      "app/*": ["./app/*"],
       "core": ["./core"],
       "domain/*": ["./domain/*"],
       "infra/*": ["./infra/*"],
-      "interfaces": ["./interfaces"],
-      "utils": ["./interfaces/http/utils"]
+      "interfaces/*": ["./interfaces/*"]
     }
   },
   "include": ["src/**/*"],

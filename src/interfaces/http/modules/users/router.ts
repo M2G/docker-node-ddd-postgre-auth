@@ -1,8 +1,8 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response, NextFunction } from 'express';
-import IUser from '../../../../core/IUser';
-import { isValidObjID } from '../../utils';
+import IUser from 'core/IUser';
+import { isValidObjID } from 'interfaces/http/utils';
 
 export default ({
   getOneUseCase,
