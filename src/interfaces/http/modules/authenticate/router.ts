@@ -21,9 +21,8 @@ export default ({
 
     try {
 
-      // @ts-ignore
-      const data = await postUseCase.authenticate({ email })
-      // @ts-ignore
+      const data: any = await postUseCase.authenticate({ email: body.email })
+
       const { _id, email, password } = <IUser>data || {};
 
       if (!email) return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${body.email}).`));

@@ -11,8 +11,6 @@ interface IUser extends Document {
   modified_at?: string;
   reset_password_token?: string;
   reset_password_expires?: Date;
-  new_password?: string;
-  verify_password?: string;
   token?: string;
 }
 

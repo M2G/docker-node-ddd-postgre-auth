@@ -1,7 +1,6 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
-import IUser from 'core/IUser';
 import { encryptPassword } from 'infra/encryption';
 
 export default ({
@@ -13,7 +12,7 @@ export default ({
 
   router.post('/', async (req: Request, res: Response) => {
     const { body = {}, headers = {} } = req || {};
-    const { new_password, verify_password } = <IUser>body;
+    const { new_password, verify_password } = <any>body;
     const { authorization } = headers;
 
     if (!new_password || !verify_password || new_password !== verify_password) {
@@ -24,7 +23,7 @@ export default ({
 
       const hashPassword = encryptPassword(verify_password);
 
-      const user = await postUseCase.resetPassword({ hashPassword, token: authorization?.split(' ')?.[1] });
+      const user = await postUseCase.resetPassword({ password: hashPassword, token: authorization?.split(' ')?.[1] });
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));

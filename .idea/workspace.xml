@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/IUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/users/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +167,7 @@
       <workItem from="1637889207847" duration="66199000" />
       <workItem from="1638835660351" duration="42487000" />
       <workItem from="1639782895286" duration="32008000" />
-      <workItem from="1639875538986" duration="26494000" />
+      <workItem from="1639875538986" duration="30739000" />
     </task>
     <servers />
   </component>
