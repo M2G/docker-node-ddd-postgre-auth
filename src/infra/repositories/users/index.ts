@@ -1,6 +1,6 @@
 /*eslint-disable*/
-import { IRead, IWrite } from 'core/IRepository';
-import IUser from 'core/IUser';
+import { IRead, IWrite } from '../../../core/IRepository';
+import IUser from '../../../core/IUser';
 import toEntity from './transform';
 
 const select = '-password -__v';
@@ -31,7 +31,7 @@ export default ({ model, jwt }: any) => {
       return users.map(user => toEntity(user));
 
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error as string | undefined);
     }
   }
 
@@ -46,46 +46,58 @@ export default ({ model, jwt }: any) => {
       return toEntity(user);
 
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error as string | undefined);
     }
   };
 
   const forgotPassword = async (...args: any[]) => {
 
-    const [{ ...params }] = args;
-    const { ...user }: any = await findOne(params);
+      try {
 
-    const { _id, email, password } = <IUser>user;
-    const payload = { _id, email, password };
-    const options = { subject: email, audience: [], expiresIn: 60 * 60 };
-    const token: string = jwt.signin(options)(payload);
+        const [{ ...params }] = args;
+        const { ...user }: any = await findOne(params);
 
-    const updatedUser = await update({
-      _id,
-      reset_password_token: token,
-      reset_password_expires: Date.now() + 86400000
-    });
+        const { _id, email, password } = <IUser>user;
+        const payload = { _id, email, password };
+        const options = { subject: email, audience: [], expiresIn: 60 * 60 };
+        const token: string = jwt.signin(options)(payload);
 
-    return toEntity(updatedUser);
+        const updatedUser = await update({
+          _id,
+          reset_password_token: token,
+          reset_password_expires: Date.now() + 86400000
+        });
+
+        return toEntity(updatedUser);
+
+    } catch (error) {
+      throw new Error(error as string | undefined);
+    }
 
   }
 
   const resetPassword = async (...args: any[]) => {
 
-    const [{ ...params }] = args;
+    try {
 
-    const { ...data }: any = await findOne({
-      reset_password_token: params.token,
-      reset_password_expires: {
-        $gt: Date.now()
-      }
-    });
+      const [{ ...params }] = args;
 
-    data.password = params.password;
-    data.reset_password_token = undefined;
-    data.reset_password_expires = undefined;
+      const { ...data }: any = await findOne({
+        reset_password_token: params.token,
+        reset_password_expires: {
+          $gt: Date.now()
+        }
+      });
 
-     await update({ ...data });
+      data.password = params.password;
+      data.reset_password_token = undefined;
+      data.reset_password_expires = undefined;
+
+      await update({ ...data });
+
+    } catch (error) {
+      throw new Error(error as string | undefined);
+    }
   }
 
   const findOne = async (...args: any[]) => {
@@ -103,7 +115,7 @@ export default ({ model, jwt }: any) => {
       return toEntity(user);
 
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error as string | undefined);
     }
   }
 
@@ -119,7 +131,7 @@ export default ({ model, jwt }: any) => {
       return toEntity(user);
 
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error as string | undefined);
     }
   }
 
@@ -138,7 +150,7 @@ export default ({ model, jwt }: any) => {
       return toEntity(user);
 
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error as string | undefined);
     }
   }
 
@@ -155,9 +167,7 @@ export default ({ model, jwt }: any) => {
       return toEntity(user);
 
     } catch (error) {
-
-      throw new Error(error);
-
+      throw new Error(error as string | undefined);
     }
   };
 

@@ -1,11 +1,11 @@
-import faker from 'faker';
+import * as faker from 'faker';
 import getUsecase from  '../../../../src/app/users/get';
 
 describe('App -> User -> Get All', () => {
   const randomEmail = faker.internet.email();
   const randomUserName = faker.internet.userName();
   const randomPassword = faker.internet.password();
-  let useCase: { all: () => Promise<void> };
+  let useCase: { all: any };
   const mockData = [{
     email: randomEmail,
     username: randomUserName,
@@ -30,7 +30,7 @@ describe('App -> User -> Get All', () => {
     });
 
     it('should display all the user on success', async () => {
-      const lists = await useCase.all();
+      const lists = await useCase.all({});
       expect(lists).toEqual(mockData);
     })
   });
@@ -54,8 +54,9 @@ describe('App -> User -> Get All', () => {
 
       let error;
       try {
-        await useCase.all();
+        await useCase.all({});
       } catch (e) {
+        //@ts-ignore
         error = e.message;
       }
       expect(error).toEqual('Error');

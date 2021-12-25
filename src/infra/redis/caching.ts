@@ -97,6 +97,7 @@ export default ({ config }: any) => ({
       result = JSON.parse(result);
     } catch (e) {
       // do nothing
+      //@ts-ignore
       throw new Error(e);
     }
 

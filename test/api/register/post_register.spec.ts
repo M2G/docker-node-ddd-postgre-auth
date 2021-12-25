@@ -40,6 +40,9 @@ describe('Routes: POST Register', () => {
       })
       .expect(200)
       .end((err: any, res: any) => {
+
+        console.log('res res res res res', res)
+
         expect(err).toBeFalsy();
         expect(res.body.data).toHaveProperty('success', true);
         expect(res.body.data).toHaveProperty('token');
@@ -126,7 +129,7 @@ describe('Routes: POST Register', () => {
       .expect(400)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
-        expect(res.body.error).toEqual(`Error: MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"${randomEmail.toLowerCase()}\" }`);
+        expect(res.body.error).toEqual(`MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"${randomEmail.toLowerCase()}\" }`);
         done();
       });
   });

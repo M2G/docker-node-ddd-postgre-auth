@@ -12,7 +12,7 @@ describe('App -> User -> Get One', () => {
     beforeEach(() => {
 
       const MockRepository = {
-        findById: () => mockData
+        findOne: () => mockData
       }
 
 
@@ -31,7 +31,7 @@ describe('App -> User -> Get One', () => {
   describe('Fail path', () => {
     beforeEach(() => {
       const MockRepository = {
-        findById: () => Promise.reject('Error'),
+        findOne: () => Promise.reject('Error'),
       }
 
       useCase = getOneUseCase({
@@ -45,7 +45,8 @@ describe('App -> User -> Get One', () => {
       try {
         await useCase.getOne({ randomUUID });
       } catch (e) {
-        error = e.message;
+        // error = e.message;
+        error = e;
       }
       expect(error).toEqual('Error');
     })

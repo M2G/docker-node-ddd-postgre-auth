@@ -1,8 +1,8 @@
 /**
  * this file will hold all the get use-case for user domain
  */
-import Users from 'domain/users';
-import { cleanData } from 'interfaces/http/utils';
+import Users from '../../domain/users';
+import { cleanData } from '../../interfaces/http/utils';
 
 /**
  * function for authenticate user.
@@ -10,8 +10,7 @@ import { cleanData } from 'interfaces/http/utils';
 export default ({ usersRepository }: any) => {
   const authenticate = ({ ...args }: any) => {
     try {
-
-      console.log('authenticate args', args)
+      console.log('authenticate args', args);
 
       const users = Users({ ...args });
 

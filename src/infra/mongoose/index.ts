@@ -15,6 +15,7 @@ export default ({ config, basePath, logger }: any) => {
   const { env } = config;
 
   if (env !== 'test') {
+
     const configDb = { ...config.db };
     connect(
        `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,

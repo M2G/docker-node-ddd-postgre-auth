@@ -1,17 +1,14 @@
 import * as faker from 'faker';
-import postUsecase from  '../../../../src/app/authenticate/post';
+import postUsecase from  '../../../../src/app/forgot_password/post';
 
-describe('App -> User -> Post', () => {
+describe('App -> User -> forgotPassword', () => {
   const randomEmail = faker.internet.email();
-  const randomUserName = faker.internet.userName();
-  const randomPassword = faker.internet.password();
-
-  let useCase: { authenticate: any; };
+  let useCase: { forgotPassword: any };
 
   describe('Success path', () => {
     beforeEach(() => {
       const MockRepository = {
-        authenticate: (data: any) => data
+        forgotPassword: (data: any) => data
       }
 
       useCase = postUsecase({
@@ -22,26 +19,21 @@ describe('App -> User -> Post', () => {
     it('test', async () => {
       const body = {
         email: randomEmail,
-        username: randomUserName,
-        password: randomPassword,
       }
 
-      const lists = await useCase.authenticate({ ...body })
-      const { email } = lists;
-      expect(email).toEqual(body.email)
+      const lists = await useCase.forgotPassword({ ...body });
+      expect(lists.email).toEqual(body.email);
     })
   })
 
   describe('Fail path', () => {
     const body = {
       email: randomEmail,
-      username: randomUserName,
-      password: randomPassword,
     }
 
     beforeEach(() => {
       const MockRepository = {
-        authenticate: () => Promise.reject('Error')
+        forgotPassword: () => Promise.reject('Error')
       }
 
       useCase = postUsecase({
@@ -53,11 +45,11 @@ describe('App -> User -> Post', () => {
 
       let error
       try {
-        await useCase.authenticate({ body })
+        await useCase.forgotPassword({ ...body });
       } catch (e) {
         //@ts-ignore
-        error = e
         // error = e.message
+        error = e;
       }
       expect(error).toEqual('Error')
     })

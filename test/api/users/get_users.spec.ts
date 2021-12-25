@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import faker from 'faker';
+import * as faker from 'faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 

@@ -25,14 +25,12 @@
     "build": "npm run build-ts && npm run tslint",
     "serve": "node --harmony-top-level-await build/src/index.js",
     "watch-node": "nodemon build/src/index.js",
-    "watch": "NODE_ENV=development concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\" \"npm run build:recursive\"",
+    "watch": "NODE_ENV=development concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
     "watch2": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
     "watch-test": "npm run test -- --watchAll",
     "test": "npm run test:integration && npm run test:unit",
     "test:unit": "NODE_ENV=test jest unit --forceExit",
     "test:integration": "NODE_ENV=test jest --forceExit",
-    "alias": "tscpaths -p tsconfig.json -s ./src -o ./build/src",
-    "build:recursive": "while sleep 5; do npm run alias; done",
     "build-ts": "tsc",
     "build:watch": "tsc -w",
     "tslint": "eslint -c tslint.json -p tsconfig.json",
@@ -89,9 +87,8 @@
     "redis": "^3.1.2",
     "tcomb": "^3.2.29",
     "ts-jest": "^27.0.3",
-    "tscpaths": "^0.0.9",
     "typescript": "^4.2.4",
-    "winston": "3.2.1"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.1",
@@ -103,7 +100,6 @@
     "babel-eslint": "^10.0.3",
     "concurrently": "^6.0.2",
     "supertest": "3.4.2",
-    "supertest-as-promised": "^4.0.2",
-    "tsc-alias": "^1.5.0"
+    "supertest-as-promised": "^4.0.2"
   }
 }

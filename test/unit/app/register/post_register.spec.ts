@@ -1,4 +1,4 @@
-import faker from 'faker';
+import * as faker from 'faker';
 import postUsecase from  '../../../../src/app/register/post';
 
 describe('App -> User -> Post', () => {
@@ -53,9 +53,10 @@ describe('App -> User -> Post', () => {
 
       let error
       try {
-        await useCase.register({ body })
+        await useCase.register({ ...body })
       } catch (e) {
-        error = e.message
+        // error = e.message;
+        error = e;
       }
       expect(error).toEqual('Error')
     })

@@ -5,7 +5,7 @@ const TTL = 0.6 * 60;
  * function for get users.
  */
 export default ({ usersRepository, redis }: any) => {
-  const all = async ({ ...arg }) => {
+  const all = async ({ ...arg }: any) => {
     try {
       const cachingUserList = await redis.get(KEY);
 

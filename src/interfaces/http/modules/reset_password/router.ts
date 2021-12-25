@@ -1,7 +1,7 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
-import { encryptPassword } from 'infra/encryption';
+import { encryptPassword } from '../../../../infra/encryption';
 
 export default ({
                   postUseCase,
@@ -30,6 +30,7 @@ export default ({
 
     } catch (error) {
       logger.error(error);
+      //@ts-ignore
       return res.status(Status.BAD_REQUEST).json(Fail(error.message));
     }
   });

@@ -45,7 +45,8 @@ describe('App -> User -> Delete', () => {
       try {
         await useCase.remove({ randomUUID });
       } catch (e) {
-        error = e.message;
+        // error = e.message;
+        error = e;
       }
       expect(error).toEqual('Error');
     })

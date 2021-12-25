@@ -27,6 +27,7 @@ export default ({
 
     } catch (error) {
       logger.error(error);
+      //@ts-ignore
       return res.status(Status.BAD_REQUEST).json(Fail(error.message));
     }
   });
