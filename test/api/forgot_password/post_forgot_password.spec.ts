@@ -8,7 +8,7 @@ const server: any = container.resolve('server');
 const rqt: any = request(server.app);
 const { usersRepository } = container.resolve('repository');
 
-describe('Routes: POST Register', () => {
+describe('Routes: POST Forgot password', () => {
   const BASE_URI = '/api/forgot_password';
   const randomEmail = faker.internet.email();
   const randomUserName = faker.internet.userName();

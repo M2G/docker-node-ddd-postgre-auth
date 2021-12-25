@@ -10,8 +10,6 @@ import { cleanData } from '../../interfaces/http/utils';
 export default ({ usersRepository }: any) => {
   const authenticate = ({ ...args }: any) => {
     try {
-      console.log('authenticate args', args);
-
       const users = Users({ ...args });
 
       return usersRepository.authenticate(cleanData(users));

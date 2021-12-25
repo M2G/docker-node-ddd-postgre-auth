@@ -59,10 +59,6 @@ export default ({ config }: any) => ({
    */
 
   get: (key: string): Promise<Error | string | null> => {
-
-    console.log('get key', key)
-    console.log('get redisClient', key)
-
     return new Promise((resolve, reject) => {
       return redisClient.get(
         key,

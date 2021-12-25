@@ -51,8 +51,6 @@ export default ({
         'bearer',
         { session: false },
         (err, _) => {
-          console.log('err', err);
-
           if (err === Status[Status.NOT_FOUND]) {
             return res
               .status(Status.NOT_FOUND)

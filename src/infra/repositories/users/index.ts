@@ -55,6 +55,7 @@ export default ({ model, jwt }: any) => {
       try {
 
         const [{ ...params }] = args;
+
         const { ...user }: any = await findOne(params);
 
         const { _id, email, password } = <IUser>user;
@@ -106,7 +107,6 @@ export default ({ model, jwt }: any) => {
 
       const m :IRead<any> = model;
       const [{ ...params }] = args;
-
       const user = await m.findOne({ ...params })
         .select(select);
 

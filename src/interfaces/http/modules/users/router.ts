@@ -24,8 +24,6 @@ export default ({
       const { query } = req || {};
       const { search } = query;
 
-      console.log('--------> req', req.query)
-
      getUseCase
         .all(search ? { search } : {})
         .then((data: any) => {

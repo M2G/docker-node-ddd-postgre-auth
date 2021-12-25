@@ -39,7 +39,6 @@ export default ({
         return res.status(Status.OK).json(Success({ success: true, token: token }));
       })
       .catch((error: { message: string }) => {
-        console.log('::::::::::: 2', error.message);
         logger.error(error);
         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       });

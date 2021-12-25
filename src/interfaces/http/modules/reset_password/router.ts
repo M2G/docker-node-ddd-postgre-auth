@@ -15,7 +15,10 @@ export default ({
     const { new_password, verify_password } = <any>body;
     const { authorization } = headers;
 
-    if (!new_password || !verify_password || new_password !== verify_password) {
+    const extractToken = req?.headers?.authorization?.startsWith('Bearer ');
+    const token = extractToken && authorization?.split(' ')?.[1];
+
+    if (!token || !new_password || !verify_password || new_password !== verify_password) {
       return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
     }
 
@@ -23,7 +26,7 @@ export default ({
 
       const hashPassword = encryptPassword(verify_password);
 
-      const user = await postUseCase.resetPassword({ password: hashPassword, token: authorization?.split(' ')?.[1] });
+      const user = await postUseCase.resetPassword({ password: hashPassword, token });
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));

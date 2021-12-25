@@ -23,7 +23,6 @@ const ROUTES = {
 export default ({
  config, logger, database, verify,
 }: any) => {
-  // console.log('database', database);
   const router = Router();
 
   if (config.env !== 'test') {
