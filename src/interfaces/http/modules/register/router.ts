@@ -12,7 +12,7 @@ export default ({
 }: any) => {
   const router = Router();
 
-  router.post('/', (req: Request, res: Response) => {
+  router.post('/', async (req: Request, res: Response) => {
     const { body = {} } = req || {};
     const { email, password, username } = <IUser>body;
 
@@ -22,26 +22,21 @@ export default ({
 
     const hasPassword = encryptPassword(password);
 
-    postUseCase
-      .register({
-          email,
-          password: hasPassword,
-        })
-      .then((data: IUser) => {
-        const { _id, email, password } = <IUser>data;
-        const payload = { _id, email, password };
-        const options = { subject: email, audience: [], expiresIn: 60 * 60 };
+    try {
+      const data = await postUseCase.register({ email, password: hasPassword });
 
-        // if user is found and password is right, create a token
-        const token: string = jwt.signin(options)(payload);
+      const payload = { _id: data._id, email: data.email, password: data.password };
+      const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 
-        logger.info({ token });
-        return res.status(Status.OK).json(Success({ success: true, token: token }));
-      })
-      .catch((error: { message: string }) => {
-        logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
-      });
+      // if user is found and password is right, create a token
+      const token: string = jwt.signin(options)(payload);
+
+      logger.info({ token });
+      return res.status(Status.OK).json(Success({ success: true, token: token }));
+    } catch (error: any) {
+      logger.error(error);
+      return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+    }
   });
 
   return router;

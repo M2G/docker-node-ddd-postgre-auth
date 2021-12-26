@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/api/reset_password/post_reset_password.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/redis/caching.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/redis/caching.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/forgot_password/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/forgot_password/post_forgot_password.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/forgot_password/post_forgot_password.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/forgot_password/post_forgot_password.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/reset_password/post_reset_password.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/reset_password/post_reset_password.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,13 +39,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test/api" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -67,6 +65,19 @@
     </key>
   </component>
   <component name="RunManager" selected="Jest.Routes: POST Reset password">
+    <configuration name="Routes: POST Auth" type="JavaScriptTestRunnerJest" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
+      <test-names>
+        <test-name value="Routes: POST Auth" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Routes: POST Reset password" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -171,7 +182,8 @@
       <workItem from="1638835660351" duration="42487000" />
       <workItem from="1639782895286" duration="32008000" />
       <workItem from="1639875538986" duration="35979000" />
-      <workItem from="1640407751753" duration="18103000" />
+      <workItem from="1640407751753" duration="22421000" />
+      <workItem from="1640486222294" duration="6116000" />
     </task>
     <servers />
   </component>
