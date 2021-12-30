@@ -12,7 +12,7 @@ export default ({ model, jwt }: any) => {
     try {
       const [{ ...params }] = args;
 
-      let query: any = {}
+      let query: any = {};
 
       if (params.search) {
           query.$or = [
@@ -55,7 +55,6 @@ export default ({ model, jwt }: any) => {
       try {
 
         const [{ ...params }] = args;
-
         const { ...user }: any = await findOne(params);
 
         const { _id, email, password } = <IUser>user;

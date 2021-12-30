@@ -19,6 +19,14 @@
     "ddd",
     "auth"
   ],
+  "_moduleAliases": {
+    "container": "./build/src/container",
+    "app": "./build/src/app",
+    "core": "./build/src/core",
+    "domain": "./build/src/domain",
+    "infra": "./build/src/infra",
+    "interfaces": "./build/src/interfaces"
+  },
   "author": "M2G",
   "scripts": {
     "start": "npm run serve",
@@ -77,6 +85,7 @@
     "jest-resolve": "27.0.4",
     "jest-watch-typeahead": "0.6.4",
     "jsonwebtoken": "8.5.0",
+    "module-alias": "^2.2.2",
     "mongodb-memory-server": "^8.0.1",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",

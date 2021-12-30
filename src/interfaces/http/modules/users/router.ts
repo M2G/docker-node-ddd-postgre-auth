@@ -1,8 +1,8 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response, NextFunction } from 'express';
-import IUser from '../../../../core/IUser';
-import { isValidObjID } from '../../../../interfaces/http/utils';
+import IUser from 'core/IUser';
+import { isValidObjID } from 'interfaces/http/utils';
 
 export default ({
   getOneUseCase,
@@ -35,7 +35,7 @@ export default ({
     });
 
   router
-    .get('/:id', (req: Request, res: Response) => {
+    .get('/:id', async (req: Request, res: Response) => {
 
       const { params } = req || {};
       const { id } = params;
@@ -44,7 +44,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
       try {
-        const data = getOneUseCase.getOne({ _id: req.params.id });
+        const data = await getOneUseCase.getOne({ _id: req.params.id });
         logger.debug(data);
         return res.status(Status.OK).json(Success(data));
       } catch (error: any) {

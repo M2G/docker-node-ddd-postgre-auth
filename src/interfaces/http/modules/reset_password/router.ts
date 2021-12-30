@@ -1,7 +1,7 @@
 /* eslint-disable*/
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
-import { encryptPassword } from '../../../../infra/encryption';
+import { encryptPassword } from 'infra/encryption';
 
 export default ({
                   postUseCase,
