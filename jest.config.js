@@ -13,7 +13,7 @@ module.exports = {
   forceExit: true,
   globals: {
     "ts-jest": {
-      "tsConfig": "<rootDir>/tsconfig.json"
+      "tsconfig": "<rootDir>/tsconfig.json"
     }
   },
   preset: "ts-jest",
@@ -28,14 +28,14 @@ module.exports = {
     '**/__tests__/**/*.(js|ts|tsx)',
     '**/?(*.)+(spec|test).(js|ts|tsx)',
   ],
-  /*moduleNameMapper: {
-    "container": "<rootDir>/src/container",
-    "app/(.*)$": "<rootDir>/src/app/$1",
-    "core/(.*)$": "<rootDir>/src/core",
-    "domain/(.*)$": "<rootDir>/src/domain/$1",
-    "infra/(.*)$": "<rootDir>/src/infra/$1",
-    "interfaces/(.*)$": "<rootDir>/src/interfaces/$1"
-  },*/
+  moduleNameMapper: {
+    "^container": "<rootDir>/src/container",
+    "^app/(.*)$": "<rootDir>/src/app/$1",
+    "^core/(.*)$": "<rootDir>/src/core",
+    "^domain/(.*)$": "<rootDir>/src/domain/$1",
+    "^infra/(.*)$": "<rootDir>/src/infra/$1",
+    "^interfaces/(.*)$": "<rootDir>/src/interfaces/$1"
+  },
   modulePaths: [],
   moduleFileExtensions: [
     "ts",

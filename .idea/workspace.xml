@@ -3,11 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authenticate/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authenticate/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/forgot_password/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/forgot_password/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/register/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/reset_password/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reset_password/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/delete.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/delete.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/getOne.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/getOne.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/put.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/put.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/transform.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/users/instance.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +80,33 @@
       <recent name="$PROJECT_DIR$/src/container" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Routes: POST Reset password">
+  <component name="RunManager" selected="Jest.Routes: POST Auth">
+    <configuration name="App -&gt; User -&gt; Get All" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/test/unit/app/users/get_users.spec.ts" />
+      <test-names>
+        <test-name value="App -&gt; User -&gt; Get All" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Routes: DELETE User" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" />
+      <test-names>
+        <test-name value="Routes: DELETE User" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Routes: POST Auth" type="JavaScriptTestRunnerJest" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -73,6 +117,19 @@
       <test-file value="$PROJECT_DIR$/test/api/authenticate/post_authenticate.spec.ts" />
       <test-names>
         <test-name value="Routes: POST Auth" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Routes: POST Register" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/test/api/users/get_users.spec.ts" />
+      <test-names>
+        <test-name value="Routes: POST Register" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -103,55 +160,13 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Routes: POST Reset password.shouldnt register user return error empty verify_password was sent" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/reset_password/post_reset_password.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Reset password" />
-        <test-name value="shouldnt register user return error empty verify_password was sent" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: POST Reset password.shouldnt register user return error new_password is not equal verify_password was sent" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/reset_password/post_reset_password.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Reset password" />
-        <test-name value="shouldnt register user return error new_password is not equal verify_password was sent" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Routes: POST Reset password.shouldnt register user return error no token was sent" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/test/api/reset_password/post_reset_password.spec.ts" />
-      <test-names>
-        <test-name value="Routes: POST Reset password" />
-        <test-name value="shouldnt register user return error no token was sent" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Routes: DELETE User" />
+        <item itemvalue="Jest.App -&gt; User -&gt; Get All" />
+        <item itemvalue="Jest.Routes: POST Register" />
         <item itemvalue="Jest.Routes: POST Reset password" />
         <item itemvalue="Jest.Routes: POST Reset password.should return success true" />
-        <item itemvalue="Jest.Routes: POST Reset password.shouldnt register user return error no token was sent" />
-        <item itemvalue="Jest.Routes: POST Reset password.shouldnt register user return error new_password is not equal verify_password was sent" />
-        <item itemvalue="Jest.Routes: POST Reset password.shouldnt register user return error empty verify_password was sent" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +196,7 @@
       <workItem from="1639782895286" duration="32008000" />
       <workItem from="1639875538986" duration="35979000" />
       <workItem from="1640407751753" duration="22421000" />
-      <workItem from="1640486222294" duration="16673000" />
+      <workItem from="1640486222294" duration="29174000" />
     </task>
     <servers />
   </component>

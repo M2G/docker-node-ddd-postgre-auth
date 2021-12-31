@@ -1,4 +1,4 @@
-import Users from '../../../domain/users';
+import Users from 'domain/users';
 
 const toEntity = Users;
 

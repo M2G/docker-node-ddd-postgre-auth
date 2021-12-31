@@ -2,7 +2,7 @@
 import bcrypt from 'bcrypt';
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
-import IUser from '../../../../core/IUser';
+import IUser from 'core/IUser';
 
 export default ({
   jwt,

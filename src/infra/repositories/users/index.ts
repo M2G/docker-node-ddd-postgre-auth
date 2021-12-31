@@ -1,6 +1,6 @@
 /*eslint-disable*/
-import { IRead, IWrite } from '../../../core/IRepository';
-import IUser from '../../../core/IUser';
+import { IRead, IWrite } from 'core/IRepository';
+import IUser from 'core/IUser';
 import toEntity from './transform';
 
 const select = '-password -__v';

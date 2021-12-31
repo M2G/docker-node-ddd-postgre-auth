@@ -1,8 +1,8 @@
 /**
  * this file will hold all the get use-case for user domain
  */
-import Users from '../../domain/users';
-import { cleanData } from '../../interfaces/http/utils';
+import Users from 'domain/users';
+import { cleanData } from 'interfaces/http/utils';
 
 /**
  * function for reset password user.
