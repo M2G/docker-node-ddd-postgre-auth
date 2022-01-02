@@ -63,7 +63,7 @@ export default ({
       if (!isValidObjID(id))
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
-      if (!email && !password && !username)
+      if (!email || !password || !username)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
