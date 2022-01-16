@@ -98,7 +98,7 @@ describe('Routes: DELETE User', () => {
     it('should return unauthorized if no token', (done) => {
       rqt
         .delete(BASE_URI(randomUUID))
-        .expect(403)
+        .expect(401)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
           expect(JSON.parse(res.text).error.false).toBeFalsy();

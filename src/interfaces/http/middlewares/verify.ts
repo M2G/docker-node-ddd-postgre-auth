@@ -45,7 +45,7 @@ export default ({ response: { Fail }, jwt }: any) =>
       return next();
     }
 
-    return res.status(Status.FORBIDDEN).json(
+    return res.status(Status.UNAUTHORIZED).json(
       Fail({
         success: false,
         message: 'No token provided.',

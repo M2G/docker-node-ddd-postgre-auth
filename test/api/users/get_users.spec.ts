@@ -111,7 +111,7 @@ describe('Routes: POST Register', () => {
     it('should return unauthorized if no token', (done) => {
       rqt
         .get(BASE_URI)
-        .expect(403)
+        .expect(401)
         .end((err: any, res: any) => {
           expect(err).toBeFalsy();
           expect(JSON.parse(res.text).error.false).toBeFalsy();

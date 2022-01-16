@@ -8,7 +8,6 @@ db.users.insertMany([
     last_name: 'Jackson',
     email: 'smith.jackson@university.com',
     password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
-    username: 'Toto',
     created_at: '2021-11-21T15:47:44.533Z',
     modified_at: '2021-11-22T15:47:44.533Z'
   },
@@ -17,7 +16,6 @@ db.users.insertMany([
     last_name: 'Garcia',
     email: 'oliver.garcia@university.com',
     password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
-    username: 'Tutu',
     created_at: '2021-11-21T15:47:44.533Z',
     modified_at: '2021-11-22T15:47:44.533Z'
   }
