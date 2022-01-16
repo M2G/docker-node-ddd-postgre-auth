@@ -4,20 +4,20 @@ print('Count of rows in test collection (Partner) : ' + db.partners.count());
 
 db.users.insertMany([
   {
-    first_name: 'test',
-    last_name: 'test',
-    email: 'test@gmail.com',
+    first_name: 'Smith',
+    last_name: 'Jackson',
+    email: 'smith.jackson@university.com',
     password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
-    username: 'test',
+    username: 'Toto',
     created_at: '2021-11-21T15:47:44.533Z',
     modified_at: '2021-11-22T15:47:44.533Z'
   },
   {
-    first_name: 'test',
-    last_name: 'test',
-    email: 'test2@gmail.com',
+    first_name: 'Oliver',
+    last_name: 'Garcia',
+    email: 'oliver.garcia@university.com',
     password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
-    username: 'test2',
+    username: 'Tutu',
     created_at: '2021-11-21T15:47:44.533Z',
     modified_at: '2021-11-22T15:47:44.533Z'
   }

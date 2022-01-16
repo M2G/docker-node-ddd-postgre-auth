@@ -23,7 +23,7 @@ export default ({
 
       const data: any = await postUseCase.authenticate({ email: body.email })
 
-      const { _id, email, password } = <IUser>data || {};
+      const { email, password } = <IUser>data || {};
 
       if (!email) return res.status(Status.NOT_FOUND).json(Fail(`User not found (email: ${body.email}).`));
 
@@ -31,7 +31,7 @@ export default ({
 
       if (match) {
 
-        const payload = <IUser>{ _id, password, email };
+        const payload = <IUser>{ email, password };
 
         const options = { subject: email, audience: [], expiresIn: 60 * 60 };
 

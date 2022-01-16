@@ -151,7 +151,7 @@ describe('Routes: PUT User', () => {
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.success).toBeFalsy();
-        expect(res.body.error).toEqual('Invalid id parameters in request.');
+        expect(res.body.error).toEqual('Invalid parameters in request.');
         done();
       });
   });

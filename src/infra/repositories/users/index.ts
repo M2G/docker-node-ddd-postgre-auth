@@ -23,7 +23,6 @@ export default ({ model, jwt }: any) => {
         }
 
       const m :IRead<any> = model;
-
       const users = await m.find(query)
         .select(select)
         .sort({ email: 1 });

@@ -60,10 +60,7 @@ export default ({
       const { id } = params;
       const { email, password, username } = <IUser>body;
 
-      if (!isValidObjID(id))
-        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
-
-      if (!email || !password || !username)
+      if (!isValidObjID(id) || !email || !password || !username)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {

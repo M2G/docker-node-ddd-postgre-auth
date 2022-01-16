@@ -45,7 +45,7 @@ export default ({
   router.use(ROUTES.RESET_PASSWORD, resetPassword().router);
   router.use(verify);
   router.use(ROUTES.USERS, users().router);
-
+  // users?search=EMAIL/FIST_NAME/LAST_NAME
   router.use(() => ({
     ...errorHandler,
     ...[logger, config],
