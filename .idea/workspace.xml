@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/verify.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/delete_users.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/get_users.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/users/getone_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/getone_users.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/api/users/put_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/users/put_register.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +175,7 @@
       <workItem from="1639782895286" duration="32008000" />
       <workItem from="1639875538986" duration="35979000" />
       <workItem from="1640407751753" duration="22421000" />
-      <workItem from="1640486222294" duration="60914000" />
+      <workItem from="1640486222294" duration="64262000" />
     </task>
     <servers />
   </component>
