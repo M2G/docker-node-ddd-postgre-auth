@@ -48,9 +48,9 @@ export default ({
 
       return res.status(Status.UNAUTHORIZED).json(Fail('Wrong username and password combination.'));
 
-    } catch (error) {
+    } catch (error: any) {
         logger.error(error);
-        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(Status[Status.INTERNAL_SERVER_ERROR]));
+      return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
     }
 
   });

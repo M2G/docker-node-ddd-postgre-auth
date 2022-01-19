@@ -22,6 +22,9 @@ export default ({ model, jwt }: any) => {
           ];
         }
 
+      // size
+      // limit
+      // offset
       const m :IRead<any> = model;
       const users = await m.find(query)
         .select(select)

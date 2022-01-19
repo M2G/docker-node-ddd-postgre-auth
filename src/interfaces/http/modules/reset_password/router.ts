@@ -31,10 +31,9 @@ export default ({
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));
 
-    } catch (error) {
+    } catch (error: any) {
       logger.error(error);
-      //@ts-ignore
-      return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+      return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
     }
   });
 
