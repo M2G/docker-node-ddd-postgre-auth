@@ -29,6 +29,7 @@
   },
   "author": "M2G",
   "scripts": {
+    "ngrok": "ngrok http 8181",
     "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint",
     "serve": "node --harmony-top-level-await build/src/index.js",
@@ -79,6 +80,7 @@
     "express": "4.16.4",
     "faker": "^5.5.3",
     "http-status": "^1.5.0",
+    "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "27.0.4",
     "jest-cli": "^27.0.4",
@@ -87,7 +89,7 @@
     "jsonwebtoken": "8.5.0",
     "module-alias": "^2.2.2",
     "mongodb-memory-server": "^8.0.1",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.2.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
@@ -108,7 +110,6 @@
     "@types/passport-http-bearer": "^1.0.37",
     "babel-eslint": "^10.0.3",
     "concurrently": "^6.0.2",
-    "supertest": "^6.1.6",
-    "supertest-as-promised": "^4.0.2"
+    "supertest": "^6.1.6"
   }
 }

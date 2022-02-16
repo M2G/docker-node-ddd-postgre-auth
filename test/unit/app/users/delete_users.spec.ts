@@ -1,5 +1,5 @@
 import faker from 'faker';
-import deleteUseCase from  '../../../../src/app/users/delete';
+import deleteUseCase from  'app/users/delete';
 
 describe('App -> User -> Delete', () => {
   const randomUUID = faker.datatype.uuid();

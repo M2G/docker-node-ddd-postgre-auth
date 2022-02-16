@@ -126,7 +126,7 @@ describe('Routes: POST Register', () => {
         username: randomUserName,
         password: randomPassword,
       })
-      .expect(400)
+      .expect(500)
       .end((err: any, res: any) => {
         expect(err).toBeFalsy();
         expect(res.body.error).toEqual(`MongoServerError: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: \"${randomEmail.toLowerCase()}\" }`);

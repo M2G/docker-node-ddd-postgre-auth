@@ -21,7 +21,6 @@ export default ({ model, jwt }: any) => {
             { email : { $regex: params.search, $options: 'i' }}
           ];
         }
-
       // size
       // limit
       // offset

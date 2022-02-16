@@ -13,6 +13,7 @@ services:
   app:
     build: .
     working_dir: /app
+    restart: unless-stopped
     env_file:
       - .env
     ports:
@@ -24,6 +25,8 @@ services:
     depends_on:
       - db
       - redis
+    stdin_open: true
+    tty: true
 
   redis:
     image: redis:alpine
@@ -34,7 +37,7 @@ services:
       - ./redis-data:/data
 
   db:
-    image: mongo:5.0.3
+    image: mongo:5.0.5
     container_name: mongodb
     ports:
       - ${HOST_PORT}:${CONTAINER_PORT}

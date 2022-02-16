@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="44f8ded6-63d6-4588-b1a5-978fd07fcfd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/authenticate/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/forgot_password/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/register/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/reset_password/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/api/register/post_register.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/unit/app/users/delete_users.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/app/users/delete_users.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1yNL1GTdCNyNQHq2V2TNOrjfM2j" />
   <component name="ProjectViewState">
@@ -178,7 +182,8 @@
       <workItem from="1639782895286" duration="32008000" />
       <workItem from="1639875538986" duration="35979000" />
       <workItem from="1640407751753" duration="22421000" />
-      <workItem from="1640486222294" duration="69174000" />
+      <workItem from="1640486222294" duration="94347000" />
+      <workItem from="1644726327801" duration="14281000" />
     </task>
     <servers />
   </component>

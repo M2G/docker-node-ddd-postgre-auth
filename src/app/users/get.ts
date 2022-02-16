@@ -1,4 +1,4 @@
-const KEY = 'LIST_USERS';
+const KEY = 'LIST_USER';
 const TTL = 0.6 * 60;
 
 /**
