@@ -29,7 +29,6 @@
   },
   "author": "M2G",
   "scripts": {
-    "ngrok": "ngrok http 8181",
     "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint",
     "serve": "node --harmony-top-level-await build/src/index.js",
