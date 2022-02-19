@@ -107,5 +107,24 @@
     "concurrently": "^6.5.1",
     "supertest": "^6.2.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "validate-branch-name && npm test",
+      "post-merge": "git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep --quiet package-lock.json && npm ci"
+    }
+  },
+  "lint-staged": {
+    "*.(ts|tsx|graphql)": [
+      "prettier --write  --ignore-path .eslintignore"
+    ],
+    "*.(ts|tsx)": [
+      "eslint --fix"
+    ]
+  },
+  "validate-branch-name": {
+    "pattern": "^master$|stable$|^v\\d+.\\d+$|^release/v\\d+.\\d+$|^(fix|chore|poc|feature|style)[_][\\w-]+$|^IM-[0-9]+[\\w-]+$",
+    "errorMsg": "Branch name format accepted: IM-XXX_some_keyworks, vXX.XX or (fix|chore|poc)_some_keyworks"
+  }
 }
