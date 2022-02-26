@@ -12,12 +12,12 @@ import forgotPassword from './modules/forgot_password';
 import resetPassword from './modules/reset_password';
 
 const ROUTES = {
-  AUTHENTICATE: '/api/authenticate',
-  FORGOT_PASSWORD: '/api/forgot_password',
+  AUTHENTICATE: '/auth/authenticate',
+  FORGOT_PASSWORD: '/auth/forgot_password',
   INDEX: '/',
-  REGISTER: '/api/register',
-  RESET_PASSWORD: '/api/reset_password',
-  USERS: '/api/users',
+  REGISTER: '/auth/register',
+  RESET_PASSWORD: '/auth/reset_password',
+  USERS: '/auth/users',
 };
 
 export default ({
@@ -32,8 +32,15 @@ export default ({
     .use(
       cors({
         allowedHeaders: ['Content-Type', 'Authorization'],
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        origin: ['http://localhost:3000', 'http://localhost:3001'],
+        methods: ['GET',
+'POST',
+'PUT',
+'DELETE'],
+        origin: [
+          'http://localhost:3000',
+          'http://localhost:3001',
+          'http://localhost:3002',
+        ],
       }),
     )
     .use(bodyParser.json());
