@@ -21,8 +21,7 @@ module.exports = {
     "<rootDir>/test"
   ],
   transform: {
-    '^.+\\.ts?$': 'ts-jest',
-    '^.+\\.(js)?$': 'babel-jest'
+    '^.+\\.ts?$': 'ts-jest'
   },
   testMatch: [
     '**/__tests__/**/*.(js|ts|tsx)',
