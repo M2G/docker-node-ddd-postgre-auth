@@ -5,7 +5,7 @@ const router = Router();
 
 const time =
   process.env.NODE_ENV === 'development'
-    ? process.env.JWT_TOKEN_EXPIRE_TIME
+    ? '1000s' //process.env.JWT_TOKEN_EXPIRE_TIME
     : '2s';
 
 const TOKEN_EXPIRED_ERROR = 'TokenExpiredError';
@@ -13,9 +13,8 @@ const FAIL_AUTH = 'Failed to authenticate token is expired.';
 
 export default ({ response: { Fail }, jwt }: any) =>
   router.use((req: Request, res: Response, next: NextFunction) => {
-    const extractToken = req?.headers?.authorization?.startsWith(
-      'Bearer ',
-    );
+    const extractToken =
+      req?.headers?.authorization?.startsWith('Bearer ');
 
     if (extractToken) {
       const token = req?.headers?.authorization?.split(' ')?.[1];

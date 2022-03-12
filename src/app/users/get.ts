@@ -1,12 +1,18 @@
 const KEY = 'LIST_USER';
-const TTL = 0.6 * 60;
+const TTL = 1 * 60;
 
 /**
  * function for get users.
  */
 export default ({ usersRepository, redis }: any) => {
-  const all = async ({ ...arg }: any) => {
+  const all = async ({
+    ...arg
+  }: ArrayLike<unknown> | Record<string, unknown>) => {
     try {
+      if (arg && Object.entries(arg).length === 0) {
+        return usersRepository.getAll({ ...arg });
+      }
+
       const cachingUserList = await redis.get(KEY);
 
       if (cachingUserList) return cachingUserList;
