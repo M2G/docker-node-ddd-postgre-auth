@@ -14,28 +14,43 @@ export default ({
 
   router.post('/', async (req: Request, res: Response) => {
     const { body = {} } = req || {};
-    const { email, password, username } = <IUser>body;
+    const { email, password } = <IUser>body;
 
-    if (!email || !password || !username) {
-      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
-    }
+    if (!email || !password)
+      return res
+        .status(Status.UNPROCESSABLE_ENTITY)
+        .json(Fail('Invalid parameters in request.'));
 
     const hasPassword = encryptPassword(password);
 
     try {
-      const data = await postUseCase.register({ email, password: hasPassword });
+      const data = await postUseCase.register({
+        email,
+        password: hasPassword,
+      });
 
-      const payload = { _id: data._id, email: data.email, password: data.password };
-      const options = { subject: email, audience: [], expiresIn: 60 * 60 };
+      const payload = {
+        _id: data._id,
+        email: data.email,
+        password: data.password,
+      };
+      const options = {
+        subject: email,
+        audience: [],
+        expiresIn: 60 * 60,
+      };
 
-      // if user is found and password is right, create a token
       const token: string = jwt.signin(options)(payload);
 
       logger.info({ token });
-      return res.status(Status.OK).json(Success({ success: true, token: token }));
+      return res
+        .status(Status.OK)
+        .json(Success({ success: true, token: token }));
     } catch (error: any) {
       logger.error(error);
-      return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
+      return res
+        .status(Status.INTERNAL_SERVER_ERROR)
+        .json(Fail(error.message));
     }
   });
 
