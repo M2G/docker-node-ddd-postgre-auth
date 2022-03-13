@@ -24,28 +24,9 @@ export default ({
     const hasPassword = encryptPassword(password);
 
     try {
-      const data = await postUseCase.register({
-        email,
-        password: hasPassword,
-      });
+      await postUseCase.register({ email, password: hasPassword });
 
-      const payload = {
-        _id: data._id,
-        email: data.email,
-        password: data.password,
-      };
-      const options = {
-        subject: email,
-        audience: [],
-        expiresIn: 60 * 60,
-      };
-
-      const token: string = jwt.signin(options)(payload);
-
-      logger.info({ token });
-      return res
-        .status(Status.OK)
-        .json(Success({ success: true, token: token }));
+      return res.status(Status.OK).json(Success());
     } catch (error: any) {
       logger.error(error);
       return res
