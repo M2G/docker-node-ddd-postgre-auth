@@ -48,7 +48,7 @@ services:
     env_file:
       - .env
     restart: always
-    command: mongod --auth
+    command: mongod --auth --setParameter diagnosticDataCollectionEnabled=false
     volumes:
       #add persistent storage
       - db:/data/db
