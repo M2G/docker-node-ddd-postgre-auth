@@ -21,8 +21,7 @@ export default ({ response: { Fail }, jwt }: any) =>
 
       try {
         jwt.verify({ maxAge: time })(token);
-      } catch (e) {
-        //@ts-ignore
+      } catch (e: any) {
         if (e.name === TOKEN_EXPIRED_ERROR) {
           return res.status(Status.UNAUTHORIZED).json(
             Fail({
