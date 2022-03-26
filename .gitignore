@@ -72,7 +72,12 @@ typings/
 # Serverless directories
 .serverless
 
-.idea
-
 dist/
 build/
+src/.DS_Store
+test/.DS_Store
+redis-data/
+
+.idea/*.xml
+.idea/**/*.xml
+.idea/**/*.iml
