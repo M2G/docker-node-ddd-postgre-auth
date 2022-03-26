@@ -26,7 +26,7 @@ services:
       - db
       - redis
     stdin_open: true
-    tty: true
+#    tty: true
 
   redis:
     image: redis:alpine
