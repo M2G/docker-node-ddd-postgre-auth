@@ -11,14 +11,13 @@ import path from 'path';
 import fs from 'fs';
 
 export default ({ config, basePath, logger }: any) => {
-
   const { env } = config;
 
   if (env !== 'test') {
-
     const configDb = { ...config.db };
+
     connect(
-       `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
+      `mongodb://${configDb.user}:${configDb.password}@db:${configDb.host}/${configDb.database}`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -43,12 +42,11 @@ export default ({ config, basePath, logger }: any) => {
 
   const dir = path.join(basePath, './schemas');
 
-  for (const files of fs.readdirSync(dir)?.filter((file) =>
-        file.indexOf('.') !== 0 &&
-        file !== 'index.js' &&
-        file.slice(-3) === '.js',
+  for (const files of fs
+    .readdirSync(dir)
+    ?.filter(
+      (file) => file.indexOf('.') !== 0 && file !== 'index.js' && file.slice(-3) === '.js',
     )) {
-
     const modelDir = path.join(dir, files);
     const requireModel: any = require(modelDir);
     const fileName = path.parse(files).name;
@@ -56,10 +54,9 @@ export default ({ config, basePath, logger }: any) => {
 
     db.models[fileName] = models({
       Schema,
-      model
+      model,
     });
   }
 
   return db;
-
 };

@@ -1,4 +1,4 @@
-import type { Document, Types} from 'mongoose';
+import type { Document, Types } from 'mongoose';
 
 interface IUser extends Document {
   _id?: Types.ObjectId | string;
