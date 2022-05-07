@@ -82,7 +82,7 @@ export default ({ model, jwt }: any) => {
       data.reset_password_token = undefined;
       data.reset_password_expires = undefined;
 
-      await update({ ...data });
+      return await update({ ...data });
     } catch (error) {
       throw new Error(error as string | undefined);
     }

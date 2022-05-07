@@ -1,38 +1,18 @@
 /*eslint-disable*/
 import type { Document, Model, UpdateQuery, Query, Types } from 'mongoose';
 
-export interface IRead<T extends Document> {
-  retrieve: (callback: (error: any, result: any) => void) => void;
+interface IRead<T extends Document> {
   findById: (id?: Types.ObjectId, callback?: (error: any, result?: Model<T>) => void) => void;
-  findOne: ((
-    conditions: any,
-    projection: any,
-    callback?: (err: any, res: Model<T> | null) => void,
-  ) => Query<T | null, T>) &
-    ((
-      conditions: any,
-      projection: any,
-      options: any,
-      callback?: (err: any, res: Model<T> | null) => void,
-    ) => Query<T | null, T>) &
-    ((conditions?: any, callback?: (err: any, res: Model<T> | null) => void) => Query<T | null, T>);
-
-  find: ((callback?: (err: any, res?: Model<T>[]) => void) => Query<T[], T>) &
-    ((conditions: any, callback?: (err: any, res?: Model<T>[]) => void) => Query<T[], T>) &
-    ((
-      conditions: any,
-      projection?: any | null,
-      callback?: (err: any, res?: T[]) => void,
-    ) => Query<T[], T>) &
-    ((
-      conditions: any,
-      projection?: any | null,
-      options?: any | null,
-      callback?: (err: any, res?: Model<T>[]) => void,
-    ) => Query<T[], T>);
+  findOne: (cond?: Object, callback?: (err: any, res: T) => void) => Query<T | null, T>;
+  find: (
+    cond?: Object,
+    fields?: Object,
+    options?: Object,
+    callback?: (err: any, res: T[]) => void,
+  ) => Query<T[], T>;
 }
 
-export interface IWrite<T extends Document> {
+interface IWrite<T extends Document> {
   create: (
     item?: Query<any[], any, {}, any>,
     callback?: (error: any, result?: T[]) => void,
@@ -59,3 +39,5 @@ export interface IWrite<T extends Document> {
     callback?: (error: any, result: Model<T> | null) => any,
   ) => any;
 }
+
+export { IRead, IWrite };
