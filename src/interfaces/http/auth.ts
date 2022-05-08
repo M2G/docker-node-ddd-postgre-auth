@@ -2,6 +2,7 @@
 import passport from 'passport';
 import BearerStrategy from 'passport-http-bearer';
 import LocalStrategy from 'passport-local';
+import { Strategy, ExtractJwt } from 'passport-jwt';
 import Status from 'http-status';
 import { Request, Response, NextFunction } from 'express';
 
@@ -30,7 +31,8 @@ export default ({ repository: { usersRepository }, response: { Fail }, jwt }: an
   );
 
   // @ts-ignore
-  const localStrategy = new LocalStrategy(function (username: any, password: any, done: any) {
+  const localStrategy = new LocalStrategy(
+    function (username: any, password: any, done: any) {
     console.log('LocalStrategy', { username, password });
 
     /*
@@ -42,6 +44,32 @@ export default ({ repository: { usersRepository }, response: { Fail }, jwt }: an
       });*/
   });
 
+  const opts: any = {}
+  opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+  opts.secretOrKey = 'secret';
+  opts.issuer = 'accounts.examplesoft.com';
+  opts.audience = 'yoursite.net';
+
+  const jwtStrategy = new Strategy(opts,
+    function(jwt_payload, done) {
+
+    console.log('jwt_payload', jwt_payload);
+
+    /*
+    User.findOne({id: jwt_payload.sub}, function(err, user) {
+      if (err) {
+        return done(err, false);
+      }
+      if (user) {
+        return done(null, user);
+      } else {
+        return done(null, false);
+        // or you could create a new account
+      }
+    });*/
+  });
+
+  passport.use(jwtStrategy);
   passport.use(localStrategy);
   passport.use(bearerStrategy);
   passport.serializeUser((user, done) => done(null, user));
