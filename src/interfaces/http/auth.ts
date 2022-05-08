@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import passport from 'passport';
 import BearerStrategy from 'passport-http-bearer';
+import LocalStrategy from 'passport-local';
 import Status from 'http-status';
 import { Request, Response, NextFunction } from 'express';
 
@@ -8,22 +9,11 @@ import { Request, Response, NextFunction } from 'express';
  * middleware to check the if auth vaid
  */
 
-export default ({
-  repository: { usersRepository },
-  response: { Fail },
-  jwt,
-}: any) => {
-
+export default ({ repository: { usersRepository }, response: { Fail }, jwt }: any) => {
   // @ts-ignore
-  const strategy = new BearerStrategy(
+  const bearerStrategy = new BearerStrategy(
     'bearer',
-    (
-      token: any,
-      done: (
-        arg0: any,
-        arg1: { email: any; password: any } | null,
-      ) => any,
-    ) => {
+    (token: any, done: (arg0: any, arg1: { email: any; password: any } | null) => any) => {
       const { email }: any | number = jwt.decode()(token);
 
       usersRepository
@@ -39,31 +29,37 @@ export default ({
     },
   );
 
-  passport.use(strategy);
+  // @ts-ignore
+  const localStrategy = new LocalStrategy(function (username: any, password: any, done: any) {
+    console.log('LocalStrategy', { username, password });
+
+    /*
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false); }
+        if (!user.verifyPassword(password)) { return done(null, false); }
+        return done(null, user);
+      });*/
+  });
+
+  passport.use(localStrategy);
+  passport.use(bearerStrategy);
   passport.serializeUser((user, done) => done(null, user));
   passport.deserializeUser((user: any, done) => done(null, user));
 
   return {
     initialize: () => passport.initialize(),
     authenticate: (req: Request, res: Response, next: NextFunction) =>
-      passport.authenticate(
-        'bearer',
-        { session: false },
-        (err, _) => {
-          if (err === Status[Status.NOT_FOUND]) {
-            return res
-              .status(Status.NOT_FOUND)
-              .json(Fail(Status[Status.NOT_FOUND]));
-          }
+      passport.authenticate('bearer', { session: false }, (err, _) => {
+        if (err === Status[Status.NOT_FOUND]) {
+          return res.status(Status.NOT_FOUND).json(Fail(Status[Status.NOT_FOUND]));
+        }
 
-          if (err) {
-            return res
-              .status(Status.UNAUTHORIZED)
-              .json(Fail(Status[Status.UNAUTHORIZED]));
-          }
+        if (err) {
+          return res.status(Status.UNAUTHORIZED).json(Fail(Status[Status.UNAUTHORIZED]));
+        }
 
-          return next();
-        },
-      )(req, res, next),
+        return next();
+      })(req, res, next),
   };
 };
