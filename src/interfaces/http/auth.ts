@@ -20,10 +20,7 @@ export default ({ repository: { usersRepository }, response: { Fail }, jwt }: an
       usersRepository
         .findOne({ email })
         .then((user: any) => {
-          if (!user) {
-            return done(Status[Status.NOT_FOUND], null);
-          }
-
+          if (!user) return done(Status[Status.NOT_FOUND], null);
           done(null, { email: user.email, password: user.password });
         })
         .catch((error: null) => done(error, null));

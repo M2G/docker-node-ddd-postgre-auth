@@ -23,7 +23,7 @@ export default ({ model, jwt }: any) => {
       // limit
       // offset
       const m: IRead<any> = model;
-      const users = await m.find(query).select(select).sort({ email: 1 });
+      const users = await m.find(query).lean().select(select).sort({ email: 1 });
 
       return users.map((user) => toEntity(user));
     } catch (error) {
@@ -92,7 +92,7 @@ export default ({ model, jwt }: any) => {
     try {
       const m: IRead<any> = model;
       const [{ ...params }] = args;
-      const user = await m.findOne({ ...params }).select(select);
+      const user = await m.findOne({ ...params }).lean().select(select);
 
       if (!user) return null;
 
@@ -117,7 +117,9 @@ export default ({ model, jwt }: any) => {
   const update = async (...args: any) => {
     try {
       const m: IWrite<any> = model;
-      const [{ _id, ...params }] = args;
+      const [{ _id, ...params }] = args
+
+      console.log('::::::::::', { _id, ...params });
 
       const user = await m
         .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true })
