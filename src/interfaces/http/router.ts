@@ -33,15 +33,13 @@ export default ({
       cors({
         allowedHeaders: ['Content-Type', 'Authorization'],
         methods: ['GET',
-                  'POST',
-                  'PUT',
-                  'DELETE'],
-        origin: [
-          'http://localhost:3000',
-          'http://localhost:3001',
-          'http://localhost:3002',
-          'http://localhost:3004',
-        ],
+'POST',
+'PUT',
+'DELETE'],
+        origin: ['http://localhost:3000',
+'http://localhost:3001',
+'http://localhost:3002',
+'http://localhost:3004'],
       }),
     )
     .use(bodyParser.json());

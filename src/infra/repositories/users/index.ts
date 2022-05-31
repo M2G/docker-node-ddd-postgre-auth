@@ -108,7 +108,10 @@ export default ({ model, jwt }: any) => {
       const [{ ...params }] = args;
       const user = await m.findByIdAndDelete({ ...params }).select(select);
 
-      return toEntity(user);
+      if (!user) return null;
+
+      return true;
+
     } catch (error) {
       throw new Error(error as string | undefined);
     }
