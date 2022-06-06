@@ -24,7 +24,11 @@ export default ({
     const hasPassword = encryptPassword(password);
 
     try {
-      const { _doc: data }: any = await postUseCase.register({ email, password: hasPassword });
+      const { _doc: data }: any = await postUseCase.register({
+        email,
+        password: hasPassword,
+        created_at: new Date(),
+      });
 
       return res.status(Status.OK).json(Success({ ...data }));
     } catch (error: any) {

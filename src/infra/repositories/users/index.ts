@@ -125,7 +125,7 @@ export default ({ model, jwt }: any) => {
       console.log('::::::::::', { _id, ...params });
 
       const user = await m
-        .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true })
+        .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true })
         .select(select);
 
       return toEntity(user);

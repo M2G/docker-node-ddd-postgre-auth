@@ -58,13 +58,22 @@ export default ({
 
       const { body = {}, params } = req || {};
       const { id } = params;
-      const { email, password, username } = <IUser>body;
 
-      if (!isValidObjID(id) || !email || !password || !username)
+      const values = body && Object.entries(body).length === 0;
+
+      console.log('values values values values values values', values)
+
+      if (!isValidObjID(id) || values)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
-        const data = await putUseCase.update({ _id: id, ...body });
+
+        const updateValue = {
+          ...body,
+          modified_at: new Date()
+        }
+
+        const data = await putUseCase.update({ _id: id, ...updateValue });
         logger.debug(data);
         if (!data) return res.status(Status.NOT_FOUND).json(Fail());
         return res.status(Status.OK).json(Success());
