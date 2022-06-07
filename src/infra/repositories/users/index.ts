@@ -121,9 +121,6 @@ export default ({ model, jwt }: any) => {
     try {
       const m: IWrite<any> = model;
       const [{ _id, ...params }] = args
-
-      console.log('::::::::::', { _id, ...params });
-
       const user = await m
         .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true })
         .select(select);

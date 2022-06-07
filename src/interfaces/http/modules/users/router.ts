@@ -68,7 +68,7 @@ export default ({
 
       try {
 
-        const updateValue = {
+        const updateValue: IUser = {
           ...body,
           modified_at: new Date()
         }
