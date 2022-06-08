@@ -19,8 +19,31 @@ export default ({
     }
 
     try {
-
       const user = await postUseCase.forgotPassword({ email });
+
+      /*
+
+            var data = {
+        to: user.email,
+        from: email,
+        template: 'forgot-password-email',
+        subject: 'Password help has arrived!',
+        context: {
+          url: 'http://localhost:3000/auth/reset_password?token=' + token,
+          name: user.fullName.split(' ')[0]
+        }
+      };
+
+      smtpTransport.sendMail(data, function(err) {
+        if (!err) {
+          return res.json({ message: 'Kindly check your email for further instructions' });
+        } else {
+          return done(err);
+        }
+      });
+
+
+       */
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));

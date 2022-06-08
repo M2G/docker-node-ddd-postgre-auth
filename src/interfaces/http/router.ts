@@ -1,6 +1,10 @@
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Router } from 'express';
+import hbs, { NodemailerExpressHandlebarsOptions} from 'nodemailer-express-handlebars';
+import nodemailer from 'nodemailer';
+import path from 'path';
+
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 // controller
@@ -10,6 +14,23 @@ import register from './modules/register';
 import users from './modules/users';
 import forgotPassword from './modules/forgot_password';
 import resetPassword from './modules/reset_password';
+
+const email = process.env.MAILER_EMAIL_ID ?? 'auth_email_address@gmail.com';
+const pass = process.env.MAILER_PASSWORD ?? 'auth_email_pass';
+
+const smtpTransport = nodemailer.createTransport({
+  auth: {
+    pass,
+    user: email,
+  },
+  service: process.env.MAILER_SERVICE_PROVIDER ?? 'Gmail',
+});
+
+const handlebarsOptions: NodemailerExpressHandlebarsOptions = {
+  extName: '.html',
+  viewEngine: 'handlebars',
+  viewPath: path.resolve('./api/templates/'),
+};
 
 const ROUTES = {
   AUTHENTICATE: '/auth/authenticate',
@@ -24,6 +45,8 @@ export default ({
  config, logger, database, verify,
 }: any) => {
   const router = Router();
+
+  smtpTransport.use('compile', hbs(handlebarsOptions));
 
   if (config.env !== 'test') {
     router.use(httpLogger(logger));
