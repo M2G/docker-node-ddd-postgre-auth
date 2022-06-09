@@ -21,6 +21,8 @@ export default ({
     try {
       const user = await postUseCase.forgotPassword({ email });
 
+      console.log('---------->', user)
+
       /*
 
             var data = {

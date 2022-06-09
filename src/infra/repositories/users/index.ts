@@ -32,8 +32,14 @@ export default ({ model, jwt }: any) => {
   };
 
   const register = async (...args: any[]) => {
+
+    console.log('register args args args', args)
+
     try {
       const [{ ...params }] = args;
+
+      console.log('params params params params', params)
+
       const m: IWrite<any> = model;
       return await m.create({ ...params });
     } catch (error) {
@@ -60,6 +66,8 @@ export default ({ model, jwt }: any) => {
         reset_password_token: token,
         reset_password_expires: Date.now() + 86400000,
       });
+
+      console.log('updatedUser', updatedUser)
 
       return toEntity(updatedUser);
     } catch (error) {
@@ -122,7 +130,7 @@ export default ({ model, jwt }: any) => {
       const m: IWrite<any> = model;
       const [{ _id, ...params }] = args
       const user = await m
-        .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true })
+        .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true })
         .select(select);
 
       return toEntity(user);
