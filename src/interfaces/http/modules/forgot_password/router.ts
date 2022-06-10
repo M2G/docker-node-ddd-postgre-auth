@@ -2,6 +2,7 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import IUser from 'core/IUser';
+import smtpTransport from '../../../../nodemailer';
 
 export default ({
                   postUseCase,
@@ -23,7 +24,7 @@ export default ({
 
       console.log('---------->', user)
 
-      /*
+
 
             var data = {
         to: user.email,
@@ -31,21 +32,23 @@ export default ({
         template: 'forgot-password-email',
         subject: 'Password help has arrived!',
         context: {
-          url: 'http://localhost:3000/auth/reset_password?token=' + token,
-          name: user.fullName.split(' ')[0]
+          url: 'http://localhost:8181/auth/reset_password?token=' + user.reset_password_token,
+          // name: user.fullName.split(' ')[0]
         }
       };
 
-      smtpTransport.sendMail(data, function(err) {
+      smtpTransport.sendMail(data, function(err: any) {
         if (!err) {
-          return res.json({ message: 'Kindly check your email for further instructions' });
+          // return res.json({ message: 'Kindly check your email for further instructions' });
+          console.log('Kindly check your email for further instructions')
         } else {
-          return done(err);
+          console.log('err err err', err)
+          // return done(err);
         }
       });
 
 
-       */
+
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));
