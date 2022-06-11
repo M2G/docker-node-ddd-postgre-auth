@@ -2,6 +2,7 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import { encryptPassword } from 'infra/encryption';
+import { smtpTransport, template } from '../../../../nodemailer';
 
 export default ({
                   postUseCase,
@@ -27,6 +28,22 @@ export default ({
       const hashPassword = encryptPassword(verify_password);
 
       const user = await postUseCase.resetPassword({ password: hashPassword, token });
+
+      const htmlToSend = template({
+        name: 'test'
+      });
+
+      var data = {
+        to: user.email,
+        from: "sendersemail@example.com",
+        subject: 'Password Reset Confirmation',
+        html: htmlToSend,
+      };
+
+      smtpTransport.sendMail(data, function(error: any) {
+        if (error) return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
+        console.log("Successfully sent email.");
+      });
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));

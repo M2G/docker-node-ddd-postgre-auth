@@ -40,10 +40,7 @@ export default ({
 
         console.log('::::::::::::::', { error, response })
 
-        if (error) {
-          console.log(error)
-          return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
-        }
+        if (error) return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
         console.log("Successfully sent email.")
       });
 
