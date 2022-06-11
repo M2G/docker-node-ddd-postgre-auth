@@ -78,6 +78,9 @@ src/.DS_Store
 test/.DS_Store
 redis-data/
 
-.idea/*.xml
+.idea/*.xmlz
 .idea/**/*.xml
 .idea/**/*.iml
+
+.env
+.env.example

@@ -2,7 +2,7 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import IUser from 'core/IUser';
-import smtpTransport from '../../../../nodemailer';
+import { template, smtpTransport } from '../../../../nodemailer';
 
 export default ({
                   postUseCase,
@@ -24,31 +24,28 @@ export default ({
 
       console.log('---------->', user)
 
-
-
-            var data = {
-        to: user.email,
-        from: email,
-        template: 'forgot-password-email',
-        subject: 'Password help has arrived!',
-        context: {
-          url: 'http://localhost:8181/auth/reset_password?token=' + user.reset_password_token,
-          // name: user.fullName.split(' ')[0]
-        }
-      };
-
-      smtpTransport.sendMail(data, function(err: any) {
-        if (!err) {
-          // return res.json({ message: 'Kindly check your email for further instructions' });
-          console.log('Kindly check your email for further instructions')
-        } else {
-          console.log('err err err', err)
-          // return done(err);
-        }
+      const htmlToSend = template({
+        url: 'http://localhost:8181/auth/reset_password?token=' + user.reset_password_token,
+        name: 'test'
       });
 
+      const mailOptions = {
+        to: user.email,
+        from: "sendersemail@example.com",
+        subject: 'Password help has arrived!',
+        html: htmlToSend,
+      }
 
+      smtpTransport.sendMail(mailOptions, function(error: any, response: any) {
 
+        console.log('::::::::::::::', { error, response })
+
+        if (error) {
+          console.log(error)
+          return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
+        }
+        console.log("Successfully sent email.")
+      });
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true, ...user }));

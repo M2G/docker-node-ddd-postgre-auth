@@ -1,30 +1,21 @@
-import type { NodemailerExpressHandlebarsOptions} from 'nodemailer-express-handlebars';
-import hbs from 'nodemailer-express-handlebars';
 import nodemailer from 'nodemailer';
+import mg from "nodemailer-mailgun-transport";
+import handlebars from "handlebars";
+import fs from "fs";
 import path from 'path';
 
-const email = process.env.MAILER_EMAIL_ID ?? 'auth_email_address@gmail.com';
-const pass = process.env.MAILER_PASSWORD ?? 'auth_email_pass';
-
-const testAccount: any = nodemailer.createTestAccount();
-
-const smtpTransport: any = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
-  secure: false,
+const emailTemplateSource = fs.readFileSync(path.join(__dirname, "templates/forgot-password-email.hbs"), "utf8");
+const mailgunAuth: any = {
   auth: {
-    user: testAccount.user,
-    pass: testAccount.pass,
+    api_key: process.env.MAILER_GUN_AUTH_API_KEY,
+    domain: process.env.MAILER_GUN_AUTH_DOMAIN,
   },
-  service: process.env.MAILER_SERVICE_PROVIDER ?? 'Gmail',
-});
+};
 
-const handlebarsOptions: NodemailerExpressHandlebarsOptions = {
-  extName: '.html',
-  // viewEngine: 'handlebars',
-  viewPath: `${__dirname}/templates/`,
-} as any;
+const smtpTransport: any = nodemailer.createTransport(mg(mailgunAuth));
+const template = handlebars.compile(emailTemplateSource);
 
-smtpTransport.use('compile', hbs(handlebarsOptions));
-
-export default smtpTransport;
+export {
+  template,
+  smtpTransport,
+};
