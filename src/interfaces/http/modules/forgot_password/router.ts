@@ -25,7 +25,7 @@ export default ({
       console.log('---------->', user)
 
       const htmlToSend = template({
-        url: 'http://localhost:8181/auth/reset_password?token=' + user.reset_password_token,
+        url: 'http://localhost:3002/reset-password?token=' + user.reset_password_token,
         name: 'test'
       });
 

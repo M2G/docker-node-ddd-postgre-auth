@@ -14,10 +14,10 @@ import resetPassword from './modules/reset_password';
 
 const ROUTES = {
   AUTHENTICATE: '/auth/authenticate',
-  FORGOT_PASSWORD: '/auth/forgot_password',
+  FORGOT_PASSWORD: '/auth/forgot-password',
   INDEX: '/',
   REGISTER: '/auth/register',
-  RESET_PASSWORD: '/auth/reset_password',
+  RESET_PASSWORD: '/auth/reset-password',
   USERS: '/auth/users',
 };
 
