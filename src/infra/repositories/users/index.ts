@@ -76,15 +76,22 @@ export default ({ model, jwt }: any) => {
   };
 
   const resetPassword = async (...args: any[]) => {
+
     try {
       const [{ ...params }] = args;
 
-      const { ...data }: any = await findOne({
+      console.log('resetPassword resetPassword ', params)
+
+      const data: any = await findOne({
         reset_password_token: params.token,
         reset_password_expires: {
           $gt: Date.now(),
         },
       });
+
+      if (!data) return null;
+
+      console.log('resetPassword resetPassword { ...data }', { data })
 
       data.password = params.password;
       data.reset_password_token = undefined;
