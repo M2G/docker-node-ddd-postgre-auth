@@ -52,6 +52,8 @@ export default ({ model, jwt }: any) => {
       const [{ ...params }] = args;
       const { ...user }: any = await findOne(params);
 
+      if (!user) return null;
+
       const { _id, email, password } = <IUser>user;
       const payload = { _id, email, password };
       const options = {

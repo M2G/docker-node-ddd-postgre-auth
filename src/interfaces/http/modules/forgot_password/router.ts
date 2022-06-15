@@ -22,6 +22,8 @@ export default ({
     try {
       const user = await postUseCase.forgotPassword({ email });
 
+      if (!user) return res.status(Status.NOT_FOUND).json(Fail('Not found user'));
+
       console.log('---------->', user)
 
       const htmlToSend = template({
@@ -45,7 +47,7 @@ export default ({
       });
 
       logger.info({ ...user });
-      return res.status(Status.OK).json(Success({ success: true, ...user }));
+      return res.status(Status.OK).json(Success({ success: true }));
 
     } catch (error: any) {
       logger.error(error);

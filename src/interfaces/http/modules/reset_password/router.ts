@@ -49,7 +49,7 @@ export default ({
       });
 
       logger.info({ ...user });
-      return res.status(Status.OK).json(Success({ success: true, ...user }));
+      return res.status(Status.OK).json(Success({ success: true }));
 
     } catch (error: any) {
       logger.error(error);
