@@ -56,6 +56,12 @@ export default ({ model, Schema }) => {
     reset_password_expires: {
       type: Date,
     },
+    is_deleted: {
+      type: Boolean,
+    },
+    last_connected_at: {
+      type: Date,
+    },
   });
 
   User.pre('findOneAndUpdate', function(/** @type {() => void} */ next) {

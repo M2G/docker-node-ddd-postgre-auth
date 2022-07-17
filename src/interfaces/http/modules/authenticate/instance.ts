@@ -3,9 +3,9 @@ import post from 'app/authenticate';
 
 export default () => {
   const { cradle } = container;
-  const { repository } = cradle;
+  const { redis, repository } = cradle;
   const { usersRepository } = repository;
-  const postUseCase = post({ usersRepository });
+  const postUseCase = post({ redis, usersRepository });
 
   return {
     postUseCase,

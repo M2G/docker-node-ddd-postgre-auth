@@ -5,7 +5,7 @@ const router = Router();
 
 const time =
   process.env.NODE_ENV === 'development'
-    ? process.env.JWT_TOKEN_EXPIRE_TIME
+    ? '60s'  //process.env.JWT_TOKEN_EXPIRE_TIME
     : '2s';
 
 const TOKEN_EXPIRED_ERROR = 'TokenExpiredError';

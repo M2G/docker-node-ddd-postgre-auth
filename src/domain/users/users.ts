@@ -5,6 +5,8 @@ const Users = t.struct({
   created_at: t.maybe(t.Any),
   email: t.maybe(t.String),
   first_name: t.maybe(t.String),
+  is_deleted: t.maybe(t.Boolean),
+  last_connected_at: t.maybe(t.Any),
   last_name: t.maybe(t.String),
   modified_at: t.maybe(t.Any),
   password: t.maybe(t.String),
