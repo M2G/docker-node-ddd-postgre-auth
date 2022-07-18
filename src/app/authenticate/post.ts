@@ -17,7 +17,9 @@ export default ({ redis, usersRepository }: any) => {
 
       console.log('AUTHENTICATE', args);
 
-      await redis.set(KEY, JSON.stringify({ ...args, last_connected_at: new Date() }), TTL);
+      await redis.set(KEY,
+        JSON.stringify({ ...args, last_connected_at: Math.floor(Date.now() / 1000) }),
+        TTL);
 
       return usersRepository.authenticate(cleanData(users));
     } catch (error: any | unknown) {

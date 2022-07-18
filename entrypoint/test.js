@@ -8,9 +8,9 @@ db.users.insertMany([
     last_name: 'Jackson',
     email: 'smith.jackson@university.com',
     password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
-    created_at: '2021-11-21T15:47:44.533Z',
-    modified_at: '2021-11-22T15:47:44.533Z',
-    last_connected_at: null,
+    created_at: 1658098356,
+    modified_at: 1658098356,
+    last_connected_at: 0,
     is_deleted: false,
   },
   {
@@ -18,9 +18,9 @@ db.users.insertMany([
     last_name: 'Garcia',
     email: 'oliver.garcia@university.com',
     password: '$2a$10$zZwZ9FuuHQxjWQAQQFc6cOUj59UfUMZLp7/.pGQiyS3aBsYlKgXBe',
-    created_at: '2021-11-21T15:47:44.533Z',
-    modified_at: '2021-11-22T15:47:44.533Z',
-    last_connected_at: null,
+    created_at: 1658098356,
+    modified_at: 1658098356,
+    last_connected_at: 0,
     is_deleted: false,
   }
 ]);

@@ -70,7 +70,7 @@ export default ({
 
         const updateValue: IUser = {
           ...body,
-          modified_at: new Date()
+          modified_at: Math.floor(Date.now() / 1000)
         }
 
         const data = await putUseCase.update({ _id: id, ...updateValue });

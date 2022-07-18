@@ -6,12 +6,14 @@ interface IUser extends Document {
   username?: string;
   first_name?: string;
   last_name?: string;
-  password?: string | undefined;
-  created_at?: string;
-  modified_at?: string;
+  password?: string;
+  created_at?: Number;
+  modified_at?: Number;
   reset_password_token?: string;
-  reset_password_expires?: Date;
+  reset_password_expires?: Number;
   token?: string;
+  is_deleted?: boolean;
+  last_connected_at: Number;
 }
 
 export default IUser;

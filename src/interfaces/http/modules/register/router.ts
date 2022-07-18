@@ -27,7 +27,9 @@ export default ({
       const { _doc: data }: any = await postUseCase.register({
         email,
         password: hasPassword,
-        created_at: new Date(),
+        created_at: Math.floor(Date.now() / 1000),
+        is_deleted: false,
+        last_connected_at: null,
       });
 
       return res.status(Status.OK).json(Success({ ...data }));

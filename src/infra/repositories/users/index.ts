@@ -10,7 +10,11 @@ export default ({ model, jwt }: any) => {
     try {
       const [{ ...params }] = args;
 
-      let query: any = {};
+      console.log('params params params params', params)
+
+      let query: any = {
+        ...params,
+      };
 
       if (params.search) {
         query.$or = [
@@ -87,7 +91,7 @@ export default ({ model, jwt }: any) => {
       const data: any = await findOne({
         reset_password_token: params.token,
         reset_password_expires: {
-          $gt: Date.now(),
+          $gt: Math.floor(Date.now() / 1000),
         },
       });
 

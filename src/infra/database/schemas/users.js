@@ -44,30 +44,30 @@ export default ({ model, Schema }) => {
       type: String,
     },
     created_at: {
-      type: Date,
-      default: new Date().toISOString(),
+      type: Number,
+      default: Math.floor(Date.now() / 1000),
     },
     modified_at: {
-      type: Date,
+      type: Number,
     },
     reset_password_token: {
       type: String,
     },
     reset_password_expires: {
-      type: Date,
+      type: Number,
     },
     is_deleted: {
       type: Boolean,
     },
     last_connected_at: {
-      type: Date,
+      type: Number,
     },
   });
 
   User.pre('findOneAndUpdate', function(/** @type {() => void} */ next) {
 
     if (!this._update.modified_at) {
-      this._update.modified_at = new Date().toISOString();
+      this._update.modified_at = Math.floor(Date.now() / 1000);
     }
 
     next();
