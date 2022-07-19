@@ -11,7 +11,7 @@ db.users.insertMany([
     created_at: 1658098356,
     modified_at: 1658098356,
     last_connected_at: 0,
-    is_deleted: false,
+    deleted_at: 0,
   },
   {
     first_name: 'Oliver',
@@ -21,7 +21,7 @@ db.users.insertMany([
     created_at: 1658098356,
     modified_at: 1658098356,
     last_connected_at: 0,
-    is_deleted: false,
+    deleted_at: 0,
   }
 ]);
 

@@ -7,13 +7,13 @@ interface IUser extends Document {
   first_name?: string;
   last_name?: string;
   password?: string;
-  created_at?: Number;
-  modified_at?: Number;
+  created_at?: number;
+  modified_at?: number;
   reset_password_token?: string;
-  reset_password_expires?: Number;
+  reset_password_expires?: number;
   token?: string;
-  is_deleted?: boolean;
-  last_connected_at: Number;
+  delete_at?: number;
+  last_connected_at: number;
 }
 
 export default IUser;

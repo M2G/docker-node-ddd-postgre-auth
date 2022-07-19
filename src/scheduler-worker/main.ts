@@ -37,9 +37,40 @@ async function lastConnectedUser() {
   }
 }
 
-async function anonymizeUser(userId) {
-
+async function anonymizeUser(userId): Promise<any> {
   console.log('anonymizeUser', userId);
+
+  try {
+    const user = await usersRepository.findOne(userId);
+
+    console.log('anonymizeUser user user user user', user);
+
+    if (!user) throw new Error('User not found');
+
+    const userDataToUpdate = {
+      address: `anonym-address${userId}`,
+      deleted_at: Date.now(),
+      email: `anonym-${userId}@unknown.fr`,
+      first_name: `unnamed-${userId}`,
+      last_name: `unnamed-${userId}`,
+      phone: `anonym-phone-${userId}`,
+      updated_at: Date.now(),
+    };
+
+    /*
+      const updatedUser: any = await usersRepository.update({
+        _id: user?._id,
+        ...userDataToUpdate,
+      });
+     */
+
+    logger.info('[Users.anonymizeInactivity]', userDataToUpdate);
+
+    logger.info(`[AnonymizeUser]: user with email ${user.email} anonymized to ${userDataToUpdate.email}`);
+  } catch (error: unknown) {
+    logger.error(`[AnonymizeUser]: Error while anonymizing user`);
+    throw error;
+  }
 
   // mongo
   /* await MongoDB.connect();
@@ -78,9 +109,8 @@ async function anonymizeUser(userId) {
      logger.error(`[AnonymizeUser]: Error while anonymizing user with email ${user.email}`);
      throw e;
 
-   }*/
-
-};
+   } */
+}
 
 async function deleteInactiveUser() {
   try {
@@ -94,8 +124,10 @@ async function deleteInactiveUser() {
     });
 
     console.log('users', users);
-    await Promise.all(users.map(async user => anonymizeUser(user._id)));
 
+    await Promise.all(users?.map(async (user: { _id: any }) => {
+      await anonymizeUser(user._id);
+    }));
   } catch (error: unknown) {
     logger.error('[Users.anonymizeInactivity]', error);
   }

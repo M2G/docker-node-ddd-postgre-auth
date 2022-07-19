@@ -56,8 +56,8 @@ export default ({ model, Schema }) => {
     reset_password_expires: {
       type: Number,
     },
-    is_deleted: {
-      type: Boolean,
+    deleted_at: {
+      type: Number,
     },
     last_connected_at: {
       type: Number,

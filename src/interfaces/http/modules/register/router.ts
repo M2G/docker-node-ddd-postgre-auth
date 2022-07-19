@@ -28,7 +28,7 @@ export default ({
         email,
         password: hasPassword,
         created_at: Math.floor(Date.now() / 1000),
-        is_deleted: false,
+        deleted_at: 0,
         last_connected_at: null,
       });
 
