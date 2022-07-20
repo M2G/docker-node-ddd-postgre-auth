@@ -14,6 +14,9 @@ export default ({ model, jwt }: any) => {
 
       let query: any = {
         ...params,
+        deleted_at: {
+          $lte: 0,
+        },
       };
 
       if (params.search) {

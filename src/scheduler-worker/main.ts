@@ -57,16 +57,14 @@ async function anonymizeUser(userId): Promise<any> {
       updated_at: Date.now(),
     };
 
-    /*
-      const updatedUser: any = await usersRepository.update({
-        _id: user?._id,
-        ...userDataToUpdate,
-      });
-     */
+    const updatedUser: any = await usersRepository.update({
+      _id: user?._id,
+      ...userDataToUpdate,
+    });
 
     logger.info('[Users.anonymizeInactivity]', userDataToUpdate);
 
-    logger.info(`[AnonymizeUser]: user with email ${user.email} anonymized to ${userDataToUpdate.email}`);
+    logger.info(`[AnonymizeUser]: user with email ${updatedUser.email} anonymized to ${userDataToUpdate.email}`);
   } catch (error: unknown) {
     logger.error(`[AnonymizeUser]: Error while anonymizing user`);
     throw error;
