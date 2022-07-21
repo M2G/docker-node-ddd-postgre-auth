@@ -13,15 +13,16 @@ const TTL = 60 * 60;
 export default ({ redis, usersRepository }: any) => {
   const authenticate = async ({ ...args }: any) => {
     try {
-      const users = Users({ ...args });
+      const user = Users({ ...args });
 
-      console.log('AUTHENTICATE', args);
+      const authenticatedUser: any = await usersRepository.authenticate(cleanData(user));
 
-      await redis.set(KEY,
-        JSON.stringify({ ...args, last_connected_at: Math.floor(Date.now() / 1000) }),
-        TTL);
+      console.log('authenticatedUser authenticatedUser authenticatedUser', authenticatedUser);
 
-      return usersRepository.authenticate(cleanData(users));
+      await redis.set(`${KEY}:${authenticatedUser?._id}`,
+        JSON.stringify({_id: authenticatedUser?._id, last_connected_at: Math.floor(Date.now() / 1000) }), TTL);
+
+      return authenticatedUser;
     } catch (error: any | unknown) {
       throw new Error(error as string | undefined);
     }

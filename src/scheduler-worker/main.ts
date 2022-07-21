@@ -5,7 +5,7 @@ const { cradle } = container;
 const { redis, repository, logger } = cradle;
 const { usersRepository } = repository;
 
-const KEY = 'LAST_CONNECTED_AT';
+const KEY = 'LAST_CONNECTED_AT:*';
 
 function subtractMonths(numOfMonths: number, date: Date = new Date()) {
   const dateCopy = new Date(date.getTime());
@@ -17,9 +17,30 @@ function subtractMonths(numOfMonths: number, date: Date = new Date()) {
 
 async function lastConnectedUser() {
   try {
-  const cachingLastConnectedUser = await redis.get(KEY);
 
-  if (!cachingLastConnectedUser) return;
+    redis.scan(KEY, (err, matchingKeys) => {
+      if (err) throw(err);
+
+      // matchingKeys will be an array of strings if matches were found
+      // otherwise it will be an empty array.
+      console.log('matchingKeys', matchingKeys);
+
+
+      matchingKeys?.map(async (userKey) => {
+
+        const usersInfo = await redis.get(userKey);
+
+
+        console.log('usersInfo usersInfo usersInfo usersInfo', usersInfo);
+      });
+
+    });
+
+ // const cachingLastConnectedUser = await redis.scan(KEY);
+
+
+
+ /* if (!cachingLastConnectedUser) return;
 
   const user: any = await usersRepository.findOne(cachingLastConnectedUser?.email);
 
@@ -30,7 +51,7 @@ async function lastConnectedUser() {
 
     logger.info('[Users.updateLastConnectedAt] users updated in mongo', updatedUser?._id);
 
-  console.log('updatedUser', updatedUser);
+  console.log('updatedUser', updatedUser);*/
   } catch (error: unknown) {
     logger.error('[Users.updateLastConnectedAt]', error);
     throw new Error(error as string | undefined);
@@ -134,6 +155,6 @@ async function deleteInactiveUser() {
 cron.schedule('* * * * *', () => {
   void (async () => {
     await lastConnectedUser();
-    await deleteInactiveUser();
+    // await deleteInactiveUser();
   })();
 });
