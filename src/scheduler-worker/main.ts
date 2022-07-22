@@ -15,7 +15,7 @@ function subtractMonths(numOfMonths: number, date: Date = new Date()) {
   return dateCopy;
 }
 
-async function lastConnectedUser() {
+function lastConnectedUser() {
   try {
     redis.scan(KEY, (err: any, matchingKeys: any[]) => {
       if (err) throw err;
@@ -87,7 +87,7 @@ async function deleteInactiveUser() {
 
 cron.schedule('* * * * *', () => {
   void (async () => {
-    await lastConnectedUser();
+    lastConnectedUser();
     await deleteInactiveUser();
   })();
 });
