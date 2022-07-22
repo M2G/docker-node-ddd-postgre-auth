@@ -17,41 +17,25 @@ function subtractMonths(numOfMonths: number, date: Date = new Date()) {
 
 async function lastConnectedUser() {
   try {
-
-    redis.scan(KEY, (err, matchingKeys) => {
-      if (err) throw(err);
-
+    redis.scan(KEY, (err: any, matchingKeys: any[]) => {
+      if (err) throw err;
       // matchingKeys will be an array of strings if matches were found
       // otherwise it will be an empty array.
       console.log('matchingKeys', matchingKeys);
-
-
       matchingKeys?.map(async (userKey) => {
-
         const usersInfo = await redis.get(userKey);
 
-
         console.log('usersInfo usersInfo usersInfo usersInfo', usersInfo);
+          const updatedUser = await usersRepository.update({
+            _id: usersInfo?._id,
+            last_connected_at: usersInfo?.last_connected_at,
+          });
+
+        console.log('updatedUser updatedUser updatedUser updatedUser', updatedUser);
+
+          logger.info('[Users.updateLastConnectedAt] users updated in mongo', updatedUser?._id);
       });
-
     });
-
- // const cachingLastConnectedUser = await redis.scan(KEY);
-
-
-
- /* if (!cachingLastConnectedUser) return;
-
-  const user: any = await usersRepository.findOne(cachingLastConnectedUser?.email);
-
-  const updatedUser = await usersRepository.update({
-    _id: user?._id,
-    last_connected_at: new Date(),
-  });
-
-    logger.info('[Users.updateLastConnectedAt] users updated in mongo', updatedUser?._id);
-
-  console.log('updatedUser', updatedUser);*/
   } catch (error: unknown) {
     logger.error('[Users.updateLastConnectedAt]', error);
     throw new Error(error as string | undefined);
@@ -70,12 +54,12 @@ async function anonymizeUser(userId): Promise<any> {
 
     const userDataToUpdate = {
       address: `anonym-address${userId}`,
-      deleted_at: Date.now(),
+      deleted_at: Math.floor(Date.now() / 1000),
       email: `anonym-${userId}@unknown.fr`,
       first_name: `unnamed-${userId}`,
       last_name: `unnamed-${userId}`,
       phone: `anonym-phone-${userId}`,
-      updated_at: Date.now(),
+      updated_at: Math.floor(Date.now() / 1000),
     };
 
     const updatedUser: any = await usersRepository.update({
@@ -90,45 +74,6 @@ async function anonymizeUser(userId): Promise<any> {
     logger.error(`[AnonymizeUser]: Error while anonymizing user`);
     throw error;
   }
-
-  // mongo
-  /* await MongoDB.connect();
-   const user = await MongoDB.getClient().db().collection('user').findOne({ _id: userId });
-
-   if (!user || user === {}) {
-
-     throw buildError.notFound('User not found');
-
-   }
-   try {
-
-     const userDataToUpdate = {
-       first_name: `unnamed-${userId}`,
-       last_name: `unnamed-${userId}`,
-       email: `anonym-${userId}@unknown.fr`,
-       phone: `anonym-phone-${userId}`,
-       address: `anonym-address${userId}`,
-       updated_at: Date.now(),
-       deleted_at: Date.now(),
-     };
-
-     const updated = await MongoDB.getClient().db().collection('user').update({ _id: userId }, {
-       $set: userDataToUpdate,
-     });
-
-     // Selligent
-     await Selligent.deleteContact(userId);
-
-     // SIB
-     await SendInBlue.deleteContact(user.email);
-     logger.info(`[AnonymizeUser]: user with email ${user.email} anonymized to ${updated.email}`);
-
-   } catch (e) {
-
-     logger.error(`[AnonymizeUser]: Error while anonymizing user with email ${user.email}`);
-     throw e;
-
-   } */
 }
 
 async function deleteInactiveUser() {
@@ -155,6 +100,6 @@ async function deleteInactiveUser() {
 cron.schedule('* * * * *', () => {
   void (async () => {
     await lastConnectedUser();
-    // await deleteInactiveUser();
+    await deleteInactiveUser();
   })();
 });

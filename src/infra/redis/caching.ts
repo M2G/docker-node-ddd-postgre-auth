@@ -167,7 +167,7 @@ export default ({ config }: any) => {
    * of the Redis keyspace completes having searched for the given pattern.
    * Invoked with (err, matchingKeys).
    */
-  const scan = (pattern, options, callback) => {
+  const scan = (pattern, options = {}, callback) => {
     if (!callback) {
       callback = options;
       options = {};
