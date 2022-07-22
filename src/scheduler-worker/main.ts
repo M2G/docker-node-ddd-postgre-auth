@@ -21,17 +21,12 @@ async function lastConnectedUser() {
       if (err) throw err;
       // matchingKeys will be an array of strings if matches were found
       // otherwise it will be an empty array.
-      console.log('matchingKeys', matchingKeys);
       matchingKeys?.map(async (userKey) => {
         const usersInfo = await redis.get(userKey);
-
-        console.log('usersInfo usersInfo usersInfo usersInfo', usersInfo);
           const updatedUser = await usersRepository.update({
             _id: usersInfo?._id,
             last_connected_at: usersInfo?.last_connected_at,
           });
-
-        console.log('updatedUser updatedUser updatedUser updatedUser', updatedUser);
 
           logger.info('[Users.updateLastConnectedAt] users updated in mongo', updatedUser?._id);
       });
@@ -42,14 +37,9 @@ async function lastConnectedUser() {
   }
 }
 
-async function anonymizeUser(userId): Promise<any> {
-  console.log('anonymizeUser', userId);
-
+async function anonymizeUser(userId: any): Promise<any> {
   try {
     const user = await usersRepository.findOne(userId);
-
-    console.log('anonymizeUser user user user user', user);
-
     if (!user) throw new Error('User not found');
 
     const userDataToUpdate = {
@@ -86,8 +76,6 @@ async function deleteInactiveUser() {
         $lte: subtractMonths(3, new Date()).getTime(),
       },
     });
-
-    console.log('users', users);
 
     await Promise.all(users?.map(async (user: { _id: any }) => {
       await anonymizeUser(user._id);
