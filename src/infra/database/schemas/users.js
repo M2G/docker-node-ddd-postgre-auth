@@ -1,5 +1,7 @@
 /*eslint-disable*/
 // @ts-ignore
+import { encryptPassword } from 'infra/encryption';
+
 export default ({ model, Schema }) => {
   const emailMatch = [
     /([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i,
@@ -64,6 +66,14 @@ export default ({ model, Schema }) => {
     },
   });
 
+  User.pre('save', function (/** @type {() => void} */ next) {
+    console.log('this.password 1', this.password);
+    this.password = encryptPassword(this.password); // Replace with encrypted password
+    // Call the next function in the pre-save chain
+    console.log('this.password 2', this.password);
+    next();
+  });
+
   User.pre('findOneAndUpdate', function(/** @type {() => void} */ next) {
 
     if (!this._update.modified_at) {
@@ -73,7 +83,7 @@ export default ({ model, Schema }) => {
     next();
   });
 
-  User.post('save', function(/** @type {{ name: string; code: number; }} */ error, /** @type {any} */ doc, /** @type {(arg0: Error | undefined) => void} */ next) {
+  User.post('save', function(/** @type {{ name: string; code: number; }} */ error, /** @type {any} */ doc, /** @type {(arg0: Error | void) => void} */ next) {
     if (error.name === 'MongoError' && error.code === 11000) {
       return next(new Error('There was a duplicate key error'));
     }

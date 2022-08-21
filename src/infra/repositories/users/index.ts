@@ -39,14 +39,8 @@ export default ({ model, jwt }: any) => {
   };
 
   const register = async (...args: any[]) => {
-
-    console.log('register args args args', args)
-
     try {
       const [{ ...params }] = args;
-
-      console.log('params params params params', params)
-
       const m: IWrite<any> = model;
       return await m.create({ ...params });
     } catch (error) {
