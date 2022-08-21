@@ -73,5 +73,12 @@ export default ({ model, Schema }) => {
     next();
   });
 
+  User.post('save', function(/** @type {{ name: string; code: number; }} */ error, /** @type {any} */ doc, /** @type {(arg0: Error | undefined) => void} */ next) {
+    if (error.name === 'MongoError' && error.code === 11000) {
+      return next(new Error('There was a duplicate key error'));
+    }
+    next();
+  });
+
   return model('User', User);
 };

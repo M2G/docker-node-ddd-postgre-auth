@@ -17,13 +17,13 @@ function subtractMonths(numOfMonths: number, date: Date = new Date()) {
 
 function lastConnectedUser() {
   try {
-    redis.scan(KEY, (err: any, matchingKeys: any[]) => {
+    redis.scan(KEY, (err: any, matchingKeys: readonly any[]) => {
       if (err) throw err;
       // matchingKeys will be an array of strings if matches were found
       // otherwise it will be an empty array.
       matchingKeys?.map(async (userKey) => {
-        const usersInfo = await redis.get(userKey);
-          const updatedUser = await usersRepository.update({
+        const usersInfo: { _id: string; last_connected_at: number } = await redis.get(userKey);
+          const updatedUser: any = await usersRepository.update({
             _id: usersInfo?._id,
             last_connected_at: usersInfo?.last_connected_at,
           });
@@ -68,8 +68,6 @@ async function anonymizeUser(userId: any): Promise<any> {
 
 async function deleteInactiveUser() {
   try {
-    logger.info('[Users.anonymizeInactivity] users anonymized successfully');
-
     const users: any = await usersRepository.getAll({
       last_connected_at: {
         $gt: 0,
@@ -77,9 +75,11 @@ async function deleteInactiveUser() {
       },
     });
 
-    await Promise.all(users?.map(async (user: { _id: any }) => {
+    await Promise.all(users?.map(async (user: { readonly _id: string }) => {
       await anonymizeUser(user._id);
     }));
+
+    logger.info('[Users.anonymizeInactivity] users anonymized successfully');
   } catch (error: unknown) {
     logger.error('[Users.anonymizeInactivity]', error);
   }

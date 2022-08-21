@@ -80,7 +80,7 @@ export default ({ config }: any) => {
    * completed and all keys have been returned.
    * Invoked with (err, matchCount).
    */
-  const eachScan = (pattern, options, eachScanCallback, callback) => {
+  const eachScan = (pattern: string, options: object, eachScanCallback: Function, callback: Function) => {
     if (!callback) {
       callback = eachScanCallback;
       eachScanCallback = options;
@@ -167,19 +167,19 @@ export default ({ config }: any) => {
    * of the Redis keyspace completes having searched for the given pattern.
    * Invoked with (err, matchingKeys).
    */
-  const scan = (pattern, options = {}, callback) => {
+  const scan = (pattern: string, options: object = {}, callback: Function) => {
     if (!callback) {
       callback = options;
       options = {};
     }
 
-    let keys = [];
+    let keys: any[] = [];
 
     // Collect all our keys into a single array using the `eachScan()`
     // method from above.
-    eachScan(pattern, options, (matchingKeys) => {
+    eachScan(pattern, options, (matchingKeys: any) => {
       keys = keys.concat(matchingKeys);
-    }, (err) => {
+    }, (err: any) => {
       if (err) {
         callback(err);
       } else {
@@ -187,7 +187,6 @@ export default ({ config }: any) => {
       }
     });
   }
-
 
   /**
    * Returns 'OK' if successful

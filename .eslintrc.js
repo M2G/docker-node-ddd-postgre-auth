@@ -30,6 +30,7 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "jest", "prettier"],
   rules: {
+    "no-underscore-dangle": 1,
     "no-return-assign": 0,
     "no-restricted-syntax": 0,
     "no-cond-assign": 0,
