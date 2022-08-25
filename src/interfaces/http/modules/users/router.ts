@@ -51,7 +51,10 @@ export default ({
         logger.error(error);
         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       }
-    })
+    });
+
+  router
+    .post('/', async (req: Request, res: Response) => {})
 
   router
     .put('/:id', async (req: Request, res: Response) => {
