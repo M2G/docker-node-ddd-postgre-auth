@@ -81,3 +81,6 @@ redis-data/
 .idea/*.xmlz
 .idea/**/*.xml
 .idea/**/*.iml
+
+.env
+.env.example

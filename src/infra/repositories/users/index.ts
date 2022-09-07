@@ -3,8 +3,6 @@ import { IRead, IWrite } from 'core/IRepository';
 import IUser from 'core/IUser';
 import toEntity from './transform';
 
-const select = '-password -__v';
-
 export default ({ model, jwt }: any) => {
   const getAll = async (...args: any[]) => {
     try {
@@ -30,7 +28,7 @@ export default ({ model, jwt }: any) => {
       // limit
       // offset
       const m: IRead<any> = model;
-      const users = await m.find(query).lean().select(select).sort({ email: 1 });
+      const users = await m.find(query).lean().sort({ email: 1 });
 
       return users.map((user) => toEntity(user));
     } catch (error) {
@@ -110,7 +108,7 @@ export default ({ model, jwt }: any) => {
     try {
       const m: IRead<any> = model;
       const [{ ...params }] = args;
-      const user = await m.findOne({ ...params }).lean().select(select);
+      const user = await m.findOne({ ...params }).lean();
 
       if (!user) return null;
 
@@ -124,7 +122,7 @@ export default ({ model, jwt }: any) => {
     try {
       const m: IWrite<any> = model;
       const [{ ...params }] = args;
-      const user = await m.findByIdAndDelete({ ...params }).select(select);
+      const user = await m.findByIdAndDelete({ ...params }).lean();
 
       if (!user) return null;
 
@@ -141,8 +139,7 @@ export default ({ model, jwt }: any) => {
       const [{ _id, ...params }] = args
       console.log("--------------> update", { _id, ...params })
       const user = await m
-        .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true })
-        .select(select);
+        .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true }).lean();
 
       console.log("-------------->", user)
 
@@ -157,7 +154,7 @@ export default ({ model, jwt }: any) => {
       const [{ ...params }] = args;
 
       const m: IRead<any> = model;
-      const user = await m.findOne({ ...params });
+      const user = await m.findOne({ ...params }).lean();
 
       if (!user) return null;
       return toEntity(user);
