@@ -2,7 +2,12 @@
 import passport from 'passport';
 import BearerStrategy from 'passport-http-bearer';
 import LocalStrategy from 'passport-local';
-import { Strategy, ExtractJwt } from 'passport-jwt';
+import {
+  Strategy,
+  ExtractJwt,
+  Strategy as JWTstrategy,
+  ExtractJwt as ExtractJWT,
+} from 'passport-jwt';
 import Status from 'http-status';
 import { Request, Response, NextFunction } from 'express';
 
@@ -41,30 +46,57 @@ export default ({ repository: { usersRepository }, response: { Fail }, jwt }: an
       });*/
   });
 
-  const opts: any = {}
-  opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-  opts.secretOrKey = 'secret';
-  opts.issuer = 'accounts.examplesoft.com';
-  opts.audience = 'yoursite.net';
+  //@TODO try it
 
-  const jwtStrategy = new Strategy(opts,
-    function(jwt_payload, done) {
+  /*
+  passport.use(
+'login',
+new localStrategy(
+{
+  usernameField: 'email',
+  passwordField: 'password'
+},
+async (email, password, done) => {
+  try {
+    const user = await UserModel.findOne({ email });
 
-    console.log('jwt_payload', jwt_payload);
+    if (!user) {
+      return done(null, false, { message: 'User not found' });
+    }
 
-    /*
-    User.findOne({id: jwt_payload.sub}, function(err, user) {
-      if (err) {
-        return done(err, false);
+    const validate = await user.isValidPassword(password);
+
+    if (!validate) {
+      return done(null, false, { message: 'Wrong Password' });
+    }
+
+    return done(null, user, { message: 'Logged in Successfully' });
+  } catch (error) {
+    return done(error);
+  }
+}
+)
+);
+   */
+
+  const JWTstrategy = require('passport-jwt').Strategy;
+  const ExtractJWT = require('passport-jwt').ExtractJwt;
+
+  //@TODO try it too
+  const jwtStrategy = new JWTstrategy(
+    {
+      secretOrKey: 'TOP_SECRET',
+      jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+    },
+    async (token: { user: any; }, done: (arg0: unknown, arg1: undefined) => void) => {
+      try {
+        console.log('JWTstrategy', token.user);
+        // return done(null, token.user);
+      } catch (error) {
+        //done(error);
       }
-      if (user) {
-        return done(null, user);
-      } else {
-        return done(null, false);
-        // or you could create a new account
-      }
-    });*/
-  });
+    }
+  );
 
   passport.use(jwtStrategy);
   passport.use(localStrategy);
