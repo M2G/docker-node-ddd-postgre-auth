@@ -109,8 +109,6 @@
     "@types/node-cron": "^3.0.2",
     "@types/nodemailer": "^6.4.4",
     "@types/nodemailer-mailgun-transport": "^1.4.3",
-    "@types/passport-jwt": "^3.0.6",
-    "@types/passport-local": "^1.0.34",
     "lint-staged": "^12.3.4",
     "validate-branch-name": "^1.2.1"
   },
