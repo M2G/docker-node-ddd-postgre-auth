@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 
@@ -9,7 +9,7 @@ const rqt: any = request(server.app);
 const { usersRepository } = container.resolve('repository');
 
 describe('Routes: POST Register', () => {
-  const BASE_URI = '/api/register';
+  const BASE_URI = '/auth/register';
   const randomEmail = faker.internet.email();
   const randomUserName = faker.internet.userName();
   const randomPassword = faker.internet.password();
@@ -29,23 +29,18 @@ describe('Routes: POST Register', () => {
 
   it('should return register user', (done) => {
     const randomEmail = faker.internet.email();
-    const randomUserName = faker.internet.userName();
     const randomPassword = faker.internet.password();
    rqt
       .post(BASE_URI)
       .send({
         email: randomEmail,
-        username: randomUserName,
         password: randomPassword,
       })
       .expect(200)
       .end((err: any, res: any) => {
-
-        console.log('res res res res res', res)
-
         expect(err).toBeFalsy();
-        expect(res.body.data).toHaveProperty('success', true);
-        expect(res.body.data).toHaveProperty('token');
+        const data = JSON.parse(JSON.stringify(res.body.data));
+        expect(data.email).toBe(randomEmail.toLowerCase());
         done();
       });
   });
@@ -89,12 +84,10 @@ describe('Routes: POST Register', () => {
   });
 
   it('shouldnt register user return error empty password was sent', (done) => {
-    const randomUserName = faker.internet.userName();
     rqt
-      .post(`/api/register`)
+      .post(BASE_URI)
       .send({
         email: '',
-        username: randomUserName,
         password: '',
       })
       .expect(422)
@@ -108,7 +101,7 @@ describe('Routes: POST Register', () => {
 
   it('shouldnt authenticate user return error empty body was sent', (done) => {
     rqt
-      .post(`/api/register`)
+      .post(BASE_URI)
       .send({})
       .expect(422)
       .end((err: any, res: any) => {
@@ -120,10 +113,9 @@ describe('Routes: POST Register', () => {
 
   it('should return error duplicate registered user', (done) => {
     rqt
-      .post(`/api/register`)
+      .post(BASE_URI)
       .send({
         email: randomEmail,
-        username: randomUserName,
         password: randomPassword,
       })
       .expect(500)

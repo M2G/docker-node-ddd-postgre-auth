@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 
@@ -9,9 +9,8 @@ const rqt: any = request(server.app);
 const { usersRepository } = container.resolve('repository');
 
 describe('Routes: POST Forgot password', () => {
-  const BASE_URI = '/api/forgot_password';
+  const BASE_URI = '/auth/forgot-password';
   const randomEmail = faker.internet.email();
-  const randomUserName = faker.internet.userName();
   const randomPassword = faker.internet.password();
 
   beforeAll(async () => await connect());
@@ -19,7 +18,6 @@ describe('Routes: POST Forgot password', () => {
     // we need to add user before we can request our token
      usersRepository.register({
        email: randomEmail,
-       username: randomUserName,
        password: randomPassword,
       }).then(() => done());
   });

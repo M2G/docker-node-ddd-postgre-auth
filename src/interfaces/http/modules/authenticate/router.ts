@@ -29,7 +29,7 @@ export default ({
         email: body.email,
       });
 
-      const { email, password } = <IUser>data || {};
+      const { email, password, _id } = <IUser>data || {};
 
       if (!email)
         return res
@@ -42,7 +42,7 @@ export default ({
       );
 
       if (match) {
-        const payload = <IUser>{ email, password };
+        const payload = <IUser>{ email, password, _id };
 
         const options = {
           subject: email,

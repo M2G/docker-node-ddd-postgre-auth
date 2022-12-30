@@ -34,6 +34,7 @@
     "serve": "node --harmony-top-level-await build/src/index.js",
     "watch-node": "nodemon build/src/index.js",
     "watch": "NODE_ENV=development concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
+    "watch2": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
     "watch:test": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
     "watch-test": "npm run test -- --watchAll",
     "test": "npm run test:integration && npm run test:unit",
@@ -48,6 +49,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.11.0",
     "@types/bcrypt": "^3.0.1",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
@@ -64,6 +69,8 @@
     "@typescript-eslint/parser": "^4.33.0",
     "assert": "^1.5.0",
     "awilix": "^4.3.4",
+    "babel-jest": "^29.3.1",
+    "babel-preset-airbnb": "^5.0.0",
     "bcrypt": "^5.0.1",
     "body-parser": "1.19.2",
     "concurrently": "^6.5.1",
@@ -95,7 +102,7 @@
     "nodemailer": "^6.7.5",
     "nodemailer-mailgun-transport": "^2.1.4",
     "nodemon": "^2.0.15",
-    "passport": "^0.5.2",
+    "passport": "^0.5.3",
     "passport-http-bearer": "^1.0.1",
     "prettier": "^2.5.1",
     "redis": "^3.1.2",
@@ -106,6 +113,7 @@
     "winston": "^3.6.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@types/node-cron": "^3.0.2",
     "@types/nodemailer": "^6.4.4",
     "@types/nodemailer-mailgun-transport": "^1.4.3",

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 
@@ -11,7 +11,7 @@ const { usersRepository } = container.resolve('repository');
 jest.setTimeout(20000);
 
 describe('Routes: DELETE User', () => {
-  const BASE_URI = (id: any) => `/api/users/${id}`;
+  const BASE_URI = (id: any) => `/auth/users/${id}`;
   const jwt = container.resolve('jwt') as any;
   let randomUUID: any;
   const randomEmail = faker.internet.email();

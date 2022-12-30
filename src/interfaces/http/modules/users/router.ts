@@ -54,9 +54,7 @@ export default ({
     });
 
   router
-    .post('/', async (req: Request, res: Response) => {
-
-    })
+    .post('/', async (req: Request, res: Response) => {})
 
   router
     .put('/:id', async (req: Request, res: Response) => {

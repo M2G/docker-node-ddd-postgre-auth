@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { connect, clear, close } from '../../dbHandler';
 import container from '../../../src/container';
 
@@ -9,7 +9,7 @@ const rqt: any = request(server.app);
 const { usersRepository } = container.resolve('repository');
 
 describe('Routes: POST Auth', () => {
-  const BASE_URI = '/api/authenticate';
+  const BASE_URI = '/auth/authenticate';
   const randomEmail = faker.internet.email();
   const randomUserName = faker.internet.userName();
 

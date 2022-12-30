@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import deleteUseCase from  'app/users/delete';
 
 describe('App -> User -> Delete', () => {

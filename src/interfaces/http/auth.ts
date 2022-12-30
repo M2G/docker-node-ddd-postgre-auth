@@ -10,6 +10,7 @@ import { Request, Response, NextFunction } from 'express';
 
 export default ({ repository: { usersRepository }, response: { Fail }, jwt }: any) => {
 
+  // @ts-ignore
   const bearerStrategy = new BearerStrategy(
     'bearer',
     (token: any, done: (arg0: any, arg1: { email: any; password: any } | null) => any) => {
@@ -33,6 +34,11 @@ export default ({ repository: { usersRepository }, response: { Fail }, jwt }: an
     initialize: () => passport.initialize(),
     authenticate: (req: Request, res: Response, next: NextFunction) =>
       passport.authenticate('bearer', { session: false }, (err, _) => {
+
+
+        console.log('passport.authenticate passport.authenticate', err)
+
+
         if (err === Status[Status.NOT_FOUND]) {
           return res.status(Status.NOT_FOUND).json(Fail(Status[Status.NOT_FOUND]));
         }

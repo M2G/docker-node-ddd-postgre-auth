@@ -2,7 +2,7 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import IUser from 'core/IUser';
-import { template, smtpTransport } from '../../../../nodemailer';
+// import { template, smtpTransport } from '../../../../nodemailer';
 
 export default ({
                   postUseCase,
@@ -26,6 +26,7 @@ export default ({
 
       console.log('---------->', user)
 
+      /*
       const htmlToSend = template({
         url: 'http://localhost:3002/reset-password?token=' + user.reset_password_token,
         name: 'test'
@@ -45,6 +46,7 @@ export default ({
         if (error) return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
         console.log("Successfully sent email.")
       });
+      */
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true }));

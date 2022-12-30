@@ -2,7 +2,7 @@
 import Status from 'http-status';
 import { Router, Request, Response } from 'express';
 import { encryptPassword } from 'infra/encryption';
-import { smtpTransport, template } from '../../../../nodemailer';
+// import { smtpTransport, template } from 'nodemailer';
 
 export default ({
                   postUseCase,
@@ -31,6 +31,7 @@ export default ({
 
       console.log('user user user user user', user)
 
+      /*
       const htmlToSend = template({
         name: 'test'
       });
@@ -47,6 +48,7 @@ export default ({
         if (error) return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
         console.log("Successfully sent email.");
       });
+      */
 
       logger.info({ ...user });
       return res.status(Status.OK).json(Success({ success: true }));

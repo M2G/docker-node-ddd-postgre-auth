@@ -21,7 +21,8 @@ module.exports = {
     "<rootDir>/test"
   ],
   transform: {
-    '^.+\\.ts?$': 'ts-jest'
+    '^.+\\.ts?$': 'ts-jest',
+    "^.+\\.(js|jsx)$": "babel-jest",
   },
   testMatch: [
     '**/__tests__/**/*.(js|ts|tsx)',
@@ -43,7 +44,10 @@ module.exports = {
     "node"
   ],
   testPathIgnorePatterns: [
-    "<rootDir>/test/",
+    "<rootDir>/src",
+    "<rootDir>/(build|node_modules)/"
+  ],
+  transformIgnorePatterns:  [
     "<rootDir>/(build|node_modules)/"
   ],
   testEnvironment: 'node',

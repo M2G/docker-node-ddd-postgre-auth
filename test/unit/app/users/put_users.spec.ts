@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import updateUsecase from  '../../../../src/app/users/put';
 
 describe('App -> User -> Put', () => {
