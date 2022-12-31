@@ -26,6 +26,7 @@ export default ({
 
       console.log('---------->', user)
 
+      //@TODO conflict with tests
       /*
       const htmlToSend = template({
         url: 'http://localhost:3002/reset-password?token=' + user.reset_password_token,

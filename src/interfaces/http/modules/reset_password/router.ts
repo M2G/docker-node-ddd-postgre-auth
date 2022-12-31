@@ -31,6 +31,7 @@ export default ({
 
       console.log('user user user user user', user)
 
+      //@TODO conflict with tests
       /*
       const htmlToSend = template({
         name: 'test'

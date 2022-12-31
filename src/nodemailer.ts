@@ -1,5 +1,5 @@
 /*eslint-disable*/
-//@ts-ignore
+//@TODO conflict with tests
 /*
 import nodemailer from 'nodemailer';
 import type { Options } from 'nodemailer-mailgun-transport';
