@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import postUsecase from  '../../../../src/app/register/post';
 
 describe('App -> User -> Post', () => {
