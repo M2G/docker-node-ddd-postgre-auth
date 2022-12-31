@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import { faker } from '@faker-js/faker';
 import getUsecase from  '../../../../src/app/users/get';
 
 describe('App -> User -> Get All', () => {
@@ -52,14 +52,13 @@ describe('App -> User -> Get All', () => {
 
     it('should display error on rejection', async () => {
 
-     /* let error;
+      let error: any;
       try {
-        await useCase.all({});
-      } catch (e) {
-        //@ts-ignore
+        await useCase.all(null);
+      } catch (e: any) {
         error = e.message;
       }
-      expect(error).toEqual('Error');*/
+      expect(error).toEqual('Error');
     })
   })
 

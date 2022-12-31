@@ -21,7 +21,7 @@ export default ({
   router
     .get('/', async (req: Request, res: Response) => {
 
-      const { query } = req || {};
+      const { query } = req;
       const { search } = query;
 
       try {
@@ -37,7 +37,7 @@ export default ({
   router
     .get('/:id', async (req: Request, res: Response) => {
 
-      const { params } = req || {};
+      const { params } = req;
       const { id } = params;
 
       if (!isValidObjID(id))
@@ -59,7 +59,7 @@ export default ({
   router
     .put('/:id', async (req: Request, res: Response) => {
 
-      const { body = {}, params } = req || {};
+      const { body = {}, params } = req;
       const { id } = params;
 
       const values = body && Object.entries(body).length === 0;
@@ -88,7 +88,7 @@ export default ({
 
   router
     .delete('/:id', async (req: Request, res: Response) => {
-      const { params } = req || {};
+      const { params } = req;
       const { id } = params;
 
       console.log('DELETE', id)

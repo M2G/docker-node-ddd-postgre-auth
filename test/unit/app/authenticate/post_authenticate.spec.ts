@@ -14,13 +14,18 @@ describe('App -> User -> Post', () => {
         authenticate: (data: any) => data
       }
 
+      const MockRedis = {
+        set: () => (data: any) => data
+      }
+
       useCase = postUsecase({
-        usersRepository: MockRepository
+        usersRepository: MockRepository,
+        redis: MockRedis
       })
     })
 
     it('test', async () => {
-  /*    const body = {
+     const body = {
         email: randomEmail,
         username: randomUserName,
         password: randomPassword,
@@ -28,7 +33,7 @@ describe('App -> User -> Post', () => {
 
       const lists = await useCase.authenticate({ ...body })
       const { email } = lists;
-      expect(email).toEqual(body.email)*/
+      expect(email).toEqual(body.email)
     })
   })
 
@@ -51,15 +56,13 @@ describe('App -> User -> Post', () => {
 
     it('should display error on rejection', async () => {
 
-  /*    let error
+      let error: any;
       try {
         await useCase.authenticate({ body })
-      } catch (e) {
-        //@ts-ignore
-        error = e
-        // error = e.message
+      } catch (e: any) {
+        error = e.message
       }
-      expect(error).toEqual('Error')*/
+      expect(error).toEqual('Error');
     })
   })
 

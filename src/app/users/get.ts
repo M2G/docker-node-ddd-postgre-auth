@@ -30,6 +30,8 @@ export default ({ usersRepository, redis }: any) => {
 
       return userList;
     } catch (error: unknown) {
+      console.log('all all all', error);
+
       throw new Error(error as string | undefined);
     }
   };
