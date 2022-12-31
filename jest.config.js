@@ -18,7 +18,7 @@ module.exports = {
   },
   preset: "ts-jest",
   roots: [
-    "<rootDir>/test"
+    "<rootDir>/tests"
   ],
   transform: {
     '^.+\\.ts?$': 'ts-jest',
