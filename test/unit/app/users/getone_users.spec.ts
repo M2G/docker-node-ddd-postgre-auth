@@ -15,7 +15,6 @@ describe('App -> User -> Get One', () => {
         findOne: () => mockData
       }
 
-
       useCase = getOneUseCase({
         usersRepository: MockRepository,
       })

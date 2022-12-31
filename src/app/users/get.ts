@@ -18,7 +18,7 @@ export default ({ usersRepository, redis }: any) => {
 
       const cachingUserList = await redis.get(KEY);
 
-      console.log('cachingUserList', cachingUserList)
+      console.log('cachingUserList', cachingUserList);
 
       if (cachingUserList) return cachingUserList;
 

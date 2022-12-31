@@ -16,7 +16,6 @@ describe('Routes: POST Register', () => {
   const jwt = container.resolve('jwt') as any;
   const redis = container.resolve('redis') as any;
   const randomEmail = faker.internet.email();
-  const randomUserName = faker.internet.userName();
   const randomPassword = faker.internet.password();
   const signIn = jwt.signin({ expiresIn: 0.1 * 60 });
   const signIn2 = jwt.signin();
@@ -27,33 +26,31 @@ describe('Routes: POST Register', () => {
 
     redis.set(KEY, JSON.stringify([
       {
-        "_id": 1080,
-        "email": randomEmail,
-        "username": randomUserName,
-        "password": randomPassword,
+        _id: 1080,
+        email: randomEmail,
+        password: randomPassword,
       }
     ]));
 
+    redis.get(KEY);
+
     // we need to add user before we can request our token
         usersRepository.register({
-          "email": randomEmail,
-          "username": randomUserName,
-          "password": randomPassword,
+          email: randomEmail,
+          password: randomPassword,
+          created_at: Math.floor(Date.now() / 1000),
+          deleted_at: 0,
+          last_connected_at: null,
         })
-      .then((user: { _id: any; email: any; username: any, password: any }) => {
-
-        console.log('user user user', user);
-
+      .then((user: { _id: string; email: string; username: string, password: string }) => {
         token = signIn({
           _id: user._id,
           email: user.email,
-          username: user.username,
           password: user.password,
         });
         token2 = signIn2({
           _id: user._id,
           email: user.email,
-          username: user.username,
           password: user.password,
         });
 
@@ -65,22 +62,16 @@ describe('Routes: POST Register', () => {
   afterAll(async () => await close());
 
     it('should return users list', (done) => {
-
-    /*  console.log("token2 token2", token2)
       rqt
         .get(BASE_URI)
         .set('Authorization', `Bearer ${token2}`)
         .expect(200)
         .end((err: any, res: any) => {
-
-          console.log("---------- err", err)
-          console.log("----------", res.body.data)
-
           expect(err).toBeFalsy();
           expect(res.body.data.length).toEqual(1);
+          expect(res.body.data[0].email).toEqual(randomEmail.toLowerCase());
           done();
-        });*/
-      done();
+        });
     });
 
     it('should return unauthorized token invalid signature', (done) => {

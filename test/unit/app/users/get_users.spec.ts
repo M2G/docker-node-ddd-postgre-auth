@@ -51,10 +51,9 @@ describe('App -> User -> Get All', () => {
     })
 
     it('should display error on rejection', async () => {
-
       let error: any;
       try {
-        await useCase.all(null);
+        await useCase.all({ filters: ''});
       } catch (e: any) {
         error = e.message;
       }

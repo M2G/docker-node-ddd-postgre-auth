@@ -24,11 +24,14 @@ export default ({ model, jwt }: any) => {
           { email: { $regex: params.search, $options: 'i' } },
         ];
       }
+
       // size
       // limit
       // offset
       const m: IRead<any> = model;
       const users = await m.find(query).lean().sort({ email: 1 });
+
+      console.log('users', users)
 
       return users.map((user) => toEntity(user));
     } catch (error) {
