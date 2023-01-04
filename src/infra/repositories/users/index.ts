@@ -33,6 +33,58 @@ export default ({ model, jwt }: any) => {
 
       console.log('users', users)
 
+      //@TODO add pagination
+      /*
+
+      const query: {
+        $or?: (
+          | { first_name: { $regex: string; $options: string } }
+          | { last_name: { $regex: string; $options: string } }
+          | { email: { $regex: string; $options: string } }
+        )[];
+        deleted_at: { $lte: number };
+      } = {
+        deleted_at: {
+          $lte: 0
+        }
+      };
+
+      if (filters) {
+        query.$or = [
+          { first_name: { $regex: filters, $options: 'i' } },
+          { last_name: { $regex: filters, $options: 'i' } },
+          { email: { $regex: filters, $options: 'i' } }
+        ];
+      }
+
+      console.log('query query query query query', query)
+
+      const m: IRead<any> = model;
+      const users = await m
+        .find(query)
+        .skip(pageSize * (page - 1))
+        .limit(pageSize)
+        .sort({ email: 1 })
+        .lean();
+
+      const count = await model.countDocuments();
+      const pages = Math.ceil(count / pageSize);
+      const prev = page > 1 ? page - 1 : null;
+      const next = page < pages ? page + 1 : null;
+
+      return [
+        {
+          results: (users || [])?.map((user) => toEntity(user)),
+          pageInfo: {
+            count,
+            pages,
+            prev,
+            next
+          }
+        }
+      ];
+       */
+
       return users.map((user) => toEntity(user));
     } catch (error) {
       throw new Error(error as string | undefined);
