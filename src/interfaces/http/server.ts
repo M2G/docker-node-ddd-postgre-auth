@@ -11,8 +11,7 @@ export default ({ config, router, logger, auth }: any) => {
   return {
     app,
     start: () => new Promise(() => {
-      const http = app.listen(config.port, () => {
-        // @ts-ignore
+      const http: any = app.listen(config.port, () => {
         const { port } = http.address();
         logger.info(`API - Port ${port}`);
       })

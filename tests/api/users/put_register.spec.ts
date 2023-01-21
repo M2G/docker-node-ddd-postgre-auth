@@ -24,7 +24,7 @@ describe('Routes: PUT User', () => {
      usersRepository.register({
        email: randomEmail,
        password: randomPassword,
-      })    .then((user: { _id: any; email: any; username: any, password: any }) => {
+      }).then((user: { _id: any; email: any; username: any, password: any }) => {
 
        randomUUID = user._id;
 

@@ -21,9 +21,7 @@ const ROUTES = {
   USERS: '/auth/users',
 };
 
-export default ({
- config, logger, database, verify,
-}: any) => {
+export default ({ config, logger, database, verify }: any) => {
   const router = Router();
 
   if (config.env !== 'test') {
@@ -33,14 +31,8 @@ export default ({
     .use(
       cors({
         allowedHeaders: ['Content-Type', 'Authorization'],
-        methods: ['GET',
-'POST',
-'PUT',
-'DELETE'],
-        origin: ['http://localhost:3000',
-'http://localhost:3001',
-'http://localhost:3002',
-'http://localhost:3004'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3004'],
       }),
     )
     .use(bodyParser.json());
