@@ -6,35 +6,9 @@ import toEntity from './transform';
 export default ({ model, jwt }: any) => {
   const getAll = async (...args: any[]) => {
     try {
-      const [{ ...params }] = args;
+      const [{ filters, pageSize, page }]: any = args;
 
-      console.log('params params params params', params)
-
-      let query: any = {
-        ...params,
-        deleted_at: {
-          $lte: 0,
-        },
-      };
-
-      if (params.search) {
-        query.$or = [
-          { first_name: { $regex: params.search, $options: 'i' } },
-          { last_name: { $regex: params.search, $options: 'i' } },
-          { email: { $regex: params.search, $options: 'i' } },
-        ];
-      }
-
-      // size
-      // limit
-      // offset
-      const m: IRead<any> = model;
-      const users = await m.find(query).lean().sort({ email: 1 });
-
-      console.log('users', users)
-
-      //@TODO add pagination
-      /*
+      console.log('args args args args', args);
 
       const query: {
         $or?: (
@@ -45,20 +19,21 @@ export default ({ model, jwt }: any) => {
         deleted_at: { $lte: number };
       } = {
         deleted_at: {
-          $lte: 0
-        }
+          $lte: 0,
+        },
       };
 
       if (filters) {
         query.$or = [
           { first_name: { $regex: filters, $options: 'i' } },
           { last_name: { $regex: filters, $options: 'i' } },
-          { email: { $regex: filters, $options: 'i' } }
+          { email: { $regex: filters, $options: 'i' } },
         ];
       }
 
-      console.log('query query query query query', query)
-
+      // size
+      // limit
+      // offset
       const m: IRead<any> = model;
       const users = await m
         .find(query)
@@ -66,6 +41,8 @@ export default ({ model, jwt }: any) => {
         .limit(pageSize)
         .sort({ email: 1 })
         .lean();
+
+      console.log('users', users);
 
       const count = await model.countDocuments();
       const pages = Math.ceil(count / pageSize);
@@ -79,13 +56,10 @@ export default ({ model, jwt }: any) => {
             count,
             pages,
             prev,
-            next
-          }
-        }
+            next,
+          },
+        },
       ];
-       */
-
-      return users.map((user) => toEntity(user));
     } catch (error) {
       throw new Error(error as string | undefined);
     }
@@ -123,7 +97,7 @@ export default ({ model, jwt }: any) => {
         reset_password_expires: Date.now() + 86400000,
       });
 
-      console.log('updatedUser', updatedUser)
+      console.log('updatedUser', updatedUser);
 
       return toEntity(updatedUser);
     } catch (error) {
@@ -132,11 +106,10 @@ export default ({ model, jwt }: any) => {
   };
 
   const resetPassword = async (...args: any[]) => {
-
     try {
       const [{ ...params }] = args;
 
-      console.log('resetPassword resetPassword ', params)
+      console.log('resetPassword resetPassword ', params);
 
       const data: any = await findOne({
         reset_password_token: params.token,
@@ -147,7 +120,7 @@ export default ({ model, jwt }: any) => {
 
       if (!data) return null;
 
-      console.log('resetPassword resetPassword { ...data }', { data })
+      console.log('resetPassword resetPassword { ...data }', { data });
 
       data.password = params.password;
       data.reset_password_token = undefined;
@@ -182,7 +155,6 @@ export default ({ model, jwt }: any) => {
       if (!user) return null;
 
       return true;
-
     } catch (error) {
       throw new Error(error as string | undefined);
     }
@@ -191,12 +163,11 @@ export default ({ model, jwt }: any) => {
   const update = async (...args: any) => {
     try {
       const m: IWrite<any> = model;
-      const [{ _id, ...params }] = args
-      console.log("--------------> update", { _id, ...params })
-      const user = await m
-        .findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true }).lean();
+      const [{ _id, ...params }] = args;
+      console.log('--------------> update', { _id, ...params });
+      const user = await m.findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true }).lean();
 
-      console.log("-------------->", user)
+      console.log('-------------->', user);
 
       return toEntity(user);
     } catch (error) {

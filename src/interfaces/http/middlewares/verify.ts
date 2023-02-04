@@ -27,7 +27,7 @@ export default ({ response: { Fail }, jwt }: any) =>
             Fail({
               success: false,
               expireTime: true,
-              message: FAIL_AUTH,
+                message: FAIL_AUTH,
             }),
           );
         }
