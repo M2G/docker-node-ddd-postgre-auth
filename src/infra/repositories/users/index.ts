@@ -49,17 +49,15 @@ export default ({ model, jwt }: any) => {
       const prev = page > 1 ? page - 1 : null;
       const next = page < pages ? page + 1 : null;
 
-      return [
-        {
-          results: (users || [])?.map((user) => toEntity(user)),
-          pageInfo: {
-            count,
-            pages,
-            prev,
-            next,
-          },
+      return {
+        results: (users || [])?.map((user) => toEntity(user)),
+        pageInfo: {
+          count,
+          pages,
+          prev,
+          next,
         },
-      ];
+      };
     } catch (error) {
       throw new Error(error as string | undefined);
     }

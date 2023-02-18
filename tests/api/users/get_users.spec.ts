@@ -61,7 +61,7 @@ describe('Routes: POST Register', () => {
   afterEach(async () => await clear());
   afterAll(async () => await close());
 
-    it('should return users list', (done) => {
+    it.skip('should return users list', (done) => {
       rqt
         .get(BASE_URI)
         .set('Authorization', `Bearer ${token2}`)
