@@ -8,6 +8,7 @@ export default ({
                   postUseCase,
                   logger,
                   response: { Success, Fail },
+                  jwt,
                 }: any) => {
   const router = Router();
 
@@ -20,6 +21,8 @@ export default ({
     }
 
     try {
+
+      jwt.verify({ maxAge: process.env.JWT_TOKEN_EXPIRE_TIME })(token);
 
       const hashPassword = encryptPassword(verify_password);
 
