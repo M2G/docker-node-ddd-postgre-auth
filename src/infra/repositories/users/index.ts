@@ -1,14 +1,31 @@
 /*eslint-disable*/
-import { IRead, IWrite } from 'core/IRepository';
+import { UniqueConstraintError, Op } from 'sequelize';
 import IUser from 'core/IUser';
 import toEntity from './transform';
+import { comparePassword } from '../../encryption';
+// import { convertNodeToCursor, convertCursorToNodeId } from './helpers';
 
 export default ({ model, jwt }: any) => {
-  const getAll = async (...args: any[]) => {
+  //@TODO working but use in another context
+  /*
+  const getAll = async (
+    ...args: any[]
+  ): Promise<{
+    edges: { cursor: string; node: { _id: string } }[];
+    pageInfo: {
+      hasPrevPage: boolean;
+      hasNextPage: boolean;
+      endCursor: any;
+      startCursor: any;
+    };
+    totalCount: number;
+  }> => {
     try {
-      const [{ filters, pageSize, page }]: any = args;
-
-      console.log('args args args args', args);
+      const [{ filters, first, afterCursor }]: any = args;
+      if (first < 0) {
+        throw new Error('First must be positive');
+      }
+      let afterIndex = 0;
 
       const query: {
         $or?: (
@@ -31,9 +48,104 @@ export default ({ model, jwt }: any) => {
         ];
       }
 
+      const m: IRead<any> = model;
+      const data: any[] = await m.find(query).sort({ email: 1 }).lean();
+
+      if (afterCursor) {
+        /* Extracting nodeId from afterCursor */
+
+  /*
+        let nodeId = convertCursorToNodeId(afterCursor);
+
+        const nodeIndex = data?.findIndex(
+          (datum: { _id: string }) => datum._id.toString() === nodeId,
+        );
+        if (nodeIndex === -1) {
+          throw new Error('After does not exist');
+        }
+
+        if (nodeIndex >= 0) {
+          afterIndex = nodeIndex + 1; // 1 is added to exclude the afterIndex node and include items after it
+        }
+      }
+
+      const slicedData = data?.slice(afterIndex, afterIndex + first);
+
+      const edges = slicedData?.map((node: { _id: string }) => ({
+        node,
+        cursor: convertNodeToCursor(node),
+      }));
+
+      let startCursor = null;
+      let endCursor = null;
+      if (edges.length > 0) {
+        startCursor = convertNodeToCursor(edges[0].node);
+        endCursor = convertNodeToCursor(edges[edges.length - 1].node);
+      }
+
+      const hasNextPage = data.length > afterIndex + first;
+      const hasPrevPage = !!afterIndex;
+
+      return {
+        totalCount: data.length,
+        edges,
+        pageInfo: {
+          startCursor,
+          endCursor,
+          hasNextPage,
+          hasPrevPage,
+        },
+      };
+    } catch (error) {
+      throw new Error(error as string | undefined);
+    }
+  };*/
+
+  const getAll = async ({
+                          filters,
+                          pageSize,
+                          page,
+                          attributes,
+                        }: {
+    filters: string;
+    pageSize: number;
+    page: number;
+    attributes: string[] | undefined;
+  }): Promise<IUser[]> => {
+    try {
+      console.log('args args args args', {
+        filters,
+        pageSize,
+        page,
+        attributes,
+      });
+
+      /* const query: {
+        $or?: (
+          | { first_name: { $regex: string; $options: string } }
+          | { last_name: { $regex: string; $options: string } }
+          | { email: { $regex: string; $options: string } }
+        )[];
+        deleted_at: { $lte: number };
+      } = {
+        deleted_at: {
+          $lte: 0,
+        },
+      };
+
+      if (filters) {
+        query.$or = [
+          { first_name: { $regex: filters, $options: 'i' } },
+          { last_name: { $regex: filters, $options: 'i' } },
+          { email: { $regex: filters, $options: 'i' } },
+        ];
+      }*/
+
       // size
       // limit
       // offset
+
+      /*
       const m: IRead<any> = model;
       const users = await m
         .find(query)
@@ -57,135 +169,241 @@ export default ({ model, jwt }: any) => {
           prev,
           next,
         },
+      };*/
+
+      const query: {
+        where: {
+          deleted_at: number;
+          [Op.or]?: [
+            {
+              email: {
+                [Op.like]: string;
+              };
+            },
+            {
+              first_name: {
+                [Op.like]: string;
+              };
+            },
+            {
+              last_name: {
+                [Op.like]: string;
+              };
+            },
+          ];
+        };
+      } = {
+        where: {
+          deleted_at: 0,
+        },
+      };
+
+      if (filters) {
+        query.where = {
+          deleted_at: 0,
+          [Op.or]: [
+            {
+              email: {
+                [Op.like]: `%${filters}%`,
+              },
+            },
+            {
+              first_name: {
+                [Op.like]: `%${filters}%`,
+              },
+            },
+            {
+              last_name: {
+                [Op.like]: `%${filters}%`,
+              },
+            },
+          ],
+        };
+      }
+
+      const [total, data] = await Promise.all([
+        model.count(),
+        model.findAndCountAll({
+          ...query,
+          attributes,
+          offset: pageSize * (page - 1),
+          limit: pageSize,
+        }, { raw: true }),
+      ]);
+
+      const pages = Math.ceil(total / pageSize);
+      const prev = page > 1 ? page - 1 : null;
+      const next = page < pages ? page + 1 : null;
+
+      return {
+        //@ts-ignore
+        results: (data.rows || [])?.map(
+          //@ts-ignore
+          (data: { dataValues }) => toEntity({ ...data.dataValues }) as IUser,
+        ),
+        pageInfo: {
+          count: total,
+          pages,
+          prev,
+          next,
+        },
       };
     } catch (error) {
       throw new Error(error as string | undefined);
     }
   };
 
-  const register = async (...args: any[]) => {
+  const register = async ({
+                            created_at,
+                            email,
+                            password,
+                            deleted_at,
+                          }: {
+    created_at: number;
+    deleted_at: number;
+    email: string;
+    password: string;
+  }): Promise<IUser> => {
     try {
-      const [{ ...params }] = args;
-      const m: IWrite<any> = model;
-      return await m.create({ ...params });
+      const { dataValues } = await model.create({
+        created_at,
+        deleted_at,
+        email,
+        password,
+      });
+
+      console.log('::::::::::::::::::::::::::::::::::', dataValues)
+
+      return toEntity({ ...dataValues }) as IUser;
     } catch (error) {
+      if (error instanceof UniqueConstraintError) {
+        throw new Error('Duplicate error');
+      }
+
       throw new Error(error as string | undefined);
     }
   };
 
-  const forgotPassword = async (...args: any[]) => {
+  const forgotPassword = async ({
+                                  email,
+                                }: {
+    email: string;
+  }): Promise<unknown> => {
     try {
-      const [{ ...params }] = args;
-      const { ...user }: any = await findOne(params);
+      const { dataValues } = await model.findOne({ where: { email } }, { raw: true });
 
-      if (!user) return null;
+      console.log('forgotPassword', dataValues);
 
-      const { _id, email, password } = <IUser>user;
-      const payload = { _id, email, password };
+      if (!dataValues) return null;
+
+      const payload = {
+        id: dataValues.id,
+        email: dataValues.email,
+        password: dataValues.password,
+      };
       const options = {
-        subject: email,
+        subject: dataValues.email,
         audience: [],
-        expiresIn: 60 * 60,
+        expiresIn: 5 * 60,
+        //process.env.JWT_TOKEN_EXPIRE_TIME,
       };
       const token: string = jwt.signin(options)(payload);
 
-      const updatedUser = await update({
-        _id,
-        reset_password_token: token,
+      return update({
+        id: dataValues.id,
+        //@ts-ignore
         reset_password_expires: Date.now() + 86400000,
+        reset_password_token: token,
       });
-
-      console.log('updatedUser', updatedUser);
-
-      return toEntity(updatedUser);
     } catch (error) {
       throw new Error(error as string | undefined);
     }
   };
 
-  const resetPassword = async (...args: any[]) => {
+  const resetPassword = async ({
+                                 password,
+                                 reset_password_token,
+                               }: {
+    password: string;
+    reset_password_token: string;
+  }): Promise<unknown | null> => {
+
+    console.log('resetPassword 1', {
+      password,
+      reset_password_token,
+    });
+
     try {
-      const [{ ...params }] = args;
-
-      console.log('resetPassword resetPassword ', params);
-
-      const data: any = await findOne({
-        reset_password_token: params.token,
-        reset_password_expires: {
-          $gt: Math.floor(Date.now() / 1000),
+      const dataValues = await model.findOne(
+        {
+          where: {
+            reset_password_token,
+            reset_password_expires: {
+              [Op.gt]: Date.now(),
+            },
+          },
         },
-      });
+        { raw: true },
+      );
 
+      console.log('resetPassword 2', dataValues);
+
+      if (!dataValues) return null;
+
+      dataValues.password = password;
+      dataValues.reset_password_token = null;
+      dataValues.reset_password_expires = Date.now();
+
+      return update({ ...dataValues });
+    } catch (error) {
+      throw new Error(error as string | undefined);
+    }
+  };
+
+  const findOne = async ({ id }: { id: number }): Promise<unknown | null> => {
+    try {
+      const data = await model.findByPk(id, { raw: true });
       if (!data) return null;
-
-      console.log('resetPassword resetPassword { ...data }', { data });
-
-      data.password = params.password;
-      data.reset_password_token = undefined;
-      data.reset_password_expires = undefined;
-
-      return await update({ ...data });
+      return toEntity({ ...data });
     } catch (error) {
       throw new Error(error as string | undefined);
     }
   };
 
-  const findOne = async (...args: any[]) => {
+  const remove = ({ id }: { id: number }): number => {
     try {
-      const m: IRead<any> = model;
-      const [{ ...params }] = args;
-      const user = await m.findOne({ ...params }).lean();
+      return model.destroy({ where: { id } });
+    } catch (error) {
+      throw new Error(error as string | undefined);
+    }
+  };
 
-      if (!user) return null;
+  const update = ({ id, ...params }: { id: number; params: IUser }) => {
+    console.log('update', { id, ...params });
+    try {
+      return model.update({ ...params }, { where: { id } }, { raw: true });
+    } catch (error) {
+      throw new Error(error as string | undefined);
+    }
+  };
 
+  const authenticate = async ({
+                                email,
+                              }: {
+    email: string;
+  }): Promise<unknown | null> => {
+    try {
+      const user = await model.findOne({ where: { email } }, { raw: true });
       return toEntity(user);
     } catch (error) {
       throw new Error(error as string | undefined);
     }
   };
 
-  const remove = async (...args: any) => {
-    try {
-      const m: IWrite<any> = model;
-      const [{ ...params }] = args;
-      const user = await m.findByIdAndDelete({ ...params }).lean();
+  const validatePassword = (endcodedPassword: string) => (password: string) =>
+    comparePassword(password, endcodedPassword);
 
-      if (!user) return null;
-
-      return true;
-    } catch (error) {
-      throw new Error(error as string | undefined);
-    }
-  };
-
-  const update = async (...args: any) => {
-    try {
-      const m: IWrite<any> = model;
-      const [{ _id, ...params }] = args;
-      console.log('--------------> update', { _id, ...params });
-      const user = await m.findByIdAndUpdate({ _id } as any, { ...params }, { upsert: true, new: true }).lean();
-
-      console.log('-------------->', user);
-
-      return toEntity(user);
-    } catch (error) {
-      throw new Error(error as string | undefined);
-    }
-  };
-
-  const authenticate = async (...args: any[]) => {
-    try {
-      const [{ ...params }] = args;
-
-      const m: IRead<any> = model;
-      const user = await m.findOne({ ...params }).lean();
-
-      if (!user) return null;
-      return toEntity(user);
-    } catch (error) {
-      throw new Error(error as string | undefined);
-    }
-  };
+  const destroy = (...args: any[]) => model.destroy(...args);
 
   return {
     remove,
@@ -196,5 +414,7 @@ export default ({ model, jwt }: any) => {
     forgotPassword,
     getAll,
     register,
+    validatePassword,
+    destroy,
   };
 };
