@@ -1,6 +1,6 @@
 import 'module-alias/register';
 import container from './container';
-// import './scheduler-worker/main';
+import './scheduler-worker/main';
 
 export const app: any = container.resolve('app');
 
