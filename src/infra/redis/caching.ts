@@ -1,16 +1,17 @@
-/*eslint-disable*/
-import redis, { ClientOpts as RedisOptions } from 'redis';
+import { createClient } from 'redis';
 import validatedTtl from './validatedTtl';
 
 const HOST = process.env.NODE_ENV === 'development' ? 'redis' : 'localhost';
 
 const portRedis = process.env.CONTAINER_PORT_REDIS || 6379;
 
-const createClient = (redisOptions: RedisOptions) => {
+const createClient2 = (redisOptions: { port: number; host: string }) => {
   console.log('Start redis createClient', redisOptions);
-  const client = redis.createClient(redisOptions);
+  const client = createClient(redisOptions as any);
 
-  client.on('error', (err) => {
+  void client.connect();
+
+  client.on('error', (err: any) => {
     console.log('Failed redis createClient', err);
   });
   client.on('connect', () => {
@@ -20,12 +21,14 @@ const createClient = (redisOptions: RedisOptions) => {
   return client;
 };
 
-const redisOptions: RedisOptions = {
-  port: Number(portRedis),
-  host: HOST,
+const redisOptions = {
+  //port: Number(portRedis),
+  //host: HOST,
+  url: 'redis://redis:6379',
+  //url: 'redis://6379:6379',
 };
 
-const redisClient = createClient(redisOptions) as any;
+const redisClient = createClient2(redisOptions);
 
 const TTL = 5 * 60;
 
@@ -80,7 +83,12 @@ export default ({ config }: any) => {
    * completed and all keys have been returned.
    * Invoked with (err, matchCount).
    */
-  const eachScan = (pattern: string, options: object, eachScanCallback: Function, callback: Function) => {
+  const eachScan = (
+    pattern: string,
+    options: object,
+    eachScanCallback: Function,
+    callback: Function,
+  ) => {
     if (!callback) {
       callback = eachScanCallback;
       //@ts-ignore
@@ -242,7 +250,11 @@ export default ({ config }: any) => {
    * @param ttlInSeconds - time to live in seconds
    * @returns
    */
-  const getset = async (key: string, value: any, ttlInSeconds: number | undefined): Promise<any> => {
+  const getset = async (
+    key: string,
+    value: any,
+    ttlInSeconds: number | undefined,
+  ): Promise<any> => {
     const str = Array.isArray(value) ? JSON.stringify(value) : value;
 
     const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
