@@ -20,6 +20,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/all',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:perfectionist/recommended-natural',
   ],
   parserOptions: {
     project: path.resolve(__dirname, './tsconfig.json'),
@@ -30,7 +31,10 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'jest', 'prettier'],
   rules: {
-    'array-element-newline': ['error', { ArrayExpression: 'consistent', ArrayPattern: { minItems: 3 } }],
+    'array-element-newline': [
+      'error',
+      { ArrayExpression: 'consistent', ArrayPattern: { minItems: 3 } },
+    ],
     'no-underscore-dangle': 1,
     'no-return-assign': 0,
     'no-restricted-syntax': 0,
@@ -66,8 +70,8 @@ module.exports = {
     'no-void': 1,
     'nonblock-statement-body-position': 1,
 
-    "@typescript-eslint/prefer-readonly-parameter-types": 1,
-    "@typescript-eslint/prefer-nullish-coalescing": 1,
+    '@typescript-eslint/prefer-readonly-parameter-types': 1,
+    '@typescript-eslint/prefer-nullish-coalescing': 1,
     '@typescript-eslint/ban-types': 1,
     '@typescript-eslint/object-curly-spacing': 0,
     '@typescript-eslint/no-unsafe-return': 1,
