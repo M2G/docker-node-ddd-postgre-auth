@@ -6,8 +6,8 @@ import toEntity from './transform';
 export default ({ model, jwt }: any) => {
   const getAll = async ({
     filters,
-    pageSize,
-    page,
+    pageSize = 5,
+    page = 1,
     attributes,
   }: {
     filters: string;
@@ -65,6 +65,8 @@ export default ({ model, jwt }: any) => {
           ],
         };
       }
+
+      console.log('query', query);
 
       const data = await model.findAndCountAll(
         {
@@ -188,6 +190,7 @@ export default ({ model, jwt }: any) => {
   const findOne = async ({ id }: { id: number }): Promise<unknown | null> => {
     try {
       const data = await model.findByPk(id, { raw: true });
+      console.log('data', data);
       if (!data) return null;
       return toEntity({ ...data });
     } catch (error) {
