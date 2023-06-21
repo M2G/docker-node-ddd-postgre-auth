@@ -20,7 +20,7 @@ export default ({ postUseCase, jwt, logger, response: { Success, Fail } }: any) 
       const data: any = await postUseCase.register({
         email,
         password: hasPassword,
-        created_at: Math.floor(Date.now() / 1000),
+        created_at: Date.now(),
         deleted_at: 0,
         last_connected_at: null,
       });
