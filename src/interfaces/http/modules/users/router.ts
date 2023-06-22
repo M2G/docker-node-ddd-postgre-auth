@@ -15,14 +15,18 @@ export default ({
 }: any) => {
   const router = Router();
 
-  router.use((req: Request, res: Response, next: NextFunction) => auth.authenticate(req, res, next));
+  router.use((req: Request, res: Response, next: NextFunction) =>
+    auth.authenticate(req, res, next),
+  );
 
   router.get('/', async (req: Request, res: Response) => {
     const { query } = req;
-    const { search, pageSize, page } = query;
+    const { filters, pageSize, page } = query;
 
     try {
-      const data = await getUseCase.all(search ? { search } : pageSize && page ? { pageSize, page } : {});
+      const data = await getUseCase.all(
+        filters ? { filters } : pageSize && page ? { pageSize, page } : {},
+      );
 
       res.status(Status.OK).json(Success(data));
     } catch (error: any) {
@@ -36,7 +40,9 @@ export default ({
     const { id } = params;
 
     if (!isValidObjID(id))
-      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
+      return res
+        .status(Status.UNPROCESSABLE_ENTITY)
+        .json(Fail('Invalid id parameters in request.'));
 
     try {
       const data = await getOneUseCase.getOne({ _id: req.params.id });
@@ -84,7 +90,9 @@ export default ({
     console.log('DELETE', id);
 
     if (!isValidObjID(id))
-      return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
+      return res
+        .status(Status.UNPROCESSABLE_ENTITY)
+        .json(Fail('Invalid id parameters in request.'));
 
     try {
       const data = await deleteUseCase.remove({ _id: id });

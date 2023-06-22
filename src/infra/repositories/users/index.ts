@@ -15,6 +15,8 @@ export default ({ model, jwt }: any) => {
     page: number;
     attributes: string[] | undefined;
   }): Promise<unknown> => {
+    console.log('getAll');
+
     try {
       const query: {
         where: {

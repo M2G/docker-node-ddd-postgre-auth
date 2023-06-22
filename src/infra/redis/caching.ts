@@ -9,7 +9,7 @@ const createClient2 = (redisOptions: { port: number; host: string }) => {
   console.log('Start redis createClient', redisOptions);
   const client = createClient(redisOptions as any);
 
-  void client.connect();
+  client.connect();
 
   client.on('error', (err: any) => {
     console.log('Failed redis createClient', err);
@@ -237,15 +237,7 @@ export default ({ config }: any) => {
    * @returns value or null when the key is missing
    */
 
-  const get = (key: string): Promise<Error | string | null> => {
-    return new Promise((resolve, reject) => {
-      return redisClient.get(key, (err: Error | null, res: string | null) => {
-        if (err) return reject(err);
-
-        return resolve(res ? JSON.parse(<string>res) : null);
-      });
-    });
-  };
+  const get = (key: string): Promise<Error | string | null> => redisClient.get(key);
   /**
    * Returns 'OK' if successful
    * @async
