@@ -216,16 +216,19 @@ export default ({ config }: any) => {
    * @returns 'OK' if successful
    */
 
-  const set = (key: string, value: any, ttlInSeconds?: number): boolean => {
-    const str = Array.isArray(value) ? JSON.stringify(value) : value;
+  const set = async (key: string, value: any, ttlInSeconds?: number): boolean => {
+    //  const str = Array.isArray(value) ? JSON.stringify(value) : value;
+
+    const str = JSON.stringify(value);
 
     const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
 
-    if (ttl)
+    if (ttl) {
       return redisClient.set(key, str, {
-        EX: 10,
+        EX: ttl,
         NX: true,
       });
+    }
 
     return redisClient.set(key, str);
   };
@@ -237,7 +240,18 @@ export default ({ config }: any) => {
    * @returns value or null when the key is missing
    */
 
-  const get = (key: string): Promise<Error | string | null> => redisClient.get(key);
+  const get = async (key: string): Promise<Error | string | null> => {
+    let result = await redisClient.get(key);
+
+    try {
+      result = JSON.parse(result);
+    } catch (e: any) {
+      // do nothing
+      throw new Error(e);
+    }
+
+    return result;
+  };
   /**
    * Returns 'OK' if successful
    * @async
@@ -251,7 +265,7 @@ export default ({ config }: any) => {
     value: any,
     ttlInSeconds: number | undefined,
   ): Promise<any> => {
-    const str = Array.isArray(value) ? JSON.stringify(value) : value;
+    const str = JSON.stringify(value);
 
     const ttl = validatedTtl(ttlInSeconds, defaultTtlInS);
 
