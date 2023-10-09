@@ -45,6 +45,9 @@ export default ({
 
     try {
       const data = await getOneUseCase.getOne({ id });
+
+      console.log('data data data data', data);
+
       logger.debug(data);
       return res.status(Status.OK).json(Success(data));
     } catch (error: any) {

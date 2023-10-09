@@ -32,7 +32,7 @@
     "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint",
     "serve": "node --harmony-top-level-await build/src/index.js",
-    "watch-node": "node --watch build/src/index.js",
+    "watch-node": "node --env-file=.env --watch build/src/index.js",
     "watch": "NODE_ENV=development concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
     "watch2": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
     "watch:test": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",

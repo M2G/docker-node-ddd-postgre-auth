@@ -32,12 +32,7 @@ export default ({ config, logger, database, verify }: any) => {
       cors({
         allowedHeaders: ['Content-Type', 'Authorization'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        origin: [
-          'http://localhost:5173',
-          'http://localhost:5174',
-          'http://127.0.0.1:5173',
-          'http://127.0.0.1:5174',
-        ],
+        origin: ['http://localhost:3002', 'http://localhost:3003'],
       }),
     )
     .use(bodyParser.json());

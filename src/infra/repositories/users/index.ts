@@ -47,7 +47,6 @@ export default ({ model, jwt }: any) => {
 
       if (filters) {
         query.where = {
-          deleted_at: 0,
           [Op.or]: [
             {
               email: {
@@ -65,35 +64,39 @@ export default ({ model, jwt }: any) => {
               },
             },
           ],
+          deleted_at: 0,
         };
       }
 
       console.log('query', query);
 
-      const data = await model.findAndCountAll(
-        {
-          ...query,
-          attributes,
-          limit: pageSize,
-          offset: pageSize * (page - 1),
-        },
-        { raw: true },
-      );
+      const currPage = +page || 1;
 
-      const pages = Math.ceil(data.count / pageSize);
-      const prev = page > 1 ? page - 1 : null;
-      const next = page < pages ? page + 1 : null;
+      const data = await model.findAll({
+        ...query,
+        attributes,
+        raw: true,
+        nest: true,
+        limit: pageSize,
+        offset: pageSize * (currPage - 1),
+      });
 
+      console.log('data data data data', data);
+      const pages = Math.ceil(data.length / pageSize);
+      const prev = currPage > 1 ? currPage - 1 : null;
+      const next = pages < currPage ? currPage + 1 : null;
+
+      console.log('page', page);
+      console.log('pages', pages);
+      console.log('next', next);
       return {
         pageInfo: {
-          count: data.count,
+          count: data.length,
           next,
           pages,
           prev,
         },
-        results: (data.rows || [])?.map((data: { dataValues: unknown }) =>
-          toEntity({ ...(data.dataValues as any) }),
-        ),
+        results: data?.length ? data.map((d) => toEntity({ ...d })) : [],
       };
     } catch (error) {
       throw new Error(error as string | undefined);
@@ -192,7 +195,6 @@ export default ({ model, jwt }: any) => {
   const findOne = async ({ id }: { id: number }): Promise<unknown | null> => {
     try {
       const data = await model.findByPk(id, { raw: true });
-      console.log('data', data);
       if (!data) return null;
       return toEntity({ ...data });
     } catch (error) {
@@ -209,6 +211,7 @@ export default ({ model, jwt }: any) => {
   };
 
   const update = ({ id, ...params }: { id: number; params: IUser }) => {
+    console.log('update update update update update', { id, ...params });
     try {
       return model.update({ ...params }, { where: { id } }, { raw: true });
     } catch (error) {
