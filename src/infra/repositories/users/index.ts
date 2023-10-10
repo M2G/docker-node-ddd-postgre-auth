@@ -1,26 +1,27 @@
-import { UniqueConstraintError, Op } from 'sequelize';
 import type IUser from 'core/IUser';
+
 import { comparePassword } from 'infra/encryption';
+import { Op, UniqueConstraintError } from 'sequelize';
+
 import toEntity from './transform';
 
-export default ({ model, jwt }: any) => {
+export default ({ jwt, model }: any) => {
   const getAll = async ({
-    filters,
-    pageSize = 5,
-    page = 1,
     attributes,
+    filters,
+    page = 1,
+    pageSize = 5,
   }: {
-    filters: string;
-    pageSize: number;
-    page: number;
     attributes: string[] | undefined;
+    filters: string;
+    page: number;
+    pageSize: number;
   }): Promise<unknown> => {
     console.log('getAll');
 
     try {
       const query: {
         where: {
-          deleted_at: number;
           [Op.or]?: [
             {
               email: {
@@ -38,6 +39,7 @@ export default ({ model, jwt }: any) => {
               };
             },
           ];
+          deleted_at: number;
         };
       } = {
         where: {
@@ -70,33 +72,32 @@ export default ({ model, jwt }: any) => {
 
       console.log('query', query);
 
-      const currPage = +page || 1;
+      const currPage = Number(page) || 1;
 
-      const data = await model.findAll({
+      const data = await model.findAndCountAll({
         ...query,
         attributes,
-        raw: true,
-        nest: true,
         limit: pageSize,
+        nest: true,
         offset: pageSize * (currPage - 1),
+        raw: true,
       });
 
       console.log('data data data data', data);
-      const pages = Math.ceil(data.length / pageSize);
+      const pages = Math.ceil(data.rows.length / pageSize);
       const prev = currPage > 1 ? currPage - 1 : null;
-      const next = pages < currPage ? currPage + 1 : null;
+      const next = pages <= currPage ? currPage + 1 : null;
 
-      console.log('page', page);
       console.log('pages', pages);
       console.log('next', next);
       return {
         pageInfo: {
-          count: data.length,
+          count: data.count,
           next,
-          pages,
+          page: currPage,
           prev,
         },
-        results: data?.length ? data.map((d) => toEntity({ ...d })) : [],
+        results: data?.rows ? data.rows.map((d) => toEntity({ ...d })) : [],
       };
     } catch (error) {
       throw new Error(error as string | undefined);
@@ -105,9 +106,9 @@ export default ({ model, jwt }: any) => {
 
   const register = async ({
     created_at,
+    deleted_at,
     email,
     password,
-    deleted_at,
   }: {
     created_at: number;
     deleted_at: number;
