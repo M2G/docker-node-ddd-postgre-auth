@@ -83,13 +83,12 @@ export default ({ jwt, model }: any) => {
         raw: true,
       });
 
-      console.log('data data data data', data);
-      const pages = Math.ceil(data.rows.length / pageSize);
-      const prev = currPage > 1 ? currPage - 1 : null;
-      const next = pages <= currPage ? currPage + 1 : null;
+      const startIndex = (page - 1) * pageSize;
+      const endIndex = page * pageSize;
 
-      console.log('pages', pages);
-      console.log('next', next);
+      const prev = startIndex > 0 ? currPage - 1 : null;
+      const next = endIndex < data.count ? currPage + 1 : null;
+
       return {
         pageInfo: {
           count: data.count,
