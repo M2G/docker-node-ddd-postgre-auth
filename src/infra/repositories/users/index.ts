@@ -17,8 +17,6 @@ export default ({ jwt, model }: any) => {
     page: number;
     pageSize: number;
   }): Promise<unknown> => {
-    console.log('getAll');
-
     try {
       const query: {
         where: {
@@ -30,12 +28,12 @@ export default ({ jwt, model }: any) => {
             },
             {
               first_name: {
-                [Op.like]: string;
+                [Op.iLike]: string;
               };
             },
             {
               last_name: {
-                [Op.like]: string;
+                [Op.iLike]: string;
               };
             },
           ];
@@ -57,12 +55,12 @@ export default ({ jwt, model }: any) => {
             },
             {
               first_name: {
-                [Op.like]: `%${filters}%`,
+                [Op.iLike]: `%${filters}%`,
               },
             },
             {
               last_name: {
-                [Op.like]: `%${filters}%`,
+                [Op.iLike]: `%${filters}%`,
               },
             },
           ],
